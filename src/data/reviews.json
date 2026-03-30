@@ -33,5 +33,26 @@
     "rating": 5,
     "text": "Whole house interior paint job. They prepped everything perfectly and the results are stunning. Will use MTC again for sure.",
     "service": "painting"
+  },
+  {
+    "name": "Nicole F.",
+    "city": "Burlington",
+    "rating": 5,
+    "text": "MTC completely gutted and rebuilt our main bathroom. New walk-in shower, heated floors, and custom vanity. It looks like something out of a magazine. The crew was tidy and respectful the entire time.",
+    "service": "bathroom"
+  },
+  {
+    "name": "Robert C.",
+    "city": "Hamilton",
+    "rating": 5,
+    "text": "From the initial quote to the final walkthrough, everything was handled professionally. Our new kitchen is exactly what we envisioned — open concept with quartz counters and custom cabinetry. Couldn't be happier.",
+    "service": "kitchen"
+  },
+  {
+    "name": "Patricia M.",
+    "city": "Waterdown",
+    "rating": 5,
+    "text": "We finally finished our basement after years of putting it off. MTC handled the whole thing — framing, drywall, flooring, pot lights. It's now our favourite room in the house. Great communication throughout.",
+    "service": "basement"
   }
 ]

@@ -1,0 +1,12 @@
+[
+  {"name": "Sarah M.", "city": "Hamilton", "action": "requested a basement renovation quote", "timeAgo": "2 hours ago"},
+  {"name": "David K.", "city": "Burlington", "action": "booked a kitchen consultation", "timeAgo": "4 hours ago"},
+  {"name": "Lisa P.", "city": "Oakville", "action": "requested a bathroom renovation quote", "timeAgo": "6 hours ago"},
+  {"name": "James R.", "city": "Stoney Creek", "action": "started a flooring project", "timeAgo": "8 hours ago"},
+  {"name": "Amanda T.", "city": "Ancaster", "action": "requested an interior painting quote", "timeAgo": "1 day ago"},
+  {"name": "Mike D.", "city": "Burlington", "action": "completed a basement renovation", "timeAgo": "2 days ago"},
+  {"name": "Jennifer W.", "city": "Hamilton", "action": "requested a kitchen renovation quote", "timeAgo": "2 days ago"},
+  {"name": "Chris B.", "city": "Dundas", "action": "booked a bathroom consultation", "timeAgo": "3 days ago"},
+  {"name": "Rachel S.", "city": "Waterdown", "action": "requested a free estimate", "timeAgo": "3 days ago"},
+  {"name": "Tom H.", "city": "Burlington", "action": "started a kitchen renovation", "timeAgo": "4 days ago"}
+]

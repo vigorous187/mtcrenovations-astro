@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'Contact MTC Renovations | Free Quote';
+const description = 'Get in touch with MTC Renovations. Call (647) 560-1095 or request a free renovation quote online. Serving Burlington, Hamilton & the GTA.';
+const canonical = `${site.url}/contact/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Contact', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Contact</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">Get In Touch</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 560px;">
+        Ready to start your renovation? We'd love to hear from you. Call, email, or fill out the form — we respond within 24 hours.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact + Form -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+
+        <!-- Left: Contact Info -->
+        <div class="col-lg-5 reveal">
+          <h2 class="h3 fw-bold mb-4">Contact Information</h2>
+
+          <div class="card border-0 shadow-sm p-4 mb-3">
+            <div class="d-flex align-items-start">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 me-3" style="width: 48px; height: 48px;">
+                <i class="fas fa-phone text-danger"></i>
+              </div>
+              <div>
+                <div class="fw-bold mb-1">Phone</div>
+                <a href="tel:6475601095" class="text-danger text-decoration-none fw-bold fs-5">
+                  {site.phone}
+                </a>
+                <div class="text-secondary small mt-1">Call or text anytime</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm p-4 mb-3">
+            <div class="d-flex align-items-start">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 me-3" style="width: 48px; height: 48px;">
+                <i class="fas fa-envelope text-danger"></i>
+              </div>
+              <div>
+                <div class="fw-bold mb-1">Email</div>
+                <a href={`mailto:${site.email}`} class="text-danger text-decoration-none fw-semibold">
+                  {site.email}
+                </a>
+                <div class="text-secondary small mt-1">We reply within 24 hours</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm p-4 mb-3">
+            <div class="d-flex align-items-start">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 me-3" style="width: 48px; height: 48px;">
+                <i class="fas fa-map-marker-alt text-danger"></i>
+              </div>
+              <div>
+                <div class="fw-bold mb-1">Service Area</div>
+                <div class="text-secondary small">{site.serviceArea}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm p-4">
+            <div class="d-flex align-items-start">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 me-3" style="width: 48px; height: 48px;">
+                <i class="fas fa-clock text-danger"></i>
+              </div>
+              <div>
+                <div class="fw-bold mb-1">Hours</div>
+                <div class="text-secondary small">
+                  Monday – Friday: 8:00 AM – 6:00 PM<br />
+                  Saturday: By appointment<br />
+                  Sunday: Closed
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Quote Form -->
+        <div class="col-lg-7 reveal">
+          <h2 class="h3 fw-bold mb-4">Request a Free Estimate</h2>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+              <!-- Render QuoteForm without its outer section wrapper by embedding inline -->
+              <QuoteForm />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Placeholder -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-4 reveal">
+        <h2 class="h4 fw-bold">Serving Burlington, Hamilton &amp; the GTA</h2>
+        <p class="text-secondary small">We come to you — free in-home consultations across our full service area.</p>
+      </div>
+      <div class="rounded-3 overflow-hidden shadow-sm reveal" style="height: 360px; background: #e9ecef; display: flex; align-items: center; justify-content: center;">
+        <div class="text-center text-secondary">
+          <i class="fas fa-map-marked-alt fa-3x mb-3 opacity-50"></i>
+          <div class="fw-semibold">Map will be added</div>
+          <div class="small mt-1">Burlington, Hamilton &amp; Greater Toronto Area</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Local Contractor vs Big Box Store Renovations', url: `${site.url}/mtc-vs-big-box-renovations` },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Local Contractor vs Big Box Store Renovations"
+  description="Home Depot, Lowe's, or a local contractor? Compare renovation quality, cost, and service. Why Burlington & Hamilton homeowners choose local."
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Local Contractor vs Big Box</li>
+        </ol>
+      </nav>
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="display-5 fw-bold mb-3">Big Box Store vs Local Contractor — Which Is Right for You?</h1>
+          <p class="lead text-white-50 mb-4">
+            Home Depot and Lowe's offer renovation installation services. So does your local contractor. The prices look similar at first glance. The experience and outcome rarely are. Here is an honest comparison for Burlington and Hamilton homeowners.
+          </p>
+          <a href="/basement/get-free-quote/" class="btn btn-danger btn-lg px-5">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="fw-bold mb-2 text-center">Big Box Store vs Local Contractor — Side by Side</h2>
+          <p class="text-secondary text-center mb-4">Both options will complete your renovation. What differs is who does the work, what it costs, and what happens when something goes wrong.</p>
+          <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col" style="width: 22%;">Factor</th>
+                  <th scope="col" class="text-center" style="width: 39%;">Big Box Store (Home Depot / Lowe's)</th>
+                  <th scope="col" class="text-center text-danger" style="width: 39%;">Local Contractor (MTC)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Who Does the Work</th>
+                  <td>Third-party subcontractors sourced through a vendor network. You do not know who will show up or how they were vetted.</td>
+                  <td class="table-light">Our own in-house team. The same crew that quoted your job does your job. We know every person on your site.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Customization</th>
+                  <td>Pre-set packages and limited finish options. Upgrades are available but priced as add-ons that escalate the total quickly.</td>
+                  <td class="table-light">Fully custom. We build to your spec — your layout, your materials, your finishes. No packages, no upsells.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pricing</th>
+                  <td>Retail material markup plus a franchise fee layered on top of subcontractor labour. You pay the store margin on every product used.</td>
+                  <td class="table-light">Direct pricing. We buy materials at trade cost and pass savings to you. No franchise fee, no corporate overhead baked into your quote.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Accountability</th>
+                  <td>Problems go through a call centre. The store, the vendor network, and the subcontractor may each point to the others. Resolution can take weeks.</td>
+                  <td class="table-light">Owner-operated. Call us directly. One phone number, one point of responsibility. We cannot redirect you to someone else.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Local Knowledge</th>
+                  <td>National standards applied uniformly. Subcontractors may not know Hamilton or Burlington permit requirements, inspection timelines, or soil conditions.</td>
+                  <td class="table-light">We have pulled permits in Hamilton, Burlington, and Halton Region hundreds of times. We know the inspectors, the timelines, and the local code nuances.</td>
+                </tr>
+                <tr>
+                  <th scope="row">After-Service</th>
+                  <td>Warranty claims go through the store's installation service. Subcontractor availability after project close is not guaranteed.</td>
+                  <td class="table-light">Direct line to us, always. Warranty issues are handled by the same crew that built it. No runaround.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Local Matters -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="fw-bold mb-2 text-center">Why Local Matters for Renovation</h2>
+          <p class="text-secondary text-center mb-5">Renovation is not the same everywhere. Local expertise is not just a marketing line — it is a practical advantage.</p>
+          <div class="row g-4">
+            <div class="col-md-4 reveal">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4 text-center">
+                  <i class="fas fa-map-marked-alt text-danger mb-3" style="font-size: 2rem;"></i>
+                  <h5 class="fw-bold mb-2">Building Codes Vary by Municipality</h5>
+                  <p class="text-secondary small mb-0">Hamilton and Burlington have different permit offices, inspection workflows, and code interpretations. A contractor who works here every day knows this. A national vendor network may not.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 reveal">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4 text-center">
+                  <i class="fas fa-handshake text-danger mb-3" style="font-size: 2rem;"></i>
+                  <h5 class="fw-bold mb-2">Local Supplier Relationships</h5>
+                  <p class="text-secondary small mb-0">We buy regularly from the same Hamilton and Burlington suppliers. That means consistent material availability, faster problem resolution when something is backordered, and trade pricing that a one-time retail buyer cannot access.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 reveal">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4 text-center">
+                  <i class="fas fa-user-tie text-danger mb-3" style="font-size: 2rem;"></i>
+                  <h5 class="fw-bold mb-2">Real Accountability</h5>
+                  <p class="text-secondary small mb-0">We live and work in the same communities as our clients. Our reputation is built one project at a time, and we cannot afford to leave anyone unhappy. A national chain does not have that stake in your specific neighbourhood.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Markup Explained -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3 text-center">The Real Numbers Behind Big Box Pricing</h2>
+          <p class="text-secondary text-center mb-4">Big box installation services are convenient. They are also structured to make money at multiple layers — which means you pay for each one.</p>
+          <div class="card border-0 shadow">
+            <div class="card-body p-4 p-lg-5">
+              <p class="text-secondary mb-3">
+                When you hire Home Depot or Lowe's for a flooring installation, here is what happens behind the scenes: the store contracts a regional installation vendor, who sources a local subcontractor to do the actual work. Each layer takes a margin.
+              </p>
+              <p class="text-secondary mb-3">
+                On a $10,000 flooring job, the actual installer — the person on their knees in your house — may be receiving $5,500–$6,500. The rest covers the store's program margin, the vendor's coordination fee, and administrative overhead. You are paying for a chain of intermediaries.
+              </p>
+              <p class="text-secondary mb-3">
+                When you hire MTC directly, your money goes to the materials and the people installing them. Our margin is transparent and built into the fixed-price quote you receive upfront. There is no hidden chain.
+              </p>
+              <p class="text-secondary mb-0">
+                We are not saying big box services are never worth using. For straightforward product purchases, they offer real convenience. But for renovation work in Burlington and Hamilton, a direct relationship with a local contractor almost always delivers better value and clearer accountability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Burlington and Hamilton homeowners should know -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="fw-bold mb-3 text-center">What Burlington and Hamilton Homeowners Should Know</h2>
+          <p class="text-secondary mb-3">The renovation market in Burlington and Hamilton operates differently from Toronto. Lead times from suppliers are different. Building permit wait times at the City of Hamilton are different from those at Halton Region. The inspectors have different preferences and interpretations of the Ontario Building Code.</p>
+          <p class="text-secondary mb-3">A national installation program run out of a big box store does not have this institutional knowledge. Their vendor network sources whoever is available in the region, and those subcontractors may be rotating through different municipalities week to week. They are competent tradespeople in most cases — but they are unlikely to know that a specific inspector at a specific building department prefers framing inspections a particular way, or that permit approvals in Halton Region for structural basement work can take six to eight weeks.</p>
+          <p class="text-secondary mb-0">We have worked in Burlington and Hamilton continuously since our founding. We know the local permit offices, the inspection process, the local supplier lead times, and the local material availability. That knowledge has real dollar value on your project — it reduces delays, prevents surprises, and keeps the schedule intact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Material sourcing -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="fw-bold mb-3 text-center">Where Your Materials Come From</h2>
+          <p class="text-secondary mb-3">One of the less obvious differences between a big box store program and a local contractor is where the materials originate and who controls the supply chain.</p>
+          <p class="text-secondary mb-3">When you hire Home Depot's installation service, you are buying their products at retail or near-retail prices. The store controls what is used. If a product is discontinued, backordered, or substituted, the decision flows through the store's supply chain — not through a conversation with your project manager.</p>
+          <p class="text-secondary mb-0">MTC sources materials from local and regional trade suppliers at wholesale pricing. You choose the products. If something is backordered, we find an equivalent from a different supplier and get your approval before substituting. You are never in the dark about what is going into your home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When big box might work -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-5 reveal">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <i class="fas fa-store text-secondary" style="font-size: 1.6rem;"></i>
+                <h3 class="h5 fw-bold mb-0">When Big Box Can Work</h3>
+              </div>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-secondary mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Single-room carpet installation with no subfloor prep</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-secondary mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Appliance installation tied to a new purchase</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-secondary mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Simple window or door swap with no structural work</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <i class="fas fa-check text-secondary mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Projects with tight timelines where convenience outweighs cost</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 reveal">
+          <div class="card border-0 shadow-sm h-100 border-danger" style="border-width: 2px !important;">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <i class="fas fa-home text-danger" style="font-size: 1.6rem;"></i>
+                <h3 class="h5 fw-bold mb-0">When to Call MTC Instead</h3>
+              </div>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-danger mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Full basement finishing or kitchen gut renovation</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-danger mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Any project requiring a permit</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-danger mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Multi-trade work (electrical + plumbing + framing)</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <i class="fas fa-check text-danger mt-1 flex-shrink-0"></i>
+                  <span class="text-secondary small">Any time you want to know exactly who is working in your home</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal Links -->
+  <section class="py-5">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <p class="text-secondary mb-3">
+            Learn more about how we work: <a href="/basement/how-it-works/" class="text-dark fw-semibold">Our 5-Step Process</a> and <a href="/basement/why-mtc/" class="text-dark fw-semibold">Why Homeowners Choose MTC</a>.
+          </p>
+          <p class="text-secondary mb-0">
+            We serve <a href="/location/burlington/" class="text-dark fw-semibold">Burlington</a>, <a href="/location/hamilton/" class="text-dark fw-semibold">Hamilton</a>, <a href="/location/oakville/" class="text-dark fw-semibold">Oakville</a>, and the surrounding GTA. <a href="/locations/" class="text-dark fw-semibold">See all service areas.</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Get a Direct, Fixed-Price Quote"
+    subtitle="No middlemen. No call centres. Just a fair price from a Burlington and Hamilton contractor you can call directly."
+    ctaLink="/basement/get-free-quote/"
+  />
+</BaseLayout>

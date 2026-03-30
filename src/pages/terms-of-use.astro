@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbList } from '../components/seo/schemas';
+
+const title = 'Terms of Use | MTC Renovations';
+const description = 'Terms of use for the MTC Renovations website. Read our policies on website use, accuracy of information, intellectual property, and Ontario jurisdiction.';
+const canonical = 'https://mtcrenovations.ca/terms-of-use/';
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', url: 'https://mtcrenovations.ca/' },
+  { name: 'Terms of Use', url: canonical },
+]);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={breadcrumb}
+  noindex={false}
+>
+  <section class="py-5">
+    <div class="container" style="max-width: 800px;">
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Terms of Use</li>
+        </ol>
+      </nav>
+
+      <h1 class="mb-2">Terms of Use</h1>
+      <p class="text-muted small mb-5">Last updated: March 2025</p>
+
+      <p>Welcome to the MTC Renovations website (the "Site"). By accessing or using this Site, you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the Site.</p>
+
+      <h2 class="h4 mt-5 mb-3">1. Use of This Website</h2>
+      <p>You may use this Site for lawful personal and informational purposes only. You agree not to:</p>
+      <ul>
+        <li>Use the Site in any way that violates applicable federal, provincial, or local laws or regulations.</li>
+        <li>Transmit any unsolicited or unauthorized advertising, promotional material, or spam.</li>
+        <li>Attempt to gain unauthorized access to any part of the Site, its servers, or any connected systems.</li>
+        <li>Interfere with or disrupt the integrity or performance of the Site.</li>
+        <li>Scrape, copy, or reproduce content from the Site without our prior written permission.</li>
+      </ul>
+
+      <h2 class="h4 mt-5 mb-3">2. Accuracy of Information</h2>
+      <p>We make reasonable efforts to ensure the information on this Site is accurate and current. However, please note:</p>
+      <ul>
+        <li>Content on this Site is provided for general informational purposes only and does not constitute a binding contract or commitment.</li>
+        <li><strong>Estimates and pricing ranges referenced on this Site are not binding quotes.</strong> All formal project quotes are provided in writing following an in-home consultation and are subject to site conditions, scope of work, material selections, and applicable taxes.</li>
+        <li>We reserve the right to update, modify, or remove any content at any time without notice.</li>
+      </ul>
+
+      <h2 class="h4 mt-5 mb-3">3. Intellectual Property</h2>
+      <p>All content on this Site — including but not limited to text, photographs, logos, graphics, design elements, and page layout — is owned by or licensed to MTC Renovations and is protected by Canadian copyright law and applicable intellectual property legislation.</p>
+      <p>You may not reproduce, distribute, republish, modify, or create derivative works from any content on this Site without our express written consent. Limited personal, non-commercial use is permitted provided content is not altered and proper attribution is given.</p>
+
+      <h2 class="h4 mt-5 mb-3">4. Third-Party Links</h2>
+      <p>This Site may contain links to third-party websites for your convenience. We do not endorse or assume responsibility for the content, privacy practices, or accuracy of any third-party site. Accessing linked sites is at your own risk.</p>
+
+      <h2 class="h4 mt-5 mb-3">5. Disclaimer of Warranties</h2>
+      <p>This Site is provided on an "as is" and "as available" basis without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Site will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+
+      <h2 class="h4 mt-5 mb-3">6. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable Ontario and Canadian law, MTC Renovations, its owners, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from:</p>
+      <ul>
+        <li>Your use of or inability to use this Site.</li>
+        <li>Any reliance placed on information contained on this Site.</li>
+        <li>Unauthorized access to or alteration of your data.</li>
+      </ul>
+      <p>Our total liability to you for any claim arising from use of this Site shall not exceed $100 CAD.</p>
+
+      <h2 class="h4 mt-5 mb-3">7. Governing Law and Jurisdiction</h2>
+      <p>These Terms of Use are governed by and construed in accordance with the laws of the Province of Ontario and the federal laws of Canada applicable therein. Any disputes arising from or related to these Terms shall be subject to the exclusive jurisdiction of the courts of Ontario.</p>
+
+      <h2 class="h4 mt-5 mb-3">8. Changes to These Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. Changes take effect immediately upon posting to this page. The "Last updated" date at the top of this page will reflect the most recent revision. Continued use of the Site after changes constitutes your acceptance of the revised Terms.</p>
+
+      <h2 class="h4 mt-5 mb-3">9. Contact</h2>
+      <p>Questions about these Terms? Contact us:</p>
+      <address class="mt-3">
+        <strong>MTC Renovations</strong><br />
+        Burlington &amp; Hamilton, Ontario<br />
+        Email: <a href="mailto:info@mtcrenovations.ca">info@mtcrenovations.ca</a><br />
+        Phone: <a href="tel:+16475601095">(647) 560-1095</a>
+      </address>
+    </div>
+  </section>
+</BaseLayout>

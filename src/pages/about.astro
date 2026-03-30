@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'About MTC Renovations | Burlington & Hamilton';
+const description = 'Licensed, insured renovation contractor serving Burlington, Hamilton & the GTA. Meet our team, learn our story, and see why homeowners trust MTC.';
+const canonical = `${site.url}/about/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'About', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.6);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">About</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">About MTC Renovations</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 640px;">
+        Burlington and Hamilton's trusted renovation contractor — quality craftsmanship, fixed pricing, and zero surprises.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 reveal">
+          <span class="text-danger fw-bold small text-uppercase letter-spacing-1">Our Story</span>
+          <h2 class="display-6 fw-bold mt-2 mb-4">Built on Trust, Delivered on Time</h2>
+          <p class="text-secondary mb-3">
+            MTC Renovations was founded with a single purpose: bring quality, transparent renovation services to Burlington, Hamilton, and the Greater Toronto Area. Too many homeowners had been burned by contractors who changed prices mid-project, disappeared mid-build, or delivered work that didn't match the vision.
+          </p>
+          <p class="text-secondary mb-3">
+            We set out to do things differently. Every project starts with a fixed-price quote — what we quote is what you pay. Our team shows up on schedule, communicates clearly, and doesn't consider a job finished until you've done a final walkthrough and signed off on every detail.
+          </p>
+          <p class="text-secondary">
+            From basement finishing to full kitchen renovations, we've built a reputation across {site.serviceArea} that we're proud of — one satisfied homeowner at a time.
+          </p>
+        </div>
+        <div class="col-lg-6 reveal">
+          <div class="bg-dark text-white rounded-3 p-5 text-center">
+            <div class="row g-4">
+              <div class="col-6">
+                <div class="display-4 fw-bold text-danger">50+</div>
+                <div class="text-white-50 small mt-1">Five-Star Reviews</div>
+              </div>
+              <div class="col-6">
+                <div class="display-4 fw-bold text-danger">100%</div>
+                <div class="text-white-50 small mt-1">Fixed-Price Quotes</div>
+              </div>
+              <div class="col-6">
+                <div class="display-4 fw-bold text-danger">GTA</div>
+                <div class="text-white-50 small mt-1">Wide Coverage</div>
+              </div>
+              <div class="col-6">
+                <div class="display-4 fw-bold text-danger">WSIB</div>
+                <div class="text-white-50 small mt-1">Fully Covered</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Signals -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="text-danger fw-bold small text-uppercase">Why Homeowners Choose Us</span>
+        <h2 class="display-6 fw-bold mt-2">The MTC Difference</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 reveal">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="mb-3">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 72px; height: 72px;">
+                <i class="fas fa-shield-alt text-danger fa-2x"></i>
+              </div>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Licensed &amp; Insured</h3>
+            <p class="text-secondary small mb-0">
+              Fully licensed renovation contractor with WSIB coverage on every project. You're protected from day one to final walkthrough.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="mb-3">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 72px; height: 72px;">
+                <i class="fas fa-tag text-danger fa-2x"></i>
+              </div>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Fixed-Price Guarantee</h3>
+            <p class="text-secondary small mb-0">
+              We quote it, we honour it. No change orders, no mid-project surprises. Your budget is respected — that's our commitment to you.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="card border-0 shadow-sm h-100 text-center p-4">
+            <div class="mb-3">
+              <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 72px; height: 72px;">
+                <i class="fas fa-star text-danger fa-2x"></i>
+              </div>
+            </div>
+            <h3 class="h5 fw-bold mb-2">50+ Five-Star Reviews</h3>
+            <p class="text-secondary small mb-0">
+              Google-verified reviews from real Burlington and Hamilton homeowners. Our reputation is built on results, not promises.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="text-danger fw-bold small text-uppercase">How We Work</span>
+        <h2 class="display-6 fw-bold mt-2">Our Process</h2>
+        <p class="text-secondary mx-auto mt-2" style="max-width: 560px;">
+          We've built a proven 5-step process that keeps your project on time, on budget, and stress-free.
+        </p>
+      </div>
+      <div class="row g-4">
+        {[
+          {
+            step: '01',
+            title: 'Free Consultation',
+            desc: 'We visit your home, discuss your vision, and assess the space. No obligation — just a straightforward conversation about what you want to achieve.',
+            icon: 'fas fa-comments',
+          },
+          {
+            step: '02',
+            title: 'Design & Planning',
+            desc: 'Detailed design, material selection, and full project scope. We nail down every decision before a single tool is lifted.',
+            icon: 'fas fa-drafting-compass',
+          },
+          {
+            step: '03',
+            title: 'Fixed-Price Quote',
+            desc: 'Transparent pricing with no hidden fees. You receive a written fixed-price quote that covers everything — materials, labour, and cleanup.',
+            icon: 'fas fa-file-invoice-dollar',
+          },
+          {
+            step: '04',
+            title: 'Expert Build',
+            desc: 'Our team gets to work on schedule. We communicate progress throughout, keep the site clean, and handle every trade with professionalism.',
+            icon: 'fas fa-hard-hat',
+          },
+          {
+            step: '05',
+            title: 'Final Walkthrough',
+            desc: "We don't consider it done until you're satisfied. We walk through every detail together — and we fix anything that isn't exactly right.",
+            icon: 'fas fa-clipboard-check',
+          },
+        ].map((item, i) => (
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="card border-0 shadow-sm h-100 p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3 flex-shrink-0" style="width: 48px; height: 48px; font-size: 0.85rem;">
+                  {item.step}
+                </div>
+                <i class={`${item.icon} text-danger fa-lg`}></i>
+              </div>
+              <h3 class="h6 fw-bold mb-2">{item.title}</h3>
+              <p class="text-secondary small mb-0">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="text-danger fw-bold small text-uppercase">Where We Work</span>
+        <h2 class="display-6 fw-bold mt-2">Service Area</h2>
+        <p class="text-secondary mt-2">We serve homeowners across Burlington, Hamilton, and the Greater Toronto Area.</p>
+      </div>
+      <div class="row justify-content-center g-3 reveal">
+        {site.serviceAreaCities.map(city => (
+          <div class="col-auto">
+            <a
+              href={`/location/${city.toLowerCase().replace(/\s+/g, '-')}/`}
+              class="btn btn-outline-dark btn-sm px-4"
+            >
+              {city}
+            </a>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-4 reveal">
+        <a href="/locations/" class="text-danger text-decoration-none fw-bold small">
+          View all service areas <i class="fas fa-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Ready to Start Your Renovation?" ctaText="Get Free Estimate" />
+</BaseLayout>

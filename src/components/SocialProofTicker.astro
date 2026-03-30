@@ -1,0 +1,99 @@
+---
+import socialProof from '../data/social-proof.json';
+---
+
+<div id="social-proof-ticker" style="position: fixed; bottom: 20px; left: 20px; z-index: 1000; display: none;">
+  <div style="background: #1a1a2e; color: white; padding: 12px 16px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 320px; font-size: 14px; display: flex; align-items: center; gap: 10px;">
+    <span style="width: 8px; height: 8px; background: #34A853; border-radius: 50%; display: inline-block; flex-shrink: 0; animation: pulse 2s infinite;"></span>
+    <span id="ticker-text"></span>
+    <button id="ticker-close" style="background: none; border: none; color: #888; cursor: pointer; font-size: 16px; padding: 0 0 0 8px;" aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<style>
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  #social-proof-ticker.show {
+    animation: slideUp 0.35s ease forwards;
+  }
+
+  #social-proof-ticker.hide {
+    animation: fadeOut 0.35s ease forwards;
+  }
+</style>
+
+<script define:vars={{ socialProof }}>
+  (function () {
+    const ticker = document.getElementById('social-proof-ticker');
+    const tickerText = document.getElementById('ticker-text');
+    const closeBtn = document.getElementById('ticker-close');
+
+    if (!ticker || !tickerText || !closeBtn) return;
+
+    const entries = socialProof;
+    let index = 0;
+    let shown = 0;
+    const MAX_SHOWN = 3;
+    const DISPLAY_MS = 5000;
+    const PAUSE_MS = 30000;
+    let dismissed = false;
+    let cycleTimeout = null;
+
+    function showEntry() {
+      if (dismissed) return;
+
+      const entry = entries[index % entries.length];
+      tickerText.textContent = `${entry.name} from ${entry.city} ${entry.action} — ${entry.timeAgo}`;
+
+      ticker.style.display = 'flex';
+      ticker.classList.remove('hide');
+      ticker.classList.add('show');
+
+      index++;
+      shown++;
+
+      cycleTimeout = setTimeout(() => {
+        hideEntry(function () {
+          if (shown >= MAX_SHOWN) {
+            shown = 0;
+            cycleTimeout = setTimeout(showEntry, PAUSE_MS);
+          } else {
+            cycleTimeout = setTimeout(showEntry, 400);
+          }
+        });
+      }, DISPLAY_MS);
+    }
+
+    function hideEntry(callback) {
+      ticker.classList.remove('show');
+      ticker.classList.add('hide');
+      setTimeout(() => {
+        ticker.style.display = 'none';
+        ticker.classList.remove('hide');
+        if (callback) callback();
+      }, 350);
+    }
+
+    closeBtn.addEventListener('click', function () {
+      dismissed = true;
+      clearTimeout(cycleTimeout);
+      hideEntry();
+    });
+
+    // Start after a short delay so it doesn't appear immediately on load
+    setTimeout(showEntry, 3000);
+  })();
+</script>

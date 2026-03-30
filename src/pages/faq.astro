@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { faqPage, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'FAQ | MTC Renovations Burlington & Hamilton';
+const description = 'Common questions about renovation costs, timelines, permits, and our process. MTC Renovations answers your Burlington & Hamilton renovation questions.';
+const canonical = `${site.url}/faq/`;
+
+const allFaqs = await getCollection('faqs');
+const faqs = allFaqs
+  .map(entry => entry.data)
+  .sort((a, b) => a.order - b.order);
+
+const faqSchema = faqPage(faqs.map(f => ({ question: f.question, answer: f.answer })));
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', url: `${site.url}/` },
+  { name: 'FAQ', url: canonical },
+]);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={[faqSchema, breadcrumb]}
+  noindex={false}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5">
+    <div class="container text-center">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">FAQ</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">Frequently Asked Questions</h1>
+      <p class="lead text-white-50 mb-0" style="max-width: 600px; margin: 0 auto;">
+        Everything you need to know about renovating your Burlington or Hamilton home with MTC.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="py-5">
+    <div class="container" style="max-width: 860px;">
+      <div class="accordion" id="faqAccordion">
+        {faqs.map((faq, index) => (
+          <div class="accordion-item border mb-3 rounded shadow-sm">
+            <h3 class="accordion-header" id={`heading-${index}`}>
+              <button
+                class={`accordion-button fw-semibold ${index !== 0 ? 'collapsed' : ''}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={`#collapse-${index}`}
+                aria-expanded={index === 0 ? 'true' : 'false'}
+                aria-controls={`collapse-${index}`}
+              >
+                {faq.question}
+              </button>
+            </h3>
+            <div
+              id={`collapse-${index}`}
+              class={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
+              aria-labelledby={`heading-${index}`}
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body text-secondary">
+                {faq.answer}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-5">
+        <p class="lead mb-4">Still have questions? We are happy to help.</p>
+        <a href="/basement/get-free-quote/" class="btn btn-danger btn-lg px-4 me-2">
+          Get a Free Estimate
+        </a>
+        <a href="tel:+16475601095" class="btn btn-outline-dark btn-lg px-4">
+          <i class="fas fa-phone me-2"></i>{site.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

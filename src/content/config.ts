@@ -50,4 +50,13 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { services, cities, blog };
+const faqs = defineCollection({
+  type: 'data',
+  schema: z.object({
+    question: z.string(),
+    answer: z.string(),
+    order: z.number(),
+  }),
+});
+
+export const collections = { services, cities, blog, faqs };

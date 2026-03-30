@@ -3,6 +3,7 @@ import { ViewTransitions } from 'astro:transitions';
 import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SocialProofTicker from '../components/SocialProofTicker.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -65,6 +66,8 @@ const props = Astro.props;
       document.querySelectorAll('.reveal:not(.revealed)').forEach(el => observer.observe(el));
     });
   </script>
+
+  <SocialProofTicker />
 
   <!-- GA4 deferred load -->
   <script is:inline>

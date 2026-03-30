@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'Renovation Cost Estimator | MTC Renovations';
+const description = 'Estimate your renovation cost in Burlington & Hamilton. Select your project type, size, and finish level. Get a ballpark range in seconds.';
+const canonical = `${site.url}/estimate/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Cost Estimator', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Cost Estimator</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">Renovation Cost Estimator</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 560px;">
+        Get a ballpark range for your project in 30 seconds. No sign-up required.
+      </p>
+    </div>
+  </section>
+
+  <!-- Estimator -->
+  <section class="py-5">
+    <div class="container" style="max-width: 860px;">
+
+      <!-- Step 1: Renovation Type -->
+      <div class="mb-5 reveal">
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3 flex-shrink-0" style="width: 36px; height: 36px; font-size: 0.85rem;">1</div>
+          <h2 class="h5 fw-bold mb-0">Select Renovation Type</h2>
+        </div>
+        <div class="row g-3" id="typeCards">
+          {[
+            { value: 'basement', label: 'Basement', icon: 'fas fa-layer-group' },
+            { value: 'bathroom', label: 'Bathroom', icon: 'fas fa-bath' },
+            { value: 'kitchen',  label: 'Kitchen',  icon: 'fas fa-utensils' },
+            { value: 'flooring', label: 'Flooring',  icon: 'fas fa-th-large' },
+            { value: 'painting', label: 'Painting',  icon: 'fas fa-paint-roller' },
+          ].map(t => (
+            <div class="col-6 col-sm-4 col-md-auto flex-grow-1">
+              <label class="estimator-card card border shadow-sm text-center p-3 h-100 w-100 d-flex flex-column align-items-center justify-content-center" style="cursor: pointer; min-width: 110px;" data-group="type" data-value={t.value}>
+                <input type="radio" name="renotype" value={t.value} class="d-none" />
+                <i class={`${t.icon} fa-2x mb-2 text-secondary`}></i>
+                <div class="fw-semibold small">{t.label}</div>
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 2: Project Size -->
+      <div class="mb-5 reveal" id="stepSize" style="opacity: 0.35; pointer-events: none;">
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3 flex-shrink-0" style="width: 36px; height: 36px; font-size: 0.85rem;" id="stepSizeNum">2</div>
+          <h2 class="h5 fw-bold mb-0">Select Project Size</h2>
+        </div>
+        <div class="row g-3" id="sizeCards">
+          {[
+            { value: 'small',  label: 'Small',  desc: 'Under 500 sq ft' },
+            { value: 'medium', label: 'Medium', desc: '500 – 1,000 sq ft' },
+            { value: 'large',  label: 'Large',  desc: '1,000+ sq ft' },
+          ].map(s => (
+            <div class="col-12 col-md-4">
+              <label class="estimator-card card border shadow-sm p-4 h-100 w-100 d-flex flex-row align-items-center" style="cursor: pointer;" data-group="size" data-value={s.value}>
+                <input type="radio" name="renosize" value={s.value} class="d-none" />
+                <div>
+                  <div class="fw-bold">{s.label}</div>
+                  <div class="text-secondary small">{s.desc}</div>
+                </div>
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 3: Finish Level -->
+      <div class="mb-5 reveal" id="stepFinish" style="opacity: 0.35; pointer-events: none;">
+        <div class="d-flex align-items-center mb-3">
+          <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3 flex-shrink-0" style="width: 36px; height: 36px; font-size: 0.85rem;">3</div>
+          <h2 class="h5 fw-bold mb-0">Select Finish Level</h2>
+        </div>
+        <div class="row g-3" id="finishCards">
+          {[
+            { value: 'basic',   label: 'Basic',     desc: 'Functional, builder-grade materials', icon: 'fas fa-circle text-secondary' },
+            { value: 'mid',     label: 'Mid-Range', desc: 'Quality materials, some custom features', icon: 'fas fa-circle text-warning' },
+            { value: 'premium', label: 'Premium',   desc: 'High-end materials, fully custom', icon: 'fas fa-circle text-danger' },
+          ].map(f => (
+            <div class="col-12 col-md-4">
+              <label class="estimator-card card border shadow-sm p-4 h-100 w-100" style="cursor: pointer;" data-group="finish" data-value={f.value}>
+                <input type="radio" name="renofinish" value={f.value} class="d-none" />
+                <div class="d-flex align-items-start">
+                  <i class={`${f.icon} me-2 mt-1`}></i>
+                  <div>
+                    <div class="fw-bold">{f.label}</div>
+                    <div class="text-secondary small">{f.desc}</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div id="estimateResult" class="d-none mb-4 reveal">
+        <div class="card border-success border-2 shadow p-4 p-md-5 text-center">
+          <div class="text-success small fw-bold text-uppercase mb-2">Estimated Range</div>
+          <div class="display-5 fw-bold mb-1" id="resultRange">—</div>
+          <div class="text-secondary small mb-4" id="resultLabel">—</div>
+          <p class="text-secondary small mb-4">
+            Based on typical Burlington &amp; Hamilton projects for your selections.
+          </p>
+          <a href="/basement/get-free-quote/" class="btn btn-danger btn-lg px-5">
+            Want an exact quote? Get Free Estimate
+          </a>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="alert alert-light border small text-secondary reveal">
+        <i class="fas fa-info-circle me-2"></i>
+        These ranges are estimates based on typical Burlington &amp; Hamilton projects. Your actual cost depends on site conditions, material choices, and scope. Get a free in-home consultation for an exact fixed-price quote.
+      </div>
+
+    </div>
+  </section>
+
+  <CTABanner
+    title="Want an Exact Quote?"
+    subtitle="We'll visit your home, assess the space, and give you a detailed fixed-price quote — free, no obligation."
+    ctaText="Get Free Estimate"
+  />
+</BaseLayout>
+
+<style>
+  .estimator-card {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    border-color: #dee2e6 !important;
+  }
+  .estimator-card.selected {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220,53,69,0.2) !important;
+  }
+  .estimator-card.selected i.text-secondary {
+    color: #dc3545 !important;
+  }
+</style>
+
+<script is:inline>
+  const PRICING = {
+    basement: {
+      small:  { basic: [25000,35000], mid: [35000,55000],  premium: [55000,90000]  },
+      medium: { basic: [35000,50000], mid: [50000,75000],  premium: [75000,120000] },
+      large:  { basic: [50000,70000], mid: [70000,100000], premium: [100000,150000] },
+    },
+    bathroom: {
+      small:  { basic: [12000,18000], mid: [18000,30000], premium: [30000,50000] },
+      medium: { basic: [18000,28000], mid: [28000,42000], premium: [42000,65000] },
+      large:  { basic: [25000,38000], mid: [38000,55000], premium: [55000,80000] },
+    },
+    kitchen: {
+      small:  { basic: [18000,28000], mid: [28000,45000],  premium: [45000,70000]   },
+      medium: { basic: [28000,42000], mid: [42000,65000],  premium: [65000,100000]  },
+      large:  { basic: [40000,60000], mid: [60000,85000],  premium: [85000,130000]  },
+    },
+    flooring: {
+      small:  { basic: [3000,5000],   mid: [5000,8000],   premium: [8000,14000]  },
+      medium: { basic: [5000,9000],   mid: [9000,15000],  premium: [15000,25000] },
+      large:  { basic: [8000,14000],  mid: [14000,22000], premium: [22000,38000] },
+    },
+    painting: {
+      small:  { basic: [2000,3500],  mid: [3500,5500],  premium: [5500,8000]   },
+      medium: { basic: [3500,6000],  mid: [6000,9000],  premium: [9000,14000]  },
+      large:  { basic: [5000,8000],  mid: [8000,13000], premium: [13000,20000] },
+    },
+  };
+
+  const TYPE_LABELS = {
+    basement: 'Basement Renovation',
+    bathroom: 'Bathroom Renovation',
+    kitchen:  'Kitchen Renovation',
+    flooring: 'Flooring Installation',
+    painting: 'Interior Painting',
+  };
+
+  const SIZE_LABELS  = { small: 'Small', medium: 'Medium', large: 'Large' };
+  const FINISH_LABELS = { basic: 'Basic', mid: 'Mid-Range', premium: 'Premium' };
+
+  let selected = { type: null, size: null, finish: null };
+
+  function fmt(n) {
+    return '$' + n.toLocaleString('en-CA');
+  }
+
+  function updateResult() {
+    const { type, size, finish } = selected;
+    if (!type || !size || !finish) return;
+
+    const range = PRICING[type][size][finish];
+    const resultEl   = document.getElementById('estimateResult');
+    const rangeEl    = document.getElementById('resultRange');
+    const labelEl    = document.getElementById('resultLabel');
+
+    rangeEl.textContent = `${fmt(range[0])} – ${fmt(range[1])}`;
+    labelEl.textContent = `${TYPE_LABELS[type]} · ${SIZE_LABELS[size]} · ${FINISH_LABELS[finish]}`;
+    resultEl.classList.remove('d-none');
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function activateStep(stepId, numId) {
+    const step = document.getElementById(stepId);
+    if (!step) return;
+    step.style.opacity = '1';
+    step.style.pointerEvents = 'auto';
+    if (numId) {
+      const num = document.getElementById(numId);
+      if (num) {
+        num.classList.remove('bg-secondary');
+        num.classList.add('bg-danger');
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.estimator-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        const group = card.dataset.group;
+        const value = card.dataset.value;
+
+        // Deselect siblings in same group
+        document.querySelectorAll(`.estimator-card[data-group="${group}"]`).forEach(function (c) {
+          c.classList.remove('selected');
+        });
+        card.classList.add('selected');
+        selected[group] = value;
+
+        if (group === 'type') {
+          activateStep('stepSize', 'stepSizeNum');
+        }
+        if (group === 'size') {
+          activateStep('stepFinish', null);
+        }
+        updateResult();
+      });
+    });
+  });
+</script>

@@ -29,43 +29,32 @@ import site from '../data/site.json';
       </div>
     </div>
 
-    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        {reviews.map((review, i) => (
-          <div class:list={['carousel-item', { active: i === 0 }]}>
-            <div class="row justify-content-center">
-              <div class="col-md-8 col-lg-6 text-center">
-                <div class="mb-3">
-                  {[...Array(5)].map((_, si) => (
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill={si < review.rating ? '#FBBC05' : '#E0E0E0'} style="margin: 0 1px;">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  ))}
-                </div>
-                <blockquote class="blockquote">
-                  <p class="mb-3 fst-italic">"{review.text}"</p>
-                </blockquote>
-                <p class="fw-bold mb-0">{review.name}</p>
-                <p class="text-secondary small">{review.city}, Ontario</p>
-              </div>
+    <!-- Reviews Grid -->
+    <div class="row g-4">
+      {reviews.map((review) => (
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="review-card h-100 bg-white rounded shadow-sm p-4" style="border-left: 4px solid #4285F4;">
+            <!-- Stars -->
+            <div class="mb-3">
+              {[...Array(5)].map((_, si) => (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill={si < review.rating ? '#FBBC05' : '#E0E0E0'} style="margin: 0 1px;">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
             </div>
+            <!-- Quote -->
+            <p class="fst-italic text-secondary mb-3">"{review.text}"</p>
+            <!-- Reviewer -->
+            <p class="fw-bold mb-0">{review.name}</p>
+            <p class="text-secondary small mb-0">{review.city}, Ontario</p>
           </div>
-        ))}
-      </div>
-
-      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+        </div>
+      ))}
     </div>
 
     <!-- Link to Google Reviews -->
     {site.googleReviews.url && (
-      <div class="text-center mt-3">
+      <div class="text-center mt-4">
         <a href={site.googleReviews.url} target="_blank" rel="noopener" class="text-decoration-none text-secondary small">
           <svg width="16" height="16" viewBox="0 0 24 24" class="me-1" style="vertical-align: -2px;">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>

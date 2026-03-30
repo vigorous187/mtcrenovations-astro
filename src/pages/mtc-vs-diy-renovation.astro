@@ -1,0 +1,307 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'DIY Renovation vs Hiring a Contractor', url: `${site.url}/mtc-vs-diy-renovation` },
+  ]),
+];
+---
+
+<BaseLayout
+  title="MTC Renovations vs DIY: When to Hire a Pro"
+  description="Should you DIY your renovation or hire a contractor? Compare costs, timelines, and risks. Burlington & Hamilton homeowners — make the right call."
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">DIY vs Hiring a Contractor</li>
+        </ol>
+      </nav>
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="display-5 fw-bold mb-3">Should You DIY or Hire a Professional?</h1>
+          <p class="lead text-white-50 mb-4">
+            Renovation shows make it look easy. The reality for Burlington and Hamilton homeowners is often different — missed permits, costly mistakes, and projects that drag on for months. Here is an honest breakdown of when DIY makes sense and when you should call a pro.
+          </p>
+          <a href="/basement/get-free-quote/" class="btn btn-danger btn-lg px-5">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="fw-bold mb-2 text-center">DIY vs Hiring MTC — Side by Side</h2>
+          <p class="text-secondary text-center mb-4">An honest comparison across the factors that matter most to homeowners.</p>
+          <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col" style="width: 22%;">Factor</th>
+                  <th scope="col" class="text-center" style="width: 39%;">DIY</th>
+                  <th scope="col" class="text-center text-danger" style="width: 39%;">MTC Renovations</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Cost</th>
+                  <td>Materials only upfront — but tool rentals, mistakes, and re-work add up fast. Average DIY basement runs $15,000–$25,000 when done correctly.</td>
+                  <td class="table-light">Fixed-price quote before work starts. No surprise invoices. Bulk material pricing passes savings to you.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Timeline</th>
+                  <td>Nights and weekends only. A basement finishing project that takes a crew 4–6 weeks can take a DIYer 6–18 months.</td>
+                  <td class="table-light">Committed schedule with a start and end date. Our crew works full days, five days a week.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Permits</th>
+                  <td>You are responsible for pulling permits, scheduling inspections, and meeting code. One failed inspection can cost weeks.</td>
+                  <td class="table-light">We handle every permit, every inspection, and every sign-off. You do not have to call the building department once.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Quality</th>
+                  <td>Outcome depends entirely on your skill level. Tile, drywall, and trim work take years to master.</td>
+                  <td class="table-light">Tradespeople who do this every day. Work is inspected at every stage before moving on.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Warranty</th>
+                  <td>No warranty. If something fails six months later, it is your problem.</td>
+                  <td class="table-light">Full workmanship warranty. If something is not right, we come back and fix it.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Stress Level</th>
+                  <td>High. Managing materials, tradespeople, schedules, and inspections while working a full-time job is exhausting.</td>
+                  <td class="table-light">One dedicated project manager handles everything. You get weekly updates, not daily problems.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Resale Value</th>
+                  <td>Unpermitted or visibly amateur work can actually reduce your home's value and create legal issues on sale.</td>
+                  <td class="table-light">Permitted, professional work adds documented value. Buyers and their inspectors will see the difference.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When DIY makes sense -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6 reveal">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <i class="fas fa-paint-roller text-secondary" style="font-size: 1.8rem;"></i>
+                <h3 class="h4 fw-bold mb-0">When DIY Makes Sense</h3>
+              </div>
+              <p class="text-secondary mb-3">There are projects where a handy homeowner can do excellent work, save money, and not create risk.</p>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                  <span>Painting a room or repainting trim</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                  <span>Installing hardware (cabinet pulls, door knobs)</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                  <span>Minor cosmetic fixes like patching small drywall holes</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                  <span>Landscaping and garden work</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <i class="fas fa-check text-success mt-1 flex-shrink-0"></i>
+                  <span>Replacing light fixtures (if comfortable with basic wiring)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 reveal">
+          <div class="card border-0 shadow-sm h-100 border-danger" style="border-width: 2px !important;">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <i class="fas fa-hard-hat text-danger" style="font-size: 1.8rem;"></i>
+                <h3 class="h4 fw-bold mb-0">When You Need a Pro</h3>
+              </div>
+              <p class="text-secondary mb-3">These projects carry real risk — to your safety, your home's value, and your relationship with the city building department.</p>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                  <span>Structural work (load-bearing walls, beams, foundations)</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                  <span>Electrical panel upgrades, new circuits, or rewiring</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                  <span>Plumbing (moving drains, adding bathrooms, waterproofing)</span>
+                </li>
+                <li class="d-flex align-items-start gap-2 mb-2">
+                  <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                  <span>Basement finishing (requires permits in Burlington and Hamilton)</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <i class="fas fa-times text-danger mt-1 flex-shrink-0"></i>
+                  <span>Any project requiring a building permit</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hidden Costs of DIY -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="fw-bold mb-2 text-center">The Hidden Costs of DIY Renovation</h2>
+          <p class="text-secondary text-center mb-5">The materials bill is just the beginning. Here is what most homeowners do not account for.</p>
+          <div class="row g-4">
+            <div class="col-md-6 reveal">
+              <div class="d-flex gap-3">
+                <div class="flex-shrink-0">
+                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                    <i class="fas fa-tools"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold">Tools and Equipment</h5>
+                  <p class="text-secondary mb-0">A tile saw rental is $80/day. A compound miter saw runs $400 to buy. Specialized tools for a single project often cost more than the labour savings.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 reveal">
+              <div class="d-flex gap-3">
+                <div class="flex-shrink-0">
+                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                    <i class="fas fa-redo"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold">Mistakes and Re-Work</h5>
+                  <p class="text-secondary mb-0">A box of floor tiles laid at the wrong angle means buying more material and tearing it all out. One mistake in a bathroom can cost $1,500 to fix.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 reveal">
+              <div class="d-flex gap-3">
+                <div class="flex-shrink-0">
+                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold">Your Time Has Value</h5>
+                  <p class="text-secondary mb-0">A 500 sq ft basement finishing project takes 400–600 labour hours. At $30/hr opportunity cost, that is $12,000–$18,000 of your time spent on weekends.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 reveal">
+              <div class="d-flex gap-3">
+                <div class="flex-shrink-0">
+                  <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                    <i class="fas fa-file-alt"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold">Permit Problems</h5>
+                  <p class="text-secondary mb-0">Unpermitted work must be disclosed when you sell. In some cases it must be torn open for inspection — at your expense — before closing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What DIY Actually Costs -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="fw-bold mb-3 text-center">The Real Cost of DIY vs Hiring a Pro</h2>
+          <p class="text-secondary text-center mb-4">Most homeowners compare the cost of a contractor's quote against the cost of materials at Home Depot. That is not an apples-to-apples comparison.</p>
+          <p class="text-secondary mb-3">When you hire MTC for a basement finishing project, you get a fixed price that includes materials, labour, permits, project management, and a workmanship warranty. When you DIY, you are also taking on the risk of mistakes, the cost of tools, and the invisible cost of your own time — none of which appear in the materials quote.</p>
+          <p class="text-secondary mb-3">A realistic DIY budget for a 600 sq ft basement in Hamilton includes: $8,000–$14,000 in materials (framing, drywall, insulation, flooring, lighting, trim), $800–$2,000 in permit fees, $1,500–$4,000 in trade subcontracts (electrical rough-in, plumbing rough-in if applicable), and several hundred dollars in tool rentals. That puts a realistic DIY cost at $11,000–$21,000 — before accounting for mistakes.</p>
+          <p class="text-secondary mb-0">MTC's all-in fixed price for the same basement typically lands in the $28,000–$38,000 range, depending on finish level. The gap is real. Whether it is worth it depends on your skill set, your schedule, and how you value your weekends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow">
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <i class="fas fa-quote-left text-danger" style="font-size: 2rem;"></i>
+                <h3 class="h4 fw-bold mb-0">A Hamilton Homeowner's DIY Story</h3>
+              </div>
+              <p class="text-secondary mb-3">
+                A homeowner on the east Mountain in Hamilton came to us after spending 14 months and $18,000 trying to finish their basement themselves. They had framed the walls and roughed in some drywall, but stalled when they realized they needed an electrician for the sub-panel, a plumber for the bathroom rough-in, and a permit for all of it.
+              </p>
+              <p class="text-secondary mb-3">
+                By the time they called MTC, the framing had moisture damage from a winter without proper vapour barrier. We had to start over on two walls. The total cost to complete the project — including correcting the DIY work — was $34,000. Had they hired a contractor from the start, the same basement would have cost $28,000 and been ready in six weeks.
+              </p>
+              <p class="text-secondary mb-0">
+                We are not sharing this to sell you on hiring us. We are sharing it because it is a common story in Hamilton and Burlington, and we want homeowners to have realistic information before they start.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 text-center">
+          <h2 class="fw-bold mb-3">Ready to Talk Through Your Project?</h2>
+          <p class="text-secondary mb-4">
+            We offer free estimates for homeowners across <a href="/location/burlington/" class="text-dark fw-semibold">Burlington</a>, <a href="/location/hamilton/" class="text-dark fw-semibold">Hamilton</a>, and the surrounding area. No obligation, no pressure — just an honest number and a clear scope of work.
+          </p>
+          <p class="text-secondary mb-4">
+            See how we work: <a href="/basement/how-it-works/" class="text-dark fw-semibold">Our 5-Step Process</a> &mdash; or read <a href="/basement/why-mtc/" class="text-dark fw-semibold">Why Homeowners Choose MTC</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Get a Free, No-Obligation Estimate"
+    subtitle="We will walk through your project, answer your questions, and give you a fixed price before any work begins."
+    ctaLink="/basement/get-free-quote/"
+  />
+</BaseLayout>
