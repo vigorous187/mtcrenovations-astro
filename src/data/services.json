@@ -114,7 +114,7 @@
     "slug": "flooring",
     "name": "Flooring",
     "tagline": "Professional Flooring Installation — Hardwood, Vinyl & Tile",
-    "icon": "/assets/img/home/floor.png",
+    "icon": "/assets/img/home/stairs.png",
     "heroImage": "/assets/img/flooring/hero.jpg",
     "seo": {
       "title": "Flooring Installation Hamilton | Hardwood, Vinyl & Tile | MTC Renovations",
@@ -151,7 +151,7 @@
     "slug": "painting",
     "name": "Painting",
     "tagline": "Professional Interior Painting — Clean Prep, Premium Paint, Zero Mess",
-    "icon": "/assets/img/home/painting.png",
+    "icon": "/assets/img/home/paint-roller.png",
     "heroImage": "/assets/img/painting/hero.jpg",
     "seo": {
       "title": "Interior Painting Hamilton | Licensed & Insured | MTC Renovations",
