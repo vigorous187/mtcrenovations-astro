@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fix Tailwind Preflight conflicts with Bootstrap */
+
+/* Tailwind sets svg { display: block } which breaks inline SVGs (stars, icons) */
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Fix Tailwind .collapse conflicting with Bootstrap .collapse */
+.accordion-collapse.collapse:not(.show) {
+  display: none;
+  visibility: visible;
+}
+.accordion-collapse.collapse.show {
+  display: block;
+  visibility: visible;
+}
+.accordion-body {
+  visibility: visible !important;
+}
+
 /* MTC Renovations custom overrides */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

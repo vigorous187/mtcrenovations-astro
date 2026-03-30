@@ -4,5 +4,8 @@ export default {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    visibility: false, // Prevents Tailwind .collapse from overriding Bootstrap .collapse
+  },
   plugins: [],
 };
