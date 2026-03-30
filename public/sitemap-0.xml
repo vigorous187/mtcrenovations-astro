@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://mtcrenovations.ca/</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- Basement -->
+  <url><loc>https://mtcrenovations.ca/basement/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/about-us/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/how-it-works/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/why-mtc/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/our-work/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/get-free-quote/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/basement/careers/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Bathroom -->
+  <url><loc>https://mtcrenovations.ca/bathroom/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/about-us/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/how-it-works/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/why-mtc/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/our-work/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/get-free-quote/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/bathroom/careers/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Kitchen -->
+  <url><loc>https://mtcrenovations.ca/kitchen/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/about-us/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/how-it-works/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/why-mtc/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/our-work/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/get-free-quote/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/kitchen/careers/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Flooring -->
+  <url><loc>https://mtcrenovations.ca/flooring/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/about-us/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/how-it-works/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/why-mtc/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/our-work/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/get-free-quote/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/flooring/careers/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Painting -->
+  <url><loc>https://mtcrenovations.ca/painting/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/about-us/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/how-it-works/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/why-mtc/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/our-work/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/get-free-quote/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/painting/careers/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- Locations -->
+  <url><loc>https://mtcrenovations.ca/locations/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/hamilton/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/burlington/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/oakville/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/stoney-creek/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/ancaster/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/dundas/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/waterdown/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/location/toronto/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://mtcrenovations.ca/blog/</loc><lastmod>2026-03-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://mtcrenovations.ca/blog/basement-renovation-cost-hamilton/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/blog/kitchen-renovation-guide-hamilton/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/blog/bathroom-renovation-burlington/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/blog/flooring-guide-hamilton/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mtcrenovations.ca/blog/legal-basement-suite-ontario/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>
