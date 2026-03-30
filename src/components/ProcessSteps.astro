@@ -1,0 +1,61 @@
+---
+interface Props {
+  serviceName: string;
+}
+
+const { serviceName } = Astro.props;
+
+const steps = [
+  {
+    number: '1',
+    title: 'Free Consultation',
+    description: `Contact us for a free in-home consultation. We'll discuss your ${serviceName.toLowerCase()} renovation goals, timeline, and budget.`,
+    icon: 'fas fa-comments',
+  },
+  {
+    number: '2',
+    title: 'Design & Quote',
+    description: 'Our team prepares a detailed scope of work and transparent quote. No hidden fees, no surprises.',
+    icon: 'fas fa-pencil-ruler',
+  },
+  {
+    number: '3',
+    title: 'Material Selection',
+    description: 'Choose your materials, colours, and finishes. We guide you through every option to match your vision.',
+    icon: 'fas fa-palette',
+  },
+  {
+    number: '4',
+    title: 'Construction',
+    description: 'Our licensed crew gets to work. You get daily updates and a clean, organized job site throughout.',
+    icon: 'fas fa-hard-hat',
+  },
+  {
+    number: '5',
+    title: 'Final Walkthrough',
+    description: 'We walk through every detail together. Your renovation is not done until you are 100% satisfied.',
+    icon: 'fas fa-check-circle',
+  },
+];
+---
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-2">How {serviceName} Renovation Works</h2>
+    <p class="text-center text-secondary mb-5">Our proven 5-step process</p>
+
+    <div class="row g-4">
+      {steps.map(step => (
+        <div class="col-md-6 col-lg-4">
+          <div class="text-center p-4">
+            <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+              <i class={step.icon}></i>
+            </div>
+            <h5 class="fw-bold">Step {step.number}: {step.title}</h5>
+            <p class="text-secondary small">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

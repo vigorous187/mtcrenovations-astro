@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+
+export function getStaticPaths() {
+  return services.map(s => ({
+    params: { service: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+const seo = service.subPages['get-free-quote'];
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: 'Get Free Quote', url: `${site.url}/${service.slug}/get-free-quote` },
+  ]),
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+  <ServiceHero
+    title={`Get Your Free ${service.name} Renovation Estimate`}
+    subtitle="No obligation. We respond within 24 hours."
+    backgroundImage={service.heroImage}
+    ctaText="Call (647) 560-1095"
+    ctaLink="tel:6475601095"
+  />
+
+  <QuoteForm selectedService={service.slug} />
+
+  <section class="py-5">
+    <div class="container text-center">
+      <h3 class="fw-bold mb-3">Prefer to Call?</h3>
+      <p class="text-secondary mb-3">Speak directly with our team about your {service.name.toLowerCase()} renovation.</p>
+      <a href="tel:6475601095" class="btn btn-outline-danger btn-lg">
+        <i class="fas fa-phone me-2"></i>(647) 560-1095
+      </a>
+    </div>
+  </section>
+</BaseLayout>

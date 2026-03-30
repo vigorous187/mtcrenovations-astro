@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Vendor Application | MTC Renovations"
+  description="Apply to become a vendor or subcontractor with MTC Renovations in Hamilton and the GTA."
+  noindex={true}
+>
+  <section class="py-5 bg-dark text-white text-center">
+    <div class="container">
+      <h1 class="fw-bold">Vendor / Subcontractor Application</h1>
+      <p class="text-white-50">Partner with MTC Renovations</p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h3 class="mb-3">Tell Us About Your Business</h3>
+              <p class="text-secondary mb-4">
+                MTC Renovations works with reliable subcontractors and vendors across the Hamilton and GTA area. Fill out the form below to be considered for upcoming projects.
+              </p>
+
+              <form id="vendorForm" novalidate>
+                <div class="mb-3">
+                  <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="companyName" name="companyName" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="contactName" class="form-label">Contact Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="contactName" name="contactName" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="vendorEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="vendorEmail" name="email" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="vendorPhone" class="form-label">Phone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="vendorPhone" name="phone" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="trade" class="form-label">Trade / Service Type <span class="text-danger">*</span></label>
+                  <select class="form-select" id="trade" name="trade" required>
+                    <option value="">Select your trade...</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="hvac">HVAC</option>
+                    <option value="framing">Framing / Carpentry</option>
+                    <option value="drywall">Drywall</option>
+                    <option value="painting">Painting</option>
+                    <option value="flooring">Flooring</option>
+                    <option value="tile">Tile</option>
+                    <option value="demolition">Demolition</option>
+                    <option value="supplier">Material Supplier</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="vendorMessage" class="form-label">About Your Business</label>
+                  <textarea class="form-control" id="vendorMessage" name="message" rows="4" placeholder="Tell us about your experience, service area, and availability..."></textarea>
+                </div>
+
+                <div id="vendorFormError" class="alert alert-danger d-none" role="alert"></div>
+                <div id="vendorFormSuccess" class="alert alert-success d-none" role="alert">
+                  Thank you! We'll review your application and be in touch.
+                </div>
+
+                <button type="submit" class="btn btn-danger btn-lg w-100">Submit Application</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ apiUrl: `${site.api.baseUrl}/mtc-renovations/vendor-intake` }}>
+  const form = document.getElementById('vendorForm');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+  const formError = document.getElementById('vendorFormError');
+  const formSuccess = document.getElementById('vendorFormSuccess');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formError.classList.add('d-none');
+    formSuccess.classList.add('d-none');
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Failed');
+
+      formSuccess.classList.remove('d-none');
+      form.reset();
+      form.classList.remove('was-validated');
+    } catch (err) {
+      formError.textContent = 'Something went wrong. Please email info@mtcrenovations.ca directly.';
+      formError.classList.remove('d-none');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+    }
+  });
+</script>

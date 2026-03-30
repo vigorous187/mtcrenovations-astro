@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+
+export function getStaticPaths() {
+  return services.map(s => ({
+    params: { service: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+const seo = service.subPages['about-us'];
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: 'About Us', url: `${site.url}/${service.slug}/about-us` },
+  ]),
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+  <ServiceHero
+    title="About MTC Renovations"
+    subtitle={`Hamilton's Trusted ${service.name} Renovation Contractor`}
+    backgroundImage={service.heroImage}
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="fw-bold mb-3">Who We Are</h2>
+          <p class="text-secondary">
+            MTC Renovations is a licensed and insured renovation contractor based in Hamilton, Ontario. We specialize in {service.name.toLowerCase()} renovations, along with full-service home remodelling across the Greater Hamilton and Toronto area.
+          </p>
+          <p class="text-secondary">
+            Our team of skilled tradespeople brings years of experience to every project. We believe in transparent communication, fixed-price quotes, and delivering results that exceed expectations.
+          </p>
+          <p class="text-secondary">
+            Every renovation starts with a free in-home consultation where we listen to your goals, assess the space, and provide a detailed plan with clear pricing. No surprises, no hidden fees.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-secondary rounded" style="height: 350px; display: flex; align-items: center; justify-content: center;">
+            <span class="text-white-50">Team photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-4">Our Values</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="text-center p-3">
+            <i class="fas fa-handshake text-danger mb-3" style="font-size: 2.5rem;"></i>
+            <h5 class="fw-bold">Transparency</h5>
+            <p class="text-secondary small">Fixed-price quotes with every line item visible. You know exactly where your money goes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-3">
+            <i class="fas fa-medal text-danger mb-3" style="font-size: 2.5rem;"></i>
+            <h5 class="fw-bold">Quality</h5>
+            <p class="text-secondary small">Licensed tradespeople, premium materials, and a workmanship warranty on every project.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-3">
+            <i class="fas fa-clock text-danger mb-3" style="font-size: 2.5rem;"></i>
+            <h5 class="fw-bold">Reliability</h5>
+            <p class="text-secondary small">We set a timeline and stick to it. Your renovation will not drag on for months.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner ctaLink={`/${service.slug}/get-free-quote/`} />
+</BaseLayout>

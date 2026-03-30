@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You | MTC Renovations"
+  description="Thank you for contacting MTC Renovations. We'll be in touch within 24 hours."
+  noindex={true}
+>
+  <section class="py-5 text-center">
+    <div class="container py-5">
+      <div class="mb-4">
+        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+      </div>
+      <h1 class="display-5 fw-bold mb-3">Thank You!</h1>
+      <p class="lead text-secondary mb-4">
+        We've received your request and will be in touch within 24 hours.
+      </p>
+      <p class="text-secondary mb-4">
+        If you need immediate assistance, call us at <a href="tel:6475601095" class="fw-bold text-danger text-decoration-none">(647) 560-1095</a>.
+      </p>
+      <a href="/" class="btn btn-danger btn-lg px-5">Back to Home</a>
+    </div>
+  </section>
+</BaseLayout>

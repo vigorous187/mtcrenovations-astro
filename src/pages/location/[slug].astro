@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { getCollection } from 'astro:content';
+import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+
+export async function getStaticPaths() {
+  const cities = await getCollection('cities');
+  return cities.map(city => ({
+    params: { slug: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const { Content } = await city.render();
+
+const schemas = [
+  localBusiness(city.data.name),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Locations', url: `${site.url}/locations` },
+    { name: city.data.name, url: `${site.url}/location/${city.slug}` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={city.data.metaTitle}
+  description={city.data.metaDescription}
+  schema={schemas}
+>
+  <!-- Hero -->
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <span class="text-uppercase small text-danger fw-bold">Service Area</span>
+      <h1 class="display-5 fw-bold mt-2 mb-3">{city.data.h1}</h1>
+      <p class="lead text-white-50 mb-4">Licensed and insured renovation contractor serving {city.data.name} homeowners.</p>
+      <a href="/basement/get-free-quote/" class="btn btn-danger btn-lg px-5">Get Free Estimate</a>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 prose">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services in this city -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-4">Our Services in {city.data.name}</h2>
+      <div class="row g-4">
+        {services.map(s => (
+          <div class="col-md-6 col-lg-4">
+            <a href={`/${s.slug}/`} class="text-decoration-none">
+              <div class="card border-0 shadow-sm service-card h-100">
+                <div class="card-body text-center p-4">
+                  <img src={s.icon} alt={s.name} style="height: 40px;" class="mb-3" loading="lazy" />
+                  <h5 class="fw-bold text-dark">{s.name} Renovation</h5>
+                  <p class="text-secondary small mb-0">{s.tagline}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Areas -->
+  {city.data.nearbyAreas && city.data.nearbyAreas.length > 0 && (
+    <section class="py-5">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-4">Nearby Areas We Serve</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          {city.data.nearbyAreas.map((area: string) => (
+            <a
+              href={`/location/${area.toLowerCase().replace(/[\s.]+/g, '-')}/`}
+              class="btn btn-outline-dark btn-sm"
+            >
+              {area}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner
+    title={`Ready to Renovate in ${city.data.name}?`}
+    subtitle="Get your free estimate today."
+  />
+</BaseLayout>

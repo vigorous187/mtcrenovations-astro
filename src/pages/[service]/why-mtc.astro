@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+
+export function getStaticPaths() {
+  return services.map(s => ({
+    params: { service: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+const seo = service.subPages['why-mtc'];
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: 'Why MTC', url: `${site.url}/${service.slug}/why-mtc` },
+  ]),
+];
+
+const reasons = [
+  { icon: 'fas fa-shield-alt', title: 'Licensed & Insured', description: 'Fully licensed renovation contractor with comprehensive insurance and WSIB coverage for every worker on site.' },
+  { icon: 'fas fa-dollar-sign', title: 'Fixed-Price Quotes', description: 'Your quote is your price. No hidden fees, no change orders, no surprises at the end of the project.' },
+  { icon: 'fas fa-star', title: '5-Star Google Reviews', description: `${site.googleReviews.count}+ reviews with a perfect ${site.googleReviews.rating} rating. Real reviews from real Hamilton homeowners.` },
+  { icon: 'fas fa-calendar-check', title: 'On-Time Delivery', description: 'We commit to a timeline and we stick to it. Your renovation will be completed when we say it will.' },
+  { icon: 'fas fa-tools', title: 'Skilled Tradespeople', description: 'Our crew includes experienced carpenters, tile setters, painters, and finishing specialists.' },
+  { icon: 'fas fa-comments', title: 'Clear Communication', description: 'Daily progress updates, a single point of contact, and prompt responses to your questions.' },
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+  <ServiceHero
+    title={`Why Choose MTC for ${service.name} Renovation`}
+    subtitle="Licensed, insured, and backed by real homeowner reviews"
+    backgroundImage={service.heroImage}
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        {reasons.map(reason => (
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100">
+              <i class={`${reason.icon} text-danger mb-3`} style="font-size: 2rem;"></i>
+              <h5 class="fw-bold">{reason.title}</h5>
+              <p class="text-secondary small">{reason.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+
+  <CTABanner
+    title="See the MTC Difference"
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+</BaseLayout>

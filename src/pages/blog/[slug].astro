@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { article, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const schemas = [
+  article({
+    title: post.data.title,
+    description: post.data.metaDescription,
+    url: `${site.url}/blog/${post.slug}`,
+    datePublished: post.data.datePublished,
+    dateModified: post.data.dateModified,
+    author: post.data.author,
+    image: post.data.coverImage,
+  }),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Blog', url: `${site.url}/blog` },
+    { name: post.data.title, url: `${site.url}/blog/${post.slug}` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={post.data.metaTitle}
+  description={post.data.metaDescription}
+  schema={schemas}
+  ogType="article"
+>
+  <article>
+    <section class="bg-dark text-white py-5 text-center">
+      <div class="container py-4">
+        <p class="text-secondary small mb-2">{post.data.datePublished} &middot; {post.data.author}</p>
+        <h1 class="display-5 fw-bold mb-3">{post.data.title}</h1>
+        {post.data.tags && (
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="badge bg-danger">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 prose">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { localBusiness, serviceSchema, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const serviceEntries = await getCollection('services');
+  return services.map(s => {
+    const entry = serviceEntries.find(e => e.slug === s.slug);
+    return {
+      params: { service: s.slug },
+      props: { service: s, entry },
+    };
+  });
+}
+
+const { service, entry } = Astro.props;
+const { Content } = entry ? await entry.render() : { Content: null };
+
+const schemas = [
+  localBusiness(),
+  serviceSchema(service.name, service.slug, service.seo.description),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={service.seo.title}
+  description={service.seo.description}
+  schema={schemas}
+>
+  <ServiceHero
+    title={service.tagline}
+    subtitle={`Professional ${service.name} Renovation in Hamilton & the GTA`}
+    backgroundImage={service.heroImage}
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+
+  <!-- Features -->
+  {entry?.data.features && (
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-4">What We Do</h2>
+        <div class="row g-3 justify-content-center">
+          {entry.data.features.map((feature: string) => (
+            <div class="col-md-6 col-lg-3">
+              <div class="d-flex align-items-start gap-2 p-3">
+                <i class="fas fa-check text-danger mt-1"></i>
+                <span>{feature}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Content from markdown -->
+  {Content && (
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 prose">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Why Choose Us -->
+  {entry?.data.whyChooseUs && (
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-4">Why Choose MTC for {service.name} Renovation</h2>
+        <div class="row g-4">
+          {entry.data.whyChooseUs.map((item: { title: string; description: string }) => (
+            <div class="col-md-6 col-lg-3">
+              <div class="text-center p-3">
+                <i class="fas fa-star text-danger mb-3" style="font-size: 2rem;"></i>
+                <h5 class="fw-bold">{item.title}</h5>
+                <p class="text-secondary small">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner
+    title={`Ready for Your ${service.name} Renovation?`}
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+</BaseLayout>

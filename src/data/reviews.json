@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Sarah M.",
+    "city": "Hamilton",
+    "rating": 5,
+    "text": "MTC Renovations transformed our basement into a beautiful living space. Professional, on time, and on budget. Highly recommend!",
+    "service": "basement"
+  },
+  {
+    "name": "David K.",
+    "city": "Burlington",
+    "rating": 5,
+    "text": "Our kitchen renovation exceeded expectations. The team was meticulous with every detail, from the cabinets to the countertops.",
+    "service": "kitchen"
+  },
+  {
+    "name": "Lisa P.",
+    "city": "Oakville",
+    "rating": 5,
+    "text": "Had our bathroom completely redone. Walk-in shower, new tile, vanity — everything looks amazing. MTC made the process stress-free.",
+    "service": "bathroom"
+  },
+  {
+    "name": "James R.",
+    "city": "Stoney Creek",
+    "rating": 5,
+    "text": "New hardwood floors throughout the main level. The crew was clean, efficient, and the finish is flawless.",
+    "service": "flooring"
+  },
+  {
+    "name": "Amanda T.",
+    "city": "Ancaster",
+    "rating": 5,
+    "text": "Whole house interior paint job. They prepped everything perfectly and the results are stunning. Will use MTC again for sure.",
+    "service": "painting"
+  }
+]

@@ -1,0 +1,187 @@
+[
+  {
+    "slug": "basement",
+    "name": "Basement",
+    "tagline": "Transform Your Basement Into a Stunning Living Space",
+    "icon": "/assets/img/home/home.png",
+    "heroImage": "/assets/img/basement/hero.jpg",
+    "seo": {
+      "title": "Basement Renovation Hamilton | MTC Renovations — Costs & Process 2026",
+      "description": "Transform your Hamilton basement with MTC Renovations. Full finishing, legal suites, waterproofing prep. See our process, pricing, and completed projects. Free quote."
+    },
+    "subPages": {
+      "about-us": {
+        "title": "About MTC Renovations | Hamilton Basement Experts",
+        "description": "Licensed, insured renovation contractor serving Hamilton and the GTA. Learn about MTC Renovations' team, values, and track record."
+      },
+      "how-it-works": {
+        "title": "How Basement Renovation Works | MTC Renovations Hamilton",
+        "description": "Our proven 5-step basement renovation process in Hamilton. From design to final walkthrough — see how MTC delivers on time and on budget."
+      },
+      "why-mtc": {
+        "title": "Why Choose MTC Renovations | Hamilton's Trusted Contractor",
+        "description": "Licensed, insured, and backed by real Hamilton homeowner reviews. See why MTC Renovations is the GTA's top-rated renovation company."
+      },
+      "our-work": {
+        "title": "Basement Renovation Portfolio | MTC Renovations Hamilton",
+        "description": "Browse completed basement renovation projects in Hamilton, Burlington, and Oakville. Before & after photos from real MTC jobs."
+      },
+      "get-free-quote": {
+        "title": "Get a Free Basement Renovation Quote | MTC Renovations Hamilton",
+        "description": "Request your free basement renovation estimate from MTC Renovations. Hamilton & GTA homeowners — get your project priced within 24 hours."
+      },
+      "careers": {
+        "title": "Renovation Careers Hamilton | Join MTC Renovations",
+        "description": "Looking for renovation work in Hamilton? MTC Renovations is hiring skilled tradespeople and apprentices. Apply now."
+      }
+    }
+  },
+  {
+    "slug": "bathroom",
+    "name": "Bathroom",
+    "tagline": "Custom Bathroom Renovations — Walk-in Showers & Full Remodels",
+    "icon": "/assets/img/home/bathtub-cleaning.png",
+    "heroImage": "/assets/img/bathroom/hero.jpg",
+    "seo": {
+      "title": "Bathroom Renovation Hamilton | MTC Renovations — Walk-in Showers & Remodels",
+      "description": "Custom bathroom renovations in Hamilton. Walk-in showers, tile work, vanities, full remodels. Licensed contractors. Free estimate — results in weeks, not months."
+    },
+    "subPages": {
+      "about-us": {
+        "title": "About Our Bathroom Renovation Team | MTC Renovations Hamilton",
+        "description": "Meet the MTC team that handles bathroom renovations across Hamilton and the GTA. Licensed, insured, and detail-obsessed."
+      },
+      "how-it-works": {
+        "title": "Bathroom Renovation Process Hamilton | MTC Renovations",
+        "description": "How MTC Renovations handles your Hamilton bathroom remodel from design to final tile. Timeline, milestones, what to expect."
+      },
+      "why-mtc": {
+        "title": "Why Choose MTC for Your Bathroom Renovation | Hamilton",
+        "description": "5-star rated bathroom renovations in Hamilton. On-time, on-budget, and backed by a workmanship warranty. See what sets MTC apart."
+      },
+      "our-work": {
+        "title": "Bathroom Renovation Photos Hamilton | MTC Renovations Portfolio",
+        "description": "Real bathroom renovation photos from Hamilton and GTA projects. Walk-in showers, full remodels, tile transformations by MTC Renovations."
+      },
+      "get-free-quote": {
+        "title": "Free Bathroom Renovation Quote Hamilton | MTC Renovations",
+        "description": "Get your free bathroom renovation estimate in Hamilton. MTC Renovations responds within 24 hours. No obligation."
+      },
+      "careers": {
+        "title": "Bathroom Renovation Jobs Hamilton | MTC Renovations Careers",
+        "description": "Join MTC Renovations — Hamilton bathroom renovation team. Tile setters, plumbing helpers, and finishers wanted."
+      }
+    }
+  },
+  {
+    "slug": "kitchen",
+    "name": "Kitchen",
+    "tagline": "Complete Kitchen Renovations — Cabinets, Countertops & More",
+    "icon": "/assets/img/home/kitchen-sink.png",
+    "heroImage": "/assets/img/kitchen/hero.jpg",
+    "seo": {
+      "title": "Kitchen Renovation Hamilton | MTC Renovations — Cabinets, Countertops & More",
+      "description": "Complete kitchen renovations in Hamilton. Custom cabinets, quartz countertops, open-concept layouts. Licensed & insured. Get your free estimate today."
+    },
+    "subPages": {
+      "about-us": {
+        "title": "Our Kitchen Renovation Team | MTC Renovations Hamilton",
+        "description": "The Hamilton kitchen renovation specialists at MTC. Licensed contractors, designers, and finishers delivering full kitchen transformations."
+      },
+      "how-it-works": {
+        "title": "Kitchen Renovation Process Hamilton | MTC Renovations",
+        "description": "From cabinet selection to final reveal — MTC's proven kitchen renovation process in Hamilton. What to expect and when."
+      },
+      "why-mtc": {
+        "title": "Why MTC for Your Kitchen Renovation | Hamilton & GTA",
+        "description": "Transparent pricing, fixed timelines, and real Hamilton reviews. See why homeowners choose MTC Renovations for their kitchen remodel."
+      },
+      "our-work": {
+        "title": "Kitchen Renovation Portfolio Hamilton | MTC Renovations",
+        "description": "Before and after kitchen renovations across Hamilton, Burlington, and Oakville. Browse real MTC projects."
+      },
+      "get-free-quote": {
+        "title": "Free Kitchen Renovation Quote Hamilton | MTC Renovations",
+        "description": "Get a free kitchen renovation estimate in Hamilton. MTC Renovations responds within 24 hours with a detailed quote."
+      },
+      "careers": {
+        "title": "Kitchen Renovation Jobs Hamilton | Careers at MTC Renovations",
+        "description": "MTC Renovations is hiring in Hamilton for kitchen installation, cabinetry, and finishing roles. Apply today."
+      }
+    }
+  },
+  {
+    "slug": "flooring",
+    "name": "Flooring",
+    "tagline": "Professional Flooring Installation — Hardwood, Vinyl & Tile",
+    "icon": "/assets/img/home/floor.png",
+    "heroImage": "/assets/img/flooring/hero.jpg",
+    "seo": {
+      "title": "Flooring Installation Hamilton | Hardwood, Vinyl & Tile | MTC Renovations",
+      "description": "Professional flooring installation in Hamilton. Hardwood, engineered wood, luxury vinyl plank, and tile. Licensed, insured. Free in-home estimate."
+    },
+    "subPages": {
+      "about-us": {
+        "title": "About Our Flooring Team | MTC Renovations Hamilton",
+        "description": "Experienced flooring installers serving Hamilton and the GTA. Hardwood, LVP, tile — MTC Renovations delivers clean, lasting results."
+      },
+      "how-it-works": {
+        "title": "Flooring Installation Process Hamilton | MTC Renovations",
+        "description": "How MTC Renovations installs flooring in Hamilton homes. Sub-floor prep, installation, finishing — what to expect."
+      },
+      "why-mtc": {
+        "title": "Why Choose MTC for Flooring | Hamilton Flooring Experts",
+        "description": "Trusted by Hamilton homeowners for precise flooring installation. See MTC's warranty, process, and real reviews."
+      },
+      "our-work": {
+        "title": "Flooring Portfolio Hamilton | MTC Renovations Projects",
+        "description": "Browse hardwood, LVP, and tile flooring installations completed by MTC Renovations across Hamilton and the GTA."
+      },
+      "get-free-quote": {
+        "title": "Free Flooring Estimate Hamilton | MTC Renovations",
+        "description": "Get a free flooring installation quote in Hamilton. MTC Renovations serves Hamilton, Burlington, Oakville, and GTA."
+      },
+      "careers": {
+        "title": "Flooring Installer Jobs Hamilton | MTC Renovations Careers",
+        "description": "Flooring installation positions available at MTC Renovations in Hamilton. Hardwood and LVP installers — apply now."
+      }
+    }
+  },
+  {
+    "slug": "painting",
+    "name": "Painting",
+    "tagline": "Professional Interior Painting — Clean Prep, Premium Paint, Zero Mess",
+    "icon": "/assets/img/home/painting.png",
+    "heroImage": "/assets/img/painting/hero.jpg",
+    "seo": {
+      "title": "Interior Painting Hamilton | Licensed & Insured | MTC Renovations",
+      "description": "Professional interior painting in Hamilton. Clean prep, premium paint, zero mess. Licensed painters serving Hamilton, Burlington, and Oakville. Free estimate."
+    },
+    "subPages": {
+      "about-us": {
+        "title": "About Our Painting Team | MTC Renovations Hamilton",
+        "description": "MTC's licensed painters bring precision and care to every Hamilton home. Learn about our team and approach."
+      },
+      "how-it-works": {
+        "title": "Interior Painting Process Hamilton | MTC Renovations",
+        "description": "How MTC Renovations handles your Hamilton interior painting from prep to clean-up. Our process, timeline, and what we protect."
+      },
+      "why-mtc": {
+        "title": "Why Choose MTC for Painting | Hamilton's Painting Experts",
+        "description": "Detailed prep work, premium paints, guaranteed results. Why Hamilton homeowners trust MTC Renovations for interior painting."
+      },
+      "our-work": {
+        "title": "Interior Painting Portfolio Hamilton | MTC Renovations",
+        "description": "Before and after interior painting projects in Hamilton and the GTA. Browse completed rooms by MTC Renovations."
+      },
+      "get-free-quote": {
+        "title": "Free Interior Painting Quote Hamilton | MTC Renovations",
+        "description": "Get a free interior painting estimate in Hamilton. MTC Renovations responds within 24 hours."
+      },
+      "careers": {
+        "title": "Painting Jobs Hamilton | Careers at MTC Renovations",
+        "description": "Interior painting positions at MTC Renovations in Hamilton. Journeypersons and apprentice painters — apply now."
+      }
+    }
+  }
+]

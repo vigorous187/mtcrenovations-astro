@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import PortfolioGrid from '../../components/PortfolioGrid.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import site from '../../data/site.json';
+import services from '../../data/services.json';
+
+export function getStaticPaths() {
+  return services.map(s => ({
+    params: { service: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+const seo = service.subPages['our-work'];
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: 'Our Work', url: `${site.url}/${service.slug}/our-work` },
+  ]),
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+  <ServiceHero
+    title={`${service.name} Renovation Portfolio`}
+    subtitle="Browse completed projects from Hamilton and the GTA"
+    backgroundImage={service.heroImage}
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+
+  <PortfolioGrid service={service.slug} serviceName={service.name} />
+
+  <CTABanner
+    title={`Like What You See?`}
+    subtitle="Let us transform your space next."
+    ctaLink={`/${service.slug}/get-free-quote/`}
+  />
+</BaseLayout>

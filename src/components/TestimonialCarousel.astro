@@ -1,0 +1,42 @@
+---
+import reviews from '../data/reviews.json';
+---
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-2">What Our Clients Say</h2>
+    <p class="text-center text-secondary mb-4">Real reviews from real homeowners</p>
+
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {reviews.map((review, i) => (
+          <div class:list={['carousel-item', { active: i === 0 }]}>
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-lg-6 text-center">
+                <div class="mb-3">
+                  {[...Array(review.rating)].map(() => (
+                    <i class="fas fa-star text-warning"></i>
+                  ))}
+                </div>
+                <blockquote class="blockquote">
+                  <p class="mb-3">"{review.text}"</p>
+                </blockquote>
+                <p class="fw-bold mb-0">{review.name}</p>
+                <p class="text-secondary small">{review.city}, Ontario</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>

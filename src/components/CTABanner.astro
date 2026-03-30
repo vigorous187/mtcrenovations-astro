@@ -1,0 +1,36 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  variant?: 'dark' | 'danger';
+}
+
+const {
+  title = 'Ready to Start Your Renovation?',
+  subtitle = `Join ${site.googleReviews.count}+ satisfied homeowners across Hamilton and the GTA.`,
+  ctaText = 'Get Free Estimate',
+  ctaLink = '/basement/get-free-quote/',
+  variant = 'dark',
+} = Astro.props;
+
+const bgClass = variant === 'danger' ? 'bg-danger' : 'bg-dark';
+---
+
+<section class={`${bgClass} text-white py-5 text-center`}>
+  <div class="container">
+    <h2 class="display-6 fw-bold mb-3">{title}</h2>
+    <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 600px;">{subtitle}</p>
+    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+      <a href={ctaLink} class={`btn ${variant === 'danger' ? 'btn-light text-danger' : 'btn-danger'} btn-lg px-5`}>
+        {ctaText}
+      </a>
+      <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5">
+        <i class="fas fa-phone me-2"></i>{site.phone}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+{
+  "name": "MTC Renovations",
+  "domain": "mtcrenovations.ca",
+  "url": "https://mtcrenovations.ca",
+  "phone": "(647) 560-1095",
+  "email": "info@mtcrenovations.ca",
+  "address": {
+    "street": "",
+    "city": "Hamilton",
+    "province": "Ontario",
+    "postalCode": "",
+    "country": "CA"
+  },
+  "colors": {
+    "primary": "#000000",
+    "accent": "#dc3545",
+    "secondary": "#6c757d"
+  },
+  "serviceArea": "Hamilton, Burlington, Oakville & GTA",
+  "serviceAreaCities": ["Hamilton", "Burlington", "Oakville", "Stoney Creek", "Ancaster", "Dundas", "Waterdown", "Toronto"],
+  "googleReviews": {
+    "count": 50,
+    "rating": 5.0,
+    "url": ""
+  },
+  "social": {
+    "facebook": "",
+    "instagram": ""
+  },
+  "jobtreadLogin": "https://app.jobtread.com/sign-in/MTC-Renovations",
+  "api": {
+    "baseUrl": "https://api.michaelthehomebuyer.ca",
+    "quoteEndpoint": "/mtc-renovations/get-a-quote"
+  }
+}

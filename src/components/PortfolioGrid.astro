@@ -1,0 +1,40 @@
+---
+interface Props {
+  service: string;
+  serviceName: string;
+}
+
+const { service, serviceName } = Astro.props;
+
+// Placeholder project data — will be replaced with real portfolio images
+const projects = [
+  { title: `${serviceName} Project 1`, image: `/assets/img/${service}/project-1.jpg` },
+  { title: `${serviceName} Project 2`, image: `/assets/img/${service}/project-2.jpg` },
+  { title: `${serviceName} Project 3`, image: `/assets/img/${service}/project-3.jpg` },
+  { title: `${serviceName} Project 4`, image: `/assets/img/${service}/project-4.jpg` },
+  { title: `${serviceName} Project 5`, image: `/assets/img/${service}/project-5.jpg` },
+  { title: `${serviceName} Project 6`, image: `/assets/img/${service}/project-6.jpg` },
+];
+---
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-2">Our {serviceName} Renovation Work</h2>
+    <p class="text-center text-secondary mb-4">Browse completed projects from Hamilton and the GTA</p>
+
+    <div class="row g-4">
+      {projects.map(project => (
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm overflow-hidden">
+            <div class="bg-secondary" style="height: 250px; display: flex; align-items: center; justify-content: center;">
+              <span class="text-white-50 small">{project.title}</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title small fw-bold">{project.title}</h5>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

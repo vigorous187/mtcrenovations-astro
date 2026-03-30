@@ -1,0 +1,87 @@
+---
+import site from '../data/site.json';
+import services from '../data/services.json';
+---
+
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row">
+      <!-- Brand -->
+      <div class="col-md-4 mb-4">
+        <a href="/">
+          <img src="/assets/img/logo/logo.png" alt={site.name} height="50" class="mb-3" />
+        </a>
+        <p class="text-secondary small">
+          Hamilton's trusted renovation contractor. Basement finishing, kitchen and bathroom remodels, flooring, and painting. Licensed and insured.
+        </p>
+        <div class="d-flex gap-3 mt-3">
+          {site.social.facebook && (
+            <a href={site.social.facebook} target="_blank" rel="noopener" class="text-secondary" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          )}
+          {site.social.instagram && (
+            <a href={site.social.instagram} target="_blank" rel="noopener" class="text-secondary" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          )}
+          {site.googleReviews.url && (
+            <a href={site.googleReviews.url} target="_blank" rel="noopener" class="text-secondary" aria-label="Google Reviews">
+              <i class="fab fa-google"></i>
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-md-3 mb-4">
+        <h6 class="text-uppercase fw-bold mb-3">Services</h6>
+        <ul class="list-unstyled">
+          {services.map(s => (
+            <li class="mb-2">
+              <a href={`/${s.slug}/`} class="text-secondary text-decoration-none small">{s.name} Renovation</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="col-md-2 mb-4">
+        <h6 class="text-uppercase fw-bold mb-3">Company</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/basement/about-us/" class="text-secondary text-decoration-none small">About Us</a></li>
+          <li class="mb-2"><a href="/basement/how-it-works/" class="text-secondary text-decoration-none small">How It Works</a></li>
+          <li class="mb-2"><a href="/basement/why-mtc/" class="text-secondary text-decoration-none small">Why MTC</a></li>
+          <li class="mb-2"><a href="/basement/our-work/" class="text-secondary text-decoration-none small">Our Work</a></li>
+          <li class="mb-2"><a href="/basement/careers/" class="text-secondary text-decoration-none small">Careers</a></li>
+          <li class="mb-2"><a href="/locations/" class="text-secondary text-decoration-none small">Locations</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-3 mb-4">
+        <h6 class="text-uppercase fw-bold mb-3">Contact</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2 text-secondary small">
+            <i class="fas fa-phone me-2"></i>
+            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-secondary text-decoration-none">{site.phone}</a>
+          </li>
+          <li class="mb-2 text-secondary small">
+            <i class="fas fa-envelope me-2"></i>
+            <a href={`mailto:${site.email}`} class="text-secondary text-decoration-none">{site.email}</a>
+          </li>
+          <li class="mb-2 text-secondary small">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            {site.serviceArea}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <hr class="border-secondary" />
+    <div class="text-center text-secondary small">
+      <p class="mb-0">&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

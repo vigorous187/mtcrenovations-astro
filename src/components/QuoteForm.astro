@@ -1,0 +1,134 @@
+---
+import site from '../data/site.json';
+import services from '../data/services.json';
+
+interface Props {
+  selectedService?: string;
+}
+
+const { selectedService } = Astro.props;
+---
+
+<section class="py-5 bg-light" id="quote-form">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4">Get Your Free Estimate</h3>
+            <p class="text-center text-secondary mb-4">
+              Fill out the form below and we'll get back to you within 24 hours.
+            </p>
+
+            <form id="quoteForm" novalidate>
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="name" name="name" required />
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" required />
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="phone" name="phone" required />
+                <div class="invalid-feedback">Please enter your phone number.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Start typing your address..." />
+              </div>
+
+              <div class="mb-3">
+                <label for="service" class="form-label">Service Type <span class="text-danger">*</span></label>
+                <select class="form-select" id="service" name="service" required>
+                  <option value="">Select a service...</option>
+                  {services.map(s => (
+                    <option value={s.slug} selected={selectedService === s.slug}>{s.name} Renovation</option>
+                  ))}
+                </select>
+                <div class="invalid-feedback">Please select a service.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="message" class="form-label">Tell us about your project</label>
+                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+              </div>
+
+              <div id="formError" class="alert alert-danger d-none" role="alert"></div>
+              <div id="formSuccess" class="alert alert-success d-none" role="alert">
+                Thank you! We'll be in touch within 24 hours.
+              </div>
+
+              <button type="submit" class="btn btn-danger btn-lg w-100" id="submitBtn">
+                Request Free Estimate
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ apiUrl: `${site.api.baseUrl}${site.api.quoteEndpoint}` }}>
+  const form = document.getElementById('quoteForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formError = document.getElementById('formError');
+  const formSuccess = document.getElementById('formSuccess');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Bootstrap validation
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formError.classList.add('d-none');
+    formSuccess.classList.add('d-none');
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      address: form.address.value,
+      service: form.service.value,
+      message: form.message.value,
+      source: 'mtcrenovations.ca',
+    };
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Failed to submit');
+
+      formSuccess.classList.remove('d-none');
+      form.reset();
+      form.classList.remove('was-validated');
+
+      // Redirect after short delay
+      setTimeout(() => {
+        window.location.href = '/thank-you/';
+      }, 1500);
+    } catch (err) {
+      formError.textContent = 'Something went wrong. Please call us at (647) 560-1095.';
+      formError.classList.remove('d-none');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request Free Estimate';
+    }
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+---
+
+<BaseLayout
+  title="New Lead Intake | MTC Renovations"
+  description="Internal lead intake form for MTC Renovations."
+  noindex={true}
+>
+  <section class="py-5 bg-dark text-white text-center">
+    <div class="container">
+      <h1 class="fw-bold">New Lead Intake</h1>
+      <p class="text-white-50">Internal use only</p>
+    </div>
+  </section>
+
+  <QuoteForm />
+</BaseLayout>

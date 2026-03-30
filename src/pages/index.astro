@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+import services from '../data/services.json';
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+  ]),
+];
+---
+
+<BaseLayout
+  title="MTC Renovations | Hamilton Home Renovation Contractor"
+  description="Hamilton's trusted renovation contractor. Basement finishing, kitchen & bathroom remodels, flooring, painting. Licensed & insured. Free estimates."
+  schema={schemas}
+>
+  <!-- Hero Section -->
+  <section class="bg-dark text-white py-5">
+    <div class="container text-center py-5">
+      <h1 class="display-4 fw-bold mb-3">What Are You Renovating?</h1>
+      <p class="lead text-white-50 mb-5">Hamilton's trusted renovation contractor. Licensed, insured, and backed by 50+ five-star reviews.</p>
+
+      <!-- Service Cards -->
+      <div class="row g-4 justify-content-center">
+        {services.map(s => (
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href={`/${s.slug}/`} class="text-decoration-none">
+              <div class="card bg-white text-dark border-0 shadow-sm service-card h-100">
+                <div class="card-body text-center py-4">
+                  <div class="mb-3" style="height: 60px; display: flex; align-items: center; justify-content: center;">
+                    <img src={s.icon} alt={s.name} style="max-height: 50px; max-width: 50px;" loading="lazy" />
+                  </div>
+                  <h3 class="h6 fw-bold mb-0">{s.name}</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why MTC Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="fw-bold mb-3">Why Homeowners Choose MTC</h2>
+          <p class="text-secondary mb-4">We deliver quality renovations on time and on budget. Every project starts with a detailed, fixed-price quote. No surprises, no hidden fees.</p>
+
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <div>
+                  <h6 class="fw-bold mb-1">Licensed & Insured</h6>
+                  <p class="small text-secondary mb-0">Full WSIB coverage</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <div>
+                  <h6 class="fw-bold mb-1">Fixed-Price Quotes</h6>
+                  <p class="small text-secondary mb-0">No hidden fees</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <div>
+                  <h6 class="fw-bold mb-1">5-Star Reviews</h6>
+                  <p class="small text-secondary mb-0">{site.googleReviews.count}+ on Google</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <div>
+                  <h6 class="fw-bold mb-1">On-Time Delivery</h6>
+                  <p class="small text-secondary mb-0">We stick to timelines</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-secondary rounded" style="height: 350px; display: flex; align-items: center; justify-content: center;">
+            <span class="text-white-50">Featured project image</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <TestimonialCarousel />
+
+  <!-- Service Area -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-3">Serving Hamilton & the GTA</h2>
+      <p class="text-secondary mb-4">We provide renovation services across the Greater Hamilton and Toronto area.</p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        {site.serviceAreaCities.map(city => (
+          <a
+            href={`/location/${city.toLowerCase().replace(/[\s.]+/g, '-')}/`}
+            class="btn btn-outline-dark btn-sm"
+          >
+            {city}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner />
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+
+const cities = await getCollection('cities');
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Locations', url: `${site.url}/locations` },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Renovation Services by Location | MTC Renovations"
+  description="MTC Renovations serves Hamilton, Burlington, Oakville, and the GTA. Find renovation services in your area. Licensed & insured contractor."
+  schema={schemas}
+>
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <h1 class="display-5 fw-bold mb-3">Areas We Serve</h1>
+      <p class="lead text-white-50">Professional renovation services across Hamilton and the Greater Toronto Area</p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        {cities.map(city => (
+          <div class="col-md-6 col-lg-4">
+            <a href={`/location/${city.slug}/`} class="text-decoration-none">
+              <div class="card border-0 shadow-sm service-card h-100">
+                <div class="card-body p-4">
+                  <h3 class="h5 fw-bold text-dark mb-2">{city.data.name}, {city.data.province}</h3>
+                  <p class="text-secondary small mb-3">{city.data.metaDescription}</p>
+                  <span class="text-danger small fw-bold">Learn more <i class="fas fa-arrow-right ms-1"></i></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-5">
+        <h3 class="fw-bold mb-3">Don't See Your City?</h3>
+        <p class="text-secondary mb-3">We serve many areas across the GTA. Contact us to check if we work in your neighbourhood.</p>
+        <a href="tel:6475601095" class="btn btn-outline-danger btn-lg">
+          <i class="fas fa-phone me-2"></i>(647) 560-1095
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>
