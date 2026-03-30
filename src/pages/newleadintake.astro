@@ -1,19 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import QuoteForm from '../components/QuoteForm.astro';
 ---
 
 <BaseLayout
-  title="New Lead Intake | MTC Renovations"
-  description="Internal lead intake form for MTC Renovations."
+  title="Get a Free Quote | MTC Renovations"
+  description="Request a free renovation quote from MTC Renovations. Serving Burlington, Hamilton & the GTA."
   noindex={true}
 >
   <section class="py-5 bg-dark text-white text-center">
     <div class="container">
-      <h1 class="fw-bold">New Lead Intake</h1>
-      <p class="text-white-50">Internal use only</p>
+      <h1 class="fw-bold">Get a Free Quote</h1>
+      <p class="text-white-50">Fill out the form below and we'll get back to you within 24 hours</p>
     </div>
   </section>
 
-  <QuoteForm />
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div data-jobtread-form></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={`
+    <style>.jtwf{font-family:inherit}.jtwf .max-w-sm{max-width:100%!important}</style>
+    <script>
+      document.addEventListener('DOMContentLoaded',function(){
+        var c=document.querySelector('[data-jobtread-form]');
+        if(c){
+          c.innerHTML='<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr" data-success-message="Thank you for reaching out! One of our team members will be getting back you in 24 hours!"><div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white"><div class="p-4 space-y-2"><label class="cursor-pointer block"><div class="font-bold">Name <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label><label class="cursor-pointer block"><div class="font-bold">Phone <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="contact.custom.22NgpjG3zvMA"/></label><label class="cursor-pointer block"><div class="font-bold">Email <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="contact.custom.22NgpjFszPJj"/></label><div class="block"><div class="font-bold">How did You Hear About Us? <span class="font-normal text-red-500">*</span></div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8ReugeSg"><option></option><option>Referral</option><option>Cybertruck</option><option>Banner Sign</option><option>Facebook</option><option>Google</option><option>Home Advisor</option><option>Instagram</option><option>Internet Search</option></select></div><div class="block"><div class="font-bold">Remodel Type <span class="font-normal text-red-500">*</span></div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="job.custom.22Nh8W9jKBnL"><option></option><option>Remodel</option><option>New Construction</option><option>Addition</option><option>Exterior</option><option>General Contracting</option><option>Other</option></select></div><label class="cursor-pointer block"><div class="font-bold">Address <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Tell us about your project <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8Re8atBj" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Photos/Videos</div><div class="text-gray-500">Photos and videos help us provide a more accurate estimate!</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white" type="file" multiple name="account.files"/></label><div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div></div></div></form>';
+          var s=document.createElement('script');
+          s.src='https://app.jobtread.com/web-form.js';
+          s.async=true;
+          document.body.appendChild(s);
+        }
+      });
+    </script>
+  `} />
 </BaseLayout>

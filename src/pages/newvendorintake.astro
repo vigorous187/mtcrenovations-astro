@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import site from '../data/site.json';
 ---
 
 <BaseLayout
@@ -19,111 +18,25 @@ import site from '../data/site.json';
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
-              <h3 class="mb-3">Tell Us About Your Business</h3>
-              <p class="text-secondary mb-4">
-                MTC Renovations works with reliable subcontractors and vendors across the Hamilton and GTA area. Fill out the form below to be considered for upcoming projects.
-              </p>
-
-              <form id="vendorForm" novalidate>
-                <div class="mb-3">
-                  <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="companyName" name="companyName" required />
-                </div>
-
-                <div class="mb-3">
-                  <label for="contactName" class="form-label">Contact Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="contactName" name="contactName" required />
-                </div>
-
-                <div class="mb-3">
-                  <label for="vendorEmail" class="form-label">Email <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" id="vendorEmail" name="email" required />
-                </div>
-
-                <div class="mb-3">
-                  <label for="vendorPhone" class="form-label">Phone <span class="text-danger">*</span></label>
-                  <input type="tel" class="form-control" id="vendorPhone" name="phone" required />
-                </div>
-
-                <div class="mb-3">
-                  <label for="trade" class="form-label">Trade / Service Type <span class="text-danger">*</span></label>
-                  <select class="form-select" id="trade" name="trade" required>
-                    <option value="">Select your trade...</option>
-                    <option value="plumbing">Plumbing</option>
-                    <option value="electrical">Electrical</option>
-                    <option value="hvac">HVAC</option>
-                    <option value="framing">Framing / Carpentry</option>
-                    <option value="drywall">Drywall</option>
-                    <option value="painting">Painting</option>
-                    <option value="flooring">Flooring</option>
-                    <option value="tile">Tile</option>
-                    <option value="demolition">Demolition</option>
-                    <option value="supplier">Material Supplier</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label for="vendorMessage" class="form-label">About Your Business</label>
-                  <textarea class="form-control" id="vendorMessage" name="message" rows="4" placeholder="Tell us about your experience, service area, and availability..."></textarea>
-                </div>
-
-                <div id="vendorFormError" class="alert alert-danger d-none" role="alert"></div>
-                <div id="vendorFormSuccess" class="alert alert-success d-none" role="alert">
-                  Thank you! We'll review your application and be in touch.
-                </div>
-
-                <button type="submit" class="btn btn-danger btn-lg w-100">Submit Application</button>
-              </form>
-            </div>
-          </div>
+          <div data-jobtread-vendor-form></div>
         </div>
       </div>
     </div>
   </section>
-</BaseLayout>
 
-<script define:vars={{ apiUrl: `${site.api.baseUrl}/mtc-renovations/vendor-intake` }}>
-  const form = document.getElementById('vendorForm');
-  const submitBtn = form?.querySelector('button[type="submit"]');
-  const formError = document.getElementById('vendorFormError');
-  const formSuccess = document.getElementById('vendorFormSuccess');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.classList.add('was-validated');
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    formError.classList.add('d-none');
-    formSuccess.classList.add('d-none');
-
-    const data = Object.fromEntries(new FormData(form));
-
-    try {
-      const res = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+  <Fragment set:html={`
+    <style>.jtwf{font-family:inherit}.jtwf .max-w-sm{max-width:100%!important}</style>
+    <script>
+      document.addEventListener('DOMContentLoaded',function(){
+        var c=document.querySelector('[data-jobtread-vendor-form]');
+        if(c){
+          c.innerHTML='<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGd5DNgcfkDs9SPWqy7kuPFa4fGFpCE" data-success-message="Thank you for reaching out! We will respond shortly!" data-success-url="https://mtcrenovations.ca"><div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white"><div class="p-4 space-y-2"><label class="cursor-pointer block"><div class="font-bold">Company Name <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label><label class="cursor-pointer block"><div class="font-bold">Phone <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="account.custom.22NgpjG45eL4"/></label><label class="cursor-pointer block"><div class="font-bold">Email <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="account.custom.22NgpjFtDL3v"/></label><label class="cursor-pointer block"><div class="font-bold">Address <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Website</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8UaiNz4j"/></label><div class="block"><div class="font-bold">Trade(s)</div><div class="text-gray-500">What trades do you do?</div><div class="rounded-sm border divide-y overflow-hidden"><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Basements"/><div class="grow min-w-0">Basements</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Carpentry"/><div class="grow min-w-0">Carpentry</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Demolition"/><div class="grow min-w-0">Demolition</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Drywall/Boarder"/><div class="grow min-w-0">Drywall/Boarder</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Electrical"/><div class="grow min-w-0">Electrical</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Flooring"/><div class="grow min-w-0">Flooring</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Framing"/><div class="grow min-w-0">Framing</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="HVAC"/><div class="grow min-w-0">HVAC</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Insulation"/><div class="grow min-w-0">Insulation</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Painting"/><div class="grow min-w-0">Painting</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Plumbing"/><div class="grow min-w-0">Plumbing</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Tile Setter"/><div class="grow min-w-0">Tile Setter</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Other"/><div class="grow min-w-0">Other</div></label></div></div><div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div></div></div></form>';
+          var s=document.createElement('script');
+          s.src='https://app.jobtread.com/web-form.js';
+          s.async=true;
+          document.body.appendChild(s);
+        }
       });
-
-      if (!res.ok) throw new Error('Failed');
-
-      formSuccess.classList.remove('d-none');
-      form.reset();
-      form.classList.remove('was-validated');
-    } catch (err) {
-      formError.textContent = 'Something went wrong. Please email info@mtcrenovations.ca directly.';
-      formError.classList.remove('d-none');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Application';
-    }
-  });
-</script>
+    </script>
+  `} />
+</BaseLayout>

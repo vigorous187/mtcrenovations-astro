@@ -3,7 +3,7 @@
     "slug": "basement",
     "name": "Basement",
     "tagline": "Transform Your Basement Into a Stunning Living Space",
-    "icon": "/assets/img/home/home-white.png",
+    "icon": "/assets/img/home/home.png",
     "heroImage": "/assets/img/basement/hero.jpg",
     "seo": {
       "title": "Basement Renovation Hamilton | MTC Renovations — Costs & Process 2026",
@@ -40,7 +40,7 @@
     "slug": "bathroom",
     "name": "Bathroom",
     "tagline": "Custom Bathroom Renovations — Walk-in Showers & Full Remodels",
-    "icon": "/assets/img/home/bathtub-cleaning-white.png",
+    "icon": "/assets/img/home/bathtub-cleaning.png",
     "heroImage": "/assets/img/bathroom/hero.jpg",
     "seo": {
       "title": "Bathroom Renovation Hamilton | MTC Renovations — Walk-in Showers & Remodels",
@@ -77,7 +77,7 @@
     "slug": "kitchen",
     "name": "Kitchen",
     "tagline": "Complete Kitchen Renovations — Cabinets, Countertops & More",
-    "icon": "/assets/img/home/kitchen-sink-white.png",
+    "icon": "/assets/img/home/kitchen-sink.png",
     "heroImage": "/assets/img/kitchen/hero.jpg",
     "seo": {
       "title": "Kitchen Renovation Hamilton | MTC Renovations — Cabinets, Countertops & More",
@@ -114,7 +114,7 @@
     "slug": "flooring",
     "name": "Flooring",
     "tagline": "Professional Flooring Installation — Hardwood, Vinyl & Tile",
-    "icon": "/assets/img/home/stairs-white.png",
+    "icon": "/assets/img/home/stairs.png",
     "heroImage": "/assets/img/flooring/hero.jpg",
     "seo": {
       "title": "Flooring Installation Hamilton | Hardwood, Vinyl & Tile | MTC Renovations",
@@ -151,7 +151,7 @@
     "slug": "painting",
     "name": "Painting",
     "tagline": "Professional Interior Painting — Clean Prep, Premium Paint, Zero Mess",
-    "icon": "/assets/img/home/paint-roller-white.png",
+    "icon": "/assets/img/home/paint-roller.png",
     "heroImage": "/assets/img/painting/hero.jpg",
     "seo": {
       "title": "Interior Painting Hamilton | Licensed & Insured | MTC Renovations",
