@@ -33,4 +33,6 @@ Westminster Woods, Kortright Hills, and the newer south-end subdivisions have ho
 
 ## Why Guelph Homeowners Call MTC
 
+Guelph's strong university-adjacent economy and growing tech sector have made it one of Ontario's most consistently appreciating real estate markets. Homeowners here invest thoughtfully in renovations knowing the payoff — in equity, in livability, and in rental income potential when a finished basement suite is part of the scope.
+
 Guelph's City Building permit process moves efficiently and so do we. Our fixed-price quotes remove the guesswork from your renovation budget. Contact MTC Renovations for a free in-home consultation.

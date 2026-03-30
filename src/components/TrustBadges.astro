@@ -1,0 +1,30 @@
+---
+const badges = [
+  { icon: 'fas fa-hard-hat', title: 'WSIB Covered', description: 'Full workplace safety insurance' },
+  { icon: 'fas fa-file-contract', title: 'Licensed', description: 'Ontario licensed contractor' },
+  { icon: 'fas fa-shield-alt', title: 'Fully Insured', description: '$5M commercial liability' },
+  { icon: 'fas fa-award', title: 'Warranty', description: 'Workmanship guarantee on every job' },
+];
+---
+
+<section class="py-5" style="background: var(--bg-deepest);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Why Trust MTC</p>
+      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">Built on Accountability</h2>
+    </div>
+    <div class="row g-4 reveal-stagger">
+      {badges.map(badge => (
+        <div class="col-6 col-md-3 reveal">
+          <div class="trust-badge h-100">
+            <div class="badge-icon">
+              <i class={badge.icon}></i>
+            </div>
+            <h5 class="fw-bold mb-1" style="font-size: 1rem;">{badge.title}</h5>
+            <p class="mb-0 small" style="color: var(--text-muted);">{badge.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

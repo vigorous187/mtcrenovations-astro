@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import StatsCounter from '../components/StatsCounter.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import TrustBadges from '../components/TrustBadges.astro';
 import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
@@ -19,24 +23,49 @@ const schemas = [
   description="Burlington & Hamilton's trusted renovation contractor. Basement finishing, kitchen & bathroom remodels, flooring, painting. Licensed & insured. Free estimates."
   schema={schemas}
 >
-  <!-- Hero Section -->
-  <section class="bg-dark text-white py-5">
-    <div class="container text-center py-5">
-      <h1 class="display-4 fw-bold mb-3">What Are You Renovating?</h1>
-      <p class="lead text-white-50 mb-5">Burlington & Hamilton's trusted renovation contractor. Licensed, insured, and backed by 50+ five-star reviews.</p>
+  <!-- Hero Section — Full viewport with project photo -->
+  <section class="position-relative d-flex align-items-center" style="min-height: 100vh;">
+    <div
+      class="position-absolute inset-0 w-100 h-100"
+      style="background: url('/assets/img/kitchen/hero.jpg') center/cover no-repeat; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
+    ></div>
+    <div class="hero-overlay"></div>
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <p class="text-uppercase small fw-semibold mb-3" style="color: var(--mtc-red); letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
+      <h1 class="font-display fw-bold mb-4" style="font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text-primary);">
+        Renovations That<br/>Speak for Themselves
+      </h1>
+      <p class="mb-5 mx-auto" style="max-width: 550px; font-size: 1.15rem; color: var(--text-secondary);">
+        Licensed, insured, and backed by {site.googleReviews.count}+ five-star Google reviews. From basements to kitchens — we build it right.
+      </p>
+      <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+        <a href="/estimate/" class="btn btn-danger btn-lg px-5 py-3">
+          Get Your Free Estimate
+        </a>
+        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn-ghost rounded-pill">
+          <i class="fas fa-phone me-2"></i>{site.phone}
+        </a>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="position-absolute bottom-0 start-50 mb-4 scroll-indicator" style="z-index: 2;">
+      <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 1.2rem;"></i>
+    </div>
+  </section>
 
-      <!-- Service Cards -->
-      <div class="row g-4 justify-content-center">
+  <!-- Service Navigation Strip -->
+  <section class="py-4" style="background: var(--bg-surface-1); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="row g-3 justify-content-center reveal-stagger">
         {services.map(s => (
-          <div class="col-6 col-md-4 col-lg-2">
-            <a href={`/${s.slug}/`} class="text-decoration-none">
-              <div class="card bg-white text-dark border-0 shadow-sm service-card h-100">
-                <div class="card-body text-center py-4">
-                  <div class="mb-3" style="height: 60px; display: flex; align-items: center; justify-content: center;">
-                    <img src={s.icon} alt={s.name} style="max-height: 50px; max-width: 50px;" loading="lazy" />
-                  </div>
-                  <h3 class="h6 fw-bold mb-0">{s.name}</h3>
+          <div class="col-6 col-md-4 col-lg reveal">
+            <a href={`/${s.slug}/`} class="text-decoration-none d-block">
+              <div class="service-card text-center rounded-3 p-4 h-100">
+                <div class="mb-3" style="height: 50px; display: flex; align-items: center; justify-content: center;">
+                  <img src={s.icon} alt={s.name} style="max-height: 40px; max-width: 40px; filter: brightness(0) invert(1); opacity: 0.8;" loading="lazy" />
                 </div>
+                <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">{s.name}</h3>
+                <p class="mb-0 small" style="color: var(--text-muted);">Renovation</p>
               </div>
             </a>
           </div>
@@ -45,39 +74,54 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Why MTC Section -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h2 class="fw-bold mb-3">Why Homeowners Choose MTC</h2>
-          <p class="text-secondary mb-4">We deliver quality renovations on time and on budget. Every project starts with a detailed, fixed-price quote. No surprises, no hidden fees.</p>
+  <hr class="section-divider" />
 
-          <div class="row g-3">
+  <!-- Stats Counter -->
+  <StatsCounter />
+
+  <hr class="section-divider" />
+
+  <!-- Featured Projects Gallery -->
+  <FeaturedProjects />
+
+  <hr class="section-divider" />
+
+  <!-- Why MTC Section -->
+  <section class="py-5 gradient-mesh">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 reveal">
+          <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Why Homeowners Choose Us</p>
+          <h2 class="font-display fw-bold mb-4" style="font-size: clamp(1.75rem, 3vw, 3rem);">Quality You Can See.<br/>Honesty You Can Trust.</h2>
+          <p class="mb-4" style="color: var(--text-secondary); font-size: 1.05rem;">
+            We deliver quality renovations on time and on budget. Every project starts with a detailed, fixed-price quote. No surprises, no hidden fees.
+          </p>
+
+          <div class="row g-4">
             <div class="col-6">
               <div class="d-flex align-items-start gap-2">
-                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
                 <div>
-                  <h6 class="fw-bold mb-1">Licensed & Insured</h6>
-                  <p class="small text-secondary mb-0">Full WSIB coverage</p>
+                  <h6 class="fw-bold mb-1" style="color: var(--text-primary);">Licensed & Insured</h6>
+                  <p class="small mb-0" style="color: var(--text-muted);">Full WSIB coverage</p>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <div class="d-flex align-items-start gap-2">
-                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
                 <div>
-                  <h6 class="fw-bold mb-1">Fixed-Price Quotes</h6>
-                  <p class="small text-secondary mb-0">No hidden fees</p>
+                  <h6 class="fw-bold mb-1" style="color: var(--text-primary);">Fixed-Price Quotes</h6>
+                  <p class="small mb-0" style="color: var(--text-muted);">No hidden fees</p>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <div class="d-flex align-items-start gap-2">
-                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
                 <div>
-                  <h6 class="fw-bold mb-1">5-Star Google Reviews</h6>
-                  <p class="small text-secondary mb-0">
+                  <h6 class="fw-bold mb-1" style="color: var(--text-primary);">5-Star Reviews</h6>
+                  <p class="small mb-0" style="color: var(--text-muted);">
                     {[...Array(5)].map(() => (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05" style="margin-right: 1px;">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -90,41 +134,63 @@ const schemas = [
             </div>
             <div class="col-6">
               <div class="d-flex align-items-start gap-2">
-                <i class="fas fa-check-circle text-danger mt-1"></i>
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
                 <div>
-                  <h6 class="fw-bold mb-1">On-Time Delivery</h6>
-                  <p class="small text-secondary mb-0">We stick to timelines</p>
+                  <h6 class="fw-bold mb-1" style="color: var(--text-primary);">On-Time Delivery</h6>
+                  <p class="small mb-0" style="color: var(--text-muted);">We stick to timelines</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <img
-            src="/assets/img/kitchen/our-work/virtual-tour-327738-21.jpg"
-            alt="Modern kitchen renovation by MTC Renovations in Burlington"
-            class="rounded shadow-sm w-100"
-            style="height: 350px; object-fit: cover;"
-            loading="lazy"
-          />
+        <div class="col-lg-6 reveal">
+          <div class="portfolio-item rounded-3 overflow-hidden">
+            <img
+              src="/assets/img/kitchen/our-work/virtual-tour-327738-21.jpg"
+              alt="Modern kitchen renovation by MTC Renovations in Burlington"
+              class="w-100"
+              style="height: 450px; object-fit: cover;"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <hr class="section-divider" />
+
+  <!-- Trust Badges -->
+  <TrustBadges />
+
+  <hr class="section-divider" />
+
   <!-- Testimonials -->
   <TestimonialCarousel />
 
+  <hr class="section-divider" />
+
+  <!-- Process Steps -->
+  <ProcessSteps serviceName="Your" />
+
+  <hr class="section-divider" />
+
   <!-- Service Area -->
-  <section class="py-5">
+  <section class="py-5" style="background: var(--bg-surface-1);">
     <div class="container text-center">
-      <h2 class="fw-bold mb-3">Serving Burlington, Hamilton & the GTA</h2>
-      <p class="text-secondary mb-4">We provide renovation services across Burlington, Hamilton, and the Greater Toronto area.</p>
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Service Area</p>
+      <h2 class="font-display fw-bold mb-4" style="font-size: clamp(1.75rem, 3vw, 3rem);">Serving Burlington, Hamilton & the GTA</h2>
+      <p class="mb-4" style="color: var(--text-secondary); max-width: 550px; margin: 0 auto;">
+        We provide renovation services across Burlington, Hamilton, and the Greater Toronto area.
+      </p>
       <div class="d-flex flex-wrap justify-content-center gap-2">
         {site.serviceAreaCities.map(city => (
           <a
             href={`/location/${city.toLowerCase().replace(/[\s.]+/g, '-')}/`}
-            class="btn btn-outline-dark btn-sm"
+            class="btn btn-sm px-3 py-1 rounded-pill"
+            style="border: 1px solid var(--border-default); color: var(--text-secondary); background: transparent; transition: all 0.3s ease;"
+            onmouseover="this.style.borderColor='var(--mtc-red)';this.style.color='white'"
+            onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'"
           >
             {city}
           </a>
@@ -132,6 +198,8 @@ const schemas = [
       </div>
     </div>
   </section>
+
+  <hr class="section-divider" />
 
   <!-- CTA -->
   <CTABanner />

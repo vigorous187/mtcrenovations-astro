@@ -35,4 +35,6 @@ The newer condominium developments along Yonge Street and Sheppard Avenue serve 
 
 Toronto Building permits, inspection scheduling, and working in established urban neighbourhoods with parking and access constraints — we navigate all of it efficiently. Our crews work clean and focused.
 
+North York's renovation market rewards quality. Properties here attract buyers who notice the difference between a properly tiled shower and a rushed one, between factory-cut cabinets and custom millwork. We invest in getting the details right because North York homeowners notice when they aren't.
+
 Free in-home consultations. Fixed-price quotes within 24 hours. Call MTC Renovations today.

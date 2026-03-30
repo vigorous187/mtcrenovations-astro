@@ -35,4 +35,6 @@ Older Campbellville properties and the rural estate homes north of the 401 have 
 
 Milton's Halton Region permit process is one we know well. We submit accurate applications and move projects forward efficiently. Our fixed-price model means your Milton renovation has no cost surprises from start to completion.
 
+Milton's growing population and strong resale market make renovation a smart investment. A finished basement adds a full level of livable space. A modernized kitchen is often the single highest-return project in a resale scenario. Our crew delivers both on time and at the price we quoted.
+
 Book a free in-home consultation and receive a written quote within 24 hours.

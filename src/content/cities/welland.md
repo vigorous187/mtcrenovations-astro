@@ -33,4 +33,6 @@ The south end and areas near Welland Proper have postwar bungalows and split-lev
 
 ## Renovation Value in Welland
 
+Every MTC project in Welland starts with a free in-home consultation where we assess the space, identify any structural or mechanical issues that need to be addressed first, and build a realistic scope and budget together. There are no surprises on our fixed-price contracts — what we quote is what you pay.
+
 Welland's renovation economics are compelling right now. We handle City of Welland building permits and deliver fixed-price work efficiently. Free in-home consultation and written quote within 24 hours. Contact MTC Renovations to get started.

@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fix Tailwind Preflight conflicts with Bootstrap */
+/* ═══════════════════════════════════════
+   MTC RENOVATIONS — PREMIUM DARK THEME
+   ═══════════════════════════════════════ */
 
-/* Tailwind sets svg { display: block } which breaks inline SVGs (stars, icons) */
+/* Fix Tailwind Preflight conflicts with Bootstrap */
 svg {
   display: inline-block;
   vertical-align: middle;
@@ -23,72 +25,350 @@ svg {
   visibility: visible !important;
 }
 
-/* MTC Renovations custom overrides */
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* ── CSS Custom Properties ── */
+:root {
+  --bg-deepest: #0a0a0a;
+  --bg-base: #0f0f0f;
+  --bg-surface-1: #141414;
+  --bg-surface-2: #1a1a1a;
+  --bg-surface-3: #222222;
+  --bg-surface-4: #2a2a2a;
+  --bg-elevated: #333333;
+  --mtc-red: #dc3545;
+  --mtc-red-dark: #bb2d3b;
+  --mtc-red-glow: rgba(220, 53, 69, 0.35);
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.70);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-emphasis: rgba(255, 255, 255, 0.12);
 }
 
-/* Scroll reveal animation */
+/* ── Base Typography ── */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-deepest);
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+/* ── Film Grain Noise Overlay ── */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+}
+
+/* ── Section Dividers ── */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(220, 53, 69, 0.3), transparent);
+  margin: 0;
+}
+
+/* ── Scroll Reveal Animations ── */
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .reveal {
   opacity: 0;
-}
-.revealed {
-  animation: revealUp 0.6s ease forwards;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Bootstrap overrides for MTC branding */
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for card grids */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.24s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.36s; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.48s; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.60s; }
+
+/* ── Glass Nav ── */
+.glass-nav {
+  background: transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-nav.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Button Styles ── */
 .btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: var(--mtc-red);
+  border-color: var(--mtc-red);
+  transition: all 0.3s ease;
 }
 
 .btn-danger:hover {
-  background-color: #bb2d3b;
-  border-color: #b02a37;
+  background-color: var(--mtc-red-dark);
+  border-color: var(--mtc-red-dark);
+  box-shadow: 0 6px 25px var(--mtc-red-glow);
 }
 
-/* Navbar adjustments */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 2.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+/* ── Navbar Overrides ── */
 .navbar-dark .navbar-nav .nav-link {
   font-size: 0.9rem;
   font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
-/* Service card hover effect */
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: white;
+}
+
+/* ── Service Cards ── */
 .service-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-default);
 }
 
-/* Prose styling for content collection pages */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(220, 53, 69, 0.1);
+}
+
+/* ── Portfolio Images ── */
+.portfolio-item {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.portfolio-item img {
+  filter: saturate(0.85) contrast(1.05) brightness(0.9);
+  transition: filter 0.6s ease, transform 0.5s ease;
+}
+
+.portfolio-item:hover img {
+  filter: saturate(1) contrast(1) brightness(1);
+  transform: scale(1.05);
+}
+
+/* ── Review Cards ── */
+.review-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-default);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.review-card:hover {
+  border-color: var(--border-emphasis);
+  transform: translateY(-4px);
+}
+
+/* ── Counter Stats ── */
+.stat-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* ── Trust Badges ── */
+.trust-badge {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.trust-badge:hover {
+  border-color: var(--border-emphasis);
+}
+
+.trust-badge .badge-icon {
+  font-size: 2rem;
+  color: var(--mtc-red);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Process Steps (Editorial) ── */
+.process-step {
+  position: relative;
+  padding-left: 5rem;
+  padding-bottom: 3rem;
+  border-left: 1px solid var(--border-default);
+  margin-left: 2rem;
+}
+
+.process-step:last-child {
+  border-left: none;
+  padding-bottom: 0;
+}
+
+.process-step-number {
+  position: absolute;
+  left: -1.25rem;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--mtc-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* ── Prose styling for content pages ── */
 .prose h2 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  color: var(--text-primary);
 }
+
 .prose h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
+  color: var(--text-primary);
 }
+
 .prose p {
   margin-bottom: 1rem;
   line-height: 1.7;
-  color: #495057;
+  color: var(--text-secondary);
 }
+
 .prose ul, .prose ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
+
 .prose li {
   margin-bottom: 0.5rem;
-  color: #495057;
+  color: var(--text-secondary);
+}
+
+/* ── Hero Gradient Overlays ── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.3) 0%,
+    rgba(10, 10, 10, 0.5) 50%,
+    rgba(10, 10, 10, 0.85) 100%
+  );
+}
+
+/* ── Gradient Mesh Background ── */
+.gradient-mesh {
+  background-color: var(--bg-deepest);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(220, 53, 69, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(220, 53, 69, 0.04), transparent);
+}
+
+/* ── Dropdown Dark Theme ── */
+.dropdown-menu {
+  background: var(--bg-surface-3);
+  border: 1px solid var(--border-default);
+}
+
+.dropdown-item {
+  color: var(--text-secondary);
+}
+
+.dropdown-item:hover {
+  background: var(--bg-surface-4);
+  color: white;
+}
+
+/* ── Scroll Indicator ── */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(10px) translateX(-50%); }
+  60% { transform: translateY(5px) translateX(-50%); }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s infinite;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .revealed {
+    animation: none;
+  }
+  .scroll-indicator {
+    animation: none;
+  }
+  .service-card,
+  .portfolio-item img,
+  .review-card,
+  .btn-danger,
+  .btn-ghost,
+  .glass-nav {
+    transition: none;
+  }
 }

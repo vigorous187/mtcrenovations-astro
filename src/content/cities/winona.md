@@ -29,6 +29,10 @@ Newer Winona subdivision homes frequently need the same upgrades as comparable b
 - **Flooring** -- Hardwood, luxury vinyl plank, and tile throughout
 - **Interior Painting** -- Full prep, premium paint, detailed finish work
 
+## What to Expect From a Winona Renovation
+
+Every MTC project starts with a detailed site assessment. We walk through the space together, identify any structural or mechanical considerations that need addressing before cosmetic work begins, and build a clear scope that covers the full project — not just the pretty parts. You'll get a single fixed price covering all labour and materials before we start.
+
 ## Why Winona Homeowners Call MTC
 
 We operate throughout the entire Hamilton-Niagara corridor and are very familiar with the work and permits required in the Stoney Creek and Grimsby area. Our quotes are fixed-price and our timelines are kept. Reach out for a free consultation and written estimate.

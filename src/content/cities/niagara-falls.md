@@ -33,4 +33,6 @@ Chippawa and the south end have a more rural character with properties on larger
 
 ## Bringing Quality Renovation to Niagara Falls Homeowners
 
+Niagara Falls homeowners increasingly recognize the renovation opportunity in front of them — solid housing stock at competitive prices, a strengthening local economy, and rising property values driven by regional investment. Renovating now builds equity for later.
+
 We handle Niagara Falls building permits and understand the regional requirements. Every project gets a free in-home consultation and a fixed-price written quote. No surprises, no delays, no excuses. Call MTC Renovations today.

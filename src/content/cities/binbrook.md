@@ -33,4 +33,6 @@ These newer builds — typically two-storey homes with attached garages built fr
 
 We're familiar with Hamilton's permit requirements for residential renovation in Binbrook and process applications efficiently. Our fixed-price quotes mean no surprises when the bill comes — what we quote is what you pay.
 
+Binbrook's growth has brought real investment expectations. Homeowners here have purchased in a community they believe in, and they're renovating to match. Our crew delivers the craftsmanship and project management that makes the investment worthwhile — not just a quick flip of a switch. Every detail from framing to final paint coat gets the same level of attention.
+
 Contact MTC for a free in-home consultation and written quote.

@@ -35,4 +35,6 @@ Rexdale and Westway offer more affordable bungalows and split-levels from the 19
 
 Etobicoke renovation projects fall under City of Toronto Building division requirements, and we manage that permitting process with accuracy and efficiency. Our crew works clean, keeps the schedule, and doesn't disappear between phases.
 
+Etobicoke's property values are among the strongest in the GTA, which means renovation investment here performs well — especially kitchen and bathroom overhauls that stand out during resale. Our team brings the precision and professionalism that Etobicoke homeowners expect.
+
 Every project begins with a free site visit and a fixed-price quote. Reach out to schedule yours.

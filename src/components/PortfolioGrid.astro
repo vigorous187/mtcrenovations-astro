@@ -15,21 +15,24 @@ const serviceImages = Object.keys(allImages)
   .slice(0, 12);
 ---
 
-<section class="py-5">
+<section class="py-5" style="background: var(--bg-base);">
   <div class="container">
-    <h2 class="text-center fw-bold mb-2">Our {serviceName} Renovation Work</h2>
-    <p class="text-center text-secondary mb-4">Browse completed projects from Hamilton and the GTA</p>
+    <div class="text-center mb-5">
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Portfolio</p>
+      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">Our {serviceName} Renovation Work</h2>
+      <p style="color: var(--text-secondary);">Browse completed projects from Hamilton and the GTA</p>
+    </div>
 
     {serviceImages.length > 0 ? (
-      <div class="row g-3">
+      <div class="row g-3 reveal-stagger">
         {serviceImages.map((img, i) => (
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="portfolio-item overflow-hidden rounded shadow-sm">
+          <div class={`${i < 2 ? 'col-6 col-md-6' : 'col-6 col-md-4 col-lg-3'} reveal`}>
+            <div class="portfolio-item" style={`height: ${i < 2 ? '320px' : '220px'};`}>
               <img
                 src={img}
                 alt={`${serviceName} renovation project in Hamilton - ${i + 1}`}
-                class="w-100"
-                style="height: 220px; object-fit: cover; transition: transform 0.3s ease;"
+                class="w-100 h-100"
+                style="object-fit: cover;"
                 loading="lazy"
               />
             </div>
@@ -37,13 +40,7 @@ const serviceImages = Object.keys(allImages)
         ))}
       </div>
     ) : (
-      <p class="text-center text-secondary">Portfolio photos coming soon.</p>
+      <p class="text-center" style="color: var(--text-muted);">Portfolio photos coming soon.</p>
     )}
   </div>
 </section>
-
-<style>
-  .portfolio-item:hover img {
-    transform: scale(1.05);
-  }
-</style>

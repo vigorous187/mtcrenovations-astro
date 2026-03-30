@@ -29,6 +29,10 @@ Postwar streets north of the downtown offer solid brick bungalows and 1.5-storey
 - **Flooring** -- Hardwood, luxury vinyl plank, and tile
 - **Interior Painting** -- Full-home repaints with meticulous surface preparation
 
+## Georgetown Renovation Investment
+
+Georgetown's real estate values have climbed consistently alongside the broader Halton Region market. Homeowners here are investing thoughtfully — choosing quality materials and experienced crews rather than cutting corners. MTC's fixed-price model and hands-on project management means you know exactly what you're getting before the first tool comes out.
+
 ## MTC in Georgetown
 
 We handle Halton Hills permit applications and coordinate inspections efficiently. Georgetown homeowners receive free in-home consultations and fixed-price written quotes within 24 hours. Contact us to start your renovation.

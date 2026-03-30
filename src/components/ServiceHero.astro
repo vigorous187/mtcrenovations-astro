@@ -17,13 +17,18 @@ const {
 ---
 
 <section
-  class="position-relative text-white d-flex align-items-center"
-  style={`min-height: 400px; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('${backgroundImage}') center/cover no-repeat;`}
+  class="position-relative d-flex align-items-center"
+  style="min-height: 60vh;"
 >
-  <div class="container text-center py-5">
-    <h1 class="display-4 fw-bold mb-3">{title}</h1>
-    {subtitle && <h2 class="h4 fw-normal text-white-50 mb-4">{subtitle}</h2>}
-    <a href={ctaLink} class="btn btn-danger btn-lg px-5">
+  <div
+    class="position-absolute w-100 h-100"
+    style={`background: url('${backgroundImage}') center/cover no-repeat; top: 0; left: 0;`}
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="container position-relative text-center py-5" style="z-index: 2;">
+    <h1 class="font-display fw-bold mb-3" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--text-primary);">{title}</h1>
+    {subtitle && <p class="h5 fw-normal mb-4" style="color: var(--text-secondary);">{subtitle}</p>}
+    <a href={ctaLink} class="btn btn-danger btn-lg px-5 py-3">
       {ctaText}
     </a>
   </div>

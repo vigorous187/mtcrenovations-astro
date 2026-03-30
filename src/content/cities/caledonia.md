@@ -29,6 +29,10 @@ Newer streets on Caledonia's growing edges have more recent builds — bungalows
 - **Flooring** -- Hardwood refinishing, new LVP, and tile installation
 - **Interior Painting** -- Full-home repaints with premium products and expert prep
 
+## Renovation Value in Caledonia
+
+Caledonia's real estate market has grown steadily as Hamilton overflow buyers discover the town's affordability and quality of life. A well-executed basement finishing or kitchen renovation here delivers strong return — both in equity and in daily livability. We take the time to understand what matters most to each homeowner before drawing up a scope of work.
+
 ## Serving Caledonia and Haldimand County
 
 We understand the Haldimand County permit process and bring our full crew capacity to projects in this area. Fixed-price quotes after a free in-home visit ensure no surprises. Contact MTC Renovations to discuss your Caledonia project.

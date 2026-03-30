@@ -35,4 +35,6 @@ Doon, Huron Park, and Laurentian West are the growth areas — newer homes from 
 
 ## Working in Kitchener
 
+Kitchener's tech sector has brought an influx of high-earning residents with genuine investment budgets for home renovation. These homeowners expect premium outcomes — custom tile work, quality cabinetry, well-designed lighting — and MTC delivers at that level. We don't cut corners on materials or skip steps in the prep process.
+
 City of Kitchener permits and Regional Municipality of Waterloo requirements are handled by our team. Fixed-price quotes after a free in-home site visit. Book your consultation today.

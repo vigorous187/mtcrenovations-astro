@@ -1,0 +1,41 @@
+---
+const projects = [
+  { src: '/assets/img/kitchen/our-work/virtual-tour-327738-21.jpg', alt: 'Modern kitchen renovation in Burlington', service: 'Kitchen', span: 'col-md-8' },
+  { src: '/assets/img/bathroom/our-work/virtual-tour-327738-23.jpg', alt: 'Luxury bathroom remodel in Hamilton', service: 'Bathroom', span: 'col-md-4' },
+  { src: '/assets/img/basement/our-work/IMG_1362.jpg', alt: 'Basement finishing in Oakville', service: 'Basement', span: 'col-md-4' },
+  { src: '/assets/img/flooring/our-work/virtual-tour-327738-26.jpg', alt: 'Hardwood flooring installation', service: 'Flooring', span: 'col-md-4' },
+  { src: '/assets/img/painting/our-work/virtual-tour-327738-29.jpg', alt: 'Interior painting transformation', service: 'Painting', span: 'col-md-4' },
+];
+---
+
+<section class="py-5" style="background: var(--bg-base);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Our Work</p>
+      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">Recent Projects</h2>
+    </div>
+    <div class="row g-3 reveal-stagger">
+      {projects.map(project => (
+        <div class={`${project.span} reveal`}>
+          <div class="portfolio-item position-relative" style="height: 300px;">
+            <img
+              src={project.src}
+              alt={project.alt}
+              class="w-100 h-100"
+              style="object-fit: cover;"
+              loading="lazy"
+            />
+            <div class="position-absolute bottom-0 start-0 p-3" style="background: linear-gradient(transparent, rgba(10,10,10,0.8)); width: 100%;">
+              <span class="small fw-semibold" style="color: var(--mtc-red);">{project.service}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="text-center mt-4">
+      <a href="/basement/our-work/" class="btn-ghost d-inline-block text-decoration-none rounded-pill">
+        See All Projects <i class="fas fa-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </div>
+</section>

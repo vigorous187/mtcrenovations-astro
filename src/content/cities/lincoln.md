@@ -33,4 +33,6 @@ The newer subdivision development around Vineland and the western portions of Li
 
 ## Serving Lincoln and Niagara Wine Country
 
+Lincoln's growing reputation as a lifestyle community — wine country living with easy access to the QEW and Hamilton — is driving real investment in residential properties. Homeowners here take pride in their properties and want renovation outcomes that match that pride. MTC delivers exactly that.
+
 MTC works throughout Lincoln Municipality on a regular basis. We handle permits through Lincoln's building department and keep our projects on schedule. Book a free consultation for a fixed-price written quote.

@@ -33,4 +33,6 @@ Cambridge is three distinct communities — Galt, Preston, and Hespeler — merg
 
 ## Serving Cambridge and the Waterloo Region
 
+Cambridge is experiencing a renovation renaissance alongside its broader economic revival. The downtown Galt core, once quiet, is increasingly vibrant — and surrounding residential streets are seeing renewed investment from homeowners who see long-term value in their properties. MTC is proud to be part of that momentum.
+
 Cambridge building permits and Regional Municipality of Waterloo requirements — we know the process. Free in-home consultations and fixed-price quotes within 24 hours. Call MTC Renovations today.

@@ -3,7 +3,7 @@ import site from '../data/site.json';
 import services from '../data/services.json';
 ---
 
-<footer class="bg-dark text-light pt-5 pb-3">
+<footer class="pt-5 pb-3" style="background: var(--bg-surface-1); border-top: 1px solid var(--border-subtle);">
   <div class="container">
     <div class="row">
       <!-- Brand -->
@@ -11,22 +11,22 @@ import services from '../data/services.json';
         <a href="/">
           <img src="/assets/img/logo/logo.png" alt={site.name} style="height: 50px; width: auto; max-height: 50px;" class="mb-3" />
         </a>
-        <p class="text-secondary small">
+        <p class="small" style="color: var(--text-muted);">
           Burlington & Hamilton's trusted renovation contractor. Basement finishing, kitchen and bathroom remodels, flooring, and painting. Licensed and insured.
         </p>
         <div class="d-flex gap-3 mt-3">
           {site.social.facebook && (
-            <a href={site.social.facebook} target="_blank" rel="noopener" class="text-secondary" aria-label="Facebook">
+            <a href={site.social.facebook} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Facebook">
               <i class="fab fa-facebook-f"></i>
             </a>
           )}
           {site.social.instagram && (
-            <a href={site.social.instagram} target="_blank" rel="noopener" class="text-secondary" aria-label="Instagram">
+            <a href={site.social.instagram} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
           )}
           {site.googleReviews.url && (
-            <a href={site.googleReviews.url} target="_blank" rel="noopener" class="text-secondary" aria-label="Google Reviews">
+            <a href={site.googleReviews.url} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Google Reviews">
               <i class="fab fa-google"></i>
             </a>
           )}
@@ -35,11 +35,11 @@ import services from '../data/services.json';
 
       <!-- Services -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3">Services</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Services</h6>
         <ul class="list-unstyled">
           {services.map(s => (
             <li class="mb-2">
-              <a href={`/${s.slug}/`} class="text-secondary text-decoration-none small">{s.name} Renovation</a>
+              <a href={`/${s.slug}/`} class="text-decoration-none small" style="color: var(--text-muted); transition: color 0.3s;">{s.name} Renovation</a>
             </li>
           ))}
         </ul>
@@ -47,34 +47,34 @@ import services from '../data/services.json';
 
       <!-- Company -->
       <div class="col-md-2 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3">Company</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Company</h6>
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="/about/" class="text-secondary text-decoration-none small">About Us</a></li>
-          <li class="mb-2"><a href="/estimate/" class="text-secondary text-decoration-none small">Get an Estimate</a></li>
-          <li class="mb-2"><a href="/contact/" class="text-secondary text-decoration-none small">Contact</a></li>
-          <li class="mb-2"><a href="/blog/" class="text-secondary text-decoration-none small">Blog</a></li>
-          <li class="mb-2"><a href="/basement/careers/" class="text-secondary text-decoration-none small">Careers</a></li>
-          <li class="mb-2"><a href="/locations/" class="text-secondary text-decoration-none small">Locations</a></li>
-          <li class="mb-2"><a href="/faq/" class="text-secondary text-decoration-none small">FAQ</a></li>
-          <li class="mb-2"><a href="/privacy-policy/" class="text-secondary text-decoration-none small">Privacy Policy</a></li>
-          <li class="mb-2"><a href="/terms-of-use/" class="text-secondary text-decoration-none small">Terms of Use</a></li>
+          <li class="mb-2"><a href="/about/" class="text-decoration-none small" style="color: var(--text-muted);">About Us</a></li>
+          <li class="mb-2"><a href="/estimate/" class="text-decoration-none small" style="color: var(--text-muted);">Get an Estimate</a></li>
+          <li class="mb-2"><a href="/contact/" class="text-decoration-none small" style="color: var(--text-muted);">Contact</a></li>
+          <li class="mb-2"><a href="/blog/" class="text-decoration-none small" style="color: var(--text-muted);">Blog</a></li>
+          <li class="mb-2"><a href="/basement/careers/" class="text-decoration-none small" style="color: var(--text-muted);">Careers</a></li>
+          <li class="mb-2"><a href="/locations/" class="text-decoration-none small" style="color: var(--text-muted);">Locations</a></li>
+          <li class="mb-2"><a href="/faq/" class="text-decoration-none small" style="color: var(--text-muted);">FAQ</a></li>
+          <li class="mb-2"><a href="/privacy-policy/" class="text-decoration-none small" style="color: var(--text-muted);">Privacy Policy</a></li>
+          <li class="mb-2"><a href="/terms-of-use/" class="text-decoration-none small" style="color: var(--text-muted);">Terms of Use</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3">Contact</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Contact</h6>
         <ul class="list-unstyled">
-          <li class="mb-2 text-secondary small">
-            <i class="fas fa-phone me-2"></i>
-            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-secondary text-decoration-none">{site.phone}</a>
+          <li class="mb-2 small" style="color: var(--text-muted);">
+            <i class="fas fa-phone me-2" style="color: var(--mtc-red);"></i>
+            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-decoration-none" style="color: var(--text-muted);">{site.phone}</a>
           </li>
-          <li class="mb-2 text-secondary small">
-            <i class="fas fa-envelope me-2"></i>
-            <a href={`mailto:${site.email}`} class="text-secondary text-decoration-none">{site.email}</a>
+          <li class="mb-2 small" style="color: var(--text-muted);">
+            <i class="fas fa-envelope me-2" style="color: var(--mtc-red);"></i>
+            <a href={`mailto:${site.email}`} class="text-decoration-none" style="color: var(--text-muted);">{site.email}</a>
           </li>
-          <li class="mb-2 text-secondary small">
-            <i class="fas fa-map-marker-alt me-2"></i>
+          <li class="mb-2 small" style="color: var(--text-muted);">
+            <i class="fas fa-map-marker-alt me-2" style="color: var(--mtc-red);"></i>
             {site.serviceArea}
           </li>
         </ul>
@@ -82,8 +82,8 @@ import services from '../data/services.json';
     </div>
 
     <!-- Bottom -->
-    <hr class="border-secondary" />
-    <div class="text-center text-secondary small">
+    <hr style="border-color: var(--border-default);" />
+    <div class="text-center small" style="color: var(--text-muted);">
       <p class="mb-0">&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
     </div>
   </div>

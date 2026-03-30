@@ -33,4 +33,6 @@ Newer estate builds in Flamborough's residential corridors are more straightforw
 
 ## Flamborough Renovations with MTC
 
+Flamborough homeowners tend to be discerning buyers — they chose this area deliberately, and they expect renovation work to match the quality of the setting. We meet that expectation with experienced crews, quality materials, and a project management approach that respects the character of every property we work in.
+
 We operate in Flamborough regularly and know the Hamilton permit process for rural properties. Free in-home consultations available throughout Flamborough. Contact us for a fixed-price written quote.

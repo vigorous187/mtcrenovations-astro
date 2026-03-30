@@ -33,4 +33,6 @@ Merritton and Thorold-adjacent areas are seeing growing renovation interest as p
 
 ## MTC in St. Catharines
 
+St. Catharines is attracting growing renovation investment as buyers price into the city from the GTA and Hamilton. A well-executed kitchen or bathroom renovation stands out strongly in this market, and a legal basement suite adds income-generating potential that many buyers actively seek.
+
 City of St. Catharines permits, inspections, and scheduling — we handle all of it. Fixed-price quotes after a free in-home visit. Reach out to start your renovation.

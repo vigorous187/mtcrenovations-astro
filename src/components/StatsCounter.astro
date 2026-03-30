@@ -1,0 +1,37 @@
+---
+import site from '../data/site.json';
+
+const stats = [
+  { value: 15, suffix: '+', label: 'Years Experience' },
+  { value: 500, suffix: '+', label: 'Projects Completed' },
+  { value: 4.9, suffix: '', label: 'Google Rating', isDecimal: true },
+  { value: site.googleReviews.count, suffix: '+', label: '5-Star Reviews' },
+];
+---
+
+<section class="py-5" style="background: var(--bg-surface-1);">
+  <div class="container">
+    <div class="row g-4 text-center reveal-stagger">
+      {stats.map(stat => (
+        <div class="col-6 col-md-3 reveal">
+          <div class="py-3">
+            {stat.isDecimal ? (
+              <div class="stat-number" style="color: var(--mtc-red);">{stat.value}</div>
+            ) : (
+              <div
+                class="stat-number"
+                style="color: var(--mtc-red);"
+                data-counter
+                data-target={stat.value}
+                data-suffix={stat.suffix}
+              >
+                0{stat.suffix}
+              </div>
+            )}
+            <div class="stat-label mt-2">{stat.label}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

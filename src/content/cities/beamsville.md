@@ -33,4 +33,6 @@ Rural properties and hobby farms in the surrounding Lincoln township offer their
 
 ## Serving Beamsville and Lincoln Township
 
+Beamsville's wine country setting attracts homeowners who appreciate quality — and that expectation carries over into how they approach their renovation. MTC brings the same standard of workmanship to Beamsville that we deliver in Hamilton and Burlington: solid preparation, quality materials, and results that hold up for decades.
+
 MTC navigates Lincoln's permit requirements and works well in smaller community settings. Free in-home consultations and fixed-price quotes within 24 hours. Get in touch to start your renovation conversation.

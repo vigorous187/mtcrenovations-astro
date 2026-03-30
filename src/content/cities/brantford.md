@@ -33,4 +33,6 @@ Postwar bungalows dominate the west and east ends of the city — solid brick co
 
 Brantford's renovation market has grown significantly in recent years as homeowners capitalize on strong property values. We work within City of Brantford permit timelines and keep our crews consistent across your project. Every quote is free, fixed-price, and delivered within 24 hours of our site visit.
 
+Brantford homeowners who choose MTC receive a dedicated project manager, a consistent crew, and a schedule that actually gets followed. We protect your home during construction — floors covered, dust managed, site left tidy at the end of every work day.
+
 Call MTC Renovations to get your Brantford renovation started.

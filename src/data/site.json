@@ -12,9 +12,12 @@
     "country": "CA"
   },
   "colors": {
-    "primary": "#000000",
+    "primary": "#0a0a0a",
     "accent": "#dc3545",
-    "secondary": "#6c757d"
+    "secondary": "#6c757d",
+    "surface1": "#0f0f0f",
+    "surface2": "#141414",
+    "surface3": "#1a1a1a"
   },
   "serviceArea": "Burlington, Hamilton, Oakville & GTA",
   "serviceAreaCities": ["Burlington", "Hamilton", "Oakville", "Stoney Creek", "Ancaster", "Dundas", "Waterdown", "Toronto", "Mississauga", "Brampton", "Grimsby", "Binbrook", "Winona", "Caledonia", "Brantford", "Milton", "Georgetown", "Etobicoke", "Scarborough", "North York", "Flamborough", "Beamsville", "Lincoln", "Niagara Falls", "St. Catharines", "Welland", "Guelph", "Cambridge", "Kitchener", "Markham"],

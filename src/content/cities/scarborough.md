@@ -33,4 +33,6 @@ The postwar suburban grid of Agincourt, Wexford, and Ionview is filled with bric
 
 Scarborough renovations fall under City of Toronto Building permits. We handle the application and inspection coordination so you don't have to. Our fixed-price quotes come after a free in-home consultation — no hidden fees, no scope creep.
 
+Scarborough's renovation market is active — competition among contractors is real, which means homeowners benefit from choosing carefully. MTC's fixed-price model, consistent crew assignments, and clean worksites set us apart from the crews who disappear for weeks and leave messes behind.
+
 Book your free consultation today.
