@@ -6,7 +6,7 @@
   "email": "info@mtcrenovations.ca",
   "address": {
     "street": "",
-    "city": "Hamilton",
+    "city": "Burlington",
     "province": "Ontario",
     "postalCode": "",
     "country": "CA"
@@ -16,8 +16,8 @@
     "accent": "#dc3545",
     "secondary": "#6c757d"
   },
-  "serviceArea": "Hamilton, Burlington, Oakville & GTA",
-  "serviceAreaCities": ["Hamilton", "Burlington", "Oakville", "Stoney Creek", "Ancaster", "Dundas", "Waterdown", "Toronto"],
+  "serviceArea": "Burlington, Hamilton, Oakville & GTA",
+  "serviceAreaCities": ["Burlington", "Hamilton", "Oakville", "Stoney Creek", "Ancaster", "Dundas", "Waterdown", "Toronto"],
   "googleReviews": {
     "count": 50,
     "rating": 5.0,
