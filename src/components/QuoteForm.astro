@@ -115,6 +115,11 @@ const { selectedService } = Astro.props;
 
       if (!res.ok) throw new Error('Failed to submit');
 
+      gtag('event', 'generate_lead', {
+        form_name: 'quote_form',
+        page_path: window.location.pathname
+      });
+
       formSuccess.classList.remove('d-none');
       form.reset();
       form.classList.remove('was-validated');
