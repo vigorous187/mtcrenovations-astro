@@ -38,14 +38,7 @@ const props = Astro.props;
 
   <SEOHead {...props} />
   <ViewTransitions />
-  <!-- Microsoft Clarity -->
-  <script is:inline type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "w42sy6y0qx");
-  </script>
+  <!-- Clarity + GA4 handled by Cloudflare Zaraz (server-side) -->
 </head>
 <body class="noise-overlay">
   <Header />
@@ -116,41 +109,31 @@ const props = Astro.props;
 
   <SocialProofTicker />
 
-  <!-- GA4 deferred load -->
-  <script is:inline>
-    window.addEventListener('load', function() {
-      var s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-JJ00FT521N';
-      s.async = true;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-JJ00FT521N');
-    });
-  </script>
-
-  <!-- GA4 auto-tracking: phone clicks + CTA clicks -->
+  <!-- GA4 event tracking via Zaraz (pageviews handled server-side) -->
   <script is:inline>
     function initGATracking() {
       // Phone click tracking
       document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
         link.addEventListener('click', function() {
-          gtag('event', 'phone_click', {
-            phone_number: link.getAttribute('href').replace('tel:', ''),
-            link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
-          });
+          if (typeof zaraz !== 'undefined') {
+            zaraz.track('phone_click', {
+              phone_number: link.getAttribute('href').replace('tel:', ''),
+              link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
+            });
+          }
         });
       });
 
       // CTA button click tracking
       document.querySelectorAll('a[href*="contact"], a[href*="estimate"], a[href*="quote"], button[type="submit"], .cta-button, [data-cta]').forEach(function(el) {
         el.addEventListener('click', function() {
-          gtag('event', 'cta_click', {
-            button_text: el.textContent?.trim().substring(0, 50),
-            button_url: el.getAttribute('href') || '',
-            page_path: window.location.pathname
-          });
+          if (typeof zaraz !== 'undefined') {
+            zaraz.track('cta_click', {
+              button_text: el.textContent?.trim().substring(0, 50),
+              button_url: el.getAttribute('href') || '',
+              page_path: window.location.pathname
+            });
+          }
         });
       });
     }
