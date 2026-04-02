@@ -1,23 +1,30 @@
 import site from '../../data/site.json';
 
+/** Ensure a URL ends with a trailing slash */
+function trailingSlash(url: string): string {
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
 export function localBusiness(cityName?: string) {
+  const address: Record<string, string> = {
+    '@type': 'PostalAddress',
+    addressLocality: cityName || site.address.city,
+    addressRegion: site.address.province,
+    addressCountry: site.address.country,
+  };
+  if (site.address.street) address.streetAddress = site.address.street;
+  if (site.address.postalCode) address.postalCode = site.address.postalCode;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
     name: cityName ? `${site.name} — ${cityName}` : site.name,
     url: cityName
-      ? `${site.url}/location/${cityName.toLowerCase().replace(/[\s.]+/g, '-')}`
-      : site.url,
+      ? trailingSlash(`${site.url}/location/${cityName.toLowerCase().replace(/[\s.]+/g, '-')}`)
+      : trailingSlash(site.url),
     telephone: site.phone,
     email: site.email,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: site.address.street,
-      addressLocality: cityName || site.address.city,
-      addressRegion: site.address.province,
-      postalCode: site.address.postalCode,
-      addressCountry: site.address.country,
-    },
+    address,
     image: `${site.url}/assets/img/logo/logo.png`,
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -44,14 +51,14 @@ export function serviceSchema(serviceName: string, serviceSlug: string, descript
     provider: {
       '@type': 'HomeAndConstructionBusiness',
       name: site.name,
-      url: site.url,
+      url: trailingSlash(site.url),
       telephone: site.phone,
     },
     areaServed: site.serviceAreaCities.map(city => ({
       '@type': 'City',
       name: city,
     })),
-    url: `${site.url}/${serviceSlug}`,
+    url: trailingSlash(`${site.url}/${serviceSlug}`),
   };
 }
 

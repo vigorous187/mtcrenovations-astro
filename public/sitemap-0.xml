@@ -87,4 +87,10 @@
   <url><loc>https://www.mtcrenovations.ca/blog/bathroom-renovation-burlington/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.mtcrenovations.ca/blog/flooring-guide-hamilton/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.mtcrenovations.ca/blog/legal-basement-suite-ontario/</loc><lastmod>2026-03-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Site-wide pages -->
+  <url><loc>https://www.mtcrenovations.ca/about/</loc><lastmod>2026-04-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mtcrenovations.ca/contact/</loc><lastmod>2026-04-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mtcrenovations.ca/privacy-policy/</loc><lastmod>2026-04-02</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.mtcrenovations.ca/terms-of-use/</loc><lastmod>2026-04-02</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
