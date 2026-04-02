@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // Re-add after upgrading to compatible versions. Sitemap can also be generated post-build.
 
 export default defineConfig({
-  site: 'https://mtcrenovations.ca',
+  site: 'https://www.mtcrenovations.ca',
   output: 'hybrid',
   adapter: cloudflare(),
   integrations: [
