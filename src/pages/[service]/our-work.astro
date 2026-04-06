@@ -3,9 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import PortfolioGrid from '../../components/PortfolioGrid.astro';
 import CTABanner from '../../components/CTABanner.astro';
-import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import { localBusiness, breadcrumbList, imageGallery } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
+import portfolioData from '../../data/portfolio.json';
 
 export function getStaticPaths() {
   return services.map(s => ({
@@ -16,6 +17,7 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const seo = service.subPages['our-work'];
+const servicePhotos = (portfolioData as Record<string, { file: string; alt: string; project: string }[]>)[service.slug] || [];
 
 const schemas = [
   localBusiness(),
@@ -24,10 +26,11 @@ const schemas = [
     { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
     { name: 'Our Work', url: `${site.url}/${service.slug}/our-work` },
   ]),
+  imageGallery(service.name, service.slug, servicePhotos.slice(0, 24)),
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
   <ServiceHero
     title={`${service.name} Renovation Portfolio`}
     subtitle="Browse completed projects from Hamilton and the GTA"

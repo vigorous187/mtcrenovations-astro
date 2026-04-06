@@ -6,13 +6,64 @@ interface Props {
 
 const { service, serviceName } = Astro.props;
 
+import portfolioData from '../data/portfolio.json';
+
+type PortfolioPhoto = {
+  file: string;
+  source_path: string;
+  alt: string;
+  score: number;
+  project: string;
+  room: string;
+  type: string;
+  explanation: string;
+};
+
+// Get photos for this service from the data file
+const servicePhotos: PortfolioPhoto[] = (portfolioData as Record<string, PortfolioPhoto[]>)[service] || [];
+
+// Group photos by project
+const projectGroups = new Map<string, PortfolioPhoto[]>();
+for (const photo of servicePhotos) {
+  const group = projectGroups.get(photo.project) || [];
+  group.push(photo);
+  projectGroups.set(photo.project, group);
+}
+
+// Sort projects by their best photo score (highest first), then by photo count
+const sortedProjects = [...projectGroups.entries()].sort(
+  (a, b) => {
+    const scoreA = Math.max(...a[1].map(p => p.score));
+    const scoreB = Math.max(...b[1].map(p => p.score));
+    if (scoreB !== scoreA) return scoreB - scoreA;
+    return b[1].length - a[1].length;
+  }
+);
+
 // Use Astro glob to find our-work images at build time
-const allImages = import.meta.glob('/public/assets/img/*/our-work/*.{jpg,jpeg,png,webp}');
-const serviceImages = Object.keys(allImages)
+const allImages = import.meta.glob('/public/assets/img/*/our-work/*.{jpg,jpeg,png,webp,JPG,JPEG}');
+const allServicePaths = Object.keys(allImages)
   .filter(path => path.includes(`/${service}/our-work/`))
-  .map(path => path.replace('/public', ''))
-  .sort()
-  .slice(0, 12);
+  .map(path => path.replace('/public', ''));
+
+// Build a lookup from filename to URL path
+function findImagePath(filename: string): string | null {
+  return allServicePaths.find(p => p.endsWith('/' + filename)) || null;
+}
+
+// Hero photos: top 6 by score across all projects
+const heroPhotos = servicePhotos
+  .slice(0, 6)
+  .map(p => ({ ...p, path: findImagePath(p.file) }))
+  .filter(p => p.path);
+
+// Slug helper for data attributes
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+// Show up to 8 photos initially per project, rest behind "show more"
+const INITIAL_GALLERY = 8;
 ---
 
 <section class="py-5" style="background: var(--bg-base);">
@@ -23,24 +74,96 @@ const serviceImages = Object.keys(allImages)
       <p style="color: var(--text-secondary);">Browse completed projects from Hamilton and the GTA</p>
     </div>
 
-    {serviceImages.length > 0 ? (
-      <div class="row g-3 reveal-stagger">
-        {serviceImages.map((img, i) => (
+    {/* Hero Grid — top 6 highest-scored photos */}
+    {heroPhotos.length > 0 && (
+      <div class="row g-3 mb-5 reveal-stagger">
+        {heroPhotos.map((photo, i) => (
           <div class={`${i < 2 ? 'col-6 col-md-6' : 'col-6 col-md-4 col-lg-3'} reveal`}>
-            <div class="portfolio-item" style={`height: ${i < 2 ? '320px' : '220px'};`}>
+            <div class="portfolio-item" style={`height: ${i < 2 ? '320px' : '240px'};`}>
               <img
-                src={img}
-                alt={`${serviceName} renovation project in Hamilton - ${i + 1}`}
+                src={`${photo.path}?v=3`}
+                alt={photo.alt}
                 class="w-100 h-100"
                 style="object-fit: cover;"
-                loading="lazy"
+                loading={i < 2 ? 'eager' : 'lazy'}
               />
             </div>
           </div>
         ))}
       </div>
-    ) : (
+    )}
+
+    {/* Project Sections — grouped by street name */}
+    {sortedProjects.map(([projectName, photos]) => {
+      const projectPhotos = photos
+        .map(p => ({ ...p, path: findImagePath(p.file) }))
+        .filter(p => p.path);
+
+      if (projectPhotos.length === 0) return null;
+      const projectSlug = slugify(projectName);
+      const hasMore = projectPhotos.length > INITIAL_GALLERY;
+
+      return (
+        <div class="mb-5 project-section" data-project={projectSlug}>
+          <h3 class="fw-bold mb-3" style="font-size: 1.25rem; color: var(--text-primary);">
+            {projectName}
+            <span class="text-muted fw-normal ms-2" style="font-size: 0.875rem;">
+              {projectPhotos.length} photo{projectPhotos.length !== 1 ? 's' : ''}
+            </span>
+          </h3>
+          <div class="row g-2">
+            {projectPhotos.map((photo, idx) => (
+              <div
+                class="col-6 col-md-4 col-lg-3 portfolio-photo-col"
+                data-project={projectSlug}
+                data-index={idx}
+                style={idx >= INITIAL_GALLERY ? 'display: none;' : undefined}
+              >
+                <div class="portfolio-item" style="height: 200px;">
+                  <img
+                    src={`${photo.path}?v=3`}
+                    alt={photo.alt}
+                    class="w-100 h-100"
+                    style="object-fit: cover;"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+          {hasMore && (
+            <div class="text-center mt-3">
+              <button
+                class="btn btn-outline-secondary btn-sm show-more-btn"
+                data-target={projectSlug}
+                data-count={projectPhotos.length - INITIAL_GALLERY}
+                type="button"
+              >
+                Show {projectPhotos.length - INITIAL_GALLERY} more photo{projectPhotos.length - INITIAL_GALLERY !== 1 ? 's' : ''}
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    })}
+
+    {servicePhotos.length === 0 && (
       <p class="text-center" style="color: var(--text-muted);">Portfolio photos coming soon.</p>
     )}
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.show-more-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        if (!target) return;
+        document.querySelectorAll(`.portfolio-photo-col[data-project="${target}"]`).forEach(el => {
+          (el as HTMLElement).style.display = '';
+        });
+        (btn as HTMLElement).style.display = 'none';
+      });
+    });
+  });
+</script>
