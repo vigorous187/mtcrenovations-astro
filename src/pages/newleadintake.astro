@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { localBusiness } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const schemas = [localBusiness()];
 ---
 
 <BaseLayout
   title="Get a Free Quote | MTC Renovations"
   description="Request a free renovation quote from MTC Renovations. Serving Burlington, Hamilton & the GTA."
   noindex={true}
+  schema={schemas}
 >
   <section class="py-5 bg-dark text-white text-center">
     <div class="container">
@@ -18,25 +23,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          <div data-jobtread-form></div>
+          <div id="jt-lead-form"></div>
         </div>
       </div>
     </div>
   </section>
-
-  <Fragment set:html={`
-    <style>.jtwf{font-family:inherit}.jtwf .max-w-sm{max-width:100%!important}</style>
-    <script>
-      document.addEventListener('DOMContentLoaded',function(){
-        var c=document.querySelector('[data-jobtread-form]');
-        if(c){
-          c.innerHTML='<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr" data-success-message="Thank you for reaching out! One of our team members will be getting back you in 24 hours!"><div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white"><div class="p-4 space-y-2"><label class="cursor-pointer block"><div class="font-bold">Name <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label><label class="cursor-pointer block"><div class="font-bold">Phone <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="contact.custom.22NgpjG3zvMA"/></label><label class="cursor-pointer block"><div class="font-bold">Email <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="contact.custom.22NgpjFszPJj"/></label><div class="block"><div class="font-bold">How did You Hear About Us? <span class="font-normal text-red-500">*</span></div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8ReugeSg"><option></option><option>Referral</option><option>Cybertruck</option><option>Banner Sign</option><option>Facebook</option><option>Google</option><option>Home Advisor</option><option>Instagram</option><option>Internet Search</option></select></div><div class="block"><div class="font-bold">Remodel Type <span class="font-normal text-red-500">*</span></div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="job.custom.22Nh8W9jKBnL"><option></option><option>Remodel</option><option>New Construction</option><option>Addition</option><option>Exterior</option><option>General Contracting</option><option>Other</option></select></div><label class="cursor-pointer block"><div class="font-bold">Address <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Tell us about your project <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8Re8atBj" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Photos/Videos</div><div class="text-gray-500">Photos and videos help us provide a more accurate estimate!</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white" type="file" multiple name="account.files"/></label><div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div></div></div></form>';
-          var s=document.createElement('script');
-          s.src='https://app.jobtread.com/web-form.js';
-          s.async=true;
-          document.body.appendChild(s);
-        }
-      });
-    </script>
-  `} />
 </BaseLayout>
+
+<Fragment set:html={`
+<style>
+@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){.jtwf *,.jtwf :before,.jtwf :after,.jtwf ::backdrop{--tw-space-y-reverse:0;--tw-divide-y-reverse:0;--tw-border-style:solid;--tw-font-weight:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000;--tw-blur:initial;--tw-brightness:initial;--tw-contrast:initial;--tw-grayscale:initial;--tw-hue-rotate:initial;--tw-invert:initial;--tw-opacity:initial;--tw-saturate:initial;--tw-sepia:initial;--tw-drop-shadow:initial;--tw-drop-shadow-color:initial;--tw-drop-shadow-alpha:100%;--tw-drop-shadow-size:initial}}}@layer theme{.jtwf{color:#111;--container-sm:32rem;--color-red-500:oklch(63.7% .237 25.331);--color-blue-500:oklch(62.3% .214 259.815);--color-gray-50:oklch(98.5% .002 247.839);--color-gray-200:oklch(92.8% .006 264.531);--color-gray-300:oklch(87.2% .01 258.338);--color-gray-500:oklch(55.1% .027 264.364);--color-white:#fff;--spacing:.25rem;--container-sm:24rem;--text-xl:1.25rem;--text-xl--line-height:calc(1.75 / 1.25);--font-weight-normal:400;--font-weight-bold:700;--radius-sm:.25rem;--default-transition-duration:.25s;--default-transition-timing-function:cubic-bezier(.4, 0, .2, 1)}}@layer base{.jtwf *,.jtwf :after,.jtwf :before,.jtwf ::backdrop{border-color:var(--color-gray-200,currentColor)}.jtwf ::file-selector-button{border-color:var(--color-gray-200,currentColor)}.jtwf *{box-sizing:border-box;border:0 solid #e5e7eb}.jtwf button,.jtwf input,.jtwf optgroup,.jtwf select,.jtwf textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}}@layer components;@layer utilities{.jtwf .mx-auto{margin-inline:auto}.jtwf .block{display:block}.jtwf .flex{display:flex}.jtwf .max-h-24{max-height:calc(var(--spacing) * 24)}.jtwf .w-full{width:100%}.jtwf .max-w-full{max-width:100%}.jtwf .max-w-sm{max-width:var(--container-sm)}.jtwf .min-w-0{min-width:calc(var(--spacing) * 0)}.jtwf .shrink-0{flex-shrink:0}.jtwf .grow{flex-grow:1}.jtwf .cursor-pointer{cursor:pointer}.jtwf .appearance-none{appearance:none}.jtwf .items-center{align-items:center}.jtwf .gap-2{gap:calc(var(--spacing) * 2)}.jtwf :where(.space-y-2>:not(:last-child)){--tw-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));margin-block-end:calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)))}.jtwf :where(.divide-y>:not(:last-child)){--tw-divide-y-reverse:0;border-bottom-style:var(--tw-border-style);border-top-style:var(--tw-border-style);border-top-width:calc(1px * var(--tw-divide-y-reverse));border-bottom-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)))}.jtwf .overflow-hidden{overflow:hidden}.jtwf .rounded-sm{border-radius:var(--radius-sm)}.jtwf .border{border-style:var(--tw-border-style);border-width:1px}.jtwf .bg-white{background-color:var(--color-white)}.jtwf .p-2{padding:calc(var(--spacing) * 2)}.jtwf .p-4{padding:calc(var(--spacing) * 4)}.jtwf .px-4{padding-inline:calc(var(--spacing) * 4)}.jtwf .py-2{padding-block:calc(var(--spacing) * 2)}.jtwf .text-center{text-align:center}.jtwf .text-right{text-align:right}.jtwf .text-xl{font-size:var(--text-xl);line-height:var(--tw-leading,var(--text-xl--line-height))}.jtwf .font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.jtwf .font-normal{--tw-font-weight:var(--font-weight-normal);font-weight:var(--font-weight-normal)}.jtwf .text-gray-500{color:var(--color-gray-500)}.jtwf .text-red-500{color:var(--color-red-500)}.jtwf .shadow-sm{--tw-shadow:0 1px 3px 0 var(--tw-shadow-color,#0000001a), 0 1px 2px -1px var(--tw-shadow-color,#0000001a);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .shadow-xs{--tw-shadow:0 1px 2px 0 var(--tw-shadow-color,#0000000d);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .ring{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .ring-gray-200{--tw-ring-color:var(--color-gray-200)}.jtwf .transition{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity,box-shadow,transform,translate,scale,rotate,filter,-webkit-backdrop-filter,backdrop-filter,display,content-visibility,overlay,pointer-events;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.jtwf .focus-within\\:bg-white:focus-within{background-color:var(--color-white)}.jtwf .focus-within\\:ring-3:focus-within{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .focus-within\\:ring-blue-500:focus-within{--tw-ring-color:var(--color-blue-500)}@media (hover:hover){.jtwf .hover\\:bg-gray-50:hover{background-color:var(--color-gray-50)}.jtwf .hover\\:brightness-95:hover{--tw-brightness:brightness(95%);filter:var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,)}}}
+</style>
+`} />
+
+<script is:inline>
+  function initLeadForm() {
+    var c = document.getElementById('jt-lead-form');
+    if (!c || c.querySelector('form')) return;
+
+    c.innerHTML = '<link rel="preload" as="image" href="https://cdn.jobtread.com/G1QAaBwHdkw8xHbou6b_vUb-fVUgw70BR120Xeqw9JXIWysikEdZqZFQfgnL9NkDksEMo4o6J7R1BrICBLTt50s4D_1avMt9RMiBaM4.sEZ0FRVwHI5HSNRAdDRw6aXBJC5Y2TpcpufoXISlKQ0?size=1024"/>' +
+      '<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr" data-success-message="Thank you for reaching out! One of our team members will be getting back you in 24 hours!">' +
+      '<div class="mx-auto min-w-0 max-w-sm rounded-sm shadow-sm bg-white">' +
+      '<div class="p-4 shadow-line-bottom"><img class="block max-w-full max-h-24 mx-auto" src="https://cdn.jobtread.com/G1QAaBwHdkw8xHbou6b_vUb-fVUgw70BR120Xeqw9JXIWysikEdZqZFQfgnL9NkDksEMo4o6J7R1BrICBLTt50s4D_1avMt9RMiBaM4.sEZ0FRVwHI5HSNRAdDRw6aXBJC5Y2TpcpufoXISlKQ0?size=1024"/></div>' +
+      '<div class="p-4 space-y-2">' +
+      '<label class="cursor-pointer block"><div class="font-bold">Name \ud83d\udcdb<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Phone \u260e\ufe0f<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="contact.custom.22NgpjG3zvMA"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Email \ud83d\udce7<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="contact.custom.22NgpjFszPJj"/></label>' +
+      '<div class="block"><div class="font-bold">How did You Hear About Us? \ud83d\udc42<span class="font-normal text-red-500">*</span></div><div class="text-gray-500">Choose one:</div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8ReugeSg"><option></option><option>Referral</option><option>Cybertruck</option><option>Banner Sign</option><option>Facebook</option><option>Google</option><option>Home Advisor</option><option>Instagram</option><option>Internet Search</option></select></div>' +
+      '<div class="block"><div class="font-bold">Remodel Type<span class="font-normal text-red-500">*</span></div><div class="text-gray-500">Choose one:</div><select class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="job.custom.22Nh8W9jKBnL"><option></option><option>New Construction (includes &quot;New Build,&quot; &quot;Multi-unit Build,&quot; &quot;Garage,&quot; etc</option><option>Remodel (includes &quot;Full Remodel,&quot; &quot;Kitchen Remodel,&quot; &quot;Bathroom Remodel,&quot; &quot;Basement Remodel,&quot; etc.)</option><option>Addition</option><option>Exterior (includes &quot;Deck,&quot; &quot;Patio,&quot; &quot;Roofing,&quot; &quot;Hardscape,&quot; etc.)</option><option>General Contracting</option><option>Other</option></select></div>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Address \ud83d\udccd<span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Tell us about your project \ud83d\udcdd<span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8Re8atBj" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Files \ud83d\udcf1</div><div class="text-gray-500">Photos and videos help us provide a more accurate estimate!</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition" type="file" multiple name="account.files"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Birthday \ud83c\udf82</div><div class="text-gray-500">We love helping you celebrate! This information is for a birthday surprise and will not be shared.</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="date" name="account.custom.22NivT6DGM7m"/></label>' +
+      '<div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer hover:brightness-95" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div>' +
+      '</div></div></form>';
+
+    var s = document.createElement('script');
+    s.src = 'https://app.jobtread.com/web-form.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  // Run immediately (handles both fresh load and View Transitions swap)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLeadForm);
+  } else {
+    initLeadForm();
+  }
+</script>

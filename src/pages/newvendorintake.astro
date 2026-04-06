@@ -1,16 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { localBusiness } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const schemas = [localBusiness()];
 ---
 
 <BaseLayout
   title="Vendor Application | MTC Renovations"
   description="Apply to become a vendor or subcontractor with MTC Renovations in Hamilton and the GTA."
   noindex={true}
+  schema={schemas}
 >
   <section class="py-5 bg-dark text-white text-center">
     <div class="container">
       <h1 class="fw-bold">Vendor / Subcontractor Application</h1>
-      <p class="text-white-50">Partner with MTC Renovations</p>
+      <p class="text-white-50">Partner with MTC Renovations — we're always looking for skilled tradespeople</p>
     </div>
   </section>
 
@@ -18,25 +23,123 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          <div data-jobtread-vendor-form></div>
+          <div class="mb-4 text-center">
+            <p style="color: var(--text-secondary);">
+              MTC Renovations works with quality subcontractors across the GTA. Fill out the form below and our team will review your application.
+            </p>
+          </div>
+          <div id="jt-vendor-form"></div>
         </div>
       </div>
     </div>
   </section>
-
-  <Fragment set:html={`
-    <style>.jtwf{font-family:inherit}.jtwf .max-w-sm{max-width:100%!important}</style>
-    <script>
-      document.addEventListener('DOMContentLoaded',function(){
-        var c=document.querySelector('[data-jobtread-vendor-form]');
-        if(c){
-          c.innerHTML='<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGd5DNgcfkDs9SPWqy7kuPFa4fGFpCE" data-success-message="Thank you for reaching out! We will respond shortly!" data-success-url="https://mtcrenovations.ca"><div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white"><div class="p-4 space-y-2"><label class="cursor-pointer block"><div class="font-bold">Company Name <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label><label class="cursor-pointer block"><div class="font-bold">Phone <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="account.custom.22NgpjG45eL4"/></label><label class="cursor-pointer block"><div class="font-bold">Email <span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="account.custom.22NgpjFtDL3v"/></label><label class="cursor-pointer block"><div class="font-bold">Address <span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label><label class="cursor-pointer block"><div class="font-bold">Website</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8UaiNz4j"/></label><div class="block"><div class="font-bold">Trade(s)</div><div class="text-gray-500">What trades do you do?</div><div class="rounded-sm border divide-y overflow-hidden"><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Basements"/><div class="grow min-w-0">Basements</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Carpentry"/><div class="grow min-w-0">Carpentry</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Demolition"/><div class="grow min-w-0">Demolition</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Drywall/Boarder"/><div class="grow min-w-0">Drywall/Boarder</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Electrical"/><div class="grow min-w-0">Electrical</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Flooring"/><div class="grow min-w-0">Flooring</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Framing"/><div class="grow min-w-0">Framing</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="HVAC"/><div class="grow min-w-0">HVAC</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Insulation"/><div class="grow min-w-0">Insulation</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Painting"/><div class="grow min-w-0">Painting</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Plumbing"/><div class="grow min-w-0">Plumbing</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Tile Setter"/><div class="grow min-w-0">Tile Setter</div></label><label class="flex gap-2 items-center p-2 cursor-pointer block"><input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="Other"/><div class="grow min-w-0">Other</div></label></div></div><div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div></div></div></form>';
-          var s=document.createElement('script');
-          s.src='https://app.jobtread.com/web-form.js';
-          s.async=true;
-          document.body.appendChild(s);
-        }
-      });
-    </script>
-  `} />
 </BaseLayout>
+
+<Fragment set:html={`
+<style>
+@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){.jtwf *,.jtwf :before,.jtwf :after,.jtwf ::backdrop{--tw-space-y-reverse:0;--tw-divide-y-reverse:0;--tw-border-style:solid;--tw-font-weight:initial;--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000;--tw-blur:initial;--tw-brightness:initial;--tw-contrast:initial;--tw-grayscale:initial;--tw-hue-rotate:initial;--tw-invert:initial;--tw-opacity:initial;--tw-saturate:initial;--tw-sepia:initial;--tw-drop-shadow:initial;--tw-drop-shadow-color:initial;--tw-drop-shadow-alpha:100%;--tw-drop-shadow-size:initial}}}@layer theme{.jtwf{color:#111;--container-sm:32rem;--color-red-500:oklch(63.7% .237 25.331);--color-blue-500:oklch(62.3% .214 259.815);--color-gray-50:oklch(98.5% .002 247.839);--color-gray-200:oklch(92.8% .006 264.531);--color-gray-300:oklch(87.2% .01 258.338);--color-gray-500:oklch(55.1% .027 264.364);--color-white:#fff;--spacing:.25rem;--container-sm:24rem;--text-xl:1.25rem;--text-xl--line-height:calc(1.75 / 1.25);--font-weight-normal:400;--font-weight-bold:700;--radius-sm:.25rem;--default-transition-duration:.25s;--default-transition-timing-function:cubic-bezier(.4, 0, .2, 1)}}@layer base{.jtwf *,.jtwf :after,.jtwf :before,.jtwf ::backdrop{border-color:var(--color-gray-200,currentColor)}.jtwf ::file-selector-button{border-color:var(--color-gray-200,currentColor)}.jtwf *{box-sizing:border-box;border:0 solid #e5e7eb}.jtwf button,.jtwf input,.jtwf optgroup,.jtwf select,.jtwf textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0}}@layer components;@layer utilities{.jtwf .mx-auto{margin-inline:auto}.jtwf .block{display:block}.jtwf .flex{display:flex}.jtwf .max-h-24{max-height:calc(var(--spacing) * 24)}.jtwf .w-full{width:100%}.jtwf .max-w-full{max-width:100%}.jtwf .max-w-sm{max-width:var(--container-sm)}.jtwf .min-w-0{min-width:calc(var(--spacing) * 0)}.jtwf .shrink-0{flex-shrink:0}.jtwf .grow{flex-grow:1}.jtwf .cursor-pointer{cursor:pointer}.jtwf .appearance-none{appearance:none}.jtwf .items-center{align-items:center}.jtwf .gap-2{gap:calc(var(--spacing) * 2)}.jtwf :where(.space-y-2>:not(:last-child)){--tw-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));margin-block-end:calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)))}.jtwf :where(.divide-y>:not(:last-child)){--tw-divide-y-reverse:0;border-bottom-style:var(--tw-border-style);border-top-style:var(--tw-border-style);border-top-width:calc(1px * var(--tw-divide-y-reverse));border-bottom-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)))}.jtwf .overflow-hidden{overflow:hidden}.jtwf .rounded-sm{border-radius:var(--radius-sm)}.jtwf .border{border-style:var(--tw-border-style);border-width:1px}.jtwf .bg-white{background-color:var(--color-white)}.jtwf .p-2{padding:calc(var(--spacing) * 2)}.jtwf .p-4{padding:calc(var(--spacing) * 4)}.jtwf .px-4{padding-inline:calc(var(--spacing) * 4)}.jtwf .py-2{padding-block:calc(var(--spacing) * 2)}.jtwf .text-center{text-align:center}.jtwf .text-right{text-align:right}.jtwf .text-xl{font-size:var(--text-xl);line-height:var(--tw-leading,var(--text-xl--line-height))}.jtwf .font-bold{--tw-font-weight:var(--font-weight-bold);font-weight:var(--font-weight-bold)}.jtwf .font-normal{--tw-font-weight:var(--font-weight-normal);font-weight:var(--font-weight-normal)}.jtwf .text-gray-500{color:var(--color-gray-500)}.jtwf .text-red-500{color:var(--color-red-500)}.jtwf .shadow-sm{--tw-shadow:0 1px 3px 0 var(--tw-shadow-color,#0000001a), 0 1px 2px -1px var(--tw-shadow-color,#0000001a);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .shadow-xs{--tw-shadow:0 1px 2px 0 var(--tw-shadow-color,#0000000d);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .ring{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .ring-gray-200{--tw-ring-color:var(--color-gray-200)}.jtwf .transition{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity,box-shadow,transform,translate,scale,rotate,filter,-webkit-backdrop-filter,backdrop-filter,display,content-visibility,overlay,pointer-events;transition-timing-function:var(--tw-ease,var(--default-transition-timing-function));transition-duration:var(--tw-duration,var(--default-transition-duration))}.jtwf .focus-within\\:bg-white:focus-within{background-color:var(--color-white)}.jtwf .focus-within\\:ring-3:focus-within{--tw-ring-shadow:var(--tw-ring-inset,) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor);box-shadow:var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}.jtwf .focus-within\\:ring-blue-500:focus-within{--tw-ring-color:var(--color-blue-500)}@media (hover:hover){.jtwf .hover\\:bg-gray-50:hover{background-color:var(--color-gray-50)}.jtwf .hover\\:brightness-95:hover{--tw-brightness:brightness(95%);filter:var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,)}}}
+</style>
+`} />
+
+<script is:inline>
+  function initVendorForm() {
+    var c = document.getElementById('jt-vendor-form');
+    if (!c || c.querySelector('form')) return;
+
+    var trades = [
+      'N/a',
+      'Appliance Installation/Repair \ud83d\udd27',
+      'Architect \ud83c\udfdb\ufe0f',
+      'Basements \ud83c\udfe0\u2b07\ufe0f',
+      'Carpentry \ud83e\ude9a',
+      'Carpet Installer \ud83c\udfe0\ud83e\uddf6',
+      'Caulking \ud83e\uddf4',
+      'Cleaning \ud83e\uddf9',
+      'Concrete \ud83c\udfd7\ufe0f',
+      'Demolition \ud83e\ude93',
+      'Drywall/Boarder \ud83e\uddf1',
+      'Duct Cleaning \ud83c\udf2c\ufe0f\ud83d\uddd1\ufe0f',
+      'Egress Windows \ud83e\ude9f',
+      'Electrical\u26a1',
+      'Engineer\ud83d\udee0\ufe0f',
+      'Estimator / Material Takeoff / Quantity Takeoff \ud83d\udee0\ufe0f\ud83d\udcd0',
+      'Excavation\ud83d\ude9c',
+      'Fire Shutters\ud83d\udd25\ud83d\udeaa',
+      'Flooring\ud83e\udeb5',
+      'Foundation\ud83c\udfe0',
+      'Framing\ud83d\udcd0',
+      'Garage Door Installer\ud83d\udeaa',
+      'General Contractor\ud83c\udfd7\ufe0f',
+      'Glass and Mirror\ud83e\ude9e',
+      'HVAC\ud83c\udf2c\ufe0f',
+      'Insulation\ud83e\uddf4',
+      'Inspections\ud83d\udd0d',
+      'Interior Designer\ud83d\uddbc\ufe0f',
+      'Irrigation\ud83d\udeb0',
+      'Ironworker\ud83d\udd29',
+      'Jack of all Trades\ud83d\udee0\ufe0f',
+      'Junk Removal\ud83d\uddd1\ufe0f',
+      'Kitchen Installer\ud83c\udf73',
+      'Labourer\ud83c\udfcb\ufe0f',
+      'Landscaping\ud83c\udf33',
+      'Masonry\ud83e\uddf1',
+      'Movers\ud83d\udce6',
+      'Mud/Taper \ud83d\udd8c\ufe0f',
+      'Network/Cabling\ud83c\udf10',
+      'Painting\ud83c\udfa8',
+      'Paving \ud83d\udee3\ufe0f',
+      'Pest Control \ud83e\udeb3',
+      'Plumbing\ud83d\udebf',
+      'Post Holes \ud83e\udeb5\ud83d\udd73\ufe0f',
+      'Pre-Fab Homes \ud83c\udfe1',
+      'Rentals \ud83c\udfe8',
+      'Roofing \ud83c\udfe0',
+      'Siding \ud83c\udfe0\ud83e\ude9f\ud83e\uddf1',
+      'Special Trade Contractors \ud83d\udee0\ufe0f',
+      'Stairs\ud83e\ude9c',
+      'Steel\ud83c\udfd7\ufe0f',
+      'Surveyor\ud83d\udccf',
+      'Tile Setter\ud83e\udea8',
+      'Tree Service\ud83c\udf32',
+      'Trim\u2702\ufe0f',
+      'Underpinning\ud83c\udfd7\ufe0f',
+      'Waterproofing\ud83d\udca7',
+      'Welder \u2728',
+      'Windows and Doors\ud83d\udeaa',
+      'Restoration',
+      'Energy Auditor'
+    ];
+
+    var tradeCheckboxes = trades.map(function(t) {
+      return '<label class="flex gap-2 items-center p-2 hover:bg-gray-50 cursor-pointer block">' +
+        '<input class="shrink-0" type="checkbox" name="account.custom.22Nh8TYnQPBt" value="' + t + '"/>' +
+        '<div class="grow min-w-0">' + t + '</div></label>';
+    }).join('');
+
+    c.innerHTML = '<link rel="preload" as="image" href="https://cdn.jobtread.com/G1QAaBwHdkw8xHbou6b_vUb-fVUgw70BR120Xeqw9JXIWysikEdZqZFQfgnL9NkDksEMo4o6J7R1BrICBLTt50s4D_1avMt9RMiBaM4.sEZ0FRVwHI5HSNRAdDRw6aXBJC5Y2TpcpufoXISlKQ0?size=1024"/>' +
+      '<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGd5DNgcfkDs9SPWqy7kuPFa4fGFpCE" data-success-message="Thank you for reaching out! We will respond shortly!" data-success-url="https://mtcrenovations.ca">' +
+      '<div class="mx-auto min-w-0 max-w-sm rounded-sm shadow-sm bg-white">' +
+      '<div class="p-4 shadow-line-bottom"><img class="block max-w-full max-h-24 mx-auto" src="https://cdn.jobtread.com/G1QAaBwHdkw8xHbou6b_vUb-fVUgw70BR120Xeqw9JXIWysikEdZqZFQfgnL9NkDksEMo4o6J7R1BrICBLTt50s4D_1avMt9RMiBaM4.sEZ0FRVwHI5HSNRAdDRw6aXBJC5Y2TpcpufoXISlKQ0?size=1024"/></div>' +
+      '<div class="p-4 space-y-2">' +
+      '<label class="cursor-pointer block"><div class="font-bold">Company Name \ud83c\udfe2<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="text" required name="contact.name"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Phone \u260e\ufe0f<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="tel" required name="account.custom.22NgpjG45eL4"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Email \ud83d\udce7<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="email" required name="account.custom.22NgpjFtDL3v"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Address \ud83d\udccd<span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="location.address" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Website \ud83c\udf10</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8UaiNz4j"/></label>' +
+      '<div class="block"><div class="font-bold">Trade(s) \ud83d\udee0\ufe0f</div><div class="text-gray-500">What Trades do you do?</div>' +
+      '<div class="rounded-sm border divide-y overflow-hidden">' + tradeCheckboxes + '</div></div>' +
+      '<div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer hover:brightness-95" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div>' +
+      '</div></div></form>';
+
+    var s = document.createElement('script');
+    s.src = 'https://app.jobtread.com/web-form.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  // Run immediately (handles both fresh load and View Transitions swap)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVendorForm);
+  } else {
+    initVendorForm();
+  }
+</script>

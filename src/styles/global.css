@@ -61,6 +61,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent mobile horizontal overflow from Bootstrap row gutters or 100vw elements */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 .font-display {
   font-family: "Playfair Display", Georgia, serif;
   letter-spacing: 0.02em;

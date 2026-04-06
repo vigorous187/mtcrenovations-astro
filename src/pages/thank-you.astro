@@ -1,11 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { localBusiness } from '../components/seo/schemas';
+
+const schemas = [localBusiness()];
 ---
 
 <BaseLayout
   title="Thank You | MTC Renovations"
   description="Thank you for contacting MTC Renovations. We'll be in touch within 24 hours."
   noindex={true}
+  schema={schemas}
 >
   <section class="py-5 text-center">
     <div class="container py-5">

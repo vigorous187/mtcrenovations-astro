@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
-import QuoteForm from '../../components/QuoteForm.astro';
 import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
@@ -26,7 +25,7 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
   <ServiceHero
     title={`Get Your Free ${service.name} Renovation Estimate`}
     subtitle="No obligation. We respond within 24 hours."
@@ -35,7 +34,15 @@ const schemas = [
     ctaLink="tel:6475601095"
   />
 
-  <QuoteForm selectedService={service.slug} />
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div id="jt-service-form"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="py-5">
     <div class="container text-center">
@@ -47,3 +54,68 @@ const schemas = [
     </div>
   </section>
 </BaseLayout>
+
+<style is:global>
+  .jtwf { font-family: inherit; color: #111; }
+  .jtwf .max-w-sm { max-width: 100% !important; }
+  .jtwf .bg-white { background-color: #fff; }
+  .jtwf .rounded-sm { border-radius: 0.25rem; }
+  .jtwf .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .jtwf .p-2 { padding: 0.5rem; }
+  .jtwf .p-4 { padding: 1rem; }
+  .jtwf .w-full { width: 100%; }
+  .jtwf .block { display: block; }
+  .jtwf .font-bold { font-weight: 700; }
+  .jtwf .font-normal { font-weight: 400; }
+  .jtwf .text-red-500 { color: #ef4444; }
+  .jtwf .text-gray-500 { color: #6b7280; }
+  .jtwf .space-y-2 > * + * { margin-top: 0.75rem; }
+  .jtwf .cursor-pointer { cursor: pointer; }
+  .jtwf .text-right { text-align: right; }
+  .jtwf .mx-auto { margin-left: auto; margin-right: auto; }
+  .jtwf .min-w-0 { min-width: 0; }
+  .jtwf input, .jtwf select, .jtwf textarea {
+    font-family: inherit; font-size: 1rem; border: 1px solid #d1d5db;
+    border-radius: 0.25rem; padding: 0.5rem; width: 100%; background: #fff; color: #111;
+  }
+  .jtwf input:focus, .jtwf select:focus, .jtwf textarea:focus {
+    outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+  }
+  .jtwf button[data-submit-button] {
+    border: none; font-size: 1rem; font-weight: 600; padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem; cursor: pointer;
+  }
+</style>
+
+<script is:inline>
+  function initServiceForm() {
+    var c = document.getElementById('jt-service-form');
+    if (!c || c.querySelector('form')) return;
+
+    c.innerHTML = '<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr" data-success-message="Thank you for reaching out! One of our team members will be getting back you in 24 hours!">' +
+      '<div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white">' +
+      '<div class="p-4 space-y-2">' +
+      '<label class="cursor-pointer block"><div class="font-bold">Name<span class="font-normal text-red-500">*</span></div><input type="text" required name="contact.name"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Phone<span class="font-normal text-red-500">*</span></div><input type="tel" required name="contact.custom.22NgpjG3zvMA"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Email<span class="font-normal text-red-500">*</span></div><input type="email" required name="contact.custom.22NgpjFszPJj"/></label>' +
+      '<div class="block"><div class="font-bold">How did You Hear About Us?<span class="font-normal text-red-500">*</span></div><select name="account.custom.22Nh8ReugeSg"><option></option><option>Referral</option><option>Cybertruck</option><option>Banner Sign</option><option>Facebook</option><option>Google</option><option>Home Advisor</option><option>Instagram</option><option>Internet Search</option></select></div>' +
+      '<div class="block"><div class="font-bold">Remodel Type<span class="font-normal text-red-500">*</span></div><select name="job.custom.22Nh8W9jKBnL"><option></option><option>New Construction</option><option>Remodel</option><option>Addition</option><option>Exterior</option><option>General Contracting</option><option>Other</option></select></div>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Address<span class="font-normal text-red-500">*</span></div><textarea name="location.address" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Tell us about your project<span class="font-normal text-red-500">*</span></div><textarea name="account.custom.22Nh8Re8atBj" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Photos/Videos</div><div class="text-gray-500">Photos and videos help us provide a more accurate estimate!</div><input type="file" multiple name="account.files"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Birthday</div><div class="text-gray-500">We love helping you celebrate!</div><input type="date" name="account.custom.22NivT6DGM7m"/></label>' +
+      '<div class="text-right"><button data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div>' +
+      '</div></div></form>';
+
+    var s = document.createElement('script');
+    s.src = 'https://app.jobtread.com/web-form.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  // Run immediately (handles both fresh load and View Transitions swap)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServiceForm);
+  } else {
+    initServiceForm();
+  }
+</script>

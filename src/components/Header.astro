@@ -10,7 +10,7 @@ const currentPath = Astro.url.pathname;
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand" href="/">
-        <img src="/assets/img/logo/logo.png" alt={site.name} style="height: 50px; width: auto; max-height: 50px;" />
+        <img src="/assets/img/logo/logo-white.png" alt={site.name} style="height: 50px; width: auto; max-height: 50px;" />
       </a>
 
       <!-- Mobile Toggle -->
@@ -70,9 +70,16 @@ const currentPath = Astro.url.pathname;
             </a>
           </li>
 
+          <!-- Customer Login -->
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link" href={site.jobtreadLogin} target="_blank" rel="noopener">
+              <i class="fas fa-sign-in-alt me-1"></i>Login
+            </a>
+          </li>
+
           <!-- CTA -->
           <li class="nav-item ms-lg-2">
-            <a class="btn btn-danger btn-sm px-3" href="/estimate/">
+            <a class="btn btn-danger btn-sm px-3" href="/newleadintake/">
               Free Estimate
             </a>
           </li>

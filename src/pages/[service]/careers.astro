@@ -26,11 +26,11 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
   <ServiceHero
     title={`Join the MTC ${service.name} Team`}
     subtitle="We're hiring skilled tradespeople in Hamilton and the GTA"
-    backgroundImage="/assets/img/careers/hero.jpg"
+    backgroundImage={`/assets/img/${service.slug}/hero.jpg`}
     ctaText="Apply Now"
     ctaLink="#apply"
   />
