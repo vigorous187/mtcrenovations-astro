@@ -3,8 +3,8 @@ title: "Kitchen Renovation in Hamilton: What to Expect, What It Costs, and How t
 metaTitle: "Kitchen Renovation Hamilton: Costs & Planning Guide"
 metaDescription: "Planning a kitchen renovation in Hamilton? Learn average costs ($20K-$60K), timelines, and what to expect from start to finish."
 author: "MTC Renovations"
-datePublished: "2026-03-30"
-dateModified: "2026-03-30"
+datePublished: "2025-11-05"
+dateModified: "2025-11-05"
 tags: ["kitchen renovation", "Hamilton", "renovation costs", "kitchen remodel"]
 ---
 

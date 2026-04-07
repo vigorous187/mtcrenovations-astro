@@ -3,9 +3,16 @@ title: "Legal Basement Suites in Ontario: Rules, Costs & How to Get Started"
 metaTitle: "Legal Basement Suite Ontario: Rules, Costs & Permits"
 metaDescription: "Want to build a legal basement suite in Ontario? Learn the building code rules, permit process, costs, and rental income potential."
 author: "MTC Renovations"
-datePublished: "2026-03-30"
-dateModified: "2026-03-30"
-tags: ["legal basement suite", "Ontario", "Hamilton", "secondary dwelling unit", "basement renovation"]
+datePublished: "2025-12-28"
+dateModified: "2025-12-28"
+tags:
+  [
+    "legal basement suite",
+    "Ontario",
+    "Hamilton",
+    "secondary dwelling unit",
+    "basement renovation",
+  ]
 ---
 
 A legal basement suite is one of the most financially compelling home improvements an Ontario homeowner can make. You're creating rental income, adding square footage to your property's assessed value, and — in most Hamilton neighbourhoods — meeting a genuine demand for affordable rental housing.
@@ -42,6 +49,7 @@ The suite must be separated from the rest of the house with a **fire separation*
 ### Fire Alarms and CO Detectors
 
 The Ontario Fire Code requires:
+
 - Interconnected smoke alarms on every floor, in every bedroom, and outside every sleeping area
 - Carbon monoxide alarms adjacent to each bedroom
 - Alarms must be interconnected so that if one sounds, all sound
@@ -92,6 +100,7 @@ Legal suite costs depend heavily on the existing condition of your basement. Her
 **Low ceiling height requiring underpinning:** $90,000 – $130,000+
 
 **Typical scope includes:**
+
 - Egress window installation (1–2 windows): $3,000–$6,000
 - Exterior entrance/stairwell: $8,000–$20,000
 - Framing, insulation, Type X drywall: $12,000–$18,000

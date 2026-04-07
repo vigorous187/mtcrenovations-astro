@@ -3,9 +3,10 @@ title: "Bathroom Renovation in Burlington: Costs, Trends & What Homeowners Need 
 metaTitle: "Bathroom Renovation Burlington: Costs & Trends 2026"
 metaDescription: "Thinking about a bathroom renovation in Burlington? See what homeowners pay, popular upgrades, and tips for hiring the right contractor."
 author: "MTC Renovations"
-datePublished: "2026-03-30"
-dateModified: "2026-03-30"
-tags: ["bathroom renovation", "Burlington", "renovation costs", "bathroom remodel"]
+datePublished: "2025-11-22"
+dateModified: "2025-11-22"
+tags:
+  ["bathroom renovation", "Burlington", "renovation costs", "bathroom remodel"]
 ---
 
 Burlington homeowners are investing heavily in their bathrooms — and for good reason. A well-executed bathroom renovation delivers daily quality-of-life improvements and strong returns at resale. Whether you're updating an outdated ensuite in a Millcroft home or adding a second bathroom to a lakeside property, here's what you need to know about costs, timelines, and what's trending in Burlington in 2026.
@@ -19,6 +20,7 @@ Bathroom renovation costs vary widely depending on the size of the room, the sco
 A basic update replaces the major fixtures (toilet, vanity, tub or shower surround) and refreshes the tile without moving any plumbing. This is the most cost-effective way to modernize a dated bathroom.
 
 What's typically included:
+
 - New vanity and sink
 - New toilet
 - Tile surround replacement (tub or shower)
@@ -33,6 +35,7 @@ What's not included: moving walls, relocating plumbing, or adding square footage
 A full gut involves removing everything down to the studs and rebuilding. This is the right approach when the existing layout has moisture damage, when you're changing the shower/tub configuration, or when you want a completely fresh start.
 
 At this level you're typically getting:
+
 - Walk-in shower with custom tile or large-format slab
 - New tub or tub removal if converting to shower-only
 - Heated floors (electric mat — more on this below)
@@ -43,6 +46,7 @@ At this level you're typically getting:
 ### Ensuite or Luxury Renovation: $38,000 – $65,000+
 
 High-end Burlington renovations — think Alton Village or Tyandaga ensuites — often include:
+
 - Large-format porcelain tile (24x48 or slab material)
 - Curbless walk-in showers with linear drains
 - Freestanding soaker tubs
