@@ -9,7 +9,7 @@ tags:
   ["bathroom renovation", "Burlington", "renovation costs", "bathroom remodel"]
 ---
 
-Burlington homeowners are investing heavily in their bathrooms — and for good reason. A well-executed bathroom renovation delivers daily quality-of-life improvements and strong returns at resale. Whether you're updating an outdated ensuite in a Millcroft home or adding a second bathroom to a lakeside property, here's what you need to know about costs, timelines, and what's trending in Burlington in 2026.
+Burlington homeowners are investing heavily in their bathrooms — and for good reason. A well-executed bathroom renovation delivers daily quality-of-life improvements and strong returns at resale. From outdated ensuites in Millcroft to adding a second bathroom in a lakeside property — here's what it actually costs, how long it takes, and what's popular in Burlington right now.
 
 ## What Does a Bathroom Renovation Cost in Burlington?
 
@@ -70,7 +70,7 @@ Burlington's older lakeside neighbourhoods (near Lakeshore Road, Shoreacres, and
 
 ### Walk-In Showers
 
-The single most popular upgrade we're doing in Burlington right now. Removing an old tub-shower combo and replacing it with a custom walk-in shower instantly modernizes the space and makes it feel larger. A curbless (zero-threshold) entry is increasingly requested for accessibility and for the clean, spa-like look.
+The single most popular upgrade we're doing in Burlington right now. Removing an old tub-shower combo and replacing it with a custom walk-in shower instantly modernizes the space and makes it feel larger. A curbless (zero-threshold) entry is increasingly requested for accessibility and for the clean, modern look.
 
 Cost to add a walk-in shower in an existing footprint: $6,000–$15,000 depending on size and tile.
 
@@ -86,7 +86,7 @@ Total add-on cost for heated floors: roughly $1,000–$1,500 in most bathroom re
 
 ### Larger-Format Tile
 
-The shift away from 12x12 tiles is complete. Burlington homeowners are choosing 24x24, 24x48, or even slab-look porcelain for a more seamless look. Fewer grout lines mean easier cleaning and a more contemporary aesthetic.
+The shift away from 12x12 tiles is complete. Burlington homeowners are choosing 24x24, 24x48, or even slab-look porcelain for a cleaner look. Fewer grout lines mean easier cleaning and a more contemporary aesthetic.
 
 ### Double Vanities
 

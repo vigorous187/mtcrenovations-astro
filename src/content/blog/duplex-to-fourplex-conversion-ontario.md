@@ -10,7 +10,7 @@ tags: ["duplex conversion", "fourplex", "Ontario", "multi-unit renovation"]
 
 Multi-unit conversions are one of the most complex renovation projects a property owner can take on. We're currently working on a duplex-to-fourplex conversion in Hamilton — adding two full floors to an existing duplex, each containing a three-bedroom unit — and we can share what's actually involved from start to finish.
 
-This isn't a cosmetic renovation. It's structural engineering, fire code compliance, separate mechanical systems, and coordination across a dozen trades. If you're considering a similar project in Ontario, here's what you need to know before committing.
+This isn't a cosmetic renovation. It's structural engineering, fire code compliance, separate mechanical systems, and coordination across a dozen trades. If you're considering a similar project in Ontario, here's what's actually involved.
 
 ## Is Your Property Zoned for It?
 
@@ -22,7 +22,7 @@ Before you hire an architect or price out steel beams, confirm your property's z
 - **Site plan approval** — even if zoning allows the density, the city may require a formal site plan showing parking, setbacks, lot coverage, and landscaping before issuing a building permit.
 - **Zoning amendment** — if your property isn't zoned for four units, you can apply for a rezoning or minor variance through the Committee of Adjustment. This adds months and isn't guaranteed.
 
-**Ontario's recent housing legislation** has shifted the landscape. Bill 23 (More Homes Built Faster Act) and Bill 185 encourage municipalities to allow more density on residential lots. Hamilton has updated its bylaws to permit additional residential units as-of-right in more zones than before. That said, adding two full storeys to an existing building is a different conversation than adding a basement suite — you'll almost certainly need site plan approval regardless of zoning.
+**Ontario's recent housing legislation** has changed the rules. Bill 23 (More Homes Built Faster Act) and Bill 185 encourage municipalities to allow more density on residential lots. Hamilton has updated its bylaws to permit additional residential units as-of-right in more zones than before. That said, adding two full storeys to an existing building is a different conversation than adding a basement suite — you'll almost certainly need site plan approval regardless of zoning.
 
 Check with Hamilton's Planning Division early. A 15-minute phone call can save you months of wasted design work.
 

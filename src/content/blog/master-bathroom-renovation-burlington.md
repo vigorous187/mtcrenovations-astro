@@ -9,7 +9,7 @@ tags:
   ["master bathroom", "Burlington", "bathroom renovation", "renovation costs"]
 ---
 
-A master bathroom renovation is one of the highest-ROI projects you can take on as a homeowner. It's also one of the most personal — you use the space every morning and every night. We recently completed a full master bathroom overhaul at a home in Burlington's Drever Rd area that turned a dated, builder-grade ensuite into a proper spa-like retreat. The project took about four weeks from demo day to final walkthrough, and it's a good example of what a high-end master bath renovation looks like from start to finish.
+A master bathroom renovation is one of the highest-ROI projects you can take on as a homeowner. It's also one of the most personal — you use the space every morning and every night. We recently completed a full master bathroom overhaul at a home in Burlington's Drever Rd area that turned a dated, builder-grade ensuite into something that actually feels finished. The project took about four weeks from demo day to final walkthrough, and it's a good example of what a high-end master bath renovation looks like from start to finish.
 
 Here's what went into it — and what you should expect if you're planning your own.
 

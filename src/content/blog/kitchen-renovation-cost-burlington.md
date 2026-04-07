@@ -9,7 +9,7 @@ tags:
   ["kitchen renovation", "Burlington", "renovation costs", "kitchen remodel"]
 ---
 
-The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. Whether you're in a 1960s bungalow in Aldershot or a 2010s build in Headon Forest, here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton.
+The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. A 1960s bungalow in Aldershot is a different job than a 2010s build in Headon Forest. Here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton.
 
 ## What Drives Kitchen Renovation Costs
 
@@ -119,6 +119,6 @@ Cabinet refacing paired with new quartz countertops delivers the strongest retur
 
 Every kitchen renovation cost in Burlington starts with what's already there. We walk through your space, talk about what's working and what isn't, and put together a detailed scope and estimate — no pressure, no vague ballpark numbers.
 
-Our team works across Burlington, Oakville, and Hamilton, and we've renovated kitchens in every style of home the area has to offer. Whether you're doing a quick refresh or a full custom build, we'll give you honest numbers and a realistic timeline.
+Our team works across Burlington, Oakville, and Hamilton, and we've renovated kitchens in every style of home the area has to offer. Quick refresh or full custom build — we'll give you honest numbers and a realistic timeline.
 
 [Request a free kitchen renovation estimate](/contact/)

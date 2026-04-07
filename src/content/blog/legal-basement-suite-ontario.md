@@ -87,7 +87,7 @@ Properties in protected heritage areas or with specific registered restrictions 
 3. **Inspections during construction** — framing, electrical rough-in, plumbing rough-in, insulation, and final inspections
 4. **Final occupancy** — once all inspections pass, the suite is legal to occupy
 
-We handle permit applications and coordinate all inspections as part of our project management. You don't need to navigate the Building Division yourself.
+We handle permit applications and coordinate all inspections as part of our project management. You don't need to deal with the Building Division yourself.
 
 ## What Does a Legal Basement Suite Cost in Hamilton?
 
