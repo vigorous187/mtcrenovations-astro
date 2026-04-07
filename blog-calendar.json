@@ -1,0 +1,141 @@
+[
+  {
+    "id": 6,
+    "slug": "kitchen-renovation-cost-burlington",
+    "topic": "Kitchen Renovation Cost in Burlington",
+    "keyword": "kitchen renovation cost Burlington",
+    "type": "cost-guide",
+    "targetDate": "2026-01-08",
+    "status": "published"
+  },
+  {
+    "id": 7,
+    "slug": "bathroom-renovation-permit-hamilton",
+    "topic": "Do You Need a Permit for a Bathroom Renovation in Hamilton?",
+    "keyword": "bathroom renovation permit Hamilton",
+    "type": "permit-guide",
+    "targetDate": "2026-01-18",
+    "status": "published"
+  },
+  {
+    "id": 8,
+    "slug": "best-time-renovate-ontario",
+    "topic": "Best Time of Year to Renovate Your Home in Ontario",
+    "keyword": "best time to renovate Ontario",
+    "type": "seasonal",
+    "targetDate": "2026-01-28",
+    "status": "published"
+  },
+  {
+    "id": 9,
+    "slug": "condo-renovation-oakville",
+    "topic": "Condo Renovation in Oakville: What You Need to Know",
+    "keyword": "condo renovation Oakville",
+    "type": "case-study",
+    "targetDate": "2026-02-05",
+    "status": "published",
+    "jobtreadRef": "Job 652 — Kerr St full interior condo reno"
+  },
+  {
+    "id": 10,
+    "slug": "home-renovation-budget-guide",
+    "topic": "How to Budget for a Home Renovation in Ontario",
+    "keyword": "home renovation budget Ontario",
+    "type": "education",
+    "targetDate": "2026-02-12",
+    "status": "published"
+  },
+  {
+    "id": 11,
+    "slug": "master-bathroom-renovation-burlington",
+    "topic": "Master Bathroom Renovation in Burlington: Costs, Timeline, and What to Expect",
+    "keyword": "master bathroom renovation Burlington",
+    "type": "case-study",
+    "targetDate": "2026-02-20",
+    "status": "published",
+    "jobtreadRef": "Job 658 — Rewari full master bath, curbless shower, soaker tub, in-floor heating"
+  },
+  {
+    "id": 12,
+    "slug": "choosing-renovation-contractor-hamilton",
+    "topic": "How to Choose a Renovation Contractor in Hamilton",
+    "keyword": "renovation contractor Hamilton",
+    "type": "education",
+    "targetDate": "2026-02-28",
+    "status": "published"
+  },
+  {
+    "id": 13,
+    "slug": "renovation-mistakes-homeowners",
+    "topic": "7 Renovation Mistakes Hamilton Homeowners Make (And How to Avoid Them)",
+    "keyword": "renovation mistakes homeowners",
+    "type": "education",
+    "targetDate": "2026-03-07",
+    "status": "published"
+  },
+  {
+    "id": 14,
+    "slug": "exterior-renovation-cost-hamilton",
+    "topic": "Exterior Renovation Costs in Hamilton: Siding, Windows, and Masonry",
+    "keyword": "exterior renovation cost Hamilton",
+    "type": "cost-guide",
+    "targetDate": "2026-03-15",
+    "status": "published",
+    "jobtreadRef": "Job 637 — Exterior & Masonry Repair, Burlington"
+  },
+  {
+    "id": 15,
+    "slug": "duplex-to-fourplex-conversion-ontario",
+    "topic": "Duplex to Fourplex Conversion in Ontario: Permits, Costs, and What's Involved",
+    "keyword": "duplex to fourplex conversion Ontario",
+    "type": "case-study",
+    "targetDate": "2026-03-22",
+    "status": "published",
+    "jobtreadRef": "Job 593 — 131 Winchester duplex to fourplex, Hamilton"
+  },
+  {
+    "id": 16,
+    "slug": "bathroom-renovation-cost-oakville",
+    "topic": "Bathroom Renovation Cost in Oakville (2026 Guide)",
+    "keyword": "bathroom renovation cost Oakville",
+    "type": "cost-guide",
+    "targetDate": "2026-04-15",
+    "status": "pending"
+  },
+  {
+    "id": 17,
+    "slug": "basement-underpinning-cost-hamilton",
+    "topic": "Basement Underpinning Cost in Hamilton: Is It Worth It?",
+    "keyword": "basement underpinning cost Hamilton",
+    "type": "cost-guide",
+    "targetDate": "2026-05-01",
+    "status": "pending"
+  },
+  {
+    "id": 18,
+    "slug": "open-concept-renovation-hamilton",
+    "topic": "Open Concept Renovation in Hamilton: Costs, Permits, and Structural Considerations",
+    "keyword": "open concept renovation Hamilton",
+    "type": "education",
+    "targetDate": "2026-05-15",
+    "status": "pending"
+  },
+  {
+    "id": 19,
+    "slug": "labour-only-renovation-ontario",
+    "topic": "Labour-Only Renovation Contracts: What Ontario Homeowners Should Know",
+    "keyword": "labour only renovation Ontario",
+    "type": "education",
+    "targetDate": "2026-06-01",
+    "status": "pending"
+  },
+  {
+    "id": 20,
+    "slug": "whole-home-renovation-cost-hamilton",
+    "topic": "Whole Home Renovation Cost in Hamilton (2026 Breakdown)",
+    "keyword": "whole home renovation cost Hamilton",
+    "type": "cost-guide",
+    "targetDate": "2026-06-15",
+    "status": "pending"
+  }
+]
