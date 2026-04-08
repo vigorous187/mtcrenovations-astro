@@ -13,9 +13,11 @@ interface Props {
   ogImage?: string;
   schema?: object | object[];
   noindex?: boolean;
+  heroImage?: string;
 }
 
-const props = Astro.props;
+const { heroImage, ...seoProps } = Astro.props;
+const props = seoProps;
 ---
 
 <!DOCTYPE html>
@@ -25,20 +27,37 @@ const props = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-  <!-- Bootstrap 5.3 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Bootstrap 5.3 CSS (self-hosted, render-blocking — controls layout/grid) -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Font Awesome (self-hosted, non-render-blocking) -->
+  <link rel="stylesheet" href="/css/fontawesome.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/css/fontawesome.min.css" /></noscript>
 
-  <!-- Google Fonts — Inter + Playfair Display -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
+  <!-- Self-hosted fonts — preload critical weights -->
+  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  {heroImage && <link rel="preload" href={heroImage} as="image" fetchpriority="high" />}
 
   <SEOHead {...props} />
   <ViewTransitions />
-  <!-- Clarity + GA4 handled by Cloudflare Zaraz (server-side) -->
+  <!-- Zaraz auto-injected by Cloudflare — manual script removed to prevent double-load -->
+
+  <!-- Meta Pixel — browser-side (CAPI upgrade pending Meta developer access) -->
+  <script is:inline>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1574962723611289');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1574962723611289&ev=PageView&noscript=1" /></noscript>
 </head>
 <body class="noise-overlay">
   <Header />
@@ -109,7 +128,7 @@ const props = Astro.props;
 
   <SocialProofTicker />
 
-  <!-- GA4 event tracking via Zaraz (pageviews handled server-side) -->
+  <!-- Event tracking via Zaraz (GA4 pageviews handled by Zaraz automatically) -->
   <script is:inline>
     function initGATracking() {
       // Phone click tracking
@@ -140,6 +159,11 @@ const props = Astro.props;
 
     document.addEventListener('DOMContentLoaded', initGATracking);
     document.addEventListener('astro:after-swap', initGATracking);
+
+    // Meta Pixel — fire PageView on Astro client-side navigations
+    document.addEventListener('astro:after-swap', function() {
+      if (typeof fbq !== 'undefined') fbq('track', 'PageView');
+    });
   </script>
 </body>
 </html>
