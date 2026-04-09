@@ -24,8 +24,28 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # Pre-deploy guard: verify build matches MTC, not another site
+      - name: Verify build output is MTC
+        run: |
+          TITLE=$(grep -o '<title>[^<]*</title>' dist/index.html | head -1 | sed 's/<[^>]*>//g')
+          echo "Build title: $TITLE"
+          if ! echo "$TITLE" | grep -qi "MTC Renovations"; then
+            echo "::error::Build title '$TITLE' does not match MTC Renovations. BLOCKING deploy to prevent cross-contamination."
+            exit 1
+          fi
+
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-dirty=true
+
+      # Post-deploy: verify live site still serves MTC
+      - name: Verify live site
+        run: |
+          sleep 15
+          LIVE=$(curl -sL --max-time 15 "https://www.mtcrenovations.ca" | grep -o '<title>[^<]*</title>' | head -1 | sed 's/<[^>]*>//g')
+          echo "Live title: $LIVE"
+          if ! echo "$LIVE" | grep -qi "MTC Renovations"; then
+            echo "::warning::Post-deploy check failed. Live title: $LIVE"
+          fi
