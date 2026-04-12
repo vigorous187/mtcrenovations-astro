@@ -1,0 +1,4 @@
+# Legacy URLs — redirect to prevent 404s and clean up GSC
+/home-buyers-still-open /about/ 301
+
+# Trailing slash normalization handled by Astro trailingSlash: "always"

@@ -17,6 +17,7 @@ const googleReviewsIntegration = {
 export default defineConfig({
   site: "https://www.mtcrenovations.ca",
   output: "hybrid",
+  trailingSlash: "always",
   adapter: cloudflare({
     imageService: "compile",
   }),

@@ -36,7 +36,7 @@ const reasons = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas} noindex={true}>
   <ServiceHero
     title={`Why Choose MTC for ${service.name} Renovation`}
     subtitle="Licensed, insured, and backed by real homeowner reviews"
