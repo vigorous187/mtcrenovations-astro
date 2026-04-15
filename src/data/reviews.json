@@ -1,58 +1,47 @@
 [
   {
-    "name": "Sarah M.",
-    "city": "Hamilton",
+    "name": "Brian Chan",
+    "profilePhoto": "https://lh3.googleusercontent.com/a-/ALV-UjWGcqilaCvXn42_tOKfKDqhlmYUIlpUNQF1Iw6ZbRBrLUNsdTI=s128-c0x00000000-cc-rp-mo-ba3",
+    "googleProfileUrl": "https://www.google.com/maps/contrib/115728061404127175883/reviews",
     "rating": 5,
-    "text": "MTC Renovations transformed our basement into a beautiful living space. Professional, on time, and on budget. Highly recommend!",
-    "service": "basement"
+    "text": "Overall, I had a very positive experience with MTC Renovations and Michael - and would absolutely work with them again.\n\nI had a very complicated flooring job, and like any reno project, issues came up along the way. What mattered to me was how they were handled - and ultimately, everything was worked out. I feel like this is the most important quality in a contractor.\n\nMichael is trustworthy, transparent, responsive, collaborative, and genuinely does his best to find fair solutions. When problems arose, he talked things through with me, and focused on finding the right outcome.\n\nThe flooring installation team, Brad and Shane, were excellent - very skilled, professional, and genuinely great people to deal with. They were always willing to listen, discuss options, and problem-solve with a positive attitude.\n\nRenovations are never perfectly smooth, especially on a job like mine, but I appreciated the honesty, communication, and effort to resolve issues. I wouldn’t hesitate to work with them again.",
+    "relativeTime": "2 months ago",
+    "publishTime": "2026-02-02T23:18:37.904652143Z"
   },
   {
-    "name": "David K.",
-    "city": "Burlington",
+    "name": "Huiping Fang",
+    "profilePhoto": "https://lh3.googleusercontent.com/a/ACg8ocLzVYQ_Ye7OKJ0hL0WWjDkXR3vscv3csVMxbhFmmhFGhX1Qbg=s128-c0x00000000-cc-rp-mo",
+    "googleProfileUrl": "https://www.google.com/maps/contrib/114069413894264691757/reviews",
     "rating": 5,
-    "text": "Our kitchen renovation exceeded expectations. The team was meticulous with every detail, from the cabinets to the countertops.",
-    "service": "kitchen"
+    "text": "I have worked with Michael on a duplex conversion and numerous small projects. He is thorough, communicative and solution oriented. He will be the first one I call for my next project and I would recommend him to anyone that is looking for a GC of quality.",
+    "relativeTime": "7 months ago",
+    "publishTime": "2025-09-05T20:44:35.380060150Z"
   },
   {
-    "name": "Lisa P.",
-    "city": "Oakville",
+    "name": "Leah Mae D'Oliveira",
+    "profilePhoto": "https://lh3.googleusercontent.com/a/ACg8ocJS19q0AdNE7wQJaUsDKD9y_st-FnhBcpu_k82I3BxWdXEbqQ=s128-c0x00000000-cc-rp-mo",
+    "googleProfileUrl": "https://www.google.com/maps/contrib/101188432718965579056/reviews",
     "rating": 5,
-    "text": "Had our bathroom completely redone. Walk-in shower, new tile, vanity — everything looks amazing. MTC made the process stress-free.",
-    "service": "bathroom"
+    "text": "We had an amazing experience hiring MTC Renovations for our recent home renovations and repairs. We recently had a pipe leak in our basement and previous water damage requiring ceiling and drywall repair. We also added a 4th bedroom to our 3rd floor and had some toilets and a vanity replaced. MTC Renovations organized and coordinated all the work we needed done and all their contractors were professional and skilled in what they do. The work was done quick but with care and we really appreciated how hard all the trades worked to get everything done with little disruption to our family of 5 with 3 young children. Highly recommend this company as a one stop shop for any major or minor home repairs/renovations and will definitely use them again for any future projects.",
+    "relativeTime": "3 months ago",
+    "publishTime": "2025-12-15T22:58:34.852597446Z"
   },
   {
-    "name": "James R.",
-    "city": "Stoney Creek",
+    "name": "Philip Tong",
+    "profilePhoto": "https://lh3.googleusercontent.com/a-/ALV-UjWM5lOYwvOKwuOn3XJlgFd0V-TWx7Jq4NySa6aDLGalV9LEAzA=s128-c0x00000000-cc-rp-mo",
+    "googleProfileUrl": "https://www.google.com/maps/contrib/113829554144536816540/reviews",
     "rating": 5,
-    "text": "New hardwood floors throughout the main level. The crew was clean, efficient, and the finish is flawless.",
-    "service": "flooring"
+    "text": "I was recommended Michael and MTC Renovations via a mutual acquaintance.  I had various projects around the house that needed to be done in a timely manner.  I didn’t have to worry about a thing.  Michael took care of everything.  Scheduling all the various trades and making sure everything was done right and that I was happy.  I recommend Michael and his team.  And will be using them again for my future home renovations.",
+    "relativeTime": "9 months ago",
+    "publishTime": "2025-06-27T21:38:43.404653135Z"
   },
   {
-    "name": "Amanda T.",
-    "city": "Ancaster",
+    "name": "Dhwani Uthaman",
+    "profilePhoto": "https://lh3.googleusercontent.com/a-/ALV-UjVNuxuJUPj13DVJ2Ox7bydRPGqUvhwIfTBYkPoNXsht7S2H9X0e=s128-c0x00000000-cc-rp-mo-ba3",
+    "googleProfileUrl": "https://www.google.com/maps/contrib/103420433325021239811/reviews",
     "rating": 5,
-    "text": "Whole house interior paint job. They prepped everything perfectly and the results are stunning. Will use MTC again for sure.",
-    "service": "painting"
-  },
-  {
-    "name": "Nicole F.",
-    "city": "Burlington",
-    "rating": 5,
-    "text": "MTC completely gutted and rebuilt our main bathroom. New walk-in shower, heated floors, and custom vanity. It looks like something out of a magazine. The crew was tidy and respectful the entire time.",
-    "service": "bathroom"
-  },
-  {
-    "name": "Robert C.",
-    "city": "Hamilton",
-    "rating": 5,
-    "text": "From the initial quote to the final walkthrough, everything was handled professionally. Our new kitchen is exactly what we envisioned — open concept with quartz counters and custom cabinetry. Couldn't be happier.",
-    "service": "kitchen"
-  },
-  {
-    "name": "Patricia M.",
-    "city": "Waterdown",
-    "rating": 5,
-    "text": "We finally finished our basement after years of putting it off. MTC handled the whole thing — framing, drywall, flooring, pot lights. It's now our favourite room in the house. Great communication throughout.",
-    "service": "basement"
+    "text": "We recently bought a beautifully renovated home by MTC Renovations, and it was such a smooth experience overall. A few small issues came up after we moved in, and when we reached out to Michael, he was incredibly responsive. He had his team come by right away and took care of everything — and for a number of things, he didn’t even charge us. That kind of service and integrity is so rare these days. We’re really happy with how everything turned out and would definitely recommend Michael and his team at MTC Renovations!",
+    "relativeTime": "10 months ago",
+    "publishTime": "2025-06-04T22:09:56.634135Z"
   }
 ]

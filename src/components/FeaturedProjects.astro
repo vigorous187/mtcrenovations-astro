@@ -1,10 +1,10 @@
 ---
 const projects = [
-  { src: '/assets/img/kitchen/our-work/virtual-tour-327738-21.jpg', alt: 'Modern kitchen renovation in Burlington', service: 'Kitchen', span: 'col-md-8' },
-  { src: '/assets/img/bathroom/our-work/virtual-tour-327738-23.jpg', alt: 'Luxury bathroom remodel in Hamilton', service: 'Bathroom', span: 'col-md-4' },
-  { src: '/assets/img/basement/our-work/IMG_1362.jpg', alt: 'Basement finishing in Oakville', service: 'Basement', span: 'col-md-4' },
-  { src: '/assets/img/flooring/our-work/virtual-tour-327738-26.jpg', alt: 'Hardwood flooring installation', service: 'Flooring', span: 'col-md-4' },
-  { src: '/assets/img/painting/our-work/virtual-tour-327738-29.jpg', alt: 'Interior painting transformation', service: 'Painting', span: 'col-md-4' },
+  { src: '/assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-12.jpg', alt: 'Modern kitchen renovation with blue cabinets and hexagon backsplash in Burlington', service: 'Kitchen', span: 'col-md-8' },
+  { src: '/assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg', alt: 'Luxury bathroom remodel with premium tile in Hamilton', service: 'Bathroom', span: 'col-md-4' },
+  { src: '/assets/img/basement/our-work/virtual-tour-333305-mls-high-res-image-38.jpg', alt: 'Finished basement renovation in Burlington', service: 'Basement', span: 'col-md-4' },
+  { src: '/assets/img/flooring/our-work/virtual-tour-333305-mls-high-res-image-20.jpg', alt: 'Wide-plank hardwood flooring installation in Burlington', service: 'Flooring', span: 'col-md-4' },
+  { src: '/assets/img/painting/our-work/virtual-tour-333305-mls-high-res-image-17.jpg', alt: 'Professional interior painting with warm modern finishes', service: 'Painting', span: 'col-md-4' },
 ];
 ---
 
@@ -19,7 +19,7 @@ const projects = [
         <div class={`${project.span} reveal`}>
           <div class="portfolio-item position-relative" style="height: 300px;">
             <img
-              src={project.src}
+              src={`${project.src}?v=2`}
               alt={project.alt}
               class="w-100 h-100"
               style="object-fit: cover;"

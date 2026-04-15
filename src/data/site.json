@@ -1,16 +1,17 @@
 {
   "name": "MTC Renovations",
-  "domain": "mtcrenovations.ca",
-  "url": "https://mtcrenovations.ca",
+  "domain": "www.mtcrenovations.ca",
+  "url": "https://www.mtcrenovations.ca",
   "phone": "(647) 560-1095",
   "email": "info@mtcrenovations.ca",
   "address": {
-    "street": "",
+    "street": "3520 Ketelbey Ct",
     "city": "Burlington",
     "province": "Ontario",
-    "postalCode": "",
+    "postalCode": "L7M 3B4",
     "country": "CA"
   },
+  "googlePlaceId": "ChIJ6-q1dq4tjyER7l1iLW6MdNk",
   "colors": {
     "primary": "#0a0a0a",
     "accent": "#dc3545",
@@ -20,11 +21,42 @@
     "surface3": "#1a1a1a"
   },
   "serviceArea": "Burlington, Hamilton, Oakville & GTA",
-  "serviceAreaCities": ["Burlington", "Hamilton", "Oakville", "Stoney Creek", "Ancaster", "Dundas", "Waterdown", "Toronto", "Mississauga", "Brampton", "Grimsby", "Binbrook", "Winona", "Caledonia", "Brantford", "Milton", "Georgetown", "Etobicoke", "Scarborough", "North York", "Flamborough", "Beamsville", "Lincoln", "Niagara Falls", "St. Catharines", "Welland", "Guelph", "Cambridge", "Kitchener", "Markham"],
+  "serviceAreaCities": [
+    "Burlington",
+    "Hamilton",
+    "Oakville",
+    "Stoney Creek",
+    "Ancaster",
+    "Dundas",
+    "Waterdown",
+    "Toronto",
+    "Mississauga",
+    "Brampton",
+    "Grimsby",
+    "Binbrook",
+    "Winona",
+    "Caledonia",
+    "Brantford",
+    "Milton",
+    "Georgetown",
+    "Etobicoke",
+    "Scarborough",
+    "North York",
+    "Flamborough",
+    "Beamsville",
+    "Lincoln",
+    "Niagara Falls",
+    "St. Catharines",
+    "Welland",
+    "Guelph",
+    "Cambridge",
+    "Kitchener",
+    "Markham"
+  ],
   "googleReviews": {
     "count": 31,
     "rating": 4.9,
-    "url": ""
+    "url": "https://g.page/r/mtcrenovations/review"
   },
   "social": {
     "facebook": "https://www.facebook.com/profile.php?id=61579019361994",

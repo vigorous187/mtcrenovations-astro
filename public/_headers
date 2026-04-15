@@ -5,8 +5,11 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-XSS-Protection: 1; mode=block
 
-/assets/*
+/assets/_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=86400, must-revalidate
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
