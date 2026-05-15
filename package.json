@@ -8,7 +8,8 @@
     "blog:inventory": "node ./scripts/blog-inventory.mjs",
     "seo:guidelines:init": "node ./scripts/seo-init-guideline-baseline.mjs",
     "seo:guidelines:check": "node ./scripts/seo-check-guideline-baseline.mjs",
-    "build": "npm run generate:sitemap && astro build && node ./scripts/check-seo-baseline.mjs && echo '_worker.js' > dist/.assetsignore",
+    "blog:opposing-review": "node ./scripts/blog-opposing-review.mjs",
+    "build": "npm run generate:sitemap && astro build && node ./scripts/check-seo-baseline.mjs && node ./scripts/audit-headings.mjs && node ./scripts/check-blog-uniqueness.mjs && node ./scripts/blog-opposing-review.mjs && node ./scripts/check-blog-quality.mjs && node ./scripts/check-geo-lite.mjs && node ./scripts/check-brand-alignment.mjs && echo '_worker.js' > dist/.assetsignore",
     "preview": "astro preview"
   },
   "dependencies": {

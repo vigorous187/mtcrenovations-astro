@@ -46,12 +46,13 @@ const reasons = [
 
   <section class="py-5">
     <div class="container">
+      <h2 class="visually-hidden">Why choose MTC for {service.name} renovation</h2>
       <div class="row g-4">
         {reasons.map(reason => (
           <div class="col-md-6 col-lg-4">
             <div class="p-4 h-100">
               <i class={`${reason.icon} text-danger mb-3`} style="font-size: 2rem;"></i>
-              <h5 class="fw-bold">{reason.title}</h5>
+              <h3 class="h5 fw-bold">{reason.title}</h3>
               <p class="text-secondary small">{reason.description}</p>
             </div>
           </div>
