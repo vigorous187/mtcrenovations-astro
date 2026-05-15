@@ -22,7 +22,10 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npm run build
+      - name: Build (fetch live Google reviews)
+        env:
+          FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
+        run: npm run build
 
       # Pre-deploy guard: verify build matches MTC, not another site
       - name: Verify build output is MTC

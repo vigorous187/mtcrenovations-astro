@@ -28,12 +28,6 @@ export function localBusiness(cityName?: string) {
     email: site.email,
     address,
     image: `${site.url}/assets/img/logo/logo.png`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: String(site.googleReviews.rating),
-      reviewCount: String(site.googleReviews.count),
-      bestRating: "5",
-    },
     areaServed: site.serviceAreaCities.map((city) => ({
       "@type": "City",
       name: city,

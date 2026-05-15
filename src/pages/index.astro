@@ -3,7 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StatsCounter from '../components/StatsCounter.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import TrustBadges from '../components/TrustBadges.astro';
-import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+import ReviewsBlock from '../../../../../shared/astro-helpers/components/ReviewsBlock.astro';
+import AggregateRatingSchema from '../../../../../shared/astro-helpers/components/AggregateRatingSchema.astro';
+import reviewsArtifact from '../data/reviews-artifact.json';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
@@ -166,8 +168,8 @@ const schemas = [
 
   <hr class="section-divider" />
 
-  <!-- Testimonials -->
-  <TestimonialCarousel />
+  <AggregateRatingSchema data={reviewsArtifact} itemReviewedName={site.name} />
+  <ReviewsBlock data={reviewsArtifact} title="What Hamilton homeowners say" />
 
   <hr class="section-divider" />
 
