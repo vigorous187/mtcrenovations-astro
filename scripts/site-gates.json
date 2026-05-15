@@ -1,0 +1,27 @@
+{
+  "blogQuality": {
+    "blogDir": "src/content/blog",
+    "minWords": 400,
+    "minH2": 3,
+    "requireBodySubstring": "/contact/",
+    "prohibitedPatterns": [
+      "\\bguaranteed\\s+rankings?\\b",
+      "\\bguaranteed\\s+to\\s+rank\\b",
+      "\\binstant\\s+rankings?\\b",
+      "\\b#1\\s+on\\s+google\\b"
+    ]
+  },
+  "brand": {
+    "scanDirs": ["pages", "components", "layouts"],
+    "skipPathSubstrings": [],
+    "forbiddenPatterns": []
+  },
+  "geo": {
+    "mode": "blog",
+    "blogDir": "src/content/blog",
+    "requireAnyDateField": ["datePublished", "dateModified", "publishDate"],
+    "minSources": 0,
+    "requireListOrTable": true,
+    "requireExternalCitation": false
+  }
+}

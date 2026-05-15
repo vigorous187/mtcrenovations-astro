@@ -50,7 +50,7 @@ const breadcrumb = breadcrumbList([
       <div class="accordion" id="faqAccordion">
         {faqs.map((faq, index) => (
           <div class="accordion-item border mb-3 rounded shadow-sm">
-            <h3 class="accordion-header" id={`heading-${index}`}>
+            <h2 class="accordion-header h3 fs-6 mb-0" id={`heading-${index}`}>
               <button
                 class={`accordion-button fw-semibold ${index !== 0 ? 'collapsed' : ''}`}
                 type="button"
@@ -61,7 +61,7 @@ const breadcrumb = breadcrumbList([
               >
                 {faq.question}
               </button>
-            </h3>
+            </h2>
             <div
               id={`collapse-${index}`}
               class={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
