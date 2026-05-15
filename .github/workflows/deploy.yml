@@ -45,6 +45,7 @@ jobs:
 
       - name: IndexNow (production URLs)
         if: success()
+        continue-on-error: true
         env:
           INDEXNOW_HOST: www.mtcrenovations.ca
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY_MTC }}
