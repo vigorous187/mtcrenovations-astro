@@ -1,0 +1,32 @@
+name: SEO guideline drift (monthly)
+
+on:
+  schedule:
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Compare guideline fingerprints
+        id: drift
+        run: node scripts/seo-check-guideline-baseline.mjs
+        continue-on-error: true
+      - name: Open issue on drift
+        if: steps.drift.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "SEO: Google guideline page changed — review checklist" \
+            --body "Monthly guideline fingerprint check failed. Review logs in this workflow run. Update shared docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md and repo gate scripts; run npm run seo:guidelines:init and commit automation/guideline-baseline.json." \
+            || true

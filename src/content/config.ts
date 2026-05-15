@@ -62,6 +62,8 @@ const blog = defineCollection({
     videoCreatorUrl: z.string().url().optional(),
     canonical: z.string().url().optional(),
     draft: z.boolean().default(false),
+    howCreated: z.string().optional(),
+    ymylReviewRequired: z.boolean().optional(),
   }),
 });
 

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "urls": [
+    {
+      "id": "helpful-content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "id": "gen-ai-content",
+      "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content"
+    },
+    {
+      "id": "spam-policies",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies"
+    }
+  ]
+}

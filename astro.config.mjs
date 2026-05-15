@@ -6,7 +6,7 @@ import { fetchGoogleReviews } from "./src/data/fetch-reviews.mjs";
 // Error: "Cannot read properties of undefined (reading 'reduce')" at astro:build:done.
 // Root cause: the cloudflare adapter does not expose the pages list that @astrojs/sitemap
 // expects in hybrid mode. Tracked upstream: https://github.com/withastro/adapters/issues
-// Workaround: manual sitemap at public/sitemap-0.xml (keep in sync with src/content/blog/).
+// Workaround: build-time sitemap generation script writes public/sitemap-0.xml.
 // Re-test when @astrojs/cloudflare upgrades past 11.x or @astrojs/sitemap adds hybrid support.
 
 const googleReviewsIntegration = {

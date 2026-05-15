@@ -40,6 +40,13 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-dirty=true
 
+      - name: IndexNow (production URLs)
+        if: success()
+        env:
+          INDEXNOW_HOST: www.mtcrenovations.ca
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY_MTC }}
+        run: node scripts/submit-indexnow.mjs
+
       # Post-deploy: verify live site still serves MTC
       - name: Verify live site
         run: |

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "fingerprints": {
+    "helpful-content": {
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "status": 200,
+      "sha256": "5d93c61f9c480985e7994895f634691bf9a83eec77b05643faa416a73bd9fb78",
+      "fetchedAt": "2026-05-15T00:16:52.395Z"
+    },
+    "gen-ai-content": {
+      "url": "https://developers.google.com/search/docs/fundamentals/using-gen-ai-content",
+      "status": 200,
+      "sha256": "b69043492f0027c8ced48d7a89d02669c73c5c777d4b07d69fe3d750adbed951",
+      "fetchedAt": "2026-05-15T00:16:52.727Z"
+    },
+    "spam-policies": {
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "status": 200,
+      "sha256": "98fc95ca8b6fc0c143d7e87fd44f7b5b2ed08360ad5624f2296c6d9421dbae40",
+      "fetchedAt": "2026-05-15T00:16:53.023Z"
+    }
+  }
+}
