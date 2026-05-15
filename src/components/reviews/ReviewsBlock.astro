@@ -1,0 +1,80 @@
+---
+import type { ReviewItem, ReviewsBuildArtifact } from "../../lib/reviews-types";
+
+interface Props {
+  data: ReviewsBuildArtifact;
+  title?: string;
+  class?: string;
+}
+
+const { data, title = "What Our Clients Say", class: className = "" } = Astro.props;
+const { aggregate, reviews } = data;
+const showBlock = reviews.length > 0 && aggregate.count > 0;
+const mapsUrl = data.googleReviewsUrl ?? "https://www.google.com/maps";
+---
+
+{showBlock && (
+  <section class:list={["py-5", className]} style="background: var(--bg-surface-1, #0f0f0f);">
+    <div class="container">
+      <div class="text-center mb-5">
+        <div class="d-inline-flex align-items-center gap-2 rounded-pill px-4 py-2 mb-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-default, #333);">
+          <span class="fw-semibold small" style="color: var(--text-muted, #aaa);">Google Reviews</span>
+        </div>
+        <h2 class="font-display fw-bold mb-2" style="color: var(--text-primary, #fff);">{title}</h2>
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+          <span class="fs-3 fw-bold" style="color: var(--text-primary, #fff);">{aggregate.rating}</span>
+          <span style="color: var(--text-muted, #aaa);">({aggregate.count} reviews)</span>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        {reviews.map((review: ReviewItem) => (
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="review-card h-100 p-4 rounded-3" style="background: var(--bg-surface-2, #141414); border: 1px solid var(--border-default, #333);">
+              <div class="mb-3" aria-label={`${review.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span style={i < review.rating ? "color:#FBBC05" : "color:#444"}>★</span>
+                ))}
+              </div>
+              {review.text && <p class="mb-3" style="color: var(--text-secondary, #ccc);">{review.text}</p>}
+              <footer class="d-flex align-items-center gap-2 mt-auto">
+                {review.profilePhoto && (
+                  <img src={review.profilePhoto} alt="" width="32" height="32" class="rounded-circle" loading="lazy" />
+                )}
+                <div>
+                  <strong class="d-block small" style="color: var(--text-primary, #fff);">{review.name}</strong>
+                  {review.relativeTime && (
+                    <span class="small" style="color: var(--text-muted, #888);">{review.relativeTime}</span>
+                  )}
+                </div>
+              </footer>
+              {review.googleReviewUrl && (
+                <a
+                  href={review.googleReviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="small d-block mt-2"
+                  style="color: var(--mtc-red, #dc3545);"
+                >
+                  View on Google
+                </a>
+              )}
+            </article>
+          </div>
+        ))}
+      </div>
+
+      {aggregate.count > reviews.length && (
+        <p class="text-center mt-4 mb-0">
+          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm">
+            Read all {aggregate.count} reviews on Google
+          </a>
+        </p>
+      )}
+
+      <p class="text-center mt-4 mb-0 small" style="color: var(--text-muted, #888);">
+        Reviews powered by Google
+      </p>
+    </div>
+  </section>
+)}

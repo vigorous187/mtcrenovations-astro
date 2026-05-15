@@ -1,0 +1,37 @@
+---
+import type { ReviewsBuildArtifact } from "../../lib/reviews-types";
+
+interface Props {
+  data: ReviewsBuildArtifact;
+  itemReviewedName: string;
+  itemReviewedType?: string;
+}
+
+const {
+  data,
+  itemReviewedName,
+  itemReviewedType = "HomeAndConstructionBusiness",
+} = Astro.props;
+
+const { aggregate } = data;
+const showSchema = aggregate.count > 0 && aggregate.rating > 0;
+
+const schema = showSchema
+  ? {
+      "@context": "https://schema.org",
+      "@type": itemReviewedType,
+      name: itemReviewedName,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: String(aggregate.rating),
+        reviewCount: String(aggregate.count),
+        bestRating: "5",
+        worstRating: "1",
+      },
+    }
+  : null;
+---
+
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}
