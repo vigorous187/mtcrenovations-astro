@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "30 13 * * 1"
   workflow_dispatch:
+    inputs:
+      force_regenerate:
+        description: Regenerate AI body on existing placeholder branch
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -16,6 +21,9 @@ concurrency:
 jobs:
   open-slot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,7 +34,14 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
-      - name: Create draft slot PR
+      - name: Configure git author for automation commits
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Generate post and open PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BLOG_AUTO_GENERATE: "1"
+          BLOG_FORCE_REGENERATE: ${{ github.event.inputs.force_regenerate == 'true' && '1' || '0' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/blog-open-slot.mjs

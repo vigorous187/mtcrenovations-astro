@@ -4,12 +4,12 @@ Canonical Google checklist: [~/Developer/shared/docs/BLOG_PIPELINE_GOOGLE_CHECKL
 
 ## Schedule
 
-| Workflow                  | When                            | Purpose                                                                                       |
-| ------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| `blog-automation.yml`     | Weekly (Mon 13:30 UTC) + manual | Opens **one PR** with a `draft: true` post from `blog-calendar.json` (`pending` → `draft-pr`) |
-| `seo-build-health.yml`    | Weekly (Mon 12:00 UTC)          | `npm ci` + `npm run build` on `main`                                                          |
-| `seo-guideline-drift.yml` | Monthly (1st 14:00 UTC)         | Fingerprint Google docs; opens issue on change                                                |
-| `deploy.yml`              | Push to `main`                  | Cloudflare Pages + **IndexNow** after deploy                                                  |
+| Workflow                  | When                            | Purpose                                                                                                                                                      |
+| ------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `blog-automation.yml`     | Weekly (Mon 13:30 UTC) + manual | Picks next **`pending`** row in `blog-calendar.json`, **AI-generates** the post (Anthropic), runs `npm run build`, opens a PR (`howCreated: automation-llm`) |
+| `seo-build-health.yml`    | Weekly (Mon 12:00 UTC)          | `npm ci` + `npm run build` on `main`                                                                                                                         |
+| `seo-guideline-drift.yml` | Monthly (1st 14:00 UTC)         | Fingerprint Google docs; opens issue on change                                                                                                               |
+| `deploy.yml`              | Push to `main`                  | Cloudflare Pages + **IndexNow** after deploy                                                                                                                 |
 
 **Default cadence:** at most **one** automated draft PR per week (`N=1`). No direct-to-prod without merge.
 
@@ -17,6 +17,7 @@ Canonical Google checklist: [~/Developer/shared/docs/BLOG_PIPELINE_GOOGLE_CHECKL
 
 | Secret                  | Required for                                                          |
 | ----------------------- | --------------------------------------------------------------------- |
+| `ANTHROPIC_API_KEY`     | Weekly AI blog generation (same key as cc-vault `api-anthropic`)      |
 | `CLOUDFLARE_API_TOKEN`  | Pages deploy (existing)                                               |
 | `CLOUDFLARE_ACCOUNT_ID` | Pages deploy (existing)                                               |
 | `INDEXNOW_KEY_MTC`      | Post-deploy IndexNow (`3d4e64…` — must match `public/*.txt` key file) |
