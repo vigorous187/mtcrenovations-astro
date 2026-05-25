@@ -32,7 +32,7 @@ function hasListOrTable(md) {
 function sanitizeBody(body) {
   return body
     .split("\n")
-    .filter((line) => !/^#\s[^#]/.test(line.trim()))
+    .filter((line) => !/^#\s/.test(line.trim()))
     .join("\n")
     .trim();
 }
@@ -127,7 +127,15 @@ Never copy generic SEO templates; each post must be unique in structure and exam
  * @param {{ slug: string, title: string, metaDescription?: string, tags?: string[] }} topic
  */
 export async function generateBlogBody(topic) {
-  const gates = await loadJson("scripts/site-gates.json");
+  let gates;
+  try {
+    gates = await loadJson("scripts/site-gates.json");
+  } catch (e) {
+    throw new Error(
+      "Missing or unreadable scripts/site-gates.json — required for blog quality gates.",
+      { cause: e },
+    );
+  }
   let site;
   try {
     site = await loadJson("automation/site.json");
