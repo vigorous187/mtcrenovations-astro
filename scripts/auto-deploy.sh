@@ -42,6 +42,6 @@ if [ $? -ne 0 ]; then
 fi
 
 # Deploy using existing wrangler auth
-/opt/homebrew/bin/npx wrangler pages deploy dist --project-name=mtc-renovations --branch=main --commit-dirty=true >> "$LOG_FILE" 2>&1
+/opt/homebrew/bin/npx wrangler pages deploy --project-name=mtc-renovations --branch=main --commit-dirty=true >> "$LOG_FILE" 2>&1
 
 echo "[$(date)] Deploy complete: $(git log --oneline -1)" >> "$LOG_FILE"

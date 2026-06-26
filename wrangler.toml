@@ -1,5 +1,7 @@
 name = "mtcrenovations-astro"
+# Workers-only keys (main/assets) are for local preview; Pages deploy uses pages_build_output_dir.
 main = "./dist/_worker.js"
+pages_build_output_dir = "./dist"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 

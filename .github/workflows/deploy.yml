@@ -42,7 +42,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-dirty=true
+          command: pages deploy --project-name=mtc-renovations --branch=main --commit-dirty=true
 
       - name: IndexNow (production URLs)
         if: success()
@@ -61,3 +61,12 @@ jobs:
           if ! echo "$LIVE" | grep -qi "MTC Renovations"; then
             echo "::warning::Post-deploy check failed. Live title: $LIVE"
           fi
+
+      - name: Verify estimate save API (KV binding)
+        run: |
+          sleep 5
+          RESP=$(curl -sS --max-time 20 -X POST "https://www.mtcrenovations.ca/api/estimates/save/" \
+            -H "Content-Type: application/json" \
+            -d '{"type":"bathroom","typeLabel":"Bathroom Renovation","size":"powder","sizeLabel":"Powder Room","finish":"mid","finishLabel":"Mid-Range","addons":[],"addonLabels":[],"min":14696,"max":24300,"breakdown":[{"label":"Base","range":[12000,18000]}],"selections":[],"market":"Hamilton & Burlington","hstNote":"All ranges exclude 13% HST.","contingencyNote":"15% contingency"}')
+          echo "Save API response: $RESP"
+          echo "$RESP" | grep -q '"id"' || { echo "::error::Estimate save API failed — KV binding may be missing"; exit 1; }
