@@ -12,7 +12,3 @@ preview_id = "4f51d87c92e34ef9a8e9cfbafb9a76fc"
 
 [[send_email]]
 name = "EMAIL"
-
-[assets]
-directory = "./dist"
-binding = "ASSETS"
