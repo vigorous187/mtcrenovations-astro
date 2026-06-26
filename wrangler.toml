@@ -7,3 +7,6 @@ compatibility_flags = ["nodejs_compat"]
 binding = "ESTIMATES"
 id = "849796bef9a542c987588e5179d9a2be"
 preview_id = "4f51d87c92e34ef9a8e9cfbafb9a76fc"
+
+[vars]
+CLOUDFLARE_ACCOUNT_ID = "29adb2b788e4c6151ba90c43d19bbdb7"

@@ -3,6 +3,7 @@ import { fmtCad } from "./estimate-format";
 import type { CloudflareEnv, SavedEstimate } from "./estimate-types";
 
 const FROM = { email: "info@mtcrenovations.ca", name: "MTC Renovations" };
+const DEFAULT_ACCOUNT_ID = "29adb2b788e4c6151ba90c43d19bbdb7";
 
 function siteUrl(env?: { SITE_URL?: string }): string {
   return env?.SITE_URL || site.url;
@@ -18,31 +19,105 @@ function htmlToText(html: string): string {
     .trim();
 }
 
+interface EmailPayload {
+  to: string;
+  subject: string;
+  html: string;
+  text: string;
+}
+
+async function sendViaRestApi(
+  env: CloudflareEnv,
+  payload: EmailPayload,
+): Promise<boolean> {
+  const token = env.CLOUDFLARE_EMAIL_API_TOKEN;
+  if (!token) return false;
+
+  const accountId = env.CLOUDFLARE_ACCOUNT_ID || DEFAULT_ACCOUNT_ID;
+  const replyTo = site.email || FROM.email;
+
+  try {
+    const res = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/email/sending/send`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: payload.to,
+          from: FROM.email,
+          subject: payload.subject,
+          html: payload.html,
+          text: payload.text,
+          headers: { "Reply-To": replyTo },
+        }),
+      },
+    );
+
+    const data = (await res.json()) as {
+      success?: boolean;
+      errors?: Array<{ code?: number; message?: string }>;
+    };
+
+    if (!res.ok || !data.success) {
+      console.error("Cloudflare Email REST API failed", {
+        status: res.status,
+        errors: data.errors,
+      });
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error("Cloudflare Email REST API request failed", err);
+    return false;
+  }
+}
+
+async function sendViaBinding(
+  env: CloudflareEnv,
+  payload: EmailPayload,
+): Promise<boolean> {
+  if (!env.EMAIL) return false;
+
+  try {
+    await env.EMAIL.send({
+      to: payload.to,
+      from: FROM,
+      subject: payload.subject,
+      html: payload.html,
+      text: payload.text,
+      replyTo: site.email || FROM.email,
+    });
+    return true;
+  } catch (err) {
+    console.error("Cloudflare Email binding send failed", err);
+    return false;
+  }
+}
+
 async function sendMail(
   env: CloudflareEnv,
   to: string,
   subject: string,
   html: string,
 ): Promise<boolean> {
-  if (!env.EMAIL) {
-    console.warn("EMAIL binding not configured — skipping send");
-    return false;
-  }
+  const payload: EmailPayload = {
+    to,
+    subject,
+    html,
+    text: htmlToText(html),
+  };
 
-  try {
-    await env.EMAIL.send({
-      to,
-      from: FROM,
-      subject,
-      html,
-      text: htmlToText(html),
-      replyTo: site.email || FROM.email,
-    });
-    return true;
-  } catch (err) {
-    console.error("Cloudflare Email Service send failed", err);
-    return false;
-  }
+  if (await sendViaRestApi(env, payload)) return true;
+  if (await sendViaBinding(env, payload)) return true;
+
+  console.warn(
+    "Email not configured — set CLOUDFLARE_EMAIL_API_TOKEN on Pages (Email Sending: Edit) or bind EMAIL",
+  );
+  return false;
 }
 
 export async function sendEstimateEmail(

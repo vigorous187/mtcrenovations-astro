@@ -282,7 +282,7 @@ async function main() {
       throw new Error("Lead form not prefilled from estimate");
     console.log(`PASS | lead form prefill → estimate ${id}`);
 
-    // Save & Email API (Cloudflare Email Service — emailSent may be false until domain onboarded)
+    // Save & Email API (REST token + Email Sending domain required for emailSent=true)
     await page.goto(`${BASE}/estimate/`, { waitUntil: "networkidle" });
     await clickCard(page, "Bathroom");
     await clickCard(page, "Main Bathroom", "#stepSize");
@@ -326,6 +326,31 @@ async function main() {
       `PASS | save & email API → id=${saveEmailRes.body.id} emailSent=${saveEmailRes.body.emailSent}`,
     );
 
+    // Save & Email UI (Playwright click path)
+    await page.goto(`${BASE}/estimate/`, { waitUntil: "networkidle" });
+    await clickCard(page, "Bathroom");
+    await clickCard(page, "Powder Room", "#stepSize");
+    await clickCard(page, "Mid-Range", "#stepFinish");
+    await page.waitForSelector("#estimateResult:not(.d-none)");
+    await page.fill("#estimateEmail", "estimator-ui-test@mtcrenovations.ca");
+    await page.click("#ctaEmailSave");
+    await page.waitForFunction(
+      () => {
+        const status = document.querySelector("#emailSaveStatus");
+        return (
+          status &&
+          !status.classList.contains("d-none") &&
+          !status.textContent?.includes("Could not save estimate")
+        );
+      },
+      { timeout: 15000 },
+    );
+    const uiStatus = await page.textContent("#emailSaveStatus");
+    if (uiStatus?.includes("Could not save estimate")) {
+      throw new Error(`Save & Email UI failed: ${uiStatus}`);
+    }
+    console.log(`PASS | save & email UI → ${uiStatus?.trim().slice(0, 80)}...`);
+
     // Lead submit → JobTread sync (when credentials configured in env)
     const leadRes = await page.request.post(`${BASE}/api/leads/submit/`, {
       data: {
@@ -348,7 +373,7 @@ async function main() {
     );
 
     console.log(
-      `\nResult: ${results.length + 2}/${PERSONAS.length + 2} checks passed`,
+      `\nResult: ${results.length + 3}/${PERSONAS.length + 3} checks passed`,
     );
   } catch (err) {
     console.error(`FAIL | ${err.message}`);

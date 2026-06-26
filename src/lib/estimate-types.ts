@@ -91,6 +91,8 @@ export interface EmailSender {
 export interface CloudflareEnv {
   ESTIMATES: KVNamespace;
   EMAIL?: EmailSender;
+  CLOUDFLARE_EMAIL_API_TOKEN?: string;
+  CLOUDFLARE_ACCOUNT_ID?: string;
   JOBTREAD_GRANT_KEY?: string;
   JOBTREAD_ORG_ID?: string;
   SITE_URL?: string;
