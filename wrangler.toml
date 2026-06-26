@@ -1,6 +1,4 @@
 name = "mtcrenovations-astro"
-# Workers-only keys (main/assets) are for local preview; Pages deploy uses pages_build_output_dir.
-main = "./dist/_worker.js"
 pages_build_output_dir = "./dist"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
@@ -9,6 +7,3 @@ compatibility_flags = ["nodejs_compat"]
 binding = "ESTIMATES"
 id = "849796bef9a542c987588e5179d9a2be"
 preview_id = "4f51d87c92e34ef9a8e9cfbafb9a76fc"
-
-[[send_email]]
-name = "EMAIL"
