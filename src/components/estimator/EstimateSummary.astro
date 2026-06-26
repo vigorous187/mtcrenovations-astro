@@ -1,0 +1,239 @@
+---
+import site from '../../data/site.json';
+import { fmtCad, fmtRange } from '../../lib/estimate-format';
+import { getServiceCopy } from '../../lib/estimate-service-copy';
+import type { SavedEstimate } from '../../lib/estimate-types';
+
+interface Props {
+  estimate?: SavedEstimate;
+  estimateId?: string;
+  mode?: 'saved' | 'widget';
+}
+
+const { estimate, estimateId, mode = estimate ? 'saved' : 'widget' } = Astro.props;
+const serviceCopy = estimate ? getServiceCopy(estimate.type) : null;
+const quoteHref = estimateId
+  ? `/newleadintake/?estimate=${estimateId}`
+  : estimate
+    ? `/newleadintake/?estimate=${estimate.id}`
+    : '/newleadintake/?source=price-guide';
+---
+
+{mode === 'saved' && estimate ? (
+  <div class="estimate-summary estimate-summary--saved">
+    <div class="text-center mb-4">
+      <h1 class="h3 fw-bold">Thanks for using the MTC Price Guide</h1>
+      <p class="text-secondary mb-1">
+        Below is your personalized pricing table for <strong>{estimate.typeLabel}</strong>.
+      </p>
+      <p class="text-secondary small mb-0">
+        This is your ballpark figure for {estimate.market} — feel free to start a new estimate anytime to see how options change your range.
+      </p>
+    </div>
+
+    <div class="card border shadow-sm mb-4 overflow-hidden">
+      <div class="card-header bg-success bg-opacity-10 border-bottom text-center py-4">
+        <div class="text-success small fw-bold text-uppercase">Estimate Total</div>
+        <div class="display-6 fw-bold my-2">{fmtCad(estimate.min)} – {fmtCad(estimate.max)}</div>
+        <div class="text-secondary small">{estimate.hstNote}</div>
+        <div class="text-secondary small mt-1">
+          {estimate.typeLabel}
+          {estimate.scopeLabel ? ` · ${estimate.scopeLabel}` : ''}
+          {' · '}{estimate.sizeLabel}
+          {' · '}{estimate.finishLabel}
+        </div>
+      </div>
+
+      <div class="card-body p-0">
+        <h2 class="h6 fw-bold px-4 pt-4 mb-3">Estimate Breakdown</h2>
+        <div class="accordion accordion-flush" id="estimateBreakdown">
+          {estimate.selections.map((row, i) => (
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button
+                  class:list={['accordion-button d-flex align-items-center', { collapsed: i > 0 }]}
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#breakdown-${i}`}
+                  aria-expanded={i === 0 ? 'true' : 'false'}
+                >
+                  {row.image ? (
+                    <img
+                      class="estimator-thumb me-3 flex-shrink-0"
+                      src={row.image}
+                      alt={row.imageAlt || row.answer}
+                      loading="lazy"
+                      width="48"
+                      height="48"
+                    />
+                  ) : null}
+                  <span class="me-auto text-start">
+                    <span class="d-block fw-semibold">{row.question}</span>
+                    <span class="d-block small text-secondary">{row.answer}{row.modifier ? ` (${row.modifier})` : ''}</span>
+                  </span>
+                  <span class="fw-bold ms-3 text-nowrap">{fmtRange(row.range)}</span>
+                </button>
+              </h3>
+              <div
+                id={`breakdown-${i}`}
+                class:list={['accordion-collapse collapse', { show: i === 0 }]}
+                data-bs-parent="#estimateBreakdown"
+              >
+                <div class="accordion-body small text-secondary">
+                  {row.step === 'base' ? 'Base tier for your selections before add-ons.' : `Selected: ${row.answer}`}
+                </div>
+              </div>
+            </div>
+          ))}
+          {estimate.breakdown.filter((line) => !estimate.selections.some((s) => s.answer === line.label)).map((line, i) => (
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#addon-${i}`}>
+                  <span class="me-auto fw-semibold">{line.label}</span>
+                  <span class="fw-bold ms-3">{fmtRange(line.range)}</span>
+                </button>
+              </h3>
+              <div id={`addon-${i}`} class="accordion-collapse collapse" data-bs-parent="#estimateBreakdown">
+                <div class="accordion-body small text-secondary">Optional add-on included in your estimate.</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="px-4 py-3 bg-light border-top d-flex justify-content-between align-items-center fw-bold">
+          <span>Total range</span>
+          <span>{fmtCad(estimate.min)} – {fmtCad(estimate.max)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-5">
+      <a href={`tel:${site.phone.replace(/\D/g, '')}`} class="btn btn-danger btn-lg px-4">
+        <i class="fas fa-phone me-2"></i>Call To Discuss Estimate
+      </a>
+      <a href={quoteHref} class="btn btn-outline-danger btn-lg px-4">
+        Get Your Free Fixed-Price Quote
+      </a>
+    </div>
+
+    {serviceCopy && (
+      <section class="mb-5">
+        <h2 class="h4 fw-bold mb-4">Understanding Your Quote</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h3 class="h6 fw-bold">What's Included?</h3>
+            <ul class="small text-secondary ps-3">
+              {serviceCopy.whatsIncluded.map((item) => <li class="mb-2">{item}</li>)}
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h3 class="h6 fw-bold">What You Get for Your Money</h3>
+            <ul class="small text-secondary ps-3">
+              {serviceCopy.whatYouGet.map((item) => <li class="mb-2">{item}</li>)}
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h3 class="h6 fw-bold">Where Your Money Goes</h3>
+            <ul class="small text-secondary ps-3">
+              {serviceCopy.whereMoneyGoes.map((item) => <li class="mb-2">{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="alert alert-light border small text-secondary">
+      <h2 class="h6 fw-bold text-dark">Disclaimer: A Friendly Heads-Up About Your Estimate</h2>
+      <p class="mb-2">
+        This estimate is not set in stone and is not a quote. It's a ballpark figure based on the info you provided and our JobTread-backed pricing ranges for {estimate.market}.
+      </p>
+      <p class="mb-2">
+        Many factors can influence the final price — things a quick estimator can't see behind your walls. We're happy to visit your home and provide an accurate fixed-price quote tailored to you.
+      </p>
+      <p class="mb-0">{estimate.contingencyNote}</p>
+    </section>
+
+    <div class="estimate-sticky-total d-md-none">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="small text-secondary">Estimate Total</span>
+        <span class="fw-bold">{fmtCad(estimate.min)} – {fmtCad(estimate.max)}</span>
+      </div>
+      <a href={quoteHref} class="btn btn-danger btn-sm w-100 mt-2">Get Free Quote</a>
+    </div>
+  </div>
+) : (
+  <div class="estimate-summary estimate-summary--widget" id="estimateResultInner">
+    <div class="card border-success border-2 shadow overflow-hidden">
+      <div class="card-header bg-success bg-opacity-10 border-success border-bottom text-center py-3">
+        <div class="text-success small fw-bold text-uppercase">Your Estimated Range</div>
+        <div class="text-secondary small mt-1">Typical projects start around</div>
+        <div class="h3 fw-bold text-success my-1" id="resultStarting">—</div>
+        <div class="display-6 fw-bold my-1" id="resultRange">—</div>
+        <div class="text-secondary small" id="resultLabel">—</div>
+        <div class="text-secondary small mt-1" id="resultHst"></div>
+      </div>
+      <div class="card-body p-4">
+        <div id="softCeilingNote" class="alert alert-warning border small d-none mb-3"></div>
+        <h3 class="h6 fw-bold mb-3">Price breakdown</h3>
+        <div class="table-responsive">
+          <table class="table table-sm mb-0" id="breakdownTable">
+            <tbody></tbody>
+            <tfoot>
+              <tr class="fw-bold border-top-2">
+                <td>Total range</td>
+                <td class="text-end" id="breakdownTotal">—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <p class="text-secondary small mt-3 mb-2" id="resultDisclaimer"></p>
+        <p class="text-secondary small mb-3" id="resultContingency"></p>
+
+        <div class="border rounded p-3 mb-4 bg-light" id="emailSaveBlock">
+          <label class="form-label small fw-semibold mb-1" for="estimateEmail">Email me this estimate</label>
+          <div class="input-group">
+            <input type="email" class="form-control" id="estimateEmail" placeholder="you@example.com" />
+            <button type="button" class="btn btn-outline-danger" id="ctaEmailSave">Save &amp; Email</button>
+          </div>
+          <div id="emailSaveStatus" class="small mt-2 d-none"></div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <button type="button" class="btn btn-danger btn-lg px-5" id="ctaQuote">
+            Get Your Free Fixed-Price Quote
+          </button>
+          <button type="button" class="btn btn-outline-secondary" id="ctaRestart">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .estimate-sticky-total {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 1030;
+  }
+  .estimate-summary--saved .accordion-button:not(.collapsed) {
+    background: rgba(220, 53, 69, 0.05);
+    color: inherit;
+  }
+  .estimate-summary--saved .accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  .estimator-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+  }
+</style>

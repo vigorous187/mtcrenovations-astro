@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import CTABanner from '../../components/CTABanner.astro';
+import EstimatorCTA from '../../components/estimator/EstimatorCTA.astro';
 import { localBusiness, serviceSchema, breadcrumbList } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
@@ -75,6 +76,8 @@ const schemas = [
       </div>
     </section>
   )}
+
+  <EstimatorCTA serviceSlug={service.slug} serviceName={service.name} />
 
   <!-- Why Choose Us -->
   {entry?.data.whyChooseUs && (

@@ -1,0 +1,753 @@
+---
+import pricingData from '../../data/pricing-estimator.json';
+import EstimateSummary from './EstimateSummary.astro';
+import { cardImageHtml } from '../../lib/estimator-images';
+
+interface Props {
+  presetType?: string;
+  compact?: boolean;
+  showHero?: boolean;
+}
+
+const { presetType = '', compact = false, showHero = false } = Astro.props;
+const { types, finishes, meta } = pricingData;
+---
+
+<div
+  class:list={['estimator-widget', { 'estimator-compact': compact }]}
+  data-preset-type={presetType}
+  data-pricing={JSON.stringify(pricingData)}
+>
+  {showHero && (
+    <div class="text-center mb-4">
+      <p class="text-secondary mb-0">
+        Answer a few questions to see a safe price range for {meta.market} — not a locked-in quote.
+      </p>
+    </div>
+  )}
+
+  <div class="estimator-progress mb-4" aria-hidden="true">
+    <div class="estimator-progress-bar" id="estProgressBar" style="width: 20%;"></div>
+  </div>
+  <div class="d-flex justify-content-between small text-secondary mb-4 px-1" id="progressLabels">
+    <span>Project</span>
+    <span id="lblStep2">Details</span>
+    <span>Finish</span>
+    <span>Options</span>
+    <span>Estimate</span>
+  </div>
+
+  <!-- Step 1: Type -->
+  <div class="estimator-step mb-5" data-step="1">
+    <div class="d-flex align-items-center mb-3">
+      <div class="step-badge bg-danger text-white" data-step-num="1">1</div>
+      <h2 class="h5 fw-bold mb-0">What are you renovating?</h2>
+    </div>
+    <div class="row g-3">
+      {types.map(t => (
+        <div class="col-6 col-sm-4 col-md-auto flex-grow-1">
+          <label
+            class="estimator-card card border shadow-sm text-center p-3 h-100 w-100 d-flex flex-column align-items-center justify-content-center"
+            data-group="type"
+            data-value={t.value}
+            data-model={t.model}
+          >
+            <input type="radio" name="renotype" value={t.value} class="d-none" />
+            <Fragment set:html={cardImageHtml(t, t.icon)} />
+            <div class="fw-semibold small">{t.label}</div>
+          </label>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Step 2a: Basement scope -->
+  <div class="estimator-step mb-5 is-locked d-none" data-step="2-scope" id="stepScope">
+    <div class="d-flex align-items-center mb-3">
+      <div class="step-badge bg-secondary text-white" data-step-num="2">2</div>
+      <h2 class="h5 fw-bold mb-0">What's the scope?</h2>
+    </div>
+    <div class="row g-3" id="scopeCards"></div>
+    <div id="scopeExplainer" class="alert alert-light border small mt-3 d-none"></div>
+  </div>
+
+  <!-- Step 2b: Size / room type -->
+  <div class="estimator-step mb-5 is-locked" data-step="2" id="stepSize">
+    <div class="d-flex align-items-center mb-3">
+      <div class="step-badge bg-secondary text-white" data-step-num="2b">2</div>
+      <h2 class="h5 fw-bold mb-0" id="sizeStepTitle">How big is the space?</h2>
+    </div>
+    <div class="row g-3" id="sizeCards"></div>
+  </div>
+
+  <!-- Step 3: Finish -->
+  <div class="estimator-step mb-5 is-locked" data-step="3" id="stepFinish">
+    <div class="d-flex align-items-center mb-3">
+      <div class="step-badge bg-secondary text-white" data-step-num="3">3</div>
+      <h2 class="h5 fw-bold mb-0">What finish level?</h2>
+    </div>
+    <div class="row g-3">
+      {finishes.map(f => (
+        <div class="col-12 col-md-4">
+          <label class="estimator-card card border shadow-sm p-4 h-100 w-100" data-group="finish" data-value={f.value}>
+            <input type="radio" name="renofinish" value={f.value} class="d-none" />
+            <div class="d-flex align-items-start">
+              <i class={`fas fa-circle me-2 mt-1 ${f.iconClass}`}></i>
+              <div>
+                <div class="fw-bold">{f.label}</div>
+                <div class="text-secondary small">{f.desc}</div>
+              </div>
+            </div>
+          </label>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Step 4: Add-ons -->
+  <div class="estimator-step mb-5 is-locked" data-step="4" id="stepAddons">
+    <div class="d-flex align-items-center mb-3">
+      <div class="step-badge bg-secondary text-white" data-step-num="4">4</div>
+      <h2 class="h5 fw-bold mb-0">Any extras? <span class="text-secondary fw-normal small">(optional)</span></h2>
+    </div>
+    <div id="addonList" class="row g-3"></div>
+  </div>
+
+  <!-- Result -->
+  <div id="estimateResult" class="d-none mb-4">
+    <EstimateSummary mode="widget" />
+  </div>
+
+  <div class="alert alert-light border small text-secondary">
+    <i class="fas fa-shield-alt me-2 text-danger"></i>
+    <strong>You're in control.</strong> These ranges educate buyers without locking you into a quote.
+    For an exact fixed price, book a free in-home consultation.
+  </div>
+</div>
+
+<style>
+  .estimator-progress { height: 4px; background: var(--bs-border-color, #dee2e6); border-radius: 2px; overflow: hidden; }
+  .estimator-progress-bar { height: 100%; background: #dc3545; transition: width 0.3s ease; }
+  .step-badge {
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 0.85rem; font-weight: 700; margin-right: 0.75rem; flex-shrink: 0;
+  }
+  .estimator-step.is-locked { opacity: 0.35; pointer-events: none; }
+  .estimator-card { cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease; border-color: #dee2e6 !important; }
+  .estimator-card.selected { border-color: #dc3545 !important; box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important; }
+  .estimator-card.selected i.text-secondary { color: #dc3545 !important; }
+  .estimator-card-img {
+    width: 100%; max-height: 120px; object-fit: cover; border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  .estimator-card-icon { margin-bottom: 0.5rem !important; }
+  .addon-card { cursor: pointer; transition: all 0.15s ease; }
+  .addon-card.selected { border-color: #dc3545 !important; background: rgba(220, 53, 69, 0.04); }
+  .addon-check {
+    width: 22px; height: 22px; border: 2px solid #dee2e6; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;
+  }
+  .addon-card.selected .addon-check { background: #dc3545; border-color: #dc3545; color: white; }
+  .estimator-compact .display-6 { font-size: 1.75rem; }
+</style>
+
+<script>
+  function initEstimator(root: HTMLElement) {
+    if (root.dataset.initialized === 'true') return;
+    root.dataset.initialized = 'true';
+
+    const data = JSON.parse(root.dataset.pricing || '{}');
+    const presetType = root.dataset.presetType || '';
+
+    const FINISH_LABELS: Record<string, string> = { basic: 'Basic', mid: 'Mid-Range', premium: 'Premium' };
+
+    let selected = {
+      type: null as string | null,
+      model: null as string | null,
+      scope: null as string | null,
+      size: null as string | null,
+      finish: null as string | null,
+    };
+    let selectedAddons = new Set<string>();
+
+    function fmt(n: number) { return '$' + n.toLocaleString('en-CA'); }
+
+    function typeInfo(value: string) {
+      return data.types.find((t: { value: string }) => t.value === value);
+    }
+
+    function typeLabel(value: string) {
+      return typeInfo(value)?.fullLabel || value;
+    }
+
+    function sizeLabel(value: string) {
+      const sizes = data.sizes[selected.type!] || [];
+      return sizes.find((s: { value: string }) => s.value === value)?.label || value;
+    }
+
+    function scopeLabel(value: string) {
+      const scopes = data.scopes?.[selected.type!] || [];
+      return scopes.find((s: { value: string }) => s.value === value)?.label || value;
+    }
+
+    function cardImageMarkup(option: { image?: string; imageAlt?: string; label?: string; icon?: string }, fallbackIcon = 'fas fa-image') {
+      const icon = option?.icon || fallbackIcon;
+      const alt = option?.imageAlt || option?.label || 'Project option';
+      if (option?.image) {
+        return `<img class="estimator-card-img" src="${option.image}" alt="${alt.replace(/"/g, '&quot;')}" loading="lazy" width="800" height="450" />`;
+      }
+      return `<i class="${icon} fa-2x mb-2 text-secondary estimator-card-icon"></i>`;
+    }
+
+    function sizeStepTitle() {
+      if (selected.model === 'room') return 'Which bathroom?';
+      if (selected.type === 'garden-suite-adu') return 'How big is the ADU?';
+      if (selected.type === 'multi-unit') return 'How many units when complete?';
+      return 'How big is the space?';
+    }
+
+    function selectionImage(step: string) {
+      if (step === 'project') {
+        const t = typeInfo(selected.type!);
+        return t?.image ? { image: t.image, imageAlt: t.imageAlt } : null;
+      }
+      if (step === 'scope' && selected.scope) {
+        const scope = (data.scopes?.[selected.type!] || []).find((s: { value: string }) => s.value === selected.scope);
+        return scope?.image ? { image: scope.image, imageAlt: scope.imageAlt } : null;
+      }
+      if (step === 'size' && selected.size) {
+        const size = (data.sizes[selected.type!] || []).find((s: { value: string }) => s.value === selected.size);
+        return size?.image ? { image: size.image, imageAlt: size.imageAlt } : null;
+      }
+      return null;
+    }
+
+    function setProgress(pct: number) {
+      const bar = root.querySelector('#estProgressBar') as HTMLElement;
+      if (bar) bar.style.width = pct + '%';
+    }
+
+    function unlockStep(id: string) {
+      const step = root.querySelector(id) as HTMLElement;
+      if (!step) return;
+      step.classList.remove('is-locked');
+      const badge = step.querySelector('[data-step-num]');
+      badge?.classList.remove('bg-secondary');
+      badge?.classList.add('bg-danger');
+    }
+
+    function lockStep(id: string) {
+      const step = root.querySelector(id) as HTMLElement;
+      if (!step) return;
+      step.classList.add('is-locked');
+      const badge = step.querySelector('[data-step-num]');
+      badge?.classList.remove('bg-danger');
+      badge?.classList.add('bg-secondary');
+    }
+
+    function renderScopeCards() {
+      const container = root.querySelector('#scopeCards');
+      const explainer = root.querySelector('#scopeExplainer') as HTMLElement;
+      if (!container || !selected.type) return;
+
+      const scopes = data.scopes?.[selected.type] || [];
+      const typeIcon = typeInfo(selected.type)?.icon || 'fas fa-image';
+      container.innerHTML = scopes.map((s: { value: string; label: string; desc: string; image?: string; imageAlt?: string }) => `
+        <div class="col-12 col-md-4">
+          <label class="estimator-card card border shadow-sm p-4 h-100 w-100" data-group="scope" data-value="${s.value}">
+            <input type="radio" name="renoscope" value="${s.value}" class="d-none" />
+            ${cardImageMarkup(s, typeIcon)}
+            <div class="fw-bold">${s.label}</div>
+            <div class="text-secondary small">${s.desc}</div>
+          </label>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('[data-group="scope"]').forEach(card => {
+        card.addEventListener('click', () => {
+          const el = card as HTMLElement;
+          const value = el.dataset.value!;
+          container.querySelectorAll('[data-group="scope"]').forEach(c => c.classList.remove('selected'));
+          el.classList.add('selected');
+          selected.scope = value;
+          selected.size = null;
+          selected.finish = null;
+          root.querySelectorAll('.estimator-card[data-group="finish"]').forEach(c => c.classList.remove('selected'));
+          lockStep('#stepFinish');
+          lockStep('#stepAddons');
+          showScopeExplainer(value, explainer);
+          renderSizeCards();
+          unlockStep('#stepSize');
+          setProgress(45);
+          updateResult();
+        });
+      });
+    }
+
+    function showScopeExplainer(scopeValue: string, el: HTMLElement) {
+      const scope = (data.scopes?.[selected.type!] || []).find((s: { value: string }) => s.value === scopeValue);
+      if (!scope || !el) return;
+      el.classList.remove('d-none');
+      el.innerHTML = `
+        <strong>Includes:</strong> ${scope.includes.join(' · ')}
+        ${scope.excludes?.length ? `<br><strong>Not included:</strong> ${scope.excludes.join(' · ')}` : ''}
+      `;
+    }
+
+    function renderSizeCards() {
+      const container = root.querySelector('#sizeCards');
+      const title = root.querySelector('#sizeStepTitle');
+      if (!container || !selected.type) return;
+
+      const sizes = data.sizes[selected.type] || [];
+      if (title) title.textContent = sizeStepTitle();
+
+      const typeIcon = typeInfo(selected.type)?.icon || 'fas fa-image';
+      container.innerHTML = sizes.map((s: { value: string; label: string; desc: string; image?: string; imageAlt?: string }) => `
+        <div class="col-12 col-md-4">
+          <label class="estimator-card card border shadow-sm p-4 h-100 w-100 d-flex flex-column" data-group="size" data-value="${s.value}">
+            <input type="radio" name="renosize" value="${s.value}" class="d-none" />
+            ${s.image ? cardImageMarkup(s, typeIcon) : ''}
+            <div>
+              <div class="fw-bold">${s.label}</div>
+              <div class="text-secondary small">${s.desc}</div>
+            </div>
+          </label>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('[data-group="size"]').forEach(card => {
+        card.addEventListener('click', () => {
+          const el = card as HTMLElement;
+          container.querySelectorAll('[data-group="size"]').forEach(c => c.classList.remove('selected'));
+          el.classList.add('selected');
+          selected.size = el.dataset.value!;
+          unlockStep('#stepFinish');
+          setProgress(selected.model === 'scope' ? 60 : 55);
+          updateResult();
+        });
+      });
+    }
+
+    function getBaseRange() {
+      const { type, model, scope, size, finish } = selected;
+      if (!type || !size || !finish) return null;
+
+      if (model === 'scope') {
+        if (!scope) return null;
+        return data.basePricing[type]?.[scope]?.[size]?.[finish] as [number, number] | undefined;
+      }
+      if (model === 'room') {
+        return data.basePricing[type]?.[size]?.[finish] as [number, number] | undefined;
+      }
+      return data.basePricing[type]?.[size]?.[finish] as [number, number] | undefined;
+    }
+
+    function getBlogP75() {
+      const band = data.blogBands?.[selected.type!];
+      if (!band) return null;
+      if (band.overall) return band.overall[1];
+      if (selected.type === 'multi-unit') {
+        if (selected.scope === 'duplex-to-fourplex') return band.duplexToFourplex?.[1];
+        if (selected.scope === 'duplex-to-triplex') return band.duplexToTriplex?.[1];
+        if (selected.scope === 'duplex-renovation') return band.duplexRenovation?.[1];
+      }
+      if (selected.type === 'garden-suite-adu' && selected.scope === 'large-adu') return band.large?.[1];
+      if (selected.scope && band.legalSuite && selected.scope === 'legal-suite') return band.legalSuite[1];
+      if (selected.scope && band.full && selected.scope === 'full') return band.full[1];
+      if (selected.scope && band.basic) return band.basic[1];
+      return null;
+    }
+
+    function renderAddons() {
+      const list = root.querySelector('#addonList');
+      if (!list || !selected.type) return;
+
+      const scope = selected.scope || '';
+      const addons = (data.addons[selected.type] || []).filter((a: { id: string; hideWhenScope?: string[] }) => {
+        if (!a.hideWhenScope) return true;
+        return !a.hideWhenScope.includes(scope);
+      });
+
+      list.innerHTML = addons.map((a: { id: string; label: string; desc: string }) => `
+        <div class="col-12 col-md-6">
+          <div class="addon-card card border shadow-sm p-3 h-100 d-flex flex-row align-items-start gap-3${selectedAddons.has(a.id) ? ' selected' : ''}" data-addon="${a.id}">
+            <div class="addon-check flex-shrink-0 mt-1">${selectedAddons.has(a.id) ? '<i class="fas fa-check fa-xs"></i>' : ''}</div>
+            <div>
+              <div class="fw-semibold">${a.label}</div>
+              <div class="text-secondary small">${a.desc}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('[data-addon]').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = (el as HTMLElement).dataset.addon!;
+          if (selectedAddons.has(id)) selectedAddons.delete(id);
+          else selectedAddons.add(id);
+          renderAddons();
+          updateResult();
+        });
+      });
+    }
+
+    function calculate() {
+      const base = getBaseRange();
+      if (!base) return null;
+
+      let min = base[0];
+      let max = base[1];
+      const lines: { label: string; range: [number, number] }[] = [
+        { label: `Base — ${typeLabel(selected.type!)}`, range: [...base] },
+      ];
+
+      const addons = (data.addons[selected.type!] || []).filter((a: { id: string }) => selectedAddons.has(a.id));
+      const maxAddonTotal = Math.round(max * (data.addonRules?.maxAddonPctOfBase || 0.35));
+
+      let addonMin = 0;
+      let addonMax = 0;
+
+      addons.forEach((a: { id: string; label: string; range: [number, number] }) => {
+        addonMin += a.range[0];
+        addonMax += a.range[1];
+        lines.push({ label: a.label, range: [...a.range] });
+      });
+
+      if (addonMax > maxAddonTotal) {
+        const scale = maxAddonTotal / addonMax;
+        addonMin = Math.round(addonMin * scale);
+        addonMax = maxAddonTotal;
+      }
+
+      min += addonMin;
+      max += addonMax;
+
+      return { min, max, lines, baseMax: base[1] };
+    }
+
+    function buildEstimatePayload(calc: { min: number; max: number; lines: { label: string; range: [number, number] }[] }) {
+      const selections: {
+        step: string;
+        question: string;
+        answer: string;
+        range: [number, number];
+        modifier?: string;
+        image?: string;
+        imageAlt?: string;
+      }[] = [
+        {
+          step: 'project',
+          question: 'What are you renovating?',
+          answer: typeLabel(selected.type!),
+          range: [0, 0],
+          ...((selectionImage('project') || {}) as Record<string, string>),
+        },
+      ];
+
+      if (selected.scope) {
+        selections.push({
+          step: 'scope',
+          question: "What's the scope?",
+          answer: scopeLabel(selected.scope),
+          range: [0, 0],
+          ...((selectionImage('scope') || {}) as Record<string, string>),
+        });
+      }
+
+      selections.push({
+        step: 'size',
+        question: sizeStepTitle(),
+        answer: sizeLabel(selected.size!),
+        range: [0, 0],
+        ...((selectionImage('size') || {}) as Record<string, string>),
+      });
+
+      selections.push({
+        step: 'finish',
+        question: 'What finish level?',
+        answer: FINISH_LABELS[selected.finish!],
+        range: [0, 0],
+      });
+
+      const baseLine = calc.lines[0];
+      if (baseLine) {
+        selections.unshift({
+          step: 'base',
+          question: 'Base cost',
+          answer: baseLine.label,
+          range: baseLine.range,
+        });
+      }
+
+      calc.lines.slice(1).forEach((line) => {
+        selections.push({
+          step: 'addon',
+          question: 'Add-on',
+          answer: line.label,
+          range: line.range,
+        });
+      });
+
+      const addonLabels = [...selectedAddons].map(id => {
+        const a = (data.addons[selected.type!] || []).find((x: { id: string }) => x.id === id);
+        return a?.label;
+      }).filter(Boolean) as string[];
+
+      return {
+        type: selected.type!,
+        typeLabel: typeLabel(selected.type!),
+        scope: selected.scope,
+        scopeLabel: selected.scope ? scopeLabel(selected.scope) : null,
+        size: selected.size!,
+        sizeLabel: sizeLabel(selected.size!),
+        finish: selected.finish!,
+        finishLabel: FINISH_LABELS[selected.finish!],
+        addons: [...selectedAddons],
+        addonLabels,
+        min: calc.min,
+        max: calc.max,
+        breakdown: calc.lines,
+        selections,
+        market: data.meta.market,
+        hstNote: data.meta.hstNote,
+        contingencyNote: data.meta.contingencyNote,
+      };
+    }
+
+    async function saveEstimate(email?: string): Promise<string | null> {
+      const calc = calculate();
+      if (!calc || !selected.type || !selected.size || !selected.finish) return null;
+
+      const payload = buildEstimatePayload(calc);
+      if (email) payload.email = email;
+
+      try {
+        const res = await fetch('/api/estimates/save/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) return null;
+        const json = await res.json() as { id?: string; url?: string };
+        if (json.id) {
+          sessionStorage.setItem('mtc-estimate-id', json.id);
+          const summary = [
+            `Online price guide estimate: ${fmt(calc.min)} – ${fmt(calc.max)} (excl. HST)`,
+            `Project: ${typeLabel(selected.type)}`,
+            selected.scope ? `Scope: ${scopeLabel(selected.scope)}` : null,
+            `Size: ${sizeLabel(selected.size)}`,
+            `Finish: ${FINISH_LABELS[selected.finish]}`,
+          ].filter(Boolean).join('\n');
+          sessionStorage.setItem('mtc-estimate-summary', summary);
+        }
+        return json.id || null;
+      } catch {
+        return null;
+      }
+    }
+
+    function saveEstimateSummary() {
+      const calc = calculate();
+      if (!calc || !selected.type || !selected.size || !selected.finish) return;
+
+      const parts = [
+        `Online price guide estimate: ${fmt(calc.min)} – ${fmt(calc.max)} (excl. HST)`,
+        `Project: ${typeLabel(selected.type)}`,
+        selected.scope ? `Scope: ${scopeLabel(selected.scope)}` : null,
+        `Size: ${sizeLabel(selected.size)}`,
+        `Finish: ${FINISH_LABELS[selected.finish]}`,
+      ].filter(Boolean);
+
+      const addonLabels = [...selectedAddons].map(id => {
+        const a = (data.addons[selected.type!] || []).find((x: { id: string }) => x.id === id);
+        return a?.label;
+      }).filter(Boolean);
+      if (addonLabels.length) parts.push(`Add-ons: ${addonLabels.join(', ')}`);
+
+      sessionStorage.setItem('mtc-estimate-summary', parts.join('\n'));
+    }
+
+    function updateResult() {
+      const calc = calculate();
+      const resultEl = root.querySelector('#estimateResult');
+      if (!calc || !selected.type || !selected.size || !selected.finish || !resultEl) {
+        resultEl?.classList.add('d-none');
+        return;
+      }
+
+      const rangeEl = root.querySelector('#resultRange');
+      const startingEl = root.querySelector('#resultStarting');
+      const labelEl = root.querySelector('#resultLabel');
+      const tbody = root.querySelector('#breakdownTable tbody');
+      const totalEl = root.querySelector('#breakdownTotal');
+      const disclaimer = root.querySelector('#resultDisclaimer');
+      const contingency = root.querySelector('#resultContingency');
+      const hstEl = root.querySelector('#resultHst');
+
+      if (hstEl) hstEl.textContent = data.meta.hstNote;
+      if (disclaimer) disclaimer.textContent = `This is a ballpark range for ${data.meta.market} projects — not a fixed quote.`;
+      if (contingency) contingency.textContent = data.meta.contingencyNote;
+
+      const softNote = root.querySelector('#softCeilingNote') as HTMLElement;
+
+      if (startingEl) startingEl.textContent = fmt(calc.min);
+      if (rangeEl) rangeEl.textContent = `${fmt(calc.min)} – ${fmt(calc.max)}`;
+
+      const labelParts = [typeLabel(selected.type)];
+      if (selected.scope) labelParts.push(scopeLabel(selected.scope));
+      labelParts.push(sizeLabel(selected.size), FINISH_LABELS[selected.finish!]);
+      if (labelEl) labelEl.textContent = labelParts.join(' · ');
+
+      if (tbody) {
+        tbody.innerHTML = calc.lines.map(l => `
+          <tr>
+            <td class="text-secondary">${l.label}</td>
+            <td class="text-end">${fmt(l.range[0])} – ${fmt(l.range[1])}</td>
+          </tr>
+        `).join('');
+      }
+      if (totalEl) totalEl.textContent = `${fmt(calc.min)} – ${fmt(calc.max)}`;
+
+      const p75 = getBlogP75();
+      if (softNote && p75 && calc.max > p75 * 1.05) {
+        softNote.classList.remove('d-none');
+        softNote.textContent = `Higher-end selections — most ${data.meta.market} projects land closer to ${fmt(Math.round(p75 * 0.85))}–${fmt(p75)}.`;
+      } else {
+        softNote?.classList.add('d-none');
+      }
+
+      unlockStep('#stepAddons');
+      setProgress(100);
+      resultEl.classList.remove('d-none');
+      saveEstimateSummary();
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    root.querySelectorAll('.estimator-card[data-group="type"]').forEach(card => {
+      card.addEventListener('click', () => {
+        const el = card as HTMLElement;
+        root.querySelectorAll('.estimator-card[data-group="type"]').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+
+        selected.type = el.dataset.value!;
+        selected.model = el.dataset.model!;
+        selected.scope = null;
+        selected.size = null;
+        selected.finish = null;
+        selectedAddons.clear();
+
+        root.querySelectorAll('.estimator-card[data-group="finish"]').forEach(c => c.classList.remove('selected'));
+        lockStep('#stepSize');
+        lockStep('#stepFinish');
+        lockStep('#stepAddons');
+
+        const scopeStep = root.querySelector('#stepScope') as HTMLElement;
+        const lbl2 = root.querySelector('#lblStep2');
+
+        if (selected.model === 'scope') {
+          scopeStep?.classList.remove('d-none');
+          renderScopeCards();
+          if (lbl2) lbl2.textContent = 'Scope';
+          unlockStep('#stepScope');
+          lockStep('#stepSize');
+          setProgress(30);
+        } else {
+          scopeStep?.classList.add('d-none');
+          if (lbl2) lbl2.textContent = selected.model === 'room' ? 'Room' : 'Size';
+          renderSizeCards();
+          unlockStep('#stepSize');
+          setProgress(40);
+        }
+
+        renderAddons();
+        root.querySelector('#estimateResult')?.classList.add('d-none');
+      });
+    });
+
+    root.querySelectorAll('.estimator-card[data-group="finish"]').forEach(card => {
+      card.addEventListener('click', () => {
+        const el = card as HTMLElement;
+        root.querySelectorAll('.estimator-card[data-group="finish"]').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        selected.finish = el.dataset.value!;
+        setProgress(80);
+        renderAddons();
+        updateResult();
+      });
+    });
+
+    root.querySelector('#ctaQuote')?.addEventListener('click', async () => {
+      const btn = root.querySelector('#ctaQuote') as HTMLButtonElement;
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      const id = await saveEstimate();
+      if (id) {
+        window.location.href = `/newleadintake/?estimate=${id}`;
+      } else {
+        saveEstimateSummary();
+        window.location.href = '/newleadintake/?source=price-guide';
+      }
+    });
+
+    root.querySelector('#ctaEmailSave')?.addEventListener('click', async () => {
+      const emailInput = root.querySelector('#estimateEmail') as HTMLInputElement;
+      const status = root.querySelector('#emailSaveStatus') as HTMLElement;
+      const btn = root.querySelector('#ctaEmailSave') as HTMLButtonElement;
+      const email = emailInput?.value?.trim();
+      if (!email || !email.includes('@')) {
+        status.classList.remove('d-none');
+        status.className = 'small mt-2 text-danger';
+        status.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      const id = await saveEstimate(email);
+      if (id) {
+        status.classList.remove('d-none');
+        status.className = 'small mt-2 text-success';
+        status.innerHTML = `Saved! <a href="/estimate/s/${id}/">View your estimate</a> — check your inbox.`;
+        setTimeout(() => { window.location.href = `/estimate/s/${id}/`; }, 1200);
+      } else {
+        status.classList.remove('d-none');
+        status.className = 'small mt-2 text-danger';
+        status.textContent = 'Could not save estimate. Try again or call us.';
+        btn.disabled = false;
+        btn.textContent = 'Save & Email';
+      }
+    });
+
+    root.querySelector('#ctaRestart')?.addEventListener('click', () => {
+      selected = { type: null, model: null, scope: null, size: null, finish: null };
+      selectedAddons.clear();
+      root.querySelectorAll('.estimator-card').forEach(c => c.classList.remove('selected'));
+      root.querySelectorAll('.estimator-step').forEach((s, i) => {
+        if (i > 0) s.classList.add('is-locked');
+        const badge = s.querySelector('[data-step-num]');
+        if (i > 0) { badge?.classList.remove('bg-danger'); badge?.classList.add('bg-secondary'); }
+      });
+      root.querySelector('#stepScope')?.classList.add('d-none');
+      root.querySelector('#scopeExplainer')?.classList.add('d-none');
+      root.querySelector('#sizeCards')!.innerHTML = '';
+      root.querySelector('#scopeCards')!.innerHTML = '';
+      root.querySelector('#addonList')!.innerHTML = '';
+      root.querySelector('#estimateResult')?.classList.add('d-none');
+      setProgress(20);
+      window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
+    });
+
+    if (presetType) {
+      const card = root.querySelector(`.estimator-card[data-group="type"][data-value="${presetType}"]`) as HTMLElement;
+      if (card) setTimeout(() => card.click(), 100);
+    }
+  }
+
+  document.querySelectorAll('.estimator-widget').forEach(el => initEstimator(el as HTMLElement));
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.estimator-widget').forEach(el => {
+      (el as HTMLElement).dataset.initialized = 'false';
+      initEstimator(el as HTMLElement);
+    });
+  });
+</script>

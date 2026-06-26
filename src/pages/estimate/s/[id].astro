@@ -1,0 +1,54 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EstimateSummary from '../../../components/estimator/EstimateSummary.astro';
+import { localBusiness, breadcrumbList } from '../../../components/seo/schemas';
+import site from '../../../data/site.json';
+import type { SavedEstimate } from '../../../lib/estimate-types';
+
+const { id } = Astro.params;
+let estimate: SavedEstimate | null = null;
+
+if (id) {
+  const kv = Astro.locals.runtime?.env?.ESTIMATES;
+  if (kv) {
+    const raw = await kv.get(`estimate:${id}`);
+    if (raw) estimate = JSON.parse(raw) as SavedEstimate;
+  }
+}
+
+if (!estimate) {
+  return Astro.redirect('/estimate/');
+}
+
+const title = `Your ${estimate.typeLabel} Estimate | MTC Renovations`;
+const description = `Your saved renovation price range: $${estimate.min.toLocaleString('en-CA')} – $${estimate.max.toLocaleString('en-CA')} (excl. HST) for ${estimate.market}.`;
+const canonical = `${site.url}/estimate/s/${estimate.id}/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Price Guide', url: `${site.url}/estimate/` },
+    { name: 'Your Estimate', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={true}
+  schema={schemas}
+>
+  <section class="py-5">
+    <div class="container" style="max-width: 900px;">
+      <EstimateSummary estimate={estimate} estimateId={estimate.id} mode="saved" />
+      <div class="text-center mt-4">
+        <a href="/estimate/" class="btn btn-link text-secondary">Start a new estimate</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

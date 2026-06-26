@@ -126,6 +126,6 @@ For a project of this complexity, we strongly recommend a general contractor exp
 
 ---
 
-Considering a duplex-to-fourplex conversion or another multi-unit renovation project? We work on complex residential conversions across Hamilton and the surrounding area.
+Considering a duplex-to-fourplex conversion or another multi-unit renovation project? We work on complex residential conversions across Hamilton and the surrounding area. [Contact us](/contact/) to discuss feasibility, or use the Price Guide below for a ballpark range.
 
-**[Request a free multi-unit renovation estimate](/contact/)**
+**[Request a free multi-unit renovation estimate](/estimate/?type=multi-unit)**

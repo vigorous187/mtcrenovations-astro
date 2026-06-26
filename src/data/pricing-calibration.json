@@ -1,0 +1,306 @@
+{
+  "generatedAt": "2026-06-26T14:14:12.860Z",
+  "source": "documented-anchors-fallback",
+  "notes": "Recalibrated from documented JobTread anchors. Ranges in pricing-estimator.json exclude HST unless noted.",
+  "anchorJobs": [
+    {
+      "jobNumber": "586",
+      "jobName": "118 Manning",
+      "customer": "Huiping (Rachel) Fang",
+      "service": "basement",
+      "scope": "legal-suite",
+      "proposalExclHst": 175990,
+      "contractInclHst": 175990,
+      "location": "118 Manning Ave, Hamilton ON",
+      "closedOn": "2024-03-25",
+      "jobId": "22NhHmSFTSVy"
+    },
+    {
+      "jobNumber": "604",
+      "jobName": "171 East 24th - 2 Story ADU",
+      "customer": "Jackie Nguyen",
+      "service": "garden-suite-adu",
+      "scope": "standalone-adu",
+      "proposalExclHst": 226904,
+      "approvedOrdersTotal": 309708,
+      "budgetTotal": 342194,
+      "location": "171 East 24th (Hamilton)",
+      "closedOn": "2026-04-02",
+      "jobId": "22Num5NcyJhu",
+      "note": "Standalone 2-story garden/ADU anchor for wizard"
+    },
+    {
+      "jobNumber": "565",
+      "jobName": "610 Queensdale",
+      "customer": "Garden suite (multi-unit corp)",
+      "service": "garden-suite-adu",
+      "scope": "large-adu",
+      "budgetExclHst": 538114,
+      "approvedOrderInclHst": 692878,
+      "location": "610 Queensdale, Hamilton",
+      "jobId": "22Nh8drqAazG",
+      "note": "Large garden suite / multi-building upper bound"
+    },
+    {
+      "jobNumber": "593",
+      "jobName": "131 Winchester",
+      "customer": "Duplex to fourplex",
+      "service": "multi-unit",
+      "scope": "duplex-to-fourplex",
+      "costExclHst": 629000,
+      "proposalExclHst": 0,
+      "location": "131 Winchester, Hamilton",
+      "jobId": null,
+      "note": "Open job — cost as floor, no sold client price"
+    },
+    {
+      "jobNumber": "601",
+      "jobName": "Garden suite / ADU (Job #601)",
+      "customer": "Documented anchor",
+      "service": "garden-suite-adu",
+      "scope": "standalone-adu",
+      "note": "Included in explicit anchor pull — verify in JobTread admin"
+    },
+    {
+      "jobNumber": "671",
+      "jobName": "Bathroom demo + renovation",
+      "customer": "Alexandre Cardoso",
+      "service": "bathroom",
+      "proposalExclHst": 26500,
+      "jobId": "22PVUsF6NfXB"
+    },
+    {
+      "jobNumber": "658",
+      "jobName": "Rewari Washroom Reno",
+      "customer": "Chand Rewari",
+      "service": "bathroom",
+      "scope": "master-premium",
+      "budgetExclHst": 191354,
+      "jobId": "22PTA6Ej3kNP"
+    },
+    {
+      "jobNumber": "692",
+      "jobName": "Hani Boutros - Floors",
+      "customer": "Hani Boutros",
+      "service": "flooring",
+      "proposalExclHst": 53800,
+      "jobId": "22PZFXKGreb8"
+    }
+  ],
+  "services": {
+    "basement": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "basic": [
+          25000,
+          45000
+        ],
+        "full": [
+          45000,
+          80000
+        ],
+        "legalSuite": [
+          60000,
+          120000
+        ],
+        "overall": [
+          25000,
+          120000
+        ]
+      },
+      "recommended": {
+        "floor": 25000,
+        "ceiling": 132000,
+        "confidence": "blog-only"
+      }
+    },
+    "bathroom": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "basic": [
+          15000,
+          22000
+        ],
+        "mid": [
+          22000,
+          40000
+        ],
+        "premium": [
+          38000,
+          65000
+        ],
+        "overall": [
+          15000,
+          65000
+        ]
+      },
+      "recommended": {
+        "floor": 15000,
+        "ceiling": 71500,
+        "confidence": "blog-only"
+      }
+    },
+    "kitchen": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "basic": [
+          20000,
+          35000
+        ],
+        "mid": [
+          40000,
+          60000
+        ],
+        "premium": [
+          65000,
+          100000
+        ],
+        "overall": [
+          20000,
+          100000
+        ]
+      },
+      "recommended": {
+        "floor": 20000,
+        "ceiling": 110000,
+        "confidence": "blog-only"
+      }
+    },
+    "flooring": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "basic": [
+          3000,
+          9000
+        ],
+        "mid": [
+          9000,
+          20000
+        ],
+        "premium": [
+          15000,
+          38000
+        ],
+        "overall": [
+          8000,
+          58000
+        ]
+      },
+      "recommended": {
+        "floor": 8000,
+        "ceiling": 63800,
+        "confidence": "blog-only"
+      }
+    },
+    "painting": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "basic": [
+          2000,
+          6000
+        ],
+        "mid": [
+          6000,
+          13000
+        ],
+        "premium": [
+          13000,
+          20000
+        ],
+        "overall": [
+          2000,
+          20000
+        ]
+      },
+      "recommended": {
+        "floor": 2000,
+        "ceiling": 22000,
+        "confidence": "blog-only"
+      }
+    },
+    "gardenSuiteAdu": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "standalone": [
+          200000,
+          310000
+        ],
+        "large": [
+          280000,
+          380000
+        ],
+        "overall": [
+          180000,
+          400000
+        ]
+      },
+      "recommended": {
+        "floor": 200000,
+        "ceiling": 380000,
+        "confidence": "medium",
+        "anchorJobs": [
+          "604",
+          "565"
+        ]
+      }
+    },
+    "multiUnit": {
+      "jobTread": {
+        "n": 0,
+        "confidence": "blog-only"
+      },
+      "jobs": [],
+      "blogReference": {
+        "duplexRenovation": [
+          200000,
+          400000
+        ],
+        "duplexToTriplex": [
+          350000,
+          500000
+        ],
+        "duplexToFourplex": [
+          500000,
+          650000
+        ],
+        "overall": [
+          200000,
+          650000
+        ]
+      },
+      "recommended": {
+        "floor": 350000,
+        "ceiling": 650000,
+        "confidence": "low",
+        "anchorJobs": [
+          "593"
+        ],
+        "note": "Triplex interpolated — no sold triplex JobTread job"
+      }
+    }
+  }
+}

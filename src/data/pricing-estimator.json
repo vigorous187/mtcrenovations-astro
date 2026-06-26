@@ -1,0 +1,819 @@
+{
+  "meta": {
+    "hstExcluded": true,
+    "hstRate": 0.13,
+    "market": "Hamilton & Burlington",
+    "calibratedAt": "2026-06-26",
+    "contingencyNote": "Older Hamilton & Burlington homes often need 15% contingency for surprises behind walls (knob-and-tube, asbestos, moisture).",
+    "hstNote": "All ranges exclude 13% HST.",
+    "gardenSuiteNote": "Standalone garden suites & ADUs (e.g. Job #604 Jackie Nguyen: $227K–$310K) are priced separately from basement secondary suites.",
+    "confidence": {
+      "basement": "medium",
+      "bathroom": "medium",
+      "kitchen": "low",
+      "flooring": "low",
+      "painting": "blog-only",
+      "garden-suite-adu": "medium",
+      "multi-unit": "low"
+    },
+    "multiUnitNote": "Complex duplex→fourplex conversions often exceed $500K. Winchester #593 cost (~$629K) used as floor — not a sold quote.",
+    "jobTreadAnchors": [
+      {
+        "job": "586",
+        "customer": "Rachel Fang",
+        "service": "basement",
+        "value": 175990,
+        "label": "118 Manning legal basement suite"
+      },
+      {
+        "job": "604",
+        "customer": "Jackie Nguyen",
+        "service": "garden-suite-adu",
+        "value": 226904,
+        "label": "2-Story ADU proposal"
+      },
+      {
+        "job": "671",
+        "customer": "Cardoso",
+        "service": "bathroom",
+        "value": 26500
+      },
+      {
+        "job": "658",
+        "customer": "Rewari",
+        "service": "bathroom-master",
+        "value": 191354
+      },
+      {
+        "job": "692",
+        "customer": "Hani Boutros",
+        "service": "flooring",
+        "value": 53800
+      },
+      {
+        "job": "565",
+        "customer": "610 Queensdale",
+        "service": "garden-suite-adu",
+        "value": 538114,
+        "label": "Large garden suite / multi-unit"
+      },
+      {
+        "job": "593",
+        "customer": "131 Winchester",
+        "service": "multi-unit",
+        "value": 629000,
+        "label": "Duplex→fourplex cost floor (open job)"
+      }
+    ]
+  },
+  "types": [
+    {
+      "value": "basement",
+      "label": "Basement",
+      "icon": "fas fa-layer-group",
+      "fullLabel": "Basement Renovation",
+      "model": "scope",
+      "image": "/assets/img/basement/estimator/basement.svg",
+      "imageAlt": "Finished basement renovation in Hamilton"
+    },
+    {
+      "value": "bathroom",
+      "label": "Bathroom",
+      "icon": "fas fa-bath",
+      "fullLabel": "Bathroom Renovation",
+      "model": "room",
+      "image": "/assets/img/bathroom/estimator/bathroom.svg",
+      "imageAlt": "Modern bathroom renovation"
+    },
+    {
+      "value": "kitchen",
+      "label": "Kitchen",
+      "icon": "fas fa-utensils",
+      "fullLabel": "Kitchen Renovation",
+      "model": "standard",
+      "image": "/assets/img/kitchen/estimator/kitchen.svg",
+      "imageAlt": "Kitchen renovation with custom cabinetry"
+    },
+    {
+      "value": "flooring",
+      "label": "Flooring",
+      "icon": "fas fa-th-large",
+      "fullLabel": "Flooring Installation",
+      "model": "standard",
+      "image": "/assets/img/flooring/estimator/flooring.svg",
+      "imageAlt": "Hardwood flooring installation"
+    },
+    {
+      "value": "painting",
+      "label": "Painting",
+      "icon": "fas fa-paint-roller",
+      "fullLabel": "Interior Painting",
+      "model": "standard",
+      "image": "/assets/img/painting/estimator/painting.svg",
+      "imageAlt": "Interior painting project"
+    },
+    {
+      "value": "garden-suite-adu",
+      "label": "Garden Suite / ADU",
+      "fullLabel": "Garden Suite or ADU",
+      "model": "scope",
+      "icon": "fas fa-home",
+      "image": "/assets/img/garden-suite-adu/estimator/garden-suite-adu.svg",
+      "imageAlt": "Standalone garden suite or ADU build in Hamilton"
+    },
+    {
+      "value": "multi-unit",
+      "label": "Multi-Unit",
+      "fullLabel": "Multi-Unit Conversion",
+      "model": "scope",
+      "icon": "fas fa-building",
+      "image": "/assets/img/multi-unit/estimator/multi-unit.svg",
+      "imageAlt": "Duplex to fourplex conversion project"
+    }
+  ],
+  "scopes": {
+    "basement": [
+      {
+        "value": "basic",
+        "label": "Basic Finish",
+        "desc": "Framing, insulation, drywall, flooring & pot lights — no bathroom",
+        "image": "/assets/img/basement/estimator/basic-finish.svg",
+        "imageAlt": "Basic finished basement rec room",
+        "includes": [
+          "Perimeter framing & R-20 insulation",
+          "Drywall, tape & paint",
+          "Laminate or LVP flooring",
+          "Pot lights & sub-panel if needed"
+        ],
+        "excludes": [
+          "Bathroom or bedroom",
+          "Egress windows",
+          "Plumbing rough-in"
+        ]
+      },
+      {
+        "value": "full",
+        "label": "Full Renovation",
+        "desc": "Bedroom, bathroom & rec room with mid-grade finishes",
+        "image": "/assets/img/basement/estimator/full-renovation.svg",
+        "imageAlt": "Full basement renovation with bathroom",
+        "includes": [
+          "Everything in Basic Finish",
+          "3-piece or 4-piece bathroom",
+          "Bedroom with egress window",
+          "Mid-grade finishes throughout"
+        ],
+        "excludes": ["Separate entrance", "Full kitchen / legal suite"]
+      },
+      {
+        "value": "legal-suite",
+        "label": "Legal Secondary Suite",
+        "desc": "Separate entrance, kitchen, bathroom & full code compliance",
+        "image": "/assets/img/basement/estimator/legal-suite.svg",
+        "imageAlt": "Legal secondary suite with separate entrance",
+        "includes": [
+          "Everything in Full Renovation",
+          "Separate entrance or walkout",
+          "Full kitchen with plumbing rough-in",
+          "Sound separation & dedicated HVAC",
+          "Permits & code compliance"
+        ]
+      }
+    ],
+    "garden-suite-adu": [
+      {
+        "value": "standalone-adu",
+        "label": "Standalone ADU",
+        "desc": "1–2 story detached or laneway suite (Job #604 anchor)",
+        "image": "/assets/img/garden-suite-adu/estimator/standalone-adu.svg",
+        "imageAlt": "Standalone two-story garden suite",
+        "includes": [
+          "Foundation, framing & exterior envelope",
+          "Full kitchen, bathroom & living space",
+          "Separate entrance & utility connections",
+          "Permits & inspections"
+        ],
+        "excludes": ["Landscaping beyond pad", "Furnishings"]
+      },
+      {
+        "value": "garage-conversion",
+        "label": "Garage / Laneway Conversion",
+        "desc": "Convert existing garage or laneway structure",
+        "image": "/assets/img/garden-suite-adu/estimator/garage-conversion.svg",
+        "imageAlt": "Garage converted to laneway suite",
+        "includes": [
+          "Structural assessment & reinforcement",
+          "Insulation, HVAC & plumbing rough-in",
+          "Kitchenette or full kitchen scope",
+          "Permit coordination"
+        ],
+        "excludes": ["New foundation", "Full second story addition"]
+      },
+      {
+        "value": "large-adu",
+        "label": "Large ADU (2+ bed)",
+        "desc": "Premium 2+ bedroom / 2-story garden suite",
+        "image": "/assets/img/garden-suite-adu/estimator/large-adu.svg",
+        "imageAlt": "Large premium garden suite build",
+        "includes": [
+          "Everything in Standalone ADU",
+          "2+ bedrooms or premium finishes",
+          "Higher-end mechanical & envelope",
+          "Complex utility tie-ins"
+        ],
+        "excludes": ["Multi-building campus", "Commercial zoning"]
+      }
+    ],
+    "multi-unit": [
+      {
+        "value": "duplex-renovation",
+        "label": "Duplex Renovation",
+        "desc": "Refresh both units within existing footprint",
+        "image": "/assets/img/multi-unit/estimator/duplex-renovation.svg",
+        "imageAlt": "Renovated duplex units",
+        "includes": [
+          "Interior renovation of both units",
+          "Kitchen & bath updates per unit",
+          "Shared systems assessment",
+          "Permit coordination where required"
+        ],
+        "excludes": ["Adding new units", "Vertical additions"]
+      },
+      {
+        "value": "duplex-to-triplex",
+        "label": "Duplex → Triplex",
+        "desc": "Add one rental unit (interpolated pricing)",
+        "image": "/assets/img/multi-unit/estimator/duplex-to-triplex.svg",
+        "imageAlt": "Duplex converted to triplex",
+        "includes": [
+          "Feasibility & zoning review",
+          "Structural mods for new unit",
+          "Separate entrance & services",
+          "Full build-out of added unit"
+        ],
+        "excludes": ["Land acquisition", "Full fourplex scope"]
+      },
+      {
+        "value": "duplex-to-fourplex",
+        "label": "Duplex → Fourplex",
+        "desc": "Vertical addition — Winchester #593 cost anchor",
+        "image": "/assets/img/multi-unit/estimator/duplex-to-fourplex.svg",
+        "imageAlt": "Duplex converted to fourplex with vertical addition",
+        "includes": [
+          "Engineering & structural design",
+          "Vertical addition of 2+ floors",
+          "4 separate units when complete",
+          "Permits, inspections & code compliance"
+        ],
+        "excludes": ["Demolition of existing building", "Commercial conversion"]
+      },
+      {
+        "value": "triplex-to-fourplex",
+        "label": "Triplex → Fourplex",
+        "desc": "Add one unit to existing triplex",
+        "image": "/assets/img/multi-unit/estimator/triplex-to-fourplex.svg",
+        "imageAlt": "Triplex expanded to fourplex",
+        "includes": [
+          "Structural assessment",
+          "New unit build-out or conversion",
+          "Separate metering & entrances",
+          "Permit coordination"
+        ],
+        "excludes": ["Full gut of all units", "New construction from scratch"]
+      }
+    ]
+  },
+  "sizes": {
+    "basement": [
+      {
+        "value": "small",
+        "label": "600–800 sq ft",
+        "desc": "Typical Hamilton pre-1980 footprint"
+      },
+      {
+        "value": "medium",
+        "label": "800–1,000 sq ft",
+        "desc": "Average finished basement"
+      },
+      {
+        "value": "large",
+        "label": "1,000+ sq ft",
+        "desc": "Ancaster, Waterdown & newer builds"
+      }
+    ],
+    "bathroom": [
+      {
+        "value": "powder",
+        "label": "Powder Room",
+        "desc": "Toilet & vanity — no shower"
+      },
+      {
+        "value": "main",
+        "label": "Main Bathroom",
+        "desc": "Standard tub/shower, vanity & toilet"
+      },
+      {
+        "value": "master",
+        "label": "Master Ensuite",
+        "desc": "Larger footprint, premium fixtures"
+      }
+    ],
+    "kitchen": [
+      {
+        "value": "small",
+        "label": "Small / Galley",
+        "desc": "Under 120 sq ft, existing layout"
+      },
+      {
+        "value": "medium",
+        "label": "Standard Kitchen",
+        "desc": "120–200 sq ft"
+      },
+      {
+        "value": "large",
+        "label": "Large / Open Concept",
+        "desc": "200+ sq ft or layout changes"
+      }
+    ],
+    "flooring": [
+      { "value": "small", "label": "1–2 rooms", "desc": "Under 500 sq ft" },
+      { "value": "medium", "label": "Main floor", "desc": "500–1,000 sq ft" },
+      { "value": "large", "label": "Whole home", "desc": "1,000+ sq ft" }
+    ],
+    "painting": [
+      { "value": "small", "label": "1–2 rooms", "desc": "Under 500 sq ft" },
+      { "value": "medium", "label": "Main floor", "desc": "500–1,000 sq ft" },
+      { "value": "large", "label": "Whole home", "desc": "1,000+ sq ft" }
+    ],
+    "garden-suite-adu": [
+      {
+        "value": "compact",
+        "label": "Under 800 sq ft",
+        "desc": "Studio or 1-bed laneway suite"
+      },
+      {
+        "value": "standard",
+        "label": "800–1,200 sq ft",
+        "desc": "Typical 1–2 bed garden suite (Job #604)"
+      },
+      {
+        "value": "large",
+        "label": "1,200+ sq ft",
+        "desc": "2+ bed or premium 2-story ADU"
+      }
+    ],
+    "multi-unit": [
+      {
+        "value": "2-unit",
+        "label": "2 units when complete",
+        "desc": "Duplex footprint"
+      },
+      {
+        "value": "3-unit",
+        "label": "3 units when complete",
+        "desc": "Triplex target"
+      },
+      {
+        "value": "4-unit",
+        "label": "4 units when complete",
+        "desc": "Fourplex target (Winchester #593)"
+      }
+    ]
+  },
+  "finishes": [
+    {
+      "value": "basic",
+      "label": "Basic",
+      "desc": "Functional, builder-grade materials",
+      "iconClass": "text-secondary"
+    },
+    {
+      "value": "mid",
+      "label": "Mid-Range",
+      "desc": "Quality materials, some custom features",
+      "iconClass": "text-warning"
+    },
+    {
+      "value": "premium",
+      "label": "Premium",
+      "desc": "High-end materials, fully custom",
+      "iconClass": "text-danger"
+    }
+  ],
+  "blogBands": {
+    "basement": {
+      "basic": [25000, 45000],
+      "full": [45000, 95000],
+      "legalSuite": [75000, 210000]
+    },
+    "bathroom": {
+      "overall": [15000, 95000],
+      "powder": [10000, 22000],
+      "main": [15000, 55000],
+      "master": [22000, 95000]
+    },
+    "kitchen": { "overall": [25000, 100000] },
+    "flooring": { "overall": [8000, 58000] },
+    "painting": { "overall": [2000, 20000] },
+    "garden-suite-adu": {
+      "standalone": [200000, 310000],
+      "large": [280000, 380000],
+      "overall": [180000, 400000]
+    },
+    "multi-unit": {
+      "duplexRenovation": [200000, 400000],
+      "duplexToTriplex": [350000, 500000],
+      "duplexToFourplex": [500000, 650000],
+      "overall": [200000, 650000]
+    }
+  },
+  "basePricing": {
+    "basement": {
+      "basic": {
+        "small": {
+          "basic": [25000, 35000],
+          "mid": [30000, 40000],
+          "premium": [35000, 45000]
+        },
+        "medium": {
+          "basic": [25000, 38000],
+          "mid": [32000, 42000],
+          "premium": [38000, 45000]
+        },
+        "large": {
+          "basic": [27000, 42000],
+          "mid": [35000, 45000],
+          "premium": [40000, 45000]
+        }
+      },
+      "full": {
+        "small": {
+          "basic": [45000, 60000],
+          "mid": [52000, 72000],
+          "premium": [65000, 90000]
+        },
+        "medium": {
+          "basic": [48000, 68000],
+          "mid": [58000, 78000],
+          "premium": [68000, 95000]
+        },
+        "large": {
+          "basic": [55000, 75000],
+          "mid": [65000, 85000],
+          "premium": [75000, 95000]
+        }
+      },
+      "legal-suite": {
+        "small": {
+          "basic": [75000, 100000],
+          "mid": [90000, 120000],
+          "premium": [110000, 140000]
+        },
+        "medium": {
+          "basic": [100000, 135000],
+          "mid": [130000, 170000],
+          "premium": [150000, 190000]
+        },
+        "large": {
+          "basic": [120000, 155000],
+          "mid": [145000, 185000],
+          "premium": [165000, 210000]
+        }
+      }
+    },
+    "bathroom": {
+      "powder": {
+        "basic": [10000, 15000],
+        "mid": [12000, 18000],
+        "premium": [15000, 22000]
+      },
+      "main": {
+        "basic": [15000, 22000],
+        "mid": [22000, 38000],
+        "premium": [38000, 55000]
+      },
+      "master": {
+        "basic": [22000, 38000],
+        "mid": [38000, 55000],
+        "premium": [55000, 95000]
+      }
+    },
+    "kitchen": {
+      "small": {
+        "basic": [25000, 35000],
+        "mid": [35000, 50000],
+        "premium": [50000, 70000]
+      },
+      "medium": {
+        "basic": [25000, 38000],
+        "mid": [40000, 60000],
+        "premium": [60000, 85000]
+      },
+      "large": {
+        "basic": [35000, 50000],
+        "mid": [50000, 70000],
+        "premium": [65000, 100000]
+      }
+    },
+    "flooring": {
+      "small": {
+        "basic": [3000, 6000],
+        "mid": [5000, 9000],
+        "premium": [8000, 14000]
+      },
+      "medium": {
+        "basic": [5000, 9000],
+        "mid": [9000, 15000],
+        "premium": [14000, 22000]
+      },
+      "large": {
+        "basic": [8000, 14000],
+        "mid": [14000, 28000],
+        "premium": [22000, 58000]
+      }
+    },
+    "painting": {
+      "small": {
+        "basic": [2000, 3500],
+        "mid": [3500, 5500],
+        "premium": [5500, 8000]
+      },
+      "medium": {
+        "basic": [3500, 6000],
+        "mid": [6000, 9000],
+        "premium": [9000, 14000]
+      },
+      "large": {
+        "basic": [5000, 8000],
+        "mid": [8000, 13000],
+        "premium": [13000, 20000]
+      }
+    },
+    "garden-suite-adu": {
+      "standalone-adu": {
+        "compact": {
+          "basic": [180000, 240000],
+          "mid": [200000, 280000],
+          "premium": [250000, 310000]
+        },
+        "standard": {
+          "basic": [200000, 260000],
+          "mid": [220000, 300000],
+          "premium": [270000, 340000]
+        },
+        "large": {
+          "basic": [240000, 300000],
+          "mid": [260000, 330000],
+          "premium": [300000, 380000]
+        }
+      },
+      "garage-conversion": {
+        "compact": {
+          "basic": [120000, 160000],
+          "mid": [140000, 190000],
+          "premium": [170000, 220000]
+        },
+        "standard": {
+          "basic": [140000, 180000],
+          "mid": [160000, 210000],
+          "premium": [190000, 250000]
+        },
+        "large": {
+          "basic": [160000, 210000],
+          "mid": [180000, 240000],
+          "premium": [220000, 280000]
+        }
+      },
+      "large-adu": {
+        "compact": {
+          "basic": [220000, 280000],
+          "mid": [250000, 320000],
+          "premium": [300000, 360000]
+        },
+        "standard": {
+          "basic": [260000, 320000],
+          "mid": [280000, 350000],
+          "premium": [330000, 380000]
+        },
+        "large": {
+          "basic": [300000, 360000],
+          "mid": [320000, 400000],
+          "premium": [360000, 450000]
+        }
+      }
+    },
+    "multi-unit": {
+      "duplex-renovation": {
+        "2-unit": {
+          "basic": [200000, 280000],
+          "mid": [250000, 350000],
+          "premium": [320000, 400000]
+        },
+        "3-unit": {
+          "basic": [280000, 360000],
+          "mid": [320000, 420000],
+          "premium": [400000, 500000]
+        },
+        "4-unit": {
+          "basic": [350000, 450000],
+          "mid": [400000, 520000],
+          "premium": [480000, 600000]
+        }
+      },
+      "duplex-to-triplex": {
+        "2-unit": {
+          "basic": [300000, 380000],
+          "mid": [350000, 450000],
+          "premium": [420000, 500000]
+        },
+        "3-unit": {
+          "basic": [350000, 420000],
+          "mid": [380000, 480000],
+          "premium": [450000, 550000]
+        },
+        "4-unit": {
+          "basic": [400000, 480000],
+          "mid": [450000, 550000],
+          "premium": [520000, 620000]
+        }
+      },
+      "duplex-to-fourplex": {
+        "2-unit": {
+          "basic": [450000, 520000],
+          "mid": [500000, 580000],
+          "premium": [560000, 650000]
+        },
+        "3-unit": {
+          "basic": [480000, 550000],
+          "mid": [520000, 600000],
+          "premium": [580000, 680000]
+        },
+        "4-unit": {
+          "basic": [500000, 580000],
+          "mid": [550000, 650000],
+          "premium": [620000, 750000]
+        }
+      },
+      "triplex-to-fourplex": {
+        "2-unit": {
+          "basic": [280000, 360000],
+          "mid": [320000, 420000],
+          "premium": [400000, 500000]
+        },
+        "3-unit": {
+          "basic": [320000, 400000],
+          "mid": [360000, 460000],
+          "premium": [440000, 540000]
+        },
+        "4-unit": {
+          "basic": [380000, 460000],
+          "mid": [420000, 520000],
+          "premium": [500000, 600000]
+        }
+      }
+    }
+  },
+  "addonRules": {
+    "maxAddonPctOfBase": 0.35,
+    "hideWhenScope": {
+      "legal-suite": ["legal-suite"],
+      "bathroom": ["full", "legal-suite"],
+      "wet-bar": ["legal-suite"]
+    }
+  },
+  "addons": {
+    "basement": [
+      {
+        "id": "legal-suite",
+        "label": "Legal secondary suite upgrade",
+        "desc": "Permits, egress, separate entrance",
+        "range": [15000, 35000],
+        "hideWhenScope": ["legal-suite"]
+      },
+      {
+        "id": "bathroom",
+        "label": "Add bathroom",
+        "desc": "Rough-in, fixtures, tile",
+        "range": [8000, 18000],
+        "hideWhenScope": ["full", "legal-suite"]
+      },
+      {
+        "id": "wet-bar",
+        "label": "Wet bar / kitchenette",
+        "desc": "Plumbing, cabinets, appliances",
+        "range": [6000, 15000],
+        "hideWhenScope": ["legal-suite"]
+      },
+      {
+        "id": "home-theatre",
+        "label": "Home theatre prep",
+        "desc": "Soundproofing, wiring, niche",
+        "range": [3000, 8000]
+      }
+    ],
+    "bathroom": [
+      {
+        "id": "walk-in-shower",
+        "label": "Walk-in shower upgrade",
+        "desc": "Curbless, glass, linear drain",
+        "range": [2500, 6000]
+      },
+      {
+        "id": "heated-floor",
+        "label": "Heated floor",
+        "desc": "Electric mat + tile",
+        "range": [1200, 2500]
+      },
+      {
+        "id": "double-vanity",
+        "label": "Double vanity",
+        "desc": "Custom cabinetry, two sinks",
+        "range": [1500, 4000]
+      },
+      {
+        "id": "steam-shower",
+        "label": "Steam shower",
+        "desc": "Generator, sealed enclosure",
+        "range": [4000, 9000]
+      }
+    ],
+    "kitchen": [
+      {
+        "id": "layout-change",
+        "label": "Layout change",
+        "desc": "Move sink, range or walls",
+        "range": [5000, 15000]
+      },
+      {
+        "id": "island",
+        "label": "Custom island",
+        "desc": "Cabinetry, countertop, electrical",
+        "range": [4000, 12000]
+      },
+      {
+        "id": "quartz-upgrade",
+        "label": "Quartz countertop upgrade",
+        "desc": "Premium stone surfaces",
+        "range": [2000, 5000]
+      },
+      {
+        "id": "appliance-package",
+        "label": "Appliance package",
+        "desc": "Fridge, range, dishwasher",
+        "range": [3000, 8000]
+      }
+    ],
+    "flooring": [
+      {
+        "id": "subfloor-prep",
+        "label": "Subfloor leveling",
+        "desc": "Repair dips, squeaks, moisture",
+        "range": [500, 2000]
+      },
+      {
+        "id": "stair-treads",
+        "label": "Stair treads",
+        "desc": "Match main floor material",
+        "range": [1500, 4000]
+      },
+      {
+        "id": "baseboards",
+        "label": "New baseboards",
+        "desc": "Remove, replace, paint",
+        "range": [800, 2500]
+      },
+      {
+        "id": "radiant-heat",
+        "label": "Radiant floor heat",
+        "desc": "Electric mat under tile",
+        "range": [2000, 5000]
+      }
+    ],
+    "painting": [
+      {
+        "id": "ceilings",
+        "label": "Ceilings included",
+        "desc": "Full ceiling coat",
+        "range": [400, 1200]
+      },
+      {
+        "id": "trim",
+        "label": "Trim & doors",
+        "desc": "Baseboards, casings, doors",
+        "range": [600, 2000]
+      },
+      {
+        "id": "accent-wall",
+        "label": "Accent walls",
+        "desc": "Feature colour or wallpaper",
+        "range": [300, 800]
+      },
+      {
+        "id": "cabinet-paint",
+        "label": "Cabinet painting",
+        "desc": "Spray-finish kitchen/bath cabinets",
+        "range": [2000, 5000]
+      }
+    ]
+  }
+}
