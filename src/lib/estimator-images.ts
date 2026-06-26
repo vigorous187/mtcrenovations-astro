@@ -1,3 +1,6 @@
+/**
+ * Resolve estimator card image markup (shared by Astro + client script pattern).
+ */
 export interface EstimatorImageOption {
   value?: string;
   label?: string;
@@ -29,23 +32,13 @@ export function cardImageHtml(
   option: EstimatorImageOption | null | undefined,
   fallbackIcon = "fas fa-image",
   className = "estimator-card-img",
+  loading: "lazy" | "eager" = "lazy",
 ): string {
   const { src, alt, icon } = resolveEstimatorImage(option, fallbackIcon);
   if (src) {
-    return `<img class="${className}" src="${src}" alt="${escapeAttr(alt)}" loading="lazy" width="800" height="450" />`;
+    return `<img class="${className}" src="${src}" alt="${escapeAttr(alt)}" loading="${loading}" decoding="async" width="400" height="225" />`;
   }
-  return `<i class="${icon} fa-2x mb-2 text-secondary estimator-card-icon"></i>`;
-}
-
-export function thumbnailHtml(
-  option: EstimatorImageOption | null | undefined,
-  fallbackIcon = "fas fa-image",
-): string {
-  const { src, alt, icon } = resolveEstimatorImage(option, fallbackIcon);
-  if (src) {
-    return `<img class="estimator-thumb" src="${src}" alt="${escapeAttr(alt)}" loading="lazy" width="48" height="48" />`;
-  }
-  return `<span class="estimator-thumb estimator-thumb--icon"><i class="${icon}"></i></span>`;
+  return `<i class="${icon} fa-lg text-secondary estimator-card-icon"></i>`;
 }
 
 function escapeAttr(value: string): string {

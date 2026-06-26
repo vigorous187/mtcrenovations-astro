@@ -108,10 +108,10 @@ const quoteHref = estimateId
     </div>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-5">
-      <a href={`tel:${site.phone.replace(/\D/g, '')}`} class="btn btn-danger btn-lg px-4">
+      <a href={`tel:${site.phone.replace(/\D/g, '')}`} class="btn btn-danger btn-lg px-4 btn-estimator-cta">
         <i class="fas fa-phone me-2"></i>Call To Discuss Estimate
       </a>
-      <a href={quoteHref} class="btn btn-outline-danger btn-lg px-4">
+      <a href={quoteHref} class="btn btn-outline-danger btn-lg px-4 btn-estimator-cta btn-estimator-secondary">
         Get Your Free Fixed-Price Quote
       </a>
     </div>
@@ -145,7 +145,7 @@ const quoteHref = estimateId
     <section class="alert alert-light border small text-secondary">
       <h2 class="h6 fw-bold text-dark">Disclaimer: A Friendly Heads-Up About Your Estimate</h2>
       <p class="mb-2">
-        This estimate is not set in stone and is not a quote. It's a ballpark figure based on the info you provided and our JobTread-backed pricing ranges for {estimate.market}.
+        This estimate is not set in stone and is not a quote. It's a ballpark figure based on the info you provided and our JobTread-backed client price ranges for {estimate.market} — including GC overhead, subcontractor coordination, and profit.
       </p>
       <p class="mb-2">
         Many factors can influence the final price — things a quick estimator can't see behind your walls. We're happy to visit your home and provide an accurate fixed-price quote tailored to you.
@@ -187,22 +187,23 @@ const quoteHref = estimateId
           </table>
         </div>
         <p class="text-secondary small mt-3 mb-2" id="resultDisclaimer"></p>
+        <p class="text-secondary small mb-2 d-none" id="resultPricingBasis"></p>
         <p class="text-secondary small mb-3" id="resultContingency"></p>
 
         <div class="border rounded p-3 mb-4 bg-light" id="emailSaveBlock">
           <label class="form-label small fw-semibold mb-1" for="estimateEmail">Email me this estimate</label>
           <div class="input-group">
             <input type="email" class="form-control" id="estimateEmail" placeholder="you@example.com" />
-            <button type="button" class="btn btn-outline-danger" id="ctaEmailSave">Save &amp; Email</button>
+            <button type="button" class="btn btn-outline-danger btn-estimator-cta" id="ctaEmailSave">Save &amp; Email</button>
           </div>
           <div id="emailSaveStatus" class="small mt-2 d-none"></div>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-          <button type="button" class="btn btn-danger btn-lg px-5" id="ctaQuote">
+          <button type="button" class="btn btn-danger btn-lg px-5 btn-estimator-cta" id="ctaQuote">
             Get Your Free Fixed-Price Quote
           </button>
-          <button type="button" class="btn btn-outline-secondary" id="ctaRestart">Start Over</button>
+          <button type="button" class="btn btn-outline-secondary btn-estimator-cta btn-estimator-secondary" id="ctaRestart">Start Over</button>
         </div>
       </div>
     </div>
@@ -228,6 +229,23 @@ const quoteHref = estimateId
   .estimate-summary--saved .accordion-button:focus {
     box-shadow: none;
     border-color: rgba(0, 0, 0, 0.08);
+  }
+  .btn-estimator-cta {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+  }
+  .btn-estimator-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.22);
+  }
+  .btn-estimator-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .btn-estimator-secondary:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-estimator-cta { transition: none !important; }
+    .btn-estimator-cta:hover { transform: none !important; }
   }
   .estimator-thumb {
     width: 48px;

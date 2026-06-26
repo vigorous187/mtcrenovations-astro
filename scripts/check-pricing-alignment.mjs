@@ -3,6 +3,7 @@
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { COMPLEX_GROSS_MARGIN, sellFromDirectCost } from "./pricing-markup.mjs";
 
 const ROOT = process.cwd();
 const pricingPath = path.join(ROOT, "src/data/pricing-estimator.json");
@@ -85,7 +86,7 @@ function main() {
     `Jackie #604 $${jackieAnchor.proposalExclHst} must fall within standalone ADU standard mid ${aduMid}`,
   );
 
-  // Winchester #593 cost floor for fourplex
+  // Winchester #593 — internal cost uplifted to client sell price
   const winchesterAnchor = calibration.anchorJobs.find(
     (j) => j.jobNumber === "593",
   );
@@ -93,15 +94,22 @@ function main() {
     winchesterAnchor,
     "Winchester #593 anchor must be documented in calibration",
   );
+  const winchesterSell =
+    winchesterAnchor.sellPriceExclHst ||
+    sellFromDirectCost(winchesterAnchor.costExclHst, COMPLEX_GROSS_MARGIN);
+  assertTrue(
+    winchesterSell > winchesterAnchor.costExclHst,
+    `#593 sell price $${winchesterSell} must exceed internal cost $${winchesterAnchor.costExclHst}`,
+  );
   const fourplexMid =
     pricing.basePricing["multi-unit"]["duplex-to-fourplex"]["4-unit"].mid;
   assertTrue(
-    winchesterAnchor.costExclHst <= fourplexMid[1],
-    `#593 cost $${winchesterAnchor.costExclHst} must be <= fourplex ceiling ${fourplexMid[1]}`,
+    contains(fourplexMid, winchesterSell),
+    `Fourplex mid band ${fourplexMid} must contain uplifted sell anchor $${winchesterSell}`,
   );
   assertTrue(
-    winchesterAnchor.costExclHst >= fourplexMid[0] * 0.85,
-    `#593 cost should sit near fourplex floor band ${fourplexMid}`,
+    winchesterAnchor.costExclHst < fourplexMid[0],
+    `#593 cost $${winchesterAnchor.costExclHst} must stay below client-facing floor ${fourplexMid[0]}`,
   );
 
   assertTrue(
@@ -119,6 +127,14 @@ function main() {
   assertTrue(
     pricing.meta.confidence["multi-unit"] === "low",
     "Multi-unit confidence must be low (interpolated triplex)",
+  );
+  assertTrue(
+    (pricing.addons?.["garden-suite-adu"]?.length || 0) >= 3,
+    "Garden suite ADU must have optional extras",
+  );
+  assertTrue(
+    (pricing.addons?.["multi-unit"]?.length || 0) >= 4,
+    "Multi-unit must have optional extras",
   );
 
   // Budget guide bands (home-renovation-budget-guide.md) — floors only; ceilings may exceed with JobTread
@@ -180,6 +196,14 @@ function main() {
   assertTrue(
     pricing.meta.hstExcluded === true,
     "meta.hstExcluded must be true",
+  );
+  assertTrue(
+    pricing.meta.pricingModel?.includesOverheadAndProfit === true,
+    "meta.pricingModel must state ranges include overhead and profit",
+  );
+  assertTrue(
+    pricing.meta.pricingModel?.targetGrossMarginPct >= 25,
+    "Target gross margin must be at least 25%",
   );
   assertTrue(
     pricing.scopes?.basement?.length === 3,

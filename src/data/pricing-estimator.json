@@ -16,7 +16,18 @@
       "garden-suite-adu": "medium",
       "multi-unit": "low"
     },
-    "multiUnitNote": "Complex duplex→fourplex conversions often exceed $500K. Winchester #593 cost (~$629K) used as floor — not a sold quote.",
+    "multiUnitNote": "Complex duplex→fourplex conversions often exceed $900K client-side. Winchester #593 internal cost (~$629K) is uplifted with 35% gross margin before display — not shown at bare cost.",
+    "pricingModel": {
+      "priceBasis": "client-facing sell ranges",
+      "includesOverheadAndProfit": true,
+      "includesSubcontractorCoordination": true,
+      "targetGrossMarginPct": 30,
+      "complexProjectGrossMarginPct": 35,
+      "subcontractorCoordinationMarkupPct": 15,
+      "sellPriceNote": "All ranges are what a homeowner pays MTC — including GC overhead, subcontractor coordination, and profit. They are not your internal job cost.",
+      "costAnchorNote": "When JobTread only has internal cost (e.g. Job #593), we apply a gross-margin uplift before showing a range.",
+      "addonNote": "Optional extras include a subcontractor coordination markup — never passed through at cost."
+    },
     "jobTreadAnchors": [
       {
         "job": "586",
@@ -73,7 +84,7 @@
       "icon": "fas fa-layer-group",
       "fullLabel": "Basement Renovation",
       "model": "scope",
-      "image": "/assets/img/basement/estimator/basement.svg",
+      "image": "/assets/img/basement/estimator/basement.jpg",
       "imageAlt": "Finished basement renovation in Hamilton"
     },
     {
@@ -82,8 +93,8 @@
       "icon": "fas fa-bath",
       "fullLabel": "Bathroom Renovation",
       "model": "room",
-      "image": "/assets/img/bathroom/estimator/bathroom.svg",
-      "imageAlt": "Modern bathroom renovation"
+      "image": "/assets/img/bathroom/estimator/bathroom.jpg",
+      "imageAlt": "Modern bathroom renovation at 610 Queensdale, Hamilton"
     },
     {
       "value": "kitchen",
@@ -91,7 +102,7 @@
       "icon": "fas fa-utensils",
       "fullLabel": "Kitchen Renovation",
       "model": "standard",
-      "image": "/assets/img/kitchen/estimator/kitchen.svg",
+      "image": "/assets/img/kitchen/estimator/kitchen.jpg",
       "imageAlt": "Kitchen renovation with custom cabinetry"
     },
     {
@@ -100,8 +111,8 @@
       "icon": "fas fa-th-large",
       "fullLabel": "Flooring Installation",
       "model": "standard",
-      "image": "/assets/img/flooring/estimator/flooring.svg",
-      "imageAlt": "Hardwood flooring installation"
+      "image": "/assets/img/flooring/estimator/flooring.jpg",
+      "imageAlt": "Wood flooring installation at 610 Queensdale, Hamilton"
     },
     {
       "value": "painting",
@@ -109,7 +120,7 @@
       "icon": "fas fa-paint-roller",
       "fullLabel": "Interior Painting",
       "model": "standard",
-      "image": "/assets/img/painting/estimator/painting.svg",
+      "image": "/assets/img/painting/estimator/painting.jpg",
       "imageAlt": "Interior painting project"
     },
     {
@@ -118,8 +129,8 @@
       "fullLabel": "Garden Suite or ADU",
       "model": "scope",
       "icon": "fas fa-home",
-      "image": "/assets/img/garden-suite-adu/estimator/garden-suite-adu.svg",
-      "imageAlt": "Standalone garden suite or ADU build in Hamilton"
+      "image": "/assets/img/garden-suite-adu/estimator/garden-suite-adu.jpg",
+      "imageAlt": "Exterior of completed garden suite / ADU at 610 Queensdale, Hamilton"
     },
     {
       "value": "multi-unit",
@@ -127,8 +138,8 @@
       "fullLabel": "Multi-Unit Conversion",
       "model": "scope",
       "icon": "fas fa-building",
-      "image": "/assets/img/multi-unit/estimator/multi-unit.svg",
-      "imageAlt": "Duplex to fourplex conversion project"
+      "image": "/assets/img/multi-unit/estimator/multi-unit.jpg",
+      "imageAlt": "Exterior of completed multi-unit conversion at 610 Queensdale, Hamilton"
     }
   ],
   "scopes": {
@@ -137,7 +148,7 @@
         "value": "basic",
         "label": "Basic Finish",
         "desc": "Framing, insulation, drywall, flooring & pot lights — no bathroom",
-        "image": "/assets/img/basement/estimator/basic-finish.svg",
+        "image": "/assets/img/basement/estimator/basic-finish.jpg",
         "imageAlt": "Basic finished basement rec room",
         "includes": [
           "Perimeter framing & R-20 insulation",
@@ -155,7 +166,7 @@
         "value": "full",
         "label": "Full Renovation",
         "desc": "Bedroom, bathroom & rec room with mid-grade finishes",
-        "image": "/assets/img/basement/estimator/full-renovation.svg",
+        "image": "/assets/img/basement/estimator/full-renovation.jpg",
         "imageAlt": "Full basement renovation with bathroom",
         "includes": [
           "Everything in Basic Finish",
@@ -169,7 +180,7 @@
         "value": "legal-suite",
         "label": "Legal Secondary Suite",
         "desc": "Separate entrance, kitchen, bathroom & full code compliance",
-        "image": "/assets/img/basement/estimator/legal-suite.svg",
+        "image": "/assets/img/basement/estimator/legal-suite.jpg",
         "imageAlt": "Legal secondary suite with separate entrance",
         "includes": [
           "Everything in Full Renovation",
@@ -185,7 +196,7 @@
         "value": "standalone-adu",
         "label": "Standalone ADU",
         "desc": "1–2 story detached or laneway suite (Job #604 anchor)",
-        "image": "/assets/img/garden-suite-adu/estimator/standalone-adu.svg",
+        "image": "/assets/img/garden-suite-adu/estimator/standalone-adu.jpg",
         "imageAlt": "Standalone two-story garden suite",
         "includes": [
           "Foundation, framing & exterior envelope",
@@ -199,7 +210,7 @@
         "value": "garage-conversion",
         "label": "Garage / Laneway Conversion",
         "desc": "Convert existing garage or laneway structure",
-        "image": "/assets/img/garden-suite-adu/estimator/garage-conversion.svg",
+        "image": "/assets/img/garden-suite-adu/estimator/garage-conversion.jpg",
         "imageAlt": "Garage converted to laneway suite",
         "includes": [
           "Structural assessment & reinforcement",
@@ -213,7 +224,7 @@
         "value": "large-adu",
         "label": "Large ADU (2+ bed)",
         "desc": "Premium 2+ bedroom / 2-story garden suite",
-        "image": "/assets/img/garden-suite-adu/estimator/large-adu.svg",
+        "image": "/assets/img/garden-suite-adu/estimator/large-adu.jpg",
         "imageAlt": "Large premium garden suite build",
         "includes": [
           "Everything in Standalone ADU",
@@ -229,7 +240,7 @@
         "value": "duplex-renovation",
         "label": "Duplex Renovation",
         "desc": "Refresh both units within existing footprint",
-        "image": "/assets/img/multi-unit/estimator/duplex-renovation.svg",
+        "image": "/assets/img/multi-unit/estimator/duplex-renovation.jpg",
         "imageAlt": "Renovated duplex units",
         "includes": [
           "Interior renovation of both units",
@@ -243,7 +254,7 @@
         "value": "duplex-to-triplex",
         "label": "Duplex → Triplex",
         "desc": "Add one rental unit (interpolated pricing)",
-        "image": "/assets/img/multi-unit/estimator/duplex-to-triplex.svg",
+        "image": "/assets/img/multi-unit/estimator/duplex-to-triplex.jpg",
         "imageAlt": "Duplex converted to triplex",
         "includes": [
           "Feasibility & zoning review",
@@ -256,8 +267,8 @@
       {
         "value": "duplex-to-fourplex",
         "label": "Duplex → Fourplex",
-        "desc": "Vertical addition — Winchester #593 cost anchor",
-        "image": "/assets/img/multi-unit/estimator/duplex-to-fourplex.svg",
+        "desc": "Vertical addition — Winchester #593 anchor (cost uplifted to client sell price)",
+        "image": "/assets/img/multi-unit/estimator/duplex-to-fourplex.jpg",
         "imageAlt": "Duplex converted to fourplex with vertical addition",
         "includes": [
           "Engineering & structural design",
@@ -271,7 +282,7 @@
         "value": "triplex-to-fourplex",
         "label": "Triplex → Fourplex",
         "desc": "Add one unit to existing triplex",
-        "image": "/assets/img/multi-unit/estimator/triplex-to-fourplex.svg",
+        "image": "/assets/img/multi-unit/estimator/triplex-to-fourplex.jpg",
         "imageAlt": "Triplex expanded to fourplex",
         "includes": [
           "Structural assessment",
@@ -422,9 +433,9 @@
     },
     "multi-unit": {
       "duplexRenovation": [200000, 400000],
-      "duplexToTriplex": [350000, 500000],
-      "duplexToFourplex": [500000, 650000],
-      "overall": [200000, 650000]
+      "duplexToTriplex": [450000, 820000],
+      "duplexToFourplex": [850000, 1100000],
+      "overall": [200000, 1100000]
     }
   },
   "basePricing": {
@@ -622,36 +633,36 @@
       },
       "duplex-to-triplex": {
         "2-unit": {
-          "basic": [300000, 380000],
-          "mid": [350000, 450000],
-          "premium": [420000, 500000]
+          "basic": [380000, 480000],
+          "mid": [420000, 540000],
+          "premium": [500000, 620000]
         },
         "3-unit": {
-          "basic": [350000, 420000],
-          "mid": [380000, 480000],
-          "premium": [450000, 550000]
+          "basic": [520000, 640000],
+          "mid": [580000, 720000],
+          "premium": [660000, 820000]
         },
         "4-unit": {
-          "basic": [400000, 480000],
-          "mid": [450000, 550000],
-          "premium": [520000, 620000]
+          "basic": [600000, 720000],
+          "mid": [660000, 820000],
+          "premium": [760000, 920000]
         }
       },
       "duplex-to-fourplex": {
         "2-unit": {
-          "basic": [450000, 520000],
-          "mid": [500000, 580000],
-          "premium": [560000, 650000]
+          "basic": [780000, 900000],
+          "mid": [850000, 980000],
+          "premium": [920000, 1080000]
         },
         "3-unit": {
-          "basic": [480000, 550000],
-          "mid": [520000, 600000],
-          "premium": [580000, 680000]
+          "basic": [820000, 940000],
+          "mid": [880000, 1020000],
+          "premium": [960000, 1120000]
         },
         "4-unit": {
-          "basic": [500000, 580000],
-          "mid": [550000, 650000],
-          "premium": [620000, 750000]
+          "basic": [850000, 980000],
+          "mid": [900000, 1050000],
+          "premium": [980000, 1150000]
         }
       },
       "triplex-to-fourplex": {
@@ -813,6 +824,64 @@
         "label": "Cabinet painting",
         "desc": "Spray-finish kitchen/bath cabinets",
         "range": [2000, 5000]
+      }
+    ],
+    "garden-suite-adu": [
+      {
+        "id": "engineering-premium",
+        "label": "Structural / engineering premium",
+        "desc": "Geotechnical, structural engineer, permit drawings",
+        "range": [17000, 40000]
+      },
+      {
+        "id": "premium-envelope",
+        "label": "Premium envelope upgrade",
+        "desc": "High-performance windows, insulation, air barrier",
+        "range": [23000, 52000]
+      },
+      {
+        "id": "separate-meter",
+        "label": "Separate utility meter",
+        "desc": "Hydro, gas & water metering for rental suite",
+        "range": [9000, 20000]
+      },
+      {
+        "id": "landscaping",
+        "label": "Landscaping & driveway tie-in",
+        "desc": "Grading, sod, walkway, driveway restoration",
+        "range": [14000, 32000]
+      }
+    ],
+    "multi-unit": [
+      {
+        "id": "separate-hvac",
+        "label": "Separate HVAC per unit",
+        "desc": "Dedicated furnaces/AC or mini-splits per suite",
+        "range": [29000, 63000]
+      },
+      {
+        "id": "fire-separation",
+        "label": "Fire separation upgrade",
+        "desc": "Rated assemblies, fire stopping, inspections",
+        "range": [21000, 46000]
+      },
+      {
+        "id": "foundation-underpinning",
+        "label": "Foundation / underpinning",
+        "desc": "Structural foundation work for added load",
+        "range": [46000, 104000]
+      },
+      {
+        "id": "rental-compliance",
+        "label": "Rental code compliance package",
+        "desc": "Sound, egress, smoke/CO, separate entrances",
+        "range": [14000, 32000]
+      },
+      {
+        "id": "design-premium",
+        "label": "Architectural / design premium",
+        "desc": "Architect, designer, permit drawing set",
+        "range": [17000, 40000]
       }
     ]
   }

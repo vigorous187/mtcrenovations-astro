@@ -1,21 +1,55 @@
 import site from "../data/site.json";
 import { fmtCad } from "./estimate-format";
-import type { SavedEstimate } from "./estimate-types";
+import type { CloudflareEnv, SavedEstimate } from "./estimate-types";
 
-const FROM = "MTC Renovations <info@mtcrenovations.ca>";
+const FROM = { email: "info@mtcrenovations.ca", name: "MTC Renovations" };
 
 function siteUrl(env?: { SITE_URL?: string }): string {
   return env?.SITE_URL || site.url;
 }
 
+function htmlToText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n\n")
+    .replace(/<a [^>]*href="([^"]+)"[^>]*>([^<]*)<\/a>/gi, "$2 ($1)")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+async function sendMail(
+  env: CloudflareEnv,
+  to: string,
+  subject: string,
+  html: string,
+): Promise<boolean> {
+  if (!env.EMAIL) {
+    console.warn("EMAIL binding not configured — skipping send");
+    return false;
+  }
+
+  try {
+    await env.EMAIL.send({
+      to,
+      from: FROM,
+      subject,
+      html,
+      text: htmlToText(html),
+      replyTo: site.email || FROM.email,
+    });
+    return true;
+  } catch (err) {
+    console.error("Cloudflare Email Service send failed", err);
+    return false;
+  }
+}
+
 export async function sendEstimateEmail(
   estimate: SavedEstimate,
   to: string,
-  env: { RESEND_API_KEY?: string; SITE_URL?: string },
+  env: CloudflareEnv,
 ): Promise<boolean> {
-  const key = env.RESEND_API_KEY;
-  if (!key) return false;
-
   const url = `${siteUrl(env)}/estimate/s/${estimate.id}/`;
   const name = estimate.name?.split(" ")[0] || "there";
 
@@ -32,31 +66,14 @@ export async function sendEstimateEmail(
     <p>Best wishes,<br>MTC Renovations</p>
   `;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: FROM,
-      to: [to],
-      subject: "Your MTC Price Guide estimate",
-      html,
-    }),
-  });
-
-  return res.ok;
+  return sendMail(env, to, "Your MTC Price Guide estimate", html);
 }
 
 export async function sendLeadConfirmationEmail(
   estimate: SavedEstimate | null,
   lead: { name: string; email: string },
-  env: { RESEND_API_KEY?: string; SITE_URL?: string },
+  env: CloudflareEnv,
 ): Promise<boolean> {
-  const key = env.RESEND_API_KEY;
-  if (!key) return false;
-
   const firstName = lead.name.split(" ")[0] || "there";
   const estimateBlock = estimate
     ? `<p><strong>Your saved estimate:</strong> <a href="${siteUrl(env)}/estimate/s/${estimate.id}/">${fmtCad(estimate.min)} – ${fmtCad(estimate.max)}</a></p>`
@@ -70,19 +87,10 @@ export async function sendLeadConfirmationEmail(
     <p>Best wishes,<br>MTC Renovations</p>
   `;
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: FROM,
-      to: [lead.email],
-      subject: "We received your quote request — MTC Renovations",
-      html,
-    }),
-  });
-
-  return res.ok;
+  return sendMail(
+    env,
+    lead.email,
+    "We received your quote request — MTC Renovations",
+    html,
+  );
 }

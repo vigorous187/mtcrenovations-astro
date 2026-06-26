@@ -77,10 +77,21 @@ export interface LeadSubmitInput {
   projectNotes?: string;
 }
 
+export interface EmailSender {
+  send(message: {
+    to: string | string[];
+    from: { email: string; name?: string };
+    subject: string;
+    html: string;
+    text: string;
+    replyTo?: string;
+  }): Promise<{ messageId?: string }>;
+}
+
 export interface CloudflareEnv {
   ESTIMATES: KVNamespace;
+  EMAIL?: EmailSender;
   JOBTREAD_GRANT_KEY?: string;
   JOBTREAD_ORG_ID?: string;
-  RESEND_API_KEY?: string;
   SITE_URL?: string;
 }

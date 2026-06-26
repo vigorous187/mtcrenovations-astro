@@ -8,6 +8,9 @@ binding = "ESTIMATES"
 id = "849796bef9a542c987588e5179d9a2be"
 preview_id = "4f51d87c92e34ef9a8e9cfbafb9a76fc"
 
+[[send_email]]
+name = "EMAIL"
+
 [assets]
 directory = "./dist"
 binding = "ASSETS"

@@ -1,7 +1,17 @@
 {
-  "generatedAt": "2026-06-26T14:14:12.860Z",
+  "generatedAt": "2026-06-26T14:31:34.519Z",
   "source": "documented-anchors-fallback",
   "notes": "Recalibrated from documented JobTread anchors. Ranges in pricing-estimator.json exclude HST unless noted.",
+  "pricingModel": {
+    "priceBasis": "client-facing sell ranges",
+    "includesOverheadAndProfit": true,
+    "includesSubcontractorCoordination": true,
+    "targetGrossMarginPct": 30,
+    "complexProjectGrossMarginPct": 35,
+    "subcontractorCoordinationMarkupPct": 15,
+    "sellPriceNote": "All ranges are what a homeowner pays MTC — including overhead, subcontractor coordination, and profit. They are not internal job cost.",
+    "costAnchorNote": "When JobTread only has internal cost (no approved client price), we apply a gross-margin uplift before showing a range."
+  },
   "anchorJobs": [
     {
       "jobNumber": "586",
@@ -13,7 +23,9 @@
       "contractInclHst": 175990,
       "location": "118 Manning Ave, Hamilton ON",
       "closedOn": "2024-03-25",
-      "jobId": "22NhHmSFTSVy"
+      "jobId": "22NhHmSFTSVy",
+      "priceType": "approved-proposal",
+      "sellPriceExclHst": 175990
     },
     {
       "jobNumber": "604",
@@ -27,7 +39,9 @@
       "location": "171 East 24th (Hamilton)",
       "closedOn": "2026-04-02",
       "jobId": "22Num5NcyJhu",
-      "note": "Standalone 2-story garden/ADU anchor for wizard"
+      "note": "Standalone 2-story garden/ADU anchor for wizard",
+      "priceType": "approved-proposal",
+      "sellPriceExclHst": 226904
     },
     {
       "jobNumber": "565",
@@ -39,7 +53,10 @@
       "approvedOrderInclHst": 692878,
       "location": "610 Queensdale, Hamilton",
       "jobId": "22Nh8drqAazG",
-      "note": "Large garden suite / multi-building upper bound"
+      "note": "Large garden suite / multi-building upper bound",
+      "priceType": "budget-with-margin",
+      "sellPriceExclHst": 827868,
+      "marginAppliedPct": 35
     },
     {
       "jobNumber": "593",
@@ -51,7 +68,10 @@
       "proposalExclHst": 0,
       "location": "131 Winchester, Hamilton",
       "jobId": null,
-      "note": "Open job — cost as floor, no sold client price"
+      "note": "Open job — internal cost converted to client sell price with 35% gross margin",
+      "priceType": "cost-with-margin",
+      "sellPriceExclHst": 967692,
+      "marginAppliedPct": 35
     },
     {
       "jobNumber": "601",
@@ -59,7 +79,8 @@
       "customer": "Documented anchor",
       "service": "garden-suite-adu",
       "scope": "standalone-adu",
-      "note": "Included in explicit anchor pull — verify in JobTread admin"
+      "note": "Included in explicit anchor pull — verify in JobTread admin",
+      "priceType": "sell"
     },
     {
       "jobNumber": "671",
@@ -67,7 +88,9 @@
       "customer": "Alexandre Cardoso",
       "service": "bathroom",
       "proposalExclHst": 26500,
-      "jobId": "22PVUsF6NfXB"
+      "jobId": "22PVUsF6NfXB",
+      "priceType": "approved-proposal",
+      "sellPriceExclHst": 26500
     },
     {
       "jobNumber": "658",
@@ -76,7 +99,10 @@
       "service": "bathroom",
       "scope": "master-premium",
       "budgetExclHst": 191354,
-      "jobId": "22PTA6Ej3kNP"
+      "jobId": "22PTA6Ej3kNP",
+      "priceType": "budget-with-margin",
+      "sellPriceExclHst": 294391,
+      "marginAppliedPct": 35
     },
     {
       "jobNumber": "692",
@@ -84,7 +110,9 @@
       "customer": "Hani Boutros",
       "service": "flooring",
       "proposalExclHst": 53800,
-      "jobId": "22PZFXKGreb8"
+      "jobId": "22PZFXKGreb8",
+      "priceType": "approved-proposal",
+      "sellPriceExclHst": 53800
     }
   ],
   "services": {
@@ -293,13 +321,23 @@
         ]
       },
       "recommended": {
-        "floor": 350000,
-        "ceiling": 650000,
+        "floor": 867692,
+        "ceiling": 1117692,
         "confidence": "low",
         "anchorJobs": [
           "593"
         ],
-        "note": "Triplex interpolated — no sold triplex JobTread job"
+        "note": "Triplex interpolated — Winchester #593 cost uplifted to client sell price",
+        "pricingModel": {
+          "priceBasis": "client-facing sell ranges",
+          "includesOverheadAndProfit": true,
+          "includesSubcontractorCoordination": true,
+          "targetGrossMarginPct": 30,
+          "complexProjectGrossMarginPct": 35,
+          "subcontractorCoordinationMarkupPct": 15,
+          "sellPriceNote": "All ranges are what a homeowner pays MTC — including overhead, subcontractor coordination, and profit. They are not internal job cost.",
+          "costAnchorNote": "When JobTread only has internal cost (no approved client price), we apply a gross-margin uplift before showing a range."
+        }
       }
     }
   }

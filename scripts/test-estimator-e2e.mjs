@@ -32,6 +32,15 @@ const PERSONAS = [
     expectRange: /\$[\d,]+ – \$[\d,]+/,
   },
   {
+    name: "bathroom with addons",
+    type: "Bathroom",
+    size: "Main Bathroom",
+    finish: "Mid-Range",
+    addons: ["Walk-in shower upgrade", "Heated floor"],
+    expectRange: /\$[\d,]+ – \$[\d,]+/,
+    expectAddonInLabel: "Walk-in shower upgrade",
+  },
+  {
     name: "kitchen medium",
     type: "Kitchen",
     size: "Standard Kitchen",
@@ -59,7 +68,7 @@ const PERSONAS = [
     scope: "Duplex → Fourplex",
     size: "4 units when complete",
     finish: "Mid-Range",
-    expectRange: /\$550,000 – \$650,000/,
+    expectRange: /\$900,000 – \$1,050,000/,
   },
   {
     name: "duplex renovation",
@@ -75,6 +84,16 @@ async function clickCard(page, label, within) {
   const root = within ? page.locator(within) : page;
   const card = root
     .locator(".estimator-card")
+    .filter({ hasText: label })
+    .first();
+  await card.waitFor({ state: "visible", timeout: 5000 });
+  await card.click();
+  return card;
+}
+
+async function clickAddon(page, label) {
+  const card = page
+    .locator("#addonList .addon-card")
     .filter({ hasText: label })
     .first();
   await card.waitFor({ state: "visible", timeout: 5000 });
@@ -107,7 +126,26 @@ async function runPersona(page, persona) {
   }
 
   await clickCard(page, persona.size, "#stepSize");
+  const selectedSize = page
+    .locator("#sizeCards .estimator-card.selected")
+    .filter({ hasText: persona.size });
+  if ((await selectedSize.count()) !== 1) {
+    throw new Error(
+      `Size card "${persona.size}" missing selected state for ${persona.name}`,
+    );
+  }
+
   await clickCard(page, persona.finish, "#stepFinish");
+
+  if (persona.addons?.length) {
+    for (const addon of persona.addons) {
+      await clickAddon(page, addon);
+    }
+    const selectedAddons = page.locator("#addonList .addon-card.selected");
+    if ((await selectedAddons.count()) !== persona.addons.length) {
+      throw new Error(`Addon selection failed for ${persona.name}`);
+    }
+  }
 
   const result = page.locator("#estimateResult");
   await result.waitFor({ state: "visible", timeout: 5000 });
@@ -243,6 +281,71 @@ async function main() {
     if (!notes.includes("130,000"))
       throw new Error("Lead form not prefilled from estimate");
     console.log(`PASS | lead form prefill → estimate ${id}`);
+
+    // Save & Email API (Cloudflare Email Service — emailSent may be false until domain onboarded)
+    await page.goto(`${BASE}/estimate/`, { waitUntil: "networkidle" });
+    await clickCard(page, "Bathroom");
+    await clickCard(page, "Main Bathroom", "#stepSize");
+    await clickCard(page, "Mid-Range", "#stepFinish");
+    await page.waitForSelector("#estimateResult:not(.d-none)");
+    const saveEmailRes = await page.evaluate(async () => {
+      const widget = document.querySelector(".estimator-widget");
+      if (!widget) return { error: "no widget" };
+      const pricing = JSON.parse(widget.getAttribute("data-pricing") || "{}");
+      const payload = {
+        type: "bathroom",
+        typeLabel: "Bathroom Renovation",
+        size: "main",
+        sizeLabel: "Main Bathroom",
+        finish: "mid",
+        finishLabel: "Mid-Range",
+        addons: [],
+        addonLabels: [],
+        min: 22000,
+        max: 38000,
+        breakdown: [{ label: "Base", range: [22000, 38000] }],
+        selections: [],
+        market: pricing.meta?.market || "Hamilton & Burlington",
+        hstNote: pricing.meta?.hstNote || "",
+        contingencyNote: pricing.meta?.contingencyNote || "",
+        email: "estimator-test@mtcrenovations.ca",
+      };
+      const res = await fetch("/api/estimates/save/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      return { status: res.status, body: await res.json() };
+    });
+    if (saveEmailRes.status !== 200 || !saveEmailRes.body?.id) {
+      throw new Error(
+        `Save & Email API failed: ${JSON.stringify(saveEmailRes)}`,
+      );
+    }
+    console.log(
+      `PASS | save & email API → id=${saveEmailRes.body.id} emailSent=${saveEmailRes.body.emailSent}`,
+    );
+
+    // Lead submit → JobTread sync (when credentials configured in env)
+    const leadRes = await page.request.post(`${BASE}/api/leads/submit/`, {
+      data: {
+        estimateId: saveEmailRes.body.id,
+        name: "Price Guide Test Lead",
+        email: "estimator-test@mtcrenovations.ca",
+        phone: "647-555-0199",
+        address: "123 Test Street, Hamilton, ON",
+        hearAbout: "Price Guide",
+        projectNotes: "Automated Playwright test — safe to delete in JobTread.",
+      },
+    });
+    if (!leadRes.ok())
+      throw new Error(`Lead submit failed: ${leadRes.status()}`);
+    const leadJson = await leadRes.json();
+    if (!leadJson.success)
+      throw new Error("Lead submit returned success=false");
+    console.log(
+      `PASS | lead submit → syncPending=${leadJson.syncPending} jobId=${leadJson.jobTread?.jobId || "none"}`,
+    );
 
     console.log(
       `\nResult: ${results.length + 2}/${PERSONAS.length + 2} checks passed`,

@@ -6,6 +6,11 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import {
+  COMPLEX_GROSS_MARGIN,
+  PRICING_MODEL_META,
+  sellFromDirectCost,
+} from "./pricing-markup.mjs";
 
 const envPath = path.join(process.env.HOME, "jobtread-mcp", ".env");
 if (fs.existsSync(envPath)) {
@@ -91,7 +96,7 @@ const DOCUMENTED_ANCHORS = [
     proposalExclHst: 0,
     location: "131 Winchester, Hamilton",
     jobId: null,
-    note: "Open job — cost as floor, no sold client price",
+    note: "Open job — internal cost converted to client sell price with 35% gross margin",
   },
   {
     jobNumber: "601",
@@ -127,6 +132,36 @@ const DOCUMENTED_ANCHORS = [
     jobId: "22PZFXKGreb8",
   },
 ];
+
+function enrichAnchorPricing(anchor) {
+  const enriched = { ...anchor, priceType: "sell" };
+  if (anchor.proposalExclHst && anchor.proposalExclHst > 0) {
+    enriched.sellPriceExclHst = anchor.proposalExclHst;
+    enriched.priceType = "approved-proposal";
+  } else if (anchor.approvedOrdersTotal && anchor.approvedOrdersTotal > 0) {
+    enriched.sellPriceExclHst = Math.round(anchor.approvedOrdersTotal / 1.13);
+    enriched.priceType = "approved-order";
+  } else if (anchor.costExclHst && anchor.costExclHst > 0) {
+    enriched.sellPriceExclHst = sellFromDirectCost(
+      anchor.costExclHst,
+      COMPLEX_GROSS_MARGIN,
+    );
+    enriched.priceType = "cost-with-margin";
+    enriched.marginAppliedPct = Math.round(COMPLEX_GROSS_MARGIN * 100);
+  } else if (anchor.budgetExclHst && anchor.budgetExclHst > 0) {
+    enriched.sellPriceExclHst = sellFromDirectCost(
+      anchor.budgetExclHst,
+      COMPLEX_GROSS_MARGIN,
+    );
+    enriched.priceType = "budget-with-margin";
+    enriched.marginAppliedPct = Math.round(COMPLEX_GROSS_MARGIN * 100);
+  }
+  return enriched;
+}
+
+function enrichAllAnchors(anchors) {
+  return anchors.map(enrichAnchorPricing);
+}
 
 async function pave(query) {
   const res = await fetch(PAVE_URL, {
@@ -393,11 +428,12 @@ function buildServiceSections(byService, blogReference) {
     anchorJobs: ["604", "565"],
   };
   sections.multiUnit.recommended = {
-    floor: 350000,
-    ceiling: 650000,
+    floor: sellFromDirectCost(629000, COMPLEX_GROSS_MARGIN) - 100000,
+    ceiling: sellFromDirectCost(629000, COMPLEX_GROSS_MARGIN) + 150000,
     confidence: "low",
     anchorJobs: ["593"],
-    note: "Triplex interpolated — no sold triplex JobTread job",
+    note: "Triplex interpolated — Winchester #593 cost uplifted to client sell price",
+    pricingModel: PRICING_MODEL_META,
   };
 
   return sections;
@@ -415,7 +451,8 @@ async function main() {
       source: "documented-anchors-fallback",
       notes:
         "Recalibrated from documented JobTread anchors. Ranges in pricing-estimator.json exclude HST unless noted.",
-      anchorJobs: DOCUMENTED_ANCHORS,
+      pricingModel: PRICING_MODEL_META,
+      anchorJobs: enrichAllAnchors(DOCUMENTED_ANCHORS),
       services: buildServiceSections({}, blogFallback.blogReference),
     };
     fs.writeFileSync(OUT, JSON.stringify(calibration, null, 2));
@@ -464,12 +501,15 @@ async function main() {
     byService[entry.service].push(entry);
   }
 
-  const anchorJobs = mergeAnchorFromApi(apiAnchors, DOCUMENTED_ANCHORS);
+  const anchorJobs = enrichAllAnchors(
+    mergeAnchorFromApi(apiAnchors, DOCUMENTED_ANCHORS),
+  );
   const calibration = {
     generatedAt: new Date().toISOString(),
     source: "jobtread",
     notes:
       "Recalibrated from JobTread approved proposals/budgets. Ranges in pricing-estimator.json exclude HST unless noted.",
+    pricingModel: PRICING_MODEL_META,
     jobsAnalyzed: byJob.size,
     anchorJobs,
     services: buildServiceSections(byService, blogFallback.blogReference),

@@ -1,5 +1,6 @@
 ---
 import pricingData from '../../data/pricing-estimator.json';
+import site from '../../data/site.json';
 import EstimateSummary from './EstimateSummary.astro';
 import { cardImageHtml } from '../../lib/estimator-images';
 
@@ -17,6 +18,7 @@ const { types, finishes, meta } = pricingData;
   class:list={['estimator-widget', { 'estimator-compact': compact }]}
   data-preset-type={presetType}
   data-pricing={JSON.stringify(pricingData)}
+  data-phone={site.phone}
 >
   {showHero && (
     <div class="text-center mb-4">
@@ -43,18 +45,18 @@ const { types, finishes, meta } = pricingData;
       <div class="step-badge bg-danger text-white" data-step-num="1">1</div>
       <h2 class="h5 fw-bold mb-0">What are you renovating?</h2>
     </div>
-    <div class="row g-3">
-      {types.map(t => (
-        <div class="col-6 col-sm-4 col-md-auto flex-grow-1">
+    <div class="row g-2 g-md-3 estimator-type-grid">
+      {types.map((t, i) => (
+        <div class="col-6 col-lg-3">
           <label
-            class="estimator-card card border shadow-sm text-center p-3 h-100 w-100 d-flex flex-column align-items-center justify-content-center"
+            class="estimator-card estimator-card--type card border shadow-sm text-center w-100"
             data-group="type"
             data-value={t.value}
             data-model={t.model}
           >
             <input type="radio" name="renotype" value={t.value} class="d-none" />
-            <Fragment set:html={cardImageHtml(t, t.icon)} />
-            <div class="fw-semibold small">{t.label}</div>
+            <Fragment set:html={cardImageHtml(t, t.icon, 'estimator-card-img', i < 4 ? 'eager' : 'eager')} />
+            <div class="estimator-card-label fw-semibold small">{t.label}</div>
           </label>
         </div>
       ))}
@@ -67,7 +69,7 @@ const { types, finishes, meta } = pricingData;
       <div class="step-badge bg-secondary text-white" data-step-num="2">2</div>
       <h2 class="h5 fw-bold mb-0">What's the scope?</h2>
     </div>
-    <div class="row g-3" id="scopeCards"></div>
+    <div class="row g-2 g-md-3" id="scopeCards"></div>
     <div id="scopeExplainer" class="alert alert-light border small mt-3 d-none"></div>
   </div>
 
@@ -77,7 +79,10 @@ const { types, finishes, meta } = pricingData;
       <div class="step-badge bg-secondary text-white" data-step-num="2b">2</div>
       <h2 class="h5 fw-bold mb-0" id="sizeStepTitle">How big is the space?</h2>
     </div>
-    <div class="row g-3" id="sizeCards"></div>
+    <div class="row g-2 g-md-3" id="sizeCards"></div>
+    <div id="sizePrompt" class="alert alert-info border small py-2 px-3 mt-3 d-none" role="status">
+      <i class="fas fa-arrow-up me-1"></i> Select a size above to update your estimate.
+    </div>
   </div>
 
   <!-- Step 3: Finish -->
@@ -86,10 +91,10 @@ const { types, finishes, meta } = pricingData;
       <div class="step-badge bg-secondary text-white" data-step-num="3">3</div>
       <h2 class="h5 fw-bold mb-0">What finish level?</h2>
     </div>
-    <div class="row g-3">
+    <div class="row g-2 g-md-3">
       {finishes.map(f => (
-        <div class="col-12 col-md-4">
-          <label class="estimator-card card border shadow-sm p-4 h-100 w-100" data-group="finish" data-value={f.value}>
+        <div class="col-6 col-md-4">
+          <label class="estimator-card estimator-card--finish card border shadow-sm h-100 w-100" data-group="finish" data-value={f.value}>
             <input type="radio" name="renofinish" value={f.value} class="d-none" />
             <div class="d-flex align-items-start">
               <i class={`fas fa-circle me-2 mt-1 ${f.iconClass}`}></i>
@@ -118,6 +123,11 @@ const { types, finishes, meta } = pricingData;
     <EstimateSummary mode="widget" />
   </div>
 
+  <div id="estimateIncomplete" class="alert alert-light border text-secondary small d-none mb-4" role="status">
+    <i class="fas fa-info-circle me-1 text-danger"></i>
+    <span id="estimateIncompleteText">Complete the steps above to see your price range.</span>
+  </div>
+
   <div class="alert alert-light border small text-secondary">
     <i class="fas fa-shield-alt me-2 text-danger"></i>
     <strong>You're in control.</strong> These ranges educate buyers without locking you into a quote.
@@ -133,21 +143,107 @@ const { types, finishes, meta } = pricingData;
     justify-content: center; font-size: 0.85rem; font-weight: 700; margin-right: 0.75rem; flex-shrink: 0;
   }
   .estimator-step.is-locked { opacity: 0.35; pointer-events: none; }
-  .estimator-card { cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease; border-color: #dee2e6 !important; }
-  .estimator-card.selected { border-color: #dc3545 !important; box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2) !important; }
-  .estimator-card.selected i.text-secondary { color: #dc3545 !important; }
-  .estimator-card-img {
-    width: 100%; max-height: 120px; object-fit: cover; border-radius: 6px;
-    margin-bottom: 0.5rem;
+
+  .estimator-card {
+    cursor: pointer;
+    border-color: #dee2e6 !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
-  .estimator-card-icon { margin-bottom: 0.5rem !important; }
-  .addon-card { cursor: pointer; transition: all 0.15s ease; }
-  .addon-card.selected { border-color: #dc3545 !important; background: rgba(220, 53, 69, 0.04); }
+  .estimator-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(220, 53, 69, 0.35) !important;
+  }
+  .estimator-card:active { transform: translateY(0) scale(0.98); }
+  :global(.estimator-card.selected) {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.22), 0 8px 20px rgba(220, 53, 69, 0.12) !important;
+    transform: translateY(-1px);
+  }
+  :global(.estimator-card.selected i.text-secondary) { color: #dc3545 !important; }
+
+  .estimator-card--type {
+    padding: 0.35rem 0.35rem 0.5rem;
+    overflow: hidden;
+  }
+  .estimator-type-grid { max-width: 100%; }
+  .estimator-card-label { line-height: 1.2; padding: 0 0.15rem; }
+
+  :global(.estimator-card-img) {
+    display: block;
+    width: 100%;
+    height: 72px;
+    max-height: 72px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 0.35rem;
+  }
+  .estimator-card--scope :global(.estimator-card-img),
+  .estimator-card--size :global(.estimator-card-img) {
+    height: 64px;
+    max-height: 64px;
+  }
+  .estimator-card-icon { margin: 0.25rem 0 0.35rem !important; }
+
+  .estimator-card--scope,
+  .estimator-card--size,
+  .estimator-card--finish { padding: 0.75rem 1rem; }
+
+  .addon-card {
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .addon-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+    border-color: rgba(220, 53, 69, 0.3) !important;
+  }
+  .addon-card:active { transform: scale(0.99); }
+  :global(.addon-card.selected) {
+    border-color: #dc3545 !important;
+    background: rgba(220, 53, 69, 0.04);
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.15) !important;
+  }
   .addon-check {
     width: 22px; height: 22px; border: 2px solid #dee2e6; border-radius: 4px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;
   }
-  .addon-card.selected .addon-check { background: #dc3545; border-color: #dc3545; color: white; }
+  :global(.addon-card.selected .addon-check) { background: #dc3545; border-color: #dc3545; color: white; }
+
+  .estimator-widget :global(.btn-estimator-cta) {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+  }
+  .estimator-widget :global(.btn-estimator-cta:hover) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.25);
+  }
+  .estimator-widget :global(.btn-estimator-cta:active) {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2);
+  }
+  .estimator-widget :global(.btn-estimator-secondary:hover) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .estimator-widget :global(.btn-estimator-secondary:active) {
+    transform: scale(0.98);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .estimator-card,
+    .addon-card,
+    .estimator-widget :global(.btn-estimator-cta),
+    .estimator-widget :global(.btn-estimator-secondary),
+    .estimator-progress-bar {
+      transition: none !important;
+    }
+    .estimator-card:hover,
+    :global(.estimator-card.selected),
+    .addon-card:hover {
+      transform: none !important;
+    }
+  }
+
   .estimator-compact .display-6 { font-size: 1.75rem; }
 </style>
 
@@ -190,13 +286,44 @@ const { types, finishes, meta } = pricingData;
       return scopes.find((s: { value: string }) => s.value === value)?.label || value;
     }
 
-    function cardImageMarkup(option: { image?: string; imageAlt?: string; label?: string; icon?: string }, fallbackIcon = 'fas fa-image') {
+    function cardImageMarkup(option: { image?: string; imageAlt?: string; label?: string; icon?: string }, fallbackIcon = 'fas fa-image', eager = false) {
       const icon = option?.icon || fallbackIcon;
       const alt = option?.imageAlt || option?.label || 'Project option';
       if (option?.image) {
-        return `<img class="estimator-card-img" src="${option.image}" alt="${alt.replace(/"/g, '&quot;')}" loading="lazy" width="800" height="450" />`;
+        return `<img class="estimator-card-img" src="${option.image}" alt="${alt.replace(/"/g, '&quot;')}" loading="${eager ? 'eager' : 'lazy'}" decoding="async" width="400" height="225" />`;
       }
-      return `<i class="${icon} fa-2x mb-2 text-secondary estimator-card-icon"></i>`;
+      return `<i class="${icon} fa-lg text-secondary estimator-card-icon"></i>`;
+    }
+
+    function defaultSizeValue(type: string) {
+      const sizes = data.sizes[type] || [];
+      if (!sizes.length) return null;
+      const preferred = ['medium', 'standard', 'main', '3-unit', '2-unit'];
+      for (const p of preferred) {
+        const match = sizes.find((s: { value: string }) => s.value === p);
+        if (match) return match.value;
+      }
+      return sizes[Math.min(1, sizes.length - 1)].value;
+    }
+
+    function hideIncomplete() {
+      root.querySelector('#estimateIncomplete')?.classList.add('d-none');
+      root.querySelector('#sizePrompt')?.classList.add('d-none');
+    }
+
+    function showIncomplete(message: string) {
+      const el = root.querySelector('#estimateIncomplete') as HTMLElement;
+      const text = root.querySelector('#estimateIncompleteText') as HTMLElement;
+      root.querySelector('#estimateResult')?.classList.add('d-none');
+      if (el && text) {
+        text.textContent = message;
+        el.classList.remove('d-none');
+      }
+    }
+
+    function clearResult() {
+      root.querySelector('#estimateResult')?.classList.add('d-none');
+      hideIncomplete();
     }
 
     function sizeStepTitle() {
@@ -227,6 +354,27 @@ const { types, finishes, meta } = pricingData;
       if (bar) bar.style.width = pct + '%';
     }
 
+    function updateStepBadges() {
+      const visibleSteps: HTMLElement[] = [];
+      const step1 = root.querySelector('[data-step="1"]') as HTMLElement;
+      if (step1) visibleSteps.push(step1);
+
+      const scopeStep = root.querySelector('#stepScope') as HTMLElement;
+      if (selected.model === 'scope' && scopeStep && !scopeStep.classList.contains('d-none')) {
+        visibleSteps.push(scopeStep);
+      }
+
+      for (const id of ['#stepSize', '#stepFinish', '#stepAddons']) {
+        const step = root.querySelector(id) as HTMLElement;
+        if (step) visibleSteps.push(step);
+      }
+
+      visibleSteps.forEach((step, index) => {
+        const badge = step.querySelector('.step-badge');
+        if (badge) badge.textContent = String(index + 1);
+      });
+    }
+
     function unlockStep(id: string) {
       const step = root.querySelector(id) as HTMLElement;
       if (!step) return;
@@ -253,11 +401,11 @@ const { types, finishes, meta } = pricingData;
       const scopes = data.scopes?.[selected.type] || [];
       const typeIcon = typeInfo(selected.type)?.icon || 'fas fa-image';
       container.innerHTML = scopes.map((s: { value: string; label: string; desc: string; image?: string; imageAlt?: string }) => `
-        <div class="col-12 col-md-4">
-          <label class="estimator-card card border shadow-sm p-4 h-100 w-100" data-group="scope" data-value="${s.value}">
+        <div class="col-6 col-md-4">
+          <label class="estimator-card estimator-card--scope card border shadow-sm h-100 w-100" data-group="scope" data-value="${s.value}">
             <input type="radio" name="renoscope" value="${s.value}" class="d-none" />
             ${cardImageMarkup(s, typeIcon)}
-            <div class="fw-bold">${s.label}</div>
+            <div class="fw-bold small">${s.label}</div>
             <div class="text-secondary small">${s.desc}</div>
           </label>
         </div>
@@ -276,8 +424,9 @@ const { types, finishes, meta } = pricingData;
           lockStep('#stepFinish');
           lockStep('#stepAddons');
           showScopeExplainer(value, explainer);
-          renderSizeCards();
+          renderSizeCards(true);
           unlockStep('#stepSize');
+          updateStepBadges();
           setProgress(45);
           updateResult();
         });
@@ -294,7 +443,19 @@ const { types, finishes, meta } = pricingData;
       `;
     }
 
-    function renderSizeCards() {
+    function selectSizeCard(value: string) {
+      const container = root.querySelector('#sizeCards');
+      if (!container) return;
+      const card = container.querySelector(`[data-group="size"][data-value="${value}"]`) as HTMLElement;
+      if (!card) return;
+      container.querySelectorAll('[data-group="size"]').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selected.size = value;
+      unlockStep('#stepFinish');
+      root.querySelector('#sizePrompt')?.classList.add('d-none');
+    }
+
+    function renderSizeCards(autoSelectDefault = false) {
       const container = root.querySelector('#sizeCards');
       const title = root.querySelector('#sizeStepTitle');
       if (!container || !selected.type) return;
@@ -304,29 +465,31 @@ const { types, finishes, meta } = pricingData;
 
       const typeIcon = typeInfo(selected.type)?.icon || 'fas fa-image';
       container.innerHTML = sizes.map((s: { value: string; label: string; desc: string; image?: string; imageAlt?: string }) => `
-        <div class="col-12 col-md-4">
-          <label class="estimator-card card border shadow-sm p-4 h-100 w-100 d-flex flex-column" data-group="size" data-value="${s.value}">
+        <div class="col-6 col-md-4">
+          <label class="estimator-card estimator-card--size card border shadow-sm h-100 w-100" data-group="size" data-value="${s.value}">
             <input type="radio" name="renosize" value="${s.value}" class="d-none" />
             ${s.image ? cardImageMarkup(s, typeIcon) : ''}
-            <div>
-              <div class="fw-bold">${s.label}</div>
-              <div class="text-secondary small">${s.desc}</div>
-            </div>
+            <div class="fw-bold small">${s.label}</div>
+            <div class="text-secondary small">${s.desc}</div>
           </label>
         </div>
       `).join('');
 
       container.querySelectorAll('[data-group="size"]').forEach(card => {
         card.addEventListener('click', () => {
-          const el = card as HTMLElement;
-          container.querySelectorAll('[data-group="size"]').forEach(c => c.classList.remove('selected'));
-          el.classList.add('selected');
-          selected.size = el.dataset.value!;
-          unlockStep('#stepFinish');
+          selectSizeCard((card as HTMLElement).dataset.value!);
           setProgress(selected.model === 'scope' ? 60 : 55);
           updateResult();
         });
       });
+
+      if (autoSelectDefault) {
+        const def = defaultSizeValue(selected.type);
+        if (def) {
+          selectSizeCard(def);
+          setProgress(selected.model === 'scope' ? 60 : 55);
+        }
+      }
     }
 
     function getBaseRange() {
@@ -371,8 +534,8 @@ const { types, finishes, meta } = pricingData;
 
       list.innerHTML = addons.map((a: { id: string; label: string; desc: string }) => `
         <div class="col-12 col-md-6">
-          <div class="addon-card card border shadow-sm p-3 h-100 d-flex flex-row align-items-start gap-3${selectedAddons.has(a.id) ? ' selected' : ''}" data-addon="${a.id}">
-            <div class="addon-check flex-shrink-0 mt-1">${selectedAddons.has(a.id) ? '<i class="fas fa-check fa-xs"></i>' : ''}</div>
+          <div class="addon-card card border shadow-sm p-3 h-100 d-flex flex-row align-items-start gap-3${selectedAddons.has(a.id) ? ' selected' : ''}" data-addon="${a.id}" role="checkbox" aria-checked="${selectedAddons.has(a.id) ? 'true' : 'false'}" tabindex="0" aria-label="${a.label}: ${a.desc}">
+            <div class="addon-check flex-shrink-0 mt-1" aria-hidden="true">${selectedAddons.has(a.id) ? '<i class="fas fa-check fa-xs"></i>' : ''}</div>
             <div>
               <div class="fw-semibold">${a.label}</div>
               <div class="text-secondary small">${a.desc}</div>
@@ -382,12 +545,19 @@ const { types, finishes, meta } = pricingData;
       `).join('');
 
       list.querySelectorAll('[data-addon]').forEach(el => {
-        el.addEventListener('click', () => {
+        const toggle = () => {
           const id = (el as HTMLElement).dataset.addon!;
           if (selectedAddons.has(id)) selectedAddons.delete(id);
           else selectedAddons.add(id);
           renderAddons();
           updateResult();
+        };
+        el.addEventListener('click', toggle);
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
         });
       });
     }
@@ -515,9 +685,11 @@ const { types, finishes, meta } = pricingData;
       };
     }
 
-    async function saveEstimate(email?: string): Promise<string | null> {
+    async function saveEstimate(email?: string): Promise<{ id: string | null; emailSent: boolean }> {
       const calc = calculate();
-      if (!calc || !selected.type || !selected.size || !selected.finish) return null;
+      if (!calc || !selected.type || !selected.size || !selected.finish) {
+        return { id: null, emailSent: false };
+      }
 
       const payload = buildEstimatePayload(calc);
       if (email) payload.email = email;
@@ -528,8 +700,8 @@ const { types, finishes, meta } = pricingData;
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        if (!res.ok) return null;
-        const json = await res.json() as { id?: string; url?: string };
+        if (!res.ok) return { id: null, emailSent: false };
+        const json = await res.json() as { id?: string; url?: string; emailSent?: boolean };
         if (json.id) {
           sessionStorage.setItem('mtc-estimate-id', json.id);
           const summary = [
@@ -541,9 +713,9 @@ const { types, finishes, meta } = pricingData;
           ].filter(Boolean).join('\n');
           sessionStorage.setItem('mtc-estimate-summary', summary);
         }
-        return json.id || null;
+        return { id: json.id || null, emailSent: Boolean(json.emailSent) };
       } catch {
-        return null;
+        return { id: null, emailSent: false };
       }
     }
 
@@ -571,8 +743,31 @@ const { types, finishes, meta } = pricingData;
     function updateResult() {
       const calc = calculate();
       const resultEl = root.querySelector('#estimateResult');
-      if (!calc || !selected.type || !selected.size || !selected.finish || !resultEl) {
-        resultEl?.classList.add('d-none');
+
+      if (!selected.type) {
+        clearResult();
+        return;
+      }
+
+      if (!selected.size) {
+        clearResult();
+        if (selected.type) {
+          root.querySelector('#sizePrompt')?.classList.remove('d-none');
+          showIncomplete('Select a size above to see your price range.');
+        }
+        return;
+      }
+
+      if (!selected.finish) {
+        clearResult();
+        showIncomplete('Choose a finish level to calculate your estimate.');
+        return;
+      }
+
+      hideIncomplete();
+
+      if (!calc || !resultEl) {
+        clearResult();
         return;
       }
 
@@ -586,7 +781,12 @@ const { types, finishes, meta } = pricingData;
       const hstEl = root.querySelector('#resultHst');
 
       if (hstEl) hstEl.textContent = data.meta.hstNote;
-      if (disclaimer) disclaimer.textContent = `This is a ballpark range for ${data.meta.market} projects — not a fixed quote.`;
+      const pricingNote = root.querySelector('#resultPricingBasis') as HTMLElement;
+      if (pricingNote && data.meta.pricingModel?.sellPriceNote) {
+        pricingNote.textContent = data.meta.pricingModel.sellPriceNote;
+        pricingNote.classList.remove('d-none');
+      }
+      if (disclaimer) disclaimer.textContent = `This is a ballpark client price range for ${data.meta.market} projects — not a fixed quote.`;
       if (contingency) contingency.textContent = data.meta.contingencyNote;
 
       const softNote = root.querySelector('#softCeilingNote') as HTMLElement;
@@ -597,6 +797,11 @@ const { types, finishes, meta } = pricingData;
       const labelParts = [typeLabel(selected.type)];
       if (selected.scope) labelParts.push(scopeLabel(selected.scope));
       labelParts.push(sizeLabel(selected.size), FINISH_LABELS[selected.finish!]);
+      const addonLabels = [...selectedAddons].map(id => {
+        const a = (data.addons[selected.type!] || []).find((x: { id: string }) => x.id === id);
+        return a?.label;
+      }).filter(Boolean) as string[];
+      if (addonLabels.length) labelParts.push(`+ ${addonLabels.join(', ')}`);
       if (labelEl) labelEl.textContent = labelParts.join(' · ');
 
       if (tbody) {
@@ -652,16 +857,18 @@ const { types, finishes, meta } = pricingData;
           unlockStep('#stepScope');
           lockStep('#stepSize');
           setProgress(30);
+          showIncomplete('Choose a scope, then confirm size and finish.');
         } else {
           scopeStep?.classList.add('d-none');
           if (lbl2) lbl2.textContent = selected.model === 'room' ? 'Room' : 'Size';
-          renderSizeCards();
+          renderSizeCards(true);
           unlockStep('#stepSize');
           setProgress(40);
+          updateResult();
         }
 
         renderAddons();
-        root.querySelector('#estimateResult')?.classList.add('d-none');
+        updateStepBadges();
       });
     });
 
@@ -681,7 +888,7 @@ const { types, finishes, meta } = pricingData;
       const btn = root.querySelector('#ctaQuote') as HTMLButtonElement;
       btn.disabled = true;
       btn.textContent = 'Saving...';
-      const id = await saveEstimate();
+      const { id } = await saveEstimate();
       if (id) {
         window.location.href = `/newleadintake/?estimate=${id}`;
       } else {
@@ -703,12 +910,17 @@ const { types, finishes, meta } = pricingData;
       }
       btn.disabled = true;
       btn.textContent = 'Saving...';
-      const id = await saveEstimate(email);
+      const { id, emailSent } = await saveEstimate(email);
       if (id) {
         status.classList.remove('d-none');
-        status.className = 'small mt-2 text-success';
-        status.innerHTML = `Saved! <a href="/estimate/s/${id}/">View your estimate</a> — check your inbox.`;
-        setTimeout(() => { window.location.href = `/estimate/s/${id}/`; }, 1200);
+        if (emailSent) {
+          status.className = 'small mt-2 text-success';
+          status.innerHTML = `Saved! <a href="/estimate/s/${id}/">View your estimate</a> — check your inbox.`;
+        } else {
+          status.className = 'small mt-2 text-warning';
+          status.innerHTML = `Estimate saved. <a href="/estimate/s/${id}/">View it here</a> — email delivery is temporarily unavailable, so save the link or call us at ${root.dataset.phone || '647-560-1095'}.`;
+        }
+        setTimeout(() => { window.location.href = `/estimate/s/${id}/`; }, emailSent ? 1200 : 2500);
       } else {
         status.classList.remove('d-none');
         status.className = 'small mt-2 text-danger';
@@ -733,9 +945,14 @@ const { types, finishes, meta } = pricingData;
       root.querySelector('#scopeCards')!.innerHTML = '';
       root.querySelector('#addonList')!.innerHTML = '';
       root.querySelector('#estimateResult')?.classList.add('d-none');
+      root.querySelector('#estimateIncomplete')?.classList.add('d-none');
+      root.querySelector('#sizePrompt')?.classList.add('d-none');
       setProgress(20);
+      updateStepBadges();
       window.scrollTo({ top: root.offsetTop - 80, behavior: 'smooth' });
     });
+
+    updateStepBadges();
 
     if (presetType) {
       const card = root.querySelector(`.estimator-card[data-group="type"][data-value="${presetType}"]`) as HTMLElement;

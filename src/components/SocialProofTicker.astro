@@ -56,7 +56,7 @@ import socialProof from '../data/social-proof.json';
       if (dismissed) return;
 
       const entry = entries[index % entries.length];
-      tickerText.textContent = `${entry.name} from ${entry.city} ${entry.action} — ${entry.timeAgo}`;
+      tickerText.textContent = `Google review · ${entry.name} from ${entry.city} ${entry.action} — ${entry.timeAgo}`;
 
       ticker.style.display = 'flex';
       ticker.classList.remove('hide');

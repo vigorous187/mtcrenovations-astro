@@ -1,167 +1,141 @@
 /**
- * Copy portfolio photos into public/assets/img/.../estimator/ when sources exist.
- * Falls back to SVG placeholders so wizard cards never 404.
+ * Copy MTC portfolio photos from public/assets/img/.../our-work/ into estimator cards.
+ * Resizes to ~800px wide JPEG for fast loading.
  *
  * Run: node scripts/prepare-estimator-images.mjs
  */
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 
 const ROOT = process.cwd();
-const PRICING = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "src/data/pricing-estimator.json"), "utf8"),
-);
-const PORTFOLIO = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "src/data/portfolio.json"), "utf8"),
-);
+const PRICING_PATH = path.join(ROOT, "src/data/pricing-estimator.json");
 
-const IMAGE_MAP = {
-  "/assets/img/basement/estimator/basement.jpg": pickPortfolio(
-    "basement",
-    "Rosedene",
-  ),
-  "/assets/img/basement/estimator/basic-finish.jpg": pickPortfolio(
-    "basement",
-    "Rosedene",
-  ),
-  "/assets/img/basement/estimator/full-renovation.jpg": pickPortfolio(
-    "basement",
-    "Winchester",
-  ),
-  "/assets/img/basement/estimator/legal-suite.jpg": pickPortfolio(
-    "basement",
-    "Winchester",
-  ),
-  "/assets/img/bathroom/estimator/bathroom.jpg": pickPortfolio("bathroom"),
-  "/assets/img/kitchen/estimator/kitchen.jpg": pickPortfolio(
-    "kitchen",
-    "Gateshead",
-  ),
-  "/assets/img/flooring/estimator/flooring.jpg": pickPortfolio("flooring"),
-  "/assets/img/painting/estimator/painting.jpg": null,
-  "/assets/img/garden-suite-adu/estimator/garden-suite-adu.jpg": pickPortfolio(
-    "kitchen",
-    "Queensdale",
-  ),
-  "/assets/img/garden-suite-adu/estimator/standalone-adu.jpg": pickPortfolio(
-    "kitchen",
-    "Queensdale",
-  ),
-  "/assets/img/garden-suite-adu/estimator/garage-conversion.jpg": pickPortfolio(
-    "basement",
-    "Rosedene",
-  ),
-  "/assets/img/garden-suite-adu/estimator/large-adu.jpg": pickPortfolio(
-    "kitchen",
-    "Queensdale",
-  ),
-  "/assets/img/multi-unit/estimator/multi-unit.jpg": pickPortfolio(
-    "kitchen",
-    "Winchester",
-  ),
-  "/assets/img/multi-unit/estimator/duplex-renovation.jpg": pickPortfolio(
-    "kitchen",
-    "Winchester",
-  ),
-  "/assets/img/multi-unit/estimator/duplex-to-triplex.jpg": pickPortfolio(
-    "basement",
-    "Winchester",
-  ),
-  "/assets/img/multi-unit/estimator/duplex-to-fourplex.jpg": pickPortfolio(
-    "kitchen",
-    "Winchester",
-  ),
-  "/assets/img/multi-unit/estimator/triplex-to-fourplex.jpg": pickPortfolio(
-    "basement",
-    "Winchester",
-  ),
+/** Center-crop portrait site photos to match ~3:2 landscape estimator cards (800×533). */
+const LANDSCAPE_CARD_CROP = {
+  height: 800,
+  width: 1200,
+  offsetY: 666,
+  offsetX: 0,
 };
 
-function pickPortfolio(section, project) {
-  const items = PORTFOLIO[section] || PORTFOLIO.photos || [];
-  const list = Array.isArray(items) ? items : [];
-  const match =
-    list.find((p) => project && p.project === project) ||
-    list.find((p) => p.project === "Winchester") ||
-    list[0];
-  return match?.source_path || null;
-}
+/** Job #604 — 171 East 24th completed 2-story ADU (3762×6688 source). */
+const EAST_24TH_ADU_CROP = {
+  height: 2508,
+  width: 3762,
+  offsetY: 2090,
+  offsetX: 0,
+};
 
-function collectJsonImagePaths() {
-  const paths = new Set(Object.keys(IMAGE_MAP));
-  for (const t of PRICING.types || []) {
-    if (t.image) paths.add(t.image);
+/** dest path (under public/) → source file relative to public/ */
+const IMAGE_SOURCES = {
+  "assets/img/basement/estimator/basement.jpg":
+    "assets/img/basement/our-work/virtual-tour-333305-mls-high-res-image-38.jpg",
+  "assets/img/basement/estimator/basic-finish.jpg":
+    "assets/img/basement/our-work/virtual-tour-327738-48.jpg",
+  "assets/img/basement/estimator/full-renovation.jpg":
+    "assets/img/basement/our-work/virtual-tour-320787-50.BNAiWU5q.jpg",
+  "assets/img/basement/estimator/legal-suite.jpg":
+    "assets/img/basement/our-work/virtual-tour-320787-51.C9WVz6l6.jpg",
+  "assets/img/bathroom/estimator/bathroom.jpg":
+    "assets/img/bathroom/our-work/virtual-tour-348484-52.jpg",
+  "assets/img/kitchen/estimator/kitchen.jpg":
+    "assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-12.jpg",
+  "assets/img/flooring/estimator/flooring.jpg":
+    "assets/img/flooring/our-work/virtual-tour-348484-02.jpg",
+  "assets/img/painting/estimator/painting.jpg":
+    "assets/img/painting/our-work/virtual-tour-333305-mls-high-res-image-17.jpg",
+  "assets/img/garden-suite-adu/estimator/garden-suite-adu.jpg":
+    "assets/img/home/virtual-tour-348484-62.jpg",
+  "assets/img/garden-suite-adu/estimator/standalone-adu.jpg":
+    "assets/img/kitchen/our-work/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-07.jpg",
+  "assets/img/garden-suite-adu/estimator/garage-conversion.jpg":
+    "assets/img/basement/our-work/virtual-tour-327738-49.Bfv60reJ.jpg",
+  "assets/img/garden-suite-adu/estimator/large-adu.jpg":
+    "assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-6.jpg",
+  "assets/img/multi-unit/estimator/multi-unit.jpg":
+    "assets/img/multi-unit/our-work/virtual-tour-348484-57.jpg",
+  "assets/img/multi-unit/estimator/duplex-renovation.jpg":
+    "assets/img/kitchen/our-work/virtual-tour-320787-09.GSCtWwlt.jpg",
+  "assets/img/multi-unit/estimator/duplex-to-triplex.jpg":
+    "assets/img/basement/our-work/virtual-tour-320787-46.CPMwhOM3.jpg",
+  "assets/img/multi-unit/estimator/duplex-to-fourplex.jpg":
+    "assets/img/kitchen/our-work/virtual-tour-320787-08.C0A0lxf-.jpg",
+  "assets/img/multi-unit/estimator/triplex-to-fourplex.jpg":
+    "assets/img/basement/our-work/virtual-tour-320787-50.BNAiWU5q.jpg",
+};
+
+function resolveSource(relPath) {
+  const candidates = [
+    path.join(ROOT, "public", relPath),
+    path.join(ROOT, "public", relPath.replace(/\.jpg$/i, ".JPG")),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
   }
-  for (const scopes of Object.values(PRICING.scopes || {})) {
-    for (const s of scopes) {
-      if (s.image) paths.add(s.image);
-    }
-  }
-  return [...paths];
-}
-
-function placeholderSvg(label) {
-  const text = label
-    .replace(/\.[^.]+$/, "")
-    .replace(/.*\//, "")
-    .replace(/-/g, " ");
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f8f9fa"/>
-      <stop offset="100%" stop-color="#dee2e6"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="450" fill="url(#g)"/>
-  <rect x="40" y="40" width="720" height="370" rx="12" fill="#fff" stroke="#ced4da"/>
-  <text x="400" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#6c757d">${text}</text>
-</svg>`;
-}
-
-function ensureImage(webPath, sourcePath) {
-  const rel = webPath.replace(/^\//, "");
-  const dest = path.join(ROOT, "public", rel);
-  fs.mkdirSync(path.dirname(dest), { recursive: true });
-
-  if (sourcePath && fs.existsSync(sourcePath)) {
-    fs.copyFileSync(sourcePath, dest);
-    console.log(`copied ${path.basename(dest)}`);
-    return;
-  }
-
-  const svgDest = dest.replace(/\.(jpg|jpeg|webp)$/i, ".svg");
-  if (!fs.existsSync(svgDest)) {
-    fs.writeFileSync(svgDest, placeholderSvg(path.basename(dest)));
-    console.log(`placeholder ${path.basename(svgDest)}`);
-  }
-
-  // Point JSON paths at SVG when JPG missing — patch pricing JSON once
-  if (dest.endsWith(".jpg") && fs.existsSync(svgDest) && !fs.existsSync(dest)) {
-    return svgDest.replace(path.join(ROOT, "public"), "");
+  const dir = path.dirname(path.join(ROOT, "public", relPath));
+  const base = path.basename(relPath, path.extname(relPath));
+  if (fs.existsSync(dir)) {
+    const match = fs
+      .readdirSync(dir)
+      .find((f) => f.replace(/\.[^.]+$/, "") === base || f.startsWith(base));
+    if (match) return path.join(dir, match);
   }
   return null;
 }
 
-const svgReplacements = new Map();
-for (const webPath of collectJsonImagePaths()) {
-  const source = IMAGE_MAP[webPath] ?? null;
-  const alt = ensureImage(webPath, source);
-  if (alt) svgReplacements.set(webPath, alt);
-}
-
-if (svgReplacements.size) {
-  let raw = fs.readFileSync(
-    path.join(ROOT, "src/data/pricing-estimator.json"),
-    "utf8",
-  );
-  for (const [jpg, svg] of svgReplacements) {
-    raw = raw.replaceAll(jpg, svg);
+function optimizeJpeg(src, dest, crop) {
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  const tmp = crop
+    ? path.join(path.dirname(dest), `.tmp-${path.basename(dest)}`)
+    : null;
+  try {
+    if (crop && tmp) {
+      fs.copyFileSync(src, tmp);
+      execSync(
+        `sips --cropToHeightWidth ${crop.height} ${crop.width} --cropOffset ${crop.offsetY} ${crop.offsetX} "${tmp}" >/dev/null 2>&1`,
+        { stdio: "pipe" },
+      );
+      execSync(
+        `sips -s format jpeg -Z 800 "${tmp}" --out "${dest}" >/dev/null 2>&1`,
+        { stdio: "pipe" },
+      );
+      fs.unlinkSync(tmp);
+      return true;
+    }
+    execSync(
+      `sips -s format jpeg -Z 800 "${src}" --out "${dest}" >/dev/null 2>&1`,
+      { stdio: "pipe" },
+    );
+    return true;
+  } catch {
+    if (tmp && fs.existsSync(tmp)) fs.unlinkSync(tmp);
+    fs.copyFileSync(src, dest);
+    return true;
   }
-  fs.writeFileSync(path.join(ROOT, "src/data/pricing-estimator.json"), raw);
-  console.log(
-    `Updated ${svgReplacements.size} image paths to SVG placeholders`,
-  );
 }
 
-console.log("Estimator images ready.");
+const pathReplacements = new Map();
+
+for (const [destRel, entry] of Object.entries(IMAGE_SOURCES)) {
+  const srcRel = typeof entry === "string" ? entry : entry.src;
+  const crop = typeof entry === "string" ? null : (entry.crop ?? null);
+  const src = resolveSource(srcRel);
+  const dest = path.join(ROOT, "public", destRel);
+  if (!src) {
+    console.warn(`skip (missing source): ${srcRel}`);
+    continue;
+  }
+  optimizeJpeg(src, dest, crop);
+  const webPath = `/${destRel}`;
+  pathReplacements.set(webPath.replace(".jpg", ".svg"), webPath);
+  pathReplacements.set(webPath, webPath);
+  console.log(`→ ${destRel}`);
+}
+
+let pricingRaw = fs.readFileSync(PRICING_PATH, "utf8");
+for (const [from, to] of pathReplacements) {
+  if (from !== to) pricingRaw = pricingRaw.replaceAll(from, to);
+}
+fs.writeFileSync(PRICING_PATH, pricingRaw);
+console.log("pricing-estimator.json image paths updated.");
