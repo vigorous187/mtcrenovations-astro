@@ -75,14 +75,26 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     let emailSent = false;
+    let emailError: string | undefined;
     if (estimate.email) {
-      emailSent = await sendEstimateEmail(estimate, estimate.email, env);
+      const emailResult = await sendEstimateEmail(
+        estimate,
+        estimate.email,
+        env,
+      );
+      emailSent = emailResult.ok;
+      if (!emailResult.ok) {
+        emailError = emailResult.detail
+          ? `${emailResult.reason}:${emailResult.detail}`
+          : emailResult.reason;
+      }
     }
 
     return json({
       id,
       url: `${siteUrl}/estimate/s/${id}/`,
       emailSent,
+      ...(emailError ? { emailError } : {}),
     });
   } catch (err) {
     console.error("estimate save error", err);

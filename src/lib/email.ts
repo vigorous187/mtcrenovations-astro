@@ -26,12 +26,16 @@ interface EmailPayload {
   text: string;
 }
 
+export type EmailSendResult =
+  | { ok: true }
+  | { ok: false; reason: "missing_token" | "api_error"; detail?: string };
+
 async function sendViaRestApi(
   env: CloudflareEnv,
   payload: EmailPayload,
-): Promise<boolean> {
+): Promise<EmailSendResult> {
   const token = env.CLOUDFLARE_EMAIL_API_TOKEN;
-  if (!token) return false;
+  if (!token) return { ok: false, reason: "missing_token" };
 
   const accountId = env.CLOUDFLARE_ACCOUNT_ID || DEFAULT_ACCOUNT_ID;
   const replyTo = site.email || FROM.email;
@@ -62,17 +66,22 @@ async function sendViaRestApi(
     };
 
     if (!res.ok || !data.success) {
+      const detail = data.errors?.[0]?.message || `HTTP ${res.status}`;
       console.error("Cloudflare Email REST API failed", {
         status: res.status,
         errors: data.errors,
       });
-      return false;
+      return { ok: false, reason: "api_error", detail };
     }
 
-    return true;
+    return { ok: true };
   } catch (err) {
     console.error("Cloudflare Email REST API request failed", err);
-    return false;
+    return {
+      ok: false,
+      reason: "api_error",
+      detail: err instanceof Error ? err.message : "request_failed",
+    };
   }
 }
 
@@ -103,7 +112,7 @@ async function sendMail(
   to: string,
   subject: string,
   html: string,
-): Promise<boolean> {
+): Promise<EmailSendResult> {
   const payload: EmailPayload = {
     to,
     subject,
@@ -111,20 +120,23 @@ async function sendMail(
     text: htmlToText(html),
   };
 
-  if (await sendViaRestApi(env, payload)) return true;
-  if (await sendViaBinding(env, payload)) return true;
+  const rest = await sendViaRestApi(env, payload);
+  if (rest.ok) return rest;
+  if (rest.reason === "api_error") return rest;
+
+  if (await sendViaBinding(env, payload)) return { ok: true };
 
   console.warn(
     "Email not configured — set CLOUDFLARE_EMAIL_API_TOKEN on Pages (Email Sending: Edit) or bind EMAIL",
   );
-  return false;
+  return rest;
 }
 
 export async function sendEstimateEmail(
   estimate: SavedEstimate,
   to: string,
   env: CloudflareEnv,
-): Promise<boolean> {
+): Promise<EmailSendResult> {
   const url = `${siteUrl(env)}/estimate/s/${estimate.id}/`;
   const name = estimate.name?.split(" ")[0] || "there";
 
@@ -148,7 +160,7 @@ export async function sendLeadConfirmationEmail(
   estimate: SavedEstimate | null,
   lead: { name: string; email: string },
   env: CloudflareEnv,
-): Promise<boolean> {
+): Promise<EmailSendResult> {
   const firstName = lead.name.split(" ")[0] || "there";
   const estimateBlock = estimate
     ? `<p><strong>Your saved estimate:</strong> <a href="${siteUrl(env)}/estimate/s/${estimate.id}/">${fmtCad(estimate.min)} – ${fmtCad(estimate.max)}</a></p>`
