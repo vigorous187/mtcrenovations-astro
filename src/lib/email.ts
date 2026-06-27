@@ -52,10 +52,10 @@ async function sendViaRestApi(
         body: JSON.stringify({
           to: payload.to,
           from: FROM.email,
+          reply_to: replyTo,
           subject: payload.subject,
           html: payload.html,
           text: payload.text,
-          headers: { "Reply-To": replyTo },
         }),
       },
     );
