@@ -5,7 +5,13 @@ metaDescription: "How much does basement underpinning cost in Hamilton? We break
 author: "MTC Renovations"
 datePublished: "2026-05-01"
 dateModified: "2026-05-01"
-tags: ["basement underpinning", "Hamilton", "basement renovation", "renovation costs"]
+tags:
+  [
+    "basement underpinning",
+    "Hamilton",
+    "basement renovation",
+    "renovation costs",
+  ]
 ---
 
 Hamilton has thousands of homes built between the 1920s and 1960s — and most of them share a common problem: basement ceiling heights between 5'8" and 6'6". That's workable for storage. It's not workable if you want usable living space, a legal rental suite, or a finished basement that adds real resale value.
@@ -87,7 +93,7 @@ If you're underpinning for comfortable family space rather than rental income, e
 
 If you're already budgeting $40,000–$60,000 for a full basement finish and your ceiling height is under 7 feet, it's worth pricing underpinning at the same time. Adding it to an already-complete project later means paying mobilization, engineering, and permit costs a second time. Doing it together shares those fixed costs. See our [home renovation budget guide](/blog/home-renovation-budget-guide/) for how to structure the full budget.
 
-Our [basement renovation services](/basement) cover the full scope — from underpinning and structural work through to the finished space.
+Our [basement renovation services](/basement/) cover the full scope — from underpinning and structural work through to the finished space.
 
 ## Frequently Asked Questions
 
