@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import QuoteForm from '../components/QuoteForm.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
+// Official JobTread web-form embed (data-key 22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr) —
+// replaces the QuoteForm component, which posted to our own /api/leads/submit.
+// Michael's direction: use JobTread's own hosted form/script for the primary
+// contact-page lead capture instead. Imported raw so its <style>/<script>
+// survive untouched — Astro's own <style> tag would auto-scope the CSS and
+// break the .jtwf selectors.
+import quoteFormEmbed from '../partials/jobtread-webform-embed.html?raw';
 
 const title = 'Contact MTC Renovations | Free Quote';
 const description = 'Get in touch with MTC Renovations. Call (647) 560-1095 or request a free renovation quote online. Serving Burlington, Hamilton & the GTA.';
@@ -112,8 +118,8 @@ const schemas = [
           <h2 class="h3 fw-bold mb-4">Request a Free Estimate</h2>
           <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
-              <!-- Render QuoteForm without its outer section wrapper by embedding inline -->
-              <QuoteForm />
+              <!-- Official JobTread web-form embed, rendered verbatim -->
+              <Fragment set:html={quoteFormEmbed} />
             </div>
           </div>
         </div>
