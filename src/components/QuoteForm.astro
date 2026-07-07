@@ -1,5 +1,4 @@
 ---
-import site from '../data/site.json';
 import services from '../data/services.json';
 
 interface Props {
@@ -76,7 +75,13 @@ const { selectedService } = Astro.props;
   </div>
 </section>
 
-<script define:vars={{ apiUrl: `${site.api.baseUrl}${site.api.quoteEndpoint}` }}>
+<script>
+  // Same-origin JobTread-integrated endpoint (src/pages/api/leads/submit.ts) —
+  // replaces the old Podio catch-hook (api.michaelthehomebuyer.ca/mtc-renovations/get-a-quote).
+  // That split meant Contact-page/quote-form leads never appeared in JobTread;
+  // /newleadintake/ already used this same endpoint. See LeadSubmitInput in
+  // src/lib/estimate-types.ts for the accepted shape.
+  const apiUrl = '/api/leads/submit/';
   const form = document.getElementById('quoteForm');
   const submitBtn = document.getElementById('submitBtn');
   const formError = document.getElementById('formError');
@@ -96,14 +101,19 @@ const { selectedService } = Astro.props;
     formError.classList.add('d-none');
     formSuccess.classList.add('d-none');
 
+    const serviceSelect = form.service;
+    const serviceLabel = serviceSelect.selectedIndex >= 0
+      ? serviceSelect.options[serviceSelect.selectedIndex].text
+      : serviceSelect.value;
+
     const data = {
       name: form.name.value,
       email: form.email.value,
       phone: form.phone.value,
       address: form.address.value,
-      service: form.service.value,
-      message: form.message.value,
-      source: 'mtcrenovations.ca',
+      service: serviceLabel,
+      projectNotes: form.message.value,
+      hearAbout: 'Website Quote Form',
     };
 
     try {

@@ -75,6 +75,9 @@ export interface LeadSubmitInput {
   hearAbout?: string;
   remodelType?: string;
   projectNotes?: string;
+  /** Service slug/name from QuoteForm.astro (e.g. "Kitchen") — no estimate flow,
+   * so there's no `type`/`scope` to infer a job name from. Optional, additive. */
+  service?: string;
 }
 
 export interface EmailSender {
