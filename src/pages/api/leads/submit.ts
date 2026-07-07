@@ -62,9 +62,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     const jobName = estimate
       ? buildJobName(estimate)
-      : body.service
-        ? `Website Lead — ${body.service} — ${body.name}`
-        : `Website Lead — ${body.name}`;
+      : `Website Lead — ${body.name}`;
 
     let jobTreadResult: {
       accountId: string;
