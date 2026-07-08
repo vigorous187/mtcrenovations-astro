@@ -129,10 +129,9 @@ export async function createCustomerLead(
     const locationData = await paveQuery(grantKey, {
       createLocation: {
         $: {
-          organizationId: orgId,
           accountId: existing.accountId,
-          name: input.address.split("\n")[0] || input.name,
           address: input.address,
+          parseAddress: true,
         },
         createdLocation: { id: {}, name: {}, address: {} },
       },
@@ -145,10 +144,8 @@ export async function createCustomerLead(
     const jobData = await paveQuery(grantKey, {
       createJob: {
         $: {
-          organizationId: orgId,
           name: input.jobName,
           locationId,
-          accountId: existing.accountId,
           customFieldValues: {
             "22Nh8W9jKBnL": input.remodelType,
           },
@@ -235,10 +232,9 @@ export async function createCustomerLead(
   const locationData = await paveQuery(grantKey, {
     createLocation: {
       $: {
-        organizationId: orgId,
         accountId,
-        name: input.address.split("\n")[0] || input.name,
         address: input.address,
+        parseAddress: true,
       },
       createdLocation: { id: {}, name: {}, address: {} },
     },
@@ -251,10 +247,8 @@ export async function createCustomerLead(
   const jobData = await paveQuery(grantKey, {
     createJob: {
       $: {
-        organizationId: orgId,
         name: input.jobName,
         locationId,
-        accountId,
         customFieldValues: {
           "22Nh8W9jKBnL": input.remodelType,
         },
