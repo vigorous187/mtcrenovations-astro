@@ -124,7 +124,6 @@ export async function createCustomerLead(
   created: boolean;
 }> {
   const existing = await findContactByEmail(grantKey, orgId, input.email);
-  const { firstName, lastName } = splitName(input.name);
 
   if (existing) {
     const locationData = await paveQuery(grantKey, {
@@ -219,8 +218,7 @@ export async function createCustomerLead(
     createContact: {
       $: {
         accountId,
-        firstName,
-        lastName: lastName || firstName,
+        name: input.name.trim() || "Primary Contact",
         customFieldValues: {
           "22NgpjG3zvMA": input.phone,
           "22NgpjFszPJj": input.email,
@@ -284,8 +282,3 @@ export async function createCustomerLead(
   return { accountId, contactId, locationId, jobId, created: true };
 }
 
-function splitName(fullName: string): { firstName: string; lastName: string } {
-  const parts = fullName.trim().split(/\s+/);
-  if (parts.length === 1) return { firstName: parts[0], lastName: "" };
-  return { firstName: parts[0], lastName: parts.slice(1).join(" ") };
-}
