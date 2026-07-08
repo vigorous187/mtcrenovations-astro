@@ -18,7 +18,7 @@
 | Layer    | Location                                                              | Purpose                                                  |
 | -------- | --------------------------------------------------------------------- | -------------------------------------------------------- |
 | Manifest | `~/Developer/shared/scripts/config/client-seo-playbook.json`          | MTC slug `mtcrenovations`, repo path, deploy, conversion |
-| Skill    | `~/claude/skills/forge-seo-sprint/SKILL.md`                           | GSC audit → surgical fixes → build → deploy              |
+| Skill    | `~/.claude/skills/forge-seo-sprint/SKILL.md`                           | GSC audit → surgical fixes → build → deploy              |
 | Standard | `~/Developer/shared/knowledge-hub/seo/website-production-standard.md` | Production gate checklist                                |
 | Template | `~/Developer/shared/templates/ponytail/`                              | Debt stub + Phase 2 registry notes                       |
 
