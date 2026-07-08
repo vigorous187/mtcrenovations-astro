@@ -144,7 +144,7 @@ export async function createCustomerLead(
     const jobData = await paveQuery(grantKey, {
       createJob: {
         $: {
-          name: input.jobName,
+          name: input.jobName.slice(0, 30),
           locationId,
           customFieldValues: {
             "22Nh8W9jKBnL": input.remodelType,
@@ -247,7 +247,7 @@ export async function createCustomerLead(
   const jobData = await paveQuery(grantKey, {
     createJob: {
       $: {
-        name: input.jobName,
+        name: input.jobName.slice(0, 30),
         locationId,
         customFieldValues: {
           "22Nh8W9jKBnL": input.remodelType,
