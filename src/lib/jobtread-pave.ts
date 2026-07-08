@@ -20,10 +20,16 @@ export async function paveQuery(
     body: JSON.stringify({ query: { $: { grantKey }, ...query } }),
   });
 
-  const json = (await res.json()) as {
-    errors?: unknown;
-    data?: Record<string, unknown>;
-  };
+  const raw = await res.text();
+  let json: { errors?: unknown; data?: Record<string, unknown> };
+  try {
+    json = JSON.parse(raw) as typeof json;
+  } catch {
+    throw new JobTreadError(`JobTread API non-JSON response: ${res.status}`, {
+      status: res.status,
+      bodyPreview: raw.slice(0, 300),
+    });
+  }
 
   if (!res.ok || json.errors) {
     throw new JobTreadError(
