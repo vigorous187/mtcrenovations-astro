@@ -27,41 +27,72 @@ const mapsUrl = data.googleReviewsUrl ?? "https://www.google.com/maps";
         </div>
       </div>
 
-      <div class="row g-4">
-        {reviews.map((review: ReviewItem) => (
-          <div class="col-12 col-md-6 col-lg-4">
-            <article class="review-card h-100 p-4 rounded-3" style="background: var(--bg-surface-2, #141414); border: 1px solid var(--border-default, #333);">
-              <div class="mb-3" aria-label={`${review.rating} out of 5 stars`}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span style={i < review.rating ? "color:#FBBC05" : "color:#444"}>★</span>
-                ))}
-              </div>
-              {review.text && <p class="mb-3" style="color: var(--text-secondary, #ccc);">{review.text}</p>}
-              <footer class="d-flex align-items-center gap-2 mt-auto">
-                {review.profilePhoto && (
-                  <img src={review.profilePhoto} alt="" width="32" height="32" class="rounded-circle" loading="lazy" />
-                )}
-                <div>
-                  <strong class="d-block small" style="color: var(--text-primary, #fff);">{review.name}</strong>
-                  {review.relativeTime && (
-                    <span class="small" style="color: var(--text-muted, #888);">{review.relativeTime}</span>
-                  )}
+      <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        <div class="carousel-inner">
+          {reviews.map((review: ReviewItem, i: number) => (
+            <div class:list={["carousel-item", { active: i === 0 }]}>
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                  <article class="review-card h-100 p-4 rounded-3 text-center" style="background: var(--bg-surface-2, #141414); border: 1px solid var(--border-default, #333);">
+                    <div class="mb-3" aria-label={`${review.rating} out of 5 stars`}>
+                      {Array.from({ length: 5 }).map((_, si) => (
+                        <span style={si < review.rating ? "color:#FBBC05" : "color:#444"}>★</span>
+                      ))}
+                    </div>
+                    {review.text && <p class="mb-3" style="color: var(--text-secondary, #ccc);">{review.text}</p>}
+                    <footer class="d-flex align-items-center justify-content-center gap-2 mt-auto">
+                      {review.profilePhoto && (
+                        <img src={review.profilePhoto} alt="" width="32" height="32" class="rounded-circle" loading="lazy" />
+                      )}
+                      <div class="text-start">
+                        <strong class="d-block small" style="color: var(--text-primary, #fff);">{review.name}</strong>
+                        {review.relativeTime && (
+                          <span class="small" style="color: var(--text-muted, #888);">{review.relativeTime}</span>
+                        )}
+                      </div>
+                    </footer>
+                    {review.googleReviewUrl && (
+                      <a
+                        href={review.googleReviewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="small d-block mt-2"
+                        style="color: var(--mtc-red, #dc3545);"
+                      >
+                        View on Google
+                      </a>
+                    )}
+                  </article>
                 </div>
-              </footer>
-              {review.googleReviewUrl && (
-                <a
-                  href={review.googleReviewUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="small d-block mt-2"
-                  style="color: var(--mtc-red, #dc3545);"
-                >
-                  View on Google
-                </a>
-              )}
-            </article>
-          </div>
-        ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {reviews.length > 1 && (
+          <>
+            <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <div class="carousel-indicators" style="position: static; margin-top: 1.5rem;">
+              {reviews.map((_: ReviewItem, i: number) => (
+                <button
+                  type="button"
+                  data-bs-target="#reviewsCarousel"
+                  data-bs-slide-to={i}
+                  class:list={{ active: i === 0 }}
+                  aria-current={i === 0 ? "true" : undefined}
+                  aria-label={`Review ${i + 1}`}
+                ></button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       {aggregate.count > reviews.length && (

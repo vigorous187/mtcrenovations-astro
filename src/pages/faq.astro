@@ -11,7 +11,11 @@ const canonical = `${site.url}/faq/`;
 const allFaqs = await getCollection('faqs');
 const faqs = allFaqs
   .map(entry => entry.data)
-  .sort((a, b) => a.order - b.order);
+  .sort((a, b) => a.order - b.order)
+  .map(f => ({
+    ...f,
+    answer: f.answer.replace(/\d+\+ five-star Google reviews/i, `${site.googleReviews.count}+ five-star Google reviews`),
+  }));
 
 const faqSchema = faqPage(faqs.map(f => ({ question: f.question, answer: f.answer })));
 
