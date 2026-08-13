@@ -137,6 +137,8 @@ async function main() {
     sitemapIndex,
     "utf8",
   );
+  // Conventional /sitemap.xml — same sitemapindex as sitemap-index.xml (no _redirects alias)
+  await fs.writeFile(path.join(publicDir, "sitemap.xml"), sitemapIndex, "utf8");
   console.log(`Generated sitemap with ${uniqueSortedUrls.length} URLs.`);
 }
 

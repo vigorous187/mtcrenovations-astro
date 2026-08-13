@@ -9,4 +9,8 @@
 /basement/financing /basement/ 301
 /basement/financing/ /basement/ 301
 
-# Trailing slash normalization handled by Astro trailingSlash: "always"
+# Legacy Article JSON-LD image (file lives at /assets/img/og/default.png)
+/assets/img/og-default.png /assets/img/og/default.png 301
+
+# Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
+# /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.
