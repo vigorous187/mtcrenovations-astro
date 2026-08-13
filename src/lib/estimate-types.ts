@@ -67,6 +67,7 @@ export interface EstimateSaveInput {
 }
 
 export interface LeadSubmitInput {
+  submissionId?: string;
   estimateId?: string;
   name: string;
   email: string;

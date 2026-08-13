@@ -105,6 +105,9 @@ const schemas = [localBusiness()];
 </BaseLayout>
 
 <script>
+  import { buildGenerateLeadEvent } from '../lib/lead-conversion.mjs';
+
+  const submissionStorageKey = 'mtc-lead-submission-id';
   const params = new URLSearchParams(window.location.search);
   const estimateId = params.get('estimate') || '';
   const source = params.get('source') || '';
@@ -116,6 +119,15 @@ const schemas = [localBusiness()];
   const hearSelect = document.getElementById('hearAbout');
   const notesField = document.getElementById('projectNotes');
   const remodelSelect = document.getElementById('remodelType');
+
+  function getSubmissionId() {
+    const existing = sessionStorage.getItem(submissionStorageKey);
+    if (existing) return existing;
+
+    const value = crypto.randomUUID();
+    sessionStorage.setItem(submissionStorageKey, value);
+    return value;
+  }
 
   async function prefillFromEstimate() {
     const id = estimateId || sessionStorage.getItem('mtc-estimate-id');
@@ -174,6 +186,7 @@ const schemas = [localBusiness()];
     const id = estimateId || sessionStorage.getItem('mtc-estimate-id') || undefined;
 
     const payload = {
+      submissionId: getSubmissionId(),
       estimateId: id,
       name: form.name.value,
       email: form.email.value,
@@ -194,17 +207,23 @@ const schemas = [localBusiness()];
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to submit');
 
-      if (typeof gtag === 'function') {
-        gtag('event', 'generate_lead', {
-          form_name: 'price_guide_lead',
-          page_path: window.location.pathname,
-        });
+      const conversionEvent = buildGenerateLeadEvent(json, {
+        formName: 'price_guide_lead',
+        pagePath: window.location.pathname,
+      });
+      if (conversionEvent && typeof zaraz !== 'undefined') {
+        zaraz.track('generate_lead', conversionEvent);
       }
 
       formSuccess.classList.remove('d-none');
       form.reset();
       form.classList.remove('was-validated');
       sessionStorage.removeItem('mtc-estimate-summary');
+      sessionStorage.removeItem(submissionStorageKey);
+
+      // A successful response is accepted even when JobTread sync is pending,
+      // but only a confirmed JobTread job is eligible for generate_lead above.
+      submitBtn.disabled = true;
 
       setTimeout(() => {
         window.location.href = id ? `/estimate/s/${id}/` : '/thank-you/';
@@ -213,8 +232,10 @@ const schemas = [localBusiness()];
       formError.textContent = 'Something went wrong. Please call us at (647) 560-1095.';
       formError.classList.remove('d-none');
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Request';
+      if (formSuccess.classList.contains('d-none')) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Request';
+      }
     }
   });
 </script>
