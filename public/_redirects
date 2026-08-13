@@ -9,11 +9,8 @@
 /basement/financing /basement/ 301
 /basement/financing/ /basement/ 301
 
-# Crawler alias — generate-sitemap.mjs writes sitemap-index.xml + sitemap-0.xml only
-/sitemap.xml /sitemap-index.xml 301
-/sitemap.xml/ /sitemap-index.xml 301
-
 # Legacy Article JSON-LD image (file lives at /assets/img/og/default.png)
 /assets/img/og-default.png /assets/img/og/default.png 301
 
 # Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
+# /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.

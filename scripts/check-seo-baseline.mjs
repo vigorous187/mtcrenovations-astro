@@ -6,11 +6,12 @@ const ROOT = process.cwd();
 const checks = {
   robotsFile: path.join(ROOT, "public", "robots.txt"),
   canonicalFile: path.join(ROOT, "src", "components", "SEOHead.astro"),
-  redirectsFile: path.join(ROOT, "public", "_redirects"),
   articleSchemaFile: path.join(ROOT, "src", "components", "seo", "schemas.ts"),
   sitemapFiles: [
+    path.join(ROOT, "public", "sitemap.xml"),
     path.join(ROOT, "public", "sitemap-index.xml"),
     path.join(ROOT, "public", "sitemap-0.xml"),
+    path.join(ROOT, "dist", "sitemap.xml"),
     path.join(ROOT, "dist", "sitemap-index.xml"),
     path.join(ROOT, "dist", "sitemap-0.xml"),
   ],
@@ -53,13 +54,6 @@ async function main() {
     "SEO head is missing canonical link tag",
   );
 
-  const redirects = await readIfExists(checks.redirectsFile);
-  assertTrue(redirects, "Missing public/_redirects");
-  assertTrue(
-    /\/sitemap\.xml\s+\/sitemap-index\.xml\s+301/.test(redirects),
-    "public/_redirects must 301 /sitemap.xml to /sitemap-index.xml",
-  );
-
   const articleSchema = await readIfExists(checks.articleSchemaFile);
   assertTrue(articleSchema, "Missing article schema module");
   assertTrue(
@@ -79,6 +73,15 @@ async function main() {
   assertTrue(
     sitemapContents.length > 0,
     "No sitemap files found in dist/ or public/",
+  );
+
+  const sitemapXml =
+    (await readIfExists(path.join(ROOT, "public", "sitemap.xml"))) ||
+    (await readIfExists(path.join(ROOT, "dist", "sitemap.xml")));
+  assertTrue(sitemapXml, "Missing public/sitemap.xml (or dist/sitemap.xml)");
+  assertTrue(
+    sitemapXml.includes("<sitemapindex") && sitemapXml.includes("/sitemap-0.xml"),
+    "sitemap.xml must be a sitemapindex pointing at sitemap-0.xml",
   );
 
   const combinedSitemap = sitemapContents.join("\n");
