@@ -143,7 +143,7 @@ export function article(post: {
         url: `${site.url}/assets/img/logo/logo.png`,
       },
     },
-    image: post.image || `${site.url}/assets/img/og-default.png`,
+    image: post.image || `${site.url}/assets/img/og/default.png`,
     mainEntityOfPage: { "@type": "WebPage", "@id": post.url },
   };
 }

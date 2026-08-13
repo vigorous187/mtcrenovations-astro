@@ -6,6 +6,8 @@ const ROOT = process.cwd();
 const checks = {
   robotsFile: path.join(ROOT, "public", "robots.txt"),
   canonicalFile: path.join(ROOT, "src", "components", "SEOHead.astro"),
+  redirectsFile: path.join(ROOT, "public", "_redirects"),
+  articleSchemaFile: path.join(ROOT, "src", "components", "seo", "schemas.ts"),
   sitemapFiles: [
     path.join(ROOT, "public", "sitemap-index.xml"),
     path.join(ROOT, "public", "sitemap-0.xml"),
@@ -49,6 +51,24 @@ async function main() {
   assertTrue(
     canonicalLayout.includes('rel="canonical"'),
     "SEO head is missing canonical link tag",
+  );
+
+  const redirects = await readIfExists(checks.redirectsFile);
+  assertTrue(redirects, "Missing public/_redirects");
+  assertTrue(
+    /\/sitemap\.xml\s+\/sitemap-index\.xml\s+301/.test(redirects),
+    "public/_redirects must 301 /sitemap.xml to /sitemap-index.xml",
+  );
+
+  const articleSchema = await readIfExists(checks.articleSchemaFile);
+  assertTrue(articleSchema, "Missing article schema module");
+  assertTrue(
+    !articleSchema.includes("/assets/img/og-default.png"),
+    "Article schema still uses the 404 /assets/img/og-default.png path",
+  );
+  assertTrue(
+    articleSchema.includes("/assets/img/og/default.png"),
+    "Article schema is missing the /assets/img/og/default.png fallback",
   );
 
   const sitemapContents = (
