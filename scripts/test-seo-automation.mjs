@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 import {
   buildGenerateLeadEvent,
@@ -13,6 +15,12 @@ import {
   selectLastKnownGoodDeployment,
   verifyProduction,
 } from "./post-deploy-safety.mjs";
+import {
+  canonicalSitemapUrls,
+  INDEXNOW_HOST,
+  INDEXNOW_KEY,
+  submitIndexNow,
+} from "./submit-indexnow.mjs";
 
 function response(status, body, url = "https://www.mtcrenovations.ca/") {
   return new Response(body, { status, headers: { "Content-Type": "text/html" } });
@@ -152,6 +160,64 @@ test("rollback selects a successful production deployment and targets the offici
   );
 });
 
+test("IndexNow accepts only canonical sitemap URLs on the production host", () => {
+  assert.deepEqual(
+    canonicalSitemapUrls(`
+      <urlset>
+        <url><loc>https://${INDEXNOW_HOST}/</loc></url>
+        <url><loc>https://${INDEXNOW_HOST}/services/kitchen-renovations/</loc></url>
+        <url><loc>https://${INDEXNOW_HOST}/</loc></url>
+      </urlset>
+    `),
+    [
+      `https://${INDEXNOW_HOST}/`,
+      `https://${INDEXNOW_HOST}/services/kitchen-renovations/`,
+    ],
+  );
+  assert.throws(
+    () => canonicalSitemapUrls("<urlset><url><loc>https://example.com/</loc></url></urlset>"),
+    /not a canonical same-host URL/,
+  );
+  assert.throws(
+    () => canonicalSitemapUrls(`<urlset><url><loc>https://${INDEXNOW_HOST}/?tracking=1</loc></url></urlset>`),
+    /not a canonical same-host URL/,
+  );
+});
+
+test("IndexNow derives the public key and writes a non-secret receipt", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-"));
+  try {
+    await mkdir(path.join(root, "public"));
+    await mkdir(path.join(root, "dist"));
+    await writeFile(path.join(root, "public", `${INDEXNOW_KEY}.txt`), `${INDEXNOW_KEY}\n`);
+    await writeFile(
+      path.join(root, "dist", "sitemap-0.xml"),
+      `<urlset><url><loc>https://${INDEXNOW_HOST}/</loc></url></urlset>`,
+    );
+    let posted;
+    const receipt = await submitIndexNow({
+      root,
+      now: () => new Date("2026-08-13T19:00:00.000Z"),
+      fetchImpl: async (_url, options) => {
+        posted = JSON.parse(options.body);
+        return new Response("accepted", { status: 200 });
+      },
+    });
+    assert.equal(posted.key, INDEXNOW_KEY);
+    assert.deepEqual(posted.urlList, [`https://${INDEXNOW_HOST}/`]);
+    assert.equal(receipt.accepted, true);
+    assert.equal(receipt.httpStatus, 200);
+    assert.match(receipt.payloadSha256, /^[0-9a-f]{64}$/);
+    const stored = JSON.parse(
+      await readFile(path.join(root, "artifacts", "indexnow-receipt.json"), "utf8"),
+    );
+    assert.equal(stored.requestedAt, "2026-08-13T19:00:00.000Z");
+    assert.equal(stored.key, undefined);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("production workflow binds build, deploy, verification, and rollback to the release contract", async () => {
   const workflow = await readFile(".github/workflows/deploy.yml", "utf8");
   const packageJson = JSON.parse(await readFile("package.json", "utf8"));
@@ -163,5 +229,9 @@ test("production workflow binds build, deploy, verification, and rollback to the
   assert.match(workflow, /verify --expected-commit=\$\{\{ github\.sha \}\}/);
   assert.match(workflow, /post-deploy-safety\.mjs rollback --deployment-id=/);
   assert.match(workflow, /verify --profile=baseline/);
+  assert.doesNotMatch(workflow, /INDEXNOW_KEY_MTC/);
+  assert.doesNotMatch(workflow, /continue-on-error:\s*true/);
+  assert.match(workflow, /actions\/upload-artifact@v4/);
+  assert.match(workflow, /artifacts\/indexnow-receipt\.json/);
   assert.match(packageJson.scripts.build, /check-release-metadata\.mjs/);
 });

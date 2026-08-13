@@ -1,42 +1,124 @@
-/**
- * Post-deploy IndexNow batch from dist/sitemap-0.xml (matches cf-pages-deploy-guard pattern).
- * Env: INDEXNOW_HOST (e.g. www.mtcrenovations.ca), INDEXNOW_KEY
- */
-import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
-const host = process.env.INDEXNOW_HOST;
-const key = process.env.INDEXNOW_KEY;
-const sitemapPath = path.join(process.cwd(), "dist", "sitemap-0.xml");
+export const INDEXNOW_HOST = "www.mtcrenovations.ca";
+export const INDEXNOW_KEY = "ae0b529e-ad61-4957-b4d9-6e2e253a8bd5";
+export const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
-if (!host || !key) {
-  console.error("Missing INDEXNOW_HOST or INDEXNOW_KEY");
-  process.exit(1);
+function decodeXml(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&apos;", "'");
 }
 
-const xml = await readFile(sitemapPath, "utf8");
-const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-if (!urls.length) {
-  console.error("No URLs in sitemap");
-  process.exit(1);
+export function canonicalSitemapUrls(xml, host = INDEXNOW_HOST) {
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => decodeXml(match[1].trim()));
+  if (!urls.length) throw new Error("No URLs in sitemap");
+
+  const unique = [];
+  const seen = new Set();
+  for (const value of urls) {
+    const url = new URL(value);
+    if (
+      url.protocol !== "https:" ||
+      url.hostname !== host ||
+      url.port ||
+      url.username ||
+      url.password ||
+      url.search ||
+      url.hash
+    ) {
+      throw new Error(`IndexNow URL is not a canonical same-host URL: ${value}`);
+    }
+    const canonical = url.toString();
+    if (!seen.has(canonical)) {
+      seen.add(canonical);
+      unique.push(canonical);
+    }
+  }
+  return unique;
 }
 
-const payload = {
-  host,
-  key,
-  keyLocation: `https://${host}/${key}.txt`,
-  urlList: urls,
-};
+export async function buildIndexNowSubmission({ root = process.cwd() } = {}) {
+  const keyFile = path.join(root, "public", `${INDEXNOW_KEY}.txt`);
+  const keyBody = await readFile(keyFile, "utf8");
+  if (keyBody !== `${INDEXNOW_KEY}\n`) {
+    throw new Error(`IndexNow key file is not exact: ${keyFile}`);
+  }
 
-const res = await fetch("https://api.indexnow.org/indexnow", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload),
-});
+  const xml = await readFile(path.join(root, "dist", "sitemap-0.xml"), "utf8");
+  const payload = {
+    host: INDEXNOW_HOST,
+    key: INDEXNOW_KEY,
+    keyLocation: `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`,
+    urlList: canonicalSitemapUrls(xml),
+  };
+  const body = JSON.stringify(payload);
+  return {
+    payload,
+    body,
+    payloadSha256: createHash("sha256").update(body).digest("hex"),
+  };
+}
 
-console.log("IndexNow HTTP", res.status);
-if (!res.ok) {
-  const t = await res.text();
-  console.error(t.slice(0, 500));
-  process.exit(1);
+export async function submitIndexNow({
+  root = process.cwd(),
+  fetchImpl = fetch,
+  receiptPath = process.env.INDEXNOW_RECEIPT_PATH || path.join("artifacts", "indexnow-receipt.json"),
+  now = () => new Date(),
+} = {}) {
+  const submission = await buildIndexNowSubmission({ root });
+  const requestedAt = now().toISOString();
+  let response;
+  let responseText = "";
+  let error = null;
+
+  try {
+    response = await fetchImpl(INDEXNOW_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: submission.body,
+    });
+    responseText = await response.text();
+    if (!response.ok) error = `IndexNow returned HTTP ${response.status}`;
+  } catch (caught) {
+    error = caught instanceof Error ? caught.message : "IndexNow request failed";
+  }
+
+  const receipt = {
+    endpoint: INDEXNOW_ENDPOINT,
+    host: INDEXNOW_HOST,
+    keyLocation: submission.payload.keyLocation,
+    requestedAt,
+    urlCount: submission.payload.urlList.length,
+    payloadSha256: submission.payloadSha256,
+    httpStatus: response?.status ?? null,
+    accepted: Boolean(response?.ok),
+    error,
+    responsePreview: responseText.slice(0, 500),
+  };
+  const absoluteReceiptPath = path.resolve(root, receiptPath);
+  await mkdir(path.dirname(absoluteReceiptPath), { recursive: true });
+  await writeFile(absoluteReceiptPath, `${JSON.stringify(receipt, null, 2)}\n`, "utf8");
+
+  if (!receipt.accepted) throw new Error(error || "IndexNow submission was not accepted");
+  return receipt;
+}
+
+async function main() {
+  const receipt = await submitIndexNow();
+  console.log(`IndexNow accepted ${receipt.urlCount} URLs (HTTP ${receipt.httpStatus})`);
+  console.log(`Receipt: ${process.env.INDEXNOW_RECEIPT_PATH || "artifacts/indexnow-receipt.json"}`);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
 }
