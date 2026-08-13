@@ -205,7 +205,7 @@ const schemas = [
         {site.serviceAreaCities.map(city => (
           <div class="col-auto">
             <a
-              href={`/location/${city.toLowerCase().replace(/\s+/g, '-')}/`}
+              href={`/location/${city.toLowerCase().replace(/[\s.]+/g, '-')}/`}
               class="btn btn-outline-dark btn-sm px-4"
             >
               {city}

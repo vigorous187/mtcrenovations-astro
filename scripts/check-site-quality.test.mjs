@@ -1,0 +1,57 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import test from "node:test";
+
+import { auditSite } from "./check-site-quality.mjs";
+
+const ORIGIN = "https://example.test";
+
+function makeFixture({ broken = false } = {}) {
+  const distDir = fs.mkdtempSync(path.join(os.tmpdir(), "site-quality-"));
+  fs.mkdirSync(path.join(distDir, "assets"));
+  fs.writeFileSync(
+    path.join(distDir, "assets", "main.js"),
+    "console.log('ok')\n",
+  );
+  fs.writeFileSync(
+    path.join(distDir, "hero.svg"),
+    '<svg viewBox="0 0 10 10"></svg>\n',
+  );
+  fs.writeFileSync(
+    path.join(distDir, "sitemap-0.xml"),
+    `<urlset><url><loc>${ORIGIN}/</loc></url></urlset>`,
+  );
+  fs.writeFileSync(
+    path.join(distDir, "index.html"),
+    `<!doctype html><html lang="en"><head><title>Unique title</title><meta name="description" content="Useful description"><meta name="robots" content="index, follow"><link rel="canonical" href="${ORIGIN}/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Example"}</script><script src="/assets/main.js"></script></head><body><a href="#main">Skip to main content</a><header><nav><a href="${broken ? "/missing" : "/"}">Home</a></nav></header><main id="main"><h1>Example</h1><img src="/hero.svg" alt=""></main><footer>Footer</footer></body></html>`,
+  );
+  return distDir;
+}
+
+test("passes a complete static candidate", () => {
+  const distDir = makeFixture();
+  try {
+    const report = auditSite({
+      distDir,
+      origin: ORIGIN,
+      maxImagesWithoutReservedSpace: 0,
+    });
+    assert.equal(report.result, "PASS", report.failures.join("\n"));
+    assert.equal(report.metrics.browserAccessibility, "NOT TESTED");
+  } finally {
+    fs.rmSync(distDir, { recursive: true, force: true });
+  }
+});
+
+test("fails closed on a broken internal link", () => {
+  const distDir = makeFixture({ broken: true });
+  try {
+    const report = auditSite({ distDir, origin: ORIGIN });
+    assert.equal(report.result, "FAIL");
+    assert.match(report.failures.join("\n"), /broken internal link \/missing/);
+  } finally {
+    fs.rmSync(distDir, { recursive: true, force: true });
+  }
+});

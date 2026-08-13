@@ -23,5 +23,9 @@
     "minSources": 0,
     "requireListOrTable": true,
     "requireExternalCitation": false
+  },
+  "websiteQuality": {
+    "maxImagesWithoutReservedSpace": 434,
+    "maxCompressedInitialJavaScriptBytes": 153600
   }
 }
