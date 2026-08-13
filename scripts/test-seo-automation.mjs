@@ -8,6 +8,7 @@ import {
   isConfirmedLeadResponse,
   normalizeSubmissionId,
   readConfirmedLeadSubmission,
+  trackGenerateLeadOnce,
   writeConfirmedLeadSubmission,
 } from "../src/lib/lead-conversion.mjs";
 import {
@@ -81,6 +82,52 @@ test("confirmed responses are cached by submission ID and returned as deduplicat
     ),
     false,
   );
+});
+
+test("generate_lead browser delivery is session-durable and contains no contact values", () => {
+  const values = new Map();
+  const calls = [];
+  const target = {
+    sessionStorage: {
+      getItem: (key) => values.get(key) ?? null,
+      setItem: (key, value) => values.set(key, value),
+    },
+    zaraz: {
+      track: (name, metadata) => calls.push({ name, metadata }),
+    },
+  };
+  const event = buildGenerateLeadEvent({
+    success: true,
+    conversionEligible: true,
+    syncPending: false,
+    deduplicated: false,
+    jobTread: { jobId: "job-789" },
+  }, {
+    formName: "price_guide_lead",
+    pagePath: "/newleadintake/",
+  });
+
+  assert.equal(trackGenerateLeadOnce(event, target), true);
+  assert.equal(trackGenerateLeadOnce(event, target), false);
+  assert.deepEqual(calls, [{ name: "generate_lead", metadata: event }]);
+  assert.equal(JSON.stringify(calls).includes("phone"), false);
+  assert.equal(JSON.stringify(calls).includes("email"), false);
+
+  const replayedTarget = {
+    sessionStorage: target.sessionStorage,
+    zaraz: target.zaraz,
+  };
+  assert.equal(trackGenerateLeadOnce(event, replayedTarget), false);
+});
+
+test("shared click instrumentation is delegated once and omits literal destinations", async () => {
+  const layout = await readFile("src/layouts/BaseLayout.astro", "utf8");
+  assert.match(layout, /dataset\.mtcAnalyticsClickTrackingInstalled/);
+  assert.equal((layout.match(/document\.addEventListener\('click'/g) ?? []).length, 1);
+  assert.doesNotMatch(layout, /phone_number\s*:/);
+  assert.doesNotMatch(layout, /email_address\s*:/);
+  assert.match(layout, /zaraz\.track\('phone_click',[\s\S]+page_path/);
+  assert.match(layout, /zaraz\.track\('email_click',[\s\S]+page_path/);
 });
 
 test("production verification covers identity, Zaraz, crawl files, lead form, KV, and 404", async () => {

@@ -13,7 +13,7 @@ The browser does not fall back to `gtag`. CTA clicks remain intent events and su
 
 ## Retry and deduplication
 
-The browser assigns one random submission ID and reuses it after a network error. Confirmed API responses are cached in the existing `ESTIMATES` KV binding for 90 days. A sequential retry returns that result with `deduplicated: true` instead of creating another JobTread job. Saved estimates also short-circuit when they already contain a confirmed JobTread job ID.
+The browser assigns one random submission ID and reuses it after a network error. Confirmed API responses are cached in the existing `ESTIMATES` KV binding for 90 days. A sequential retry returns that result with `deduplicated: true` instead of creating another JobTread job. Saved estimates also short-circuit when they already contain a confirmed JobTread job ID. The browser records the non-PII JobTread event ID in session storage after Zaraz accepts the call, so a response replay or page reload cannot emit the same `generate_lead` twice in that tab.
 
 This is best-effort protection, not a global transactional lock. Cloudflare KV is eventually consistent, so simultaneous submissions in different locations can still race. JobTread creation is multi-step and its current Pave integration provides no atomic idempotency key; a failure after a partial create can also require manual reconciliation.
 

@@ -1,5 +1,7 @@
 const SUBMISSION_ID_PATTERN = /^[a-zA-Z0-9_-]{16,80}$/;
 const DEDUPE_TTL_SECONDS = 90 * 24 * 60 * 60;
+const BROWSER_EVENT_DEDUPE_PREFIX = "mtc:generate-lead:";
+const browserEventFallback = new WeakMap();
 
 export function normalizeSubmissionId(value) {
   if (typeof value !== "string") return null;
@@ -27,6 +29,46 @@ export function buildGenerateLeadEvent(value, context) {
     jobtread_confirmed: true,
     deduplicated: value.deduplicated === true,
   };
+}
+
+function browserStorage(target) {
+  try {
+    const storage = target?.sessionStorage;
+    if (
+      storage &&
+      typeof storage.getItem === "function" &&
+      typeof storage.setItem === "function"
+    ) {
+      return storage;
+    }
+  } catch {
+    // Privacy modes may block storage; the in-memory fallback still protects
+    // the current page lifecycle.
+  }
+  return null;
+}
+
+function browserEventKey(eventId) {
+  return `${BROWSER_EVENT_DEDUPE_PREFIX}${encodeURIComponent(eventId)}`;
+}
+
+export function trackGenerateLeadOnce(event, target = globalThis.window) {
+  const eventId = typeof event?.event_id === "string" ? event.event_id.trim() : "";
+  const tracker = target?.zaraz?.track;
+  if (!eventId || typeof tracker !== "function" || !target) return false;
+
+  const key = browserEventKey(eventId);
+  const storage = browserStorage(target);
+  if (storage?.getItem(key) === "1") return false;
+  if (browserEventFallback.get(target)?.has(eventId)) return false;
+
+  tracker.call(target.zaraz, "generate_lead", event);
+
+  storage?.setItem(key, "1");
+  const seen = browserEventFallback.get(target) ?? new Set();
+  seen.add(eventId);
+  browserEventFallback.set(target, seen);
+  return true;
 }
 
 function dedupeKey(submissionId) {

@@ -105,7 +105,10 @@ const schemas = [localBusiness()];
 </BaseLayout>
 
 <script>
-  import { buildGenerateLeadEvent } from '../lib/lead-conversion.mjs';
+  import {
+    buildGenerateLeadEvent,
+    trackGenerateLeadOnce,
+  } from '../lib/lead-conversion.mjs';
 
   const submissionStorageKey = 'mtc-lead-submission-id';
   const params = new URLSearchParams(window.location.search);
@@ -211,9 +214,7 @@ const schemas = [localBusiness()];
         formName: 'price_guide_lead',
         pagePath: window.location.pathname,
       });
-      if (conversionEvent && typeof zaraz !== 'undefined') {
-        zaraz.track('generate_lead', conversionEvent);
-      }
+      if (conversionEvent) trackGenerateLeadOnce(conversionEvent, window);
 
       formSuccess.classList.remove('d-none');
       form.reset();

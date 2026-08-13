@@ -168,41 +168,39 @@ const heroSrcSet = heroBase && heroWidth
   <!-- Event tracking via Zaraz (GA4 pageviews handled by Zaraz automatically) -->
   <script is:inline>
     function initGATracking() {
-      // Phone click tracking
-      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
-        link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
-            zaraz.track('phone_click', {
-              phone_number: link.getAttribute('href').replace('tel:', ''),
-              link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
-            });
-          }
-        });
-      });
+      if (document.documentElement.dataset.mtcAnalyticsClickTrackingInstalled === 'true') return;
+      document.documentElement.dataset.mtcAnalyticsClickTrackingInstalled = 'true';
 
-      // Email click tracking
-      document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
-        link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
-            zaraz.track('email_click', {
-              email_address: link.getAttribute('href').replace('mailto:', '').split('?')[0],
-              link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
-            });
-          }
-        });
-      });
+      document.addEventListener('click', function(event) {
+        const target = event.target;
+        const link = target instanceof Element ? target.closest('a') : null;
+        if (!link || typeof zaraz === 'undefined') return;
 
-      // Link/button CTA intent only. Form conversions are emitted after confirmed success.
-      document.querySelectorAll('a[href*="contact"], a[href*="estimate"], a[href*="quote"], .cta-button, [data-cta]').forEach(function(el) {
-        el.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
-            zaraz.track('cta_click', {
-              button_text: el.textContent?.trim().substring(0, 50),
-              button_url: el.getAttribute('href') || '',
-              page_path: window.location.pathname
-            });
-          }
-        });
+        const href = link.getAttribute('href') || '';
+        const linkLocation = link.closest('[data-section]')?.dataset.section || 'unknown';
+        if (href.startsWith('tel:')) {
+          zaraz.track('phone_click', {
+            link_location: linkLocation,
+            page_path: window.location.pathname
+          });
+          return;
+        }
+        if (href.startsWith('mailto:')) {
+          zaraz.track('email_click', {
+            link_location: linkLocation,
+            page_path: window.location.pathname
+          });
+          return;
+        }
+
+        // Link/button CTA intent only. Form conversions are emitted after confirmed success.
+        if (link.matches('a[href*="contact"], a[href*="estimate"], a[href*="quote"], .cta-button, [data-cta]')) {
+          zaraz.track('cta_click', {
+            button_text: link.textContent?.trim().substring(0, 50),
+            button_url: href,
+            page_path: window.location.pathname
+          });
+        }
       });
     }
 
