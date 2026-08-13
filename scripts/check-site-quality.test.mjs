@@ -76,3 +76,36 @@ test("fails closed on a broken internal link", () => {
     fs.rmSync(distDir, { recursive: true, force: true });
   }
 });
+
+test("keeps shared first-paint assets from delaying representative LCP", () => {
+  const projectRoot = path.resolve(import.meta.dirname, "..");
+  const header = fs.readFileSync(
+    path.join(projectRoot, "src/components/Header.astro"),
+    "utf8",
+  );
+  const footer = fs.readFileSync(
+    path.join(projectRoot, "src/components/Footer.astro"),
+    "utf8",
+  );
+  const serviceHero = fs.readFileSync(
+    path.join(projectRoot, "src/components/ServiceHero.astro"),
+    "utf8",
+  );
+  const home = fs.readFileSync(
+    path.join(projectRoot, "src/pages/index.astro"),
+    "utf8",
+  );
+  const css = fs.readFileSync(
+    path.join(projectRoot, "src/styles/global.css"),
+    "utf8",
+  );
+
+  assert.doesNotMatch(header, /logo-white\.png/);
+  assert.doesNotMatch(footer, /logo-white\.png/);
+  assert.match(header, /logo%20\(1\)\.svg/);
+  assert.match(footer, /logo%20\(1\)\.svg/);
+  assert.doesNotMatch(serviceHero, /decoding=["']async["']/);
+  assert.doesNotMatch(home, /decoding=["']async["']/);
+  assert.equal((css.match(/font-display:\s*optional/g) ?? []).length, 9);
+  assert.equal((css.match(/font-display:\s*swap/g) ?? []).length, 0);
+});
