@@ -28,16 +28,28 @@ const schemas = [
 >
   <!-- Hero Section — Full viewport with project photo -->
   <section class="position-relative d-flex align-items-center" style="min-height: 100vh;">
-    <img
-      class="position-absolute inset-0 w-100 h-100"
-      src="/assets/img/kitchen/hero.jpg?v=3"
-      alt=""
-      width="1680"
-      height="1120"
-      loading="eager"
-      fetchpriority="high"
-      style="object-fit: cover; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
-    />
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/assets/img/kitchen/hero-768.avif 768w, /assets/img/kitchen/hero.avif 1680w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/assets/img/kitchen/hero-768.webp 768w, /assets/img/kitchen/hero.webp 1680w"
+        sizes="100vw"
+      />
+      <img
+        class="position-absolute inset-0 w-100 h-100"
+        src="/assets/img/kitchen/hero.jpg?v=3"
+        alt=""
+        width="1680"
+        height="1120"
+        loading="eager"
+        fetchpriority="high"
+        style="object-fit: cover; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
+      />
+    </picture>
     <div class="hero-overlay"></div>
     <div class="container position-relative text-center" style="z-index: 2;">
       <p class="text-uppercase small fw-semibold mb-3" style="color: var(--mtc-red); letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>

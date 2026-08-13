@@ -222,6 +222,7 @@ export function auditSite({
   let imageCount = 0;
   let imagesWithoutReservedSpace = 0;
   let jsonLdCount = 0;
+  let renderBlockingStylesheets = 0;
 
   for (const sitemapUrl of sitemapUrls) {
     let pageUrl;
@@ -248,6 +249,21 @@ export function auditSite({
     const label = path.relative(distDir, pageFile);
     const html = fs.readFileSync(pageFile, "utf8");
     const document = parse(html);
+
+    for (const link of elements(document, "link")) {
+      const rel = (attribute(link, "rel") ?? "").toLowerCase().split(/\s+/);
+      const media = (attribute(link, "media") ?? "all").toLowerCase();
+      if (
+        rel.includes("stylesheet") &&
+        !hasAncestorTag(link, "noscript") &&
+        (media === "all" || media === "screen")
+      ) {
+        renderBlockingStylesheets += 1;
+        failures.push(
+          `${label}: render-blocking stylesheet ${attribute(link, "href") ?? "(inline URL missing)"}`,
+        );
+      }
+    }
 
     const htmlElement = firstElement(document, "html");
     if (!attribute(htmlElement, "lang"))
@@ -515,6 +531,7 @@ export function auditSite({
       images: imageCount,
       imagesWithoutReservedSpace,
       jsonLdBlocks: jsonLdCount,
+      renderBlockingStylesheets,
       compressedInitialJavaScriptBytes,
       browserAccessibility: "NOT TESTED",
       representativeMobileLighthouse: "NOT TESTED",
