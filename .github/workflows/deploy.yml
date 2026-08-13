@@ -74,7 +74,28 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: echo "deployment_id=$(node scripts/post-deploy-safety.mjs capture)" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
+          set -euo pipefail
+          checkpoint_json="$(node scripts/post-deploy-safety.mjs capture)"
+          deployment_id="$(jq -r '.id // empty' <<< "$checkpoint_json")"
+          previous_commit="$(jq -r '.commitHash // empty' <<< "$checkpoint_json")"
+          test -n "$deployment_id"
+          echo "deployment_id=$deployment_id" >> "$GITHUB_OUTPUT"
+          echo "previous_commit=$previous_commit" >> "$GITHUB_OUTPUT"
+
+          exact_restore_required=false
+          if [[ "$previous_commit" =~ ^[0-9a-f]{40}$ ]]; then
+            release_identity="$(node scripts/post-deploy-safety.mjs inspect-release --expected-commit="$previous_commit")"
+            exact_restore_required="$(jq -r '.available' <<< "$release_identity")"
+          fi
+          echo "exact_restore_required=$exact_restore_required" >> "$GITHUB_OUTPUT"
+
+      - name: Build fail-closed IndexNow changed-route manifest
+        env:
+          PREVIOUS_RELEASE_COMMIT: ${{ steps.last_known_good.outputs.previous_commit }}
+          INDEXNOW_MANIFEST_PATH: artifacts/indexnow-changed-routes.json
+        run: node scripts/build-indexnow-route-manifest.mjs
 
       - uses: cloudflare/wrangler-action@v3
         id: deploy_pages
@@ -84,13 +105,32 @@ jobs:
           wranglerVersion: "4"
           command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-hash=${{ github.sha }} --commit-dirty=false
 
+      - name: Confirm Cloudflare deployment identity
+        id: deployment_identity
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            if identity_json="$(node scripts/post-deploy-safety.mjs confirm --expected-commit="$SOURCE_COMMIT")"; then
+              deployment_id="$(jq -r '.id // empty' <<< "$identity_json")"
+              test -n "$deployment_id"
+              echo "deployment_id=$deployment_id" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [[ "$attempt" -eq 6 ]]; then exit 1; fi
+            sleep 5
+          done
+
       - name: Verify production critically
         id: production_verify
         run: node scripts/post-deploy-safety.mjs verify --expected-commit=${{ github.sha }}
 
       - name: Roll back to last-known-good deployment
         id: rollback
-        if: ${{ failure() && steps.deploy_pages.outcome == 'success' && steps.production_verify.outcome == 'failure' }}
+        if: ${{ failure() && steps.deploy_pages.outcome == 'success' && (steps.deployment_identity.outcome == 'failure' || steps.production_verify.outcome == 'failure') }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -98,19 +138,45 @@ jobs:
 
       - name: Verify restored production
         if: ${{ always() && steps.rollback.outcome == 'success' }}
-        run: node scripts/post-deploy-safety.mjs verify --profile=baseline
+        env:
+          PREVIOUS_RELEASE_COMMIT: ${{ steps.last_known_good.outputs.previous_commit }}
+          EXACT_RESTORE_REQUIRED: ${{ steps.last_known_good.outputs.exact_restore_required }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$EXACT_RESTORE_REQUIRED" == "true" ]]; then
+            node scripts/post-deploy-safety.mjs verify --profile=baseline --expected-commit="$PREVIOUS_RELEASE_COMMIT"
+          else
+            node scripts/post-deploy-safety.mjs verify --profile=baseline
+          fi
 
       - name: IndexNow (production URLs)
-        if: success()
+        id: indexnow
+        if: ${{ steps.production_verify.outcome == 'success' }}
+        continue-on-error: true
         env:
           INDEXNOW_RECEIPT_PATH: artifacts/indexnow-receipt.json
+          INDEXNOW_MANIFEST_PATH: artifacts/indexnow-changed-routes.json
         run: node scripts/submit-indexnow.mjs
 
-      - name: Preserve IndexNow receipt
+      - name: Record combined release receipt
+        if: always()
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment_identity.outputs.deployment_id }}
+          DEPLOYMENT_IDENTITY_OUTCOME: ${{ steps.deployment_identity.outcome }}
+          PRODUCTION_VERIFY_OUTCOME: ${{ steps.production_verify.outcome }}
+          ROLLBACK_OUTCOME: ${{ steps.rollback.outcome }}
+          INDEXNOW_OUTCOME: ${{ steps.indexnow.outcome }}
+        run: node scripts/write-release-receipt.mjs
+
+      - name: Preserve release evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: indexnow-receipt-${{ github.sha }}
-          path: artifacts/indexnow-receipt.json
-          if-no-files-found: warn
-          retention-days: 30
+          name: mtc-release-${{ github.sha }}
+          path: |
+            artifacts/release-receipt.json
+            artifacts/indexnow-changed-routes.json
+            artifacts/indexnow-receipt.json
+          if-no-files-found: error
+          retention-days: 90

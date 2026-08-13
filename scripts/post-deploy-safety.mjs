@@ -149,6 +149,19 @@ export function selectLastKnownGoodDeployment(deployments) {
   ) ?? null;
 }
 
+export function selectSuccessfulProductionDeployment(deployments, expectedCommit) {
+  return deployments.find(
+    (deployment) =>
+      deployment?.environment === "production" &&
+      deployment?.is_skipped !== true &&
+      deployment?.latest_stage?.status === "success" &&
+      deployment?.deployment_trigger?.metadata?.commit_hash === expectedCommit &&
+      deployment?.deployment_trigger?.metadata?.branch === "main" &&
+      typeof deployment?.id === "string" &&
+      deployment.id,
+  ) ?? null;
+}
+
 function cloudflareUrl(accountId, projectName, suffix = "") {
   assert(accountId, "Missing CLOUDFLARE_ACCOUNT_ID");
   assert(projectName, "Missing Cloudflare Pages project name");
@@ -179,6 +192,46 @@ export async function captureLastKnownGood({
   const deployment = selectLastKnownGoodDeployment(deployments);
   assert(deployment, "No successful production deployment is available for rollback");
   return deployment;
+}
+
+export async function confirmProductionDeployment({
+  accountId,
+  apiToken,
+  expectedCommit,
+  projectName = DEFAULT_PROJECT,
+  fetchImpl = fetch,
+}) {
+  assert(apiToken, "Missing CLOUDFLARE_API_TOKEN");
+  assert(/^[0-9a-f]{40}$/.test(expectedCommit ?? ""), "Expected deployment commit must be a full Git SHA");
+  const url = `${cloudflareUrl(accountId, projectName)}?env=production&per_page=20`;
+  const deployments = await cloudflareJson(fetchImpl, url, {
+    headers: { Authorization: `Bearer ${apiToken}` },
+  });
+  const deployment = selectSuccessfulProductionDeployment(deployments, expectedCommit);
+  assert(deployment, `No successful main production deployment matches ${expectedCommit}`);
+  return deployment;
+}
+
+export async function inspectReleaseIdentity({
+  baseUrl = DEFAULT_BASE_URL,
+  expectedCommit,
+  fetchImpl = fetch,
+}) {
+  assert(/^[0-9a-f]{40}$/.test(expectedCommit ?? ""), "Expected release commit must be a full Git SHA");
+  const { response, text } = await fetchText(fetchImpl, `${baseUrl.replace(/\/$/, "")}/release.json`);
+  if (response.status === 404) {
+    return { available: false, commit: null, branch: null };
+  }
+  assert(response.status === 200, `release.json probe returned ${response.status}`);
+  let metadata;
+  try {
+    metadata = JSON.parse(text);
+  } catch {
+    throw new Error("release.json probe is not valid JSON");
+  }
+  assert(metadata.commit === expectedCommit, `release.json probe commit ${metadata.commit || "missing"} does not match ${expectedCommit}`);
+  assert(metadata.branch === "main", `release.json probe branch ${metadata.branch || "missing"} is not main`);
+  return { available: true, commit: metadata.commit, branch: metadata.branch };
 }
 
 export function buildRollbackRequest({
@@ -237,7 +290,34 @@ async function main() {
       apiToken,
       projectName,
     });
-    process.stdout.write(deployment.id);
+    const commitHash = deployment?.deployment_trigger?.metadata?.commit_hash ?? null;
+    const branch = deployment?.deployment_trigger?.metadata?.branch ?? null;
+    process.stdout.write(JSON.stringify({ id: deployment.id, commitHash, branch }));
+    return;
+  }
+
+  if (command === "confirm") {
+    const deployment = await confirmProductionDeployment({
+      accountId,
+      apiToken,
+      projectName,
+      expectedCommit: argValue("expected-commit"),
+    });
+    process.stdout.write(JSON.stringify({
+      id: deployment.id,
+      commitHash: deployment.deployment_trigger.metadata.commit_hash,
+      branch: deployment.deployment_trigger.metadata.branch,
+      url: deployment.url,
+    }));
+    return;
+  }
+
+  if (command === "inspect-release") {
+    const result = await inspectReleaseIdentity({
+      baseUrl: argValue("base-url", DEFAULT_BASE_URL),
+      expectedCommit: argValue("expected-commit"),
+    });
+    process.stdout.write(JSON.stringify(result));
     return;
   }
 
@@ -263,7 +343,7 @@ async function main() {
     return;
   }
 
-  throw new Error("Usage: post-deploy-safety.mjs <verify|capture|rollback>");
+  throw new Error("Usage: post-deploy-safety.mjs <verify|capture|confirm|inspect-release|rollback>");
 }
 
 if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {

@@ -10,6 +10,8 @@ on:
       - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'astro.config.mjs'
+      - 'wrangler.toml'
       - '.github/workflows/seo-build-health.yml'
   schedule:
     - cron: "0 12 * * 1"
