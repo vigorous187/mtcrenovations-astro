@@ -31,12 +31,16 @@ async function fetchSameOriginScripts(fetchImpl, baseUrl, html) {
 export async function verifyProduction({
   baseUrl = DEFAULT_BASE_URL,
   profile = "release",
+  expectedCommit,
   fetchImpl = fetch,
 } = {}) {
   const base = baseUrl.replace(/\/$/, "");
   const uniqueMissingPath = `/__mtc_post_deploy_${Date.now()}`;
+  if (expectedCommit) {
+    assert(/^[0-9a-f]{40}$/.test(expectedCommit), "Expected release commit must be a full 40-character Git SHA");
+  }
 
-  const [home, robots, sitemap, leadPage, estimateHealth, indexNow, missing] =
+  const [home, robots, sitemap, leadPage, estimateHealth, indexNow, release, missing] =
     await Promise.all([
       fetchText(fetchImpl, `${base}/`),
       fetchText(fetchImpl, `${base}/robots.txt`),
@@ -44,6 +48,9 @@ export async function verifyProduction({
       fetchText(fetchImpl, `${base}/newleadintake/`),
       fetchText(fetchImpl, `${base}/api/estimates/__postdeploy-health__/`),
       fetchText(fetchImpl, `${base}/${INDEXNOW_KEY}.txt`),
+      expectedCommit
+        ? fetchText(fetchImpl, `${base}/release.json?expected=${expectedCommit}`)
+        : Promise.resolve(null),
       fetchText(fetchImpl, `${base}${uniqueMissingPath}`),
     ]);
 
@@ -75,6 +82,18 @@ export async function verifyProduction({
   assert(indexNow.response.status === 200, `IndexNow key returned ${indexNow.response.status}`);
   assert(indexNow.text === `${INDEXNOW_KEY}\n`, "IndexNow key response is not the exact public key");
 
+  if (expectedCommit) {
+    assert(release.response.status === 200, `release.json returned ${release.response.status}`);
+    let releaseMetadata;
+    try {
+      releaseMetadata = JSON.parse(release.text);
+    } catch {
+      throw new Error("release.json is not valid JSON");
+    }
+    assert(releaseMetadata.commit === expectedCommit, `Production commit ${releaseMetadata.commit || "missing"} does not match expected ${expectedCommit}`);
+    assert(releaseMetadata.branch === "main", `Production release branch ${releaseMetadata.branch || "missing"} is not main`);
+  }
+
   assert(missing.response.status === 404, `Unknown URL returned ${missing.response.status} instead of 404`);
 
   const checks = [
@@ -90,6 +109,7 @@ export async function verifyProduction({
   if (profile === "release") {
     checks.push("zaraz_email_contract", "confirmed_lead_contract");
   }
+  if (expectedCommit) checks.push("release_identity");
 
   return {
     baseUrl: base,
@@ -203,6 +223,7 @@ async function main() {
     const result = await verifyProductionWithRetry({
       baseUrl: argValue("base-url", DEFAULT_BASE_URL),
       profile: argValue("profile", "release"),
+      expectedCommit: argValue("expected-commit"),
       retries: Number(argValue("retries", "6")),
       delayMs: Number(argValue("delay-ms", "5000")),
     });

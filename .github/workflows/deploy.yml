@@ -7,16 +7,43 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
+      - 'scripts/**'
+      - '.github/workflows/deploy.yml'
       - 'astro.config.mjs'
       - 'wrangler.toml'
       - 'package.json'
       - 'blog-calendar.json'
 
+permissions:
+  contents: read
+
+concurrency:
+  group: mtc-production-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SOURCE_BRANCH: main
+      SOURCE_COMMIT: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Verify exact merged source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "$SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::SOURCE_COMMIT must be a full 40-character Git SHA."
+            exit 1
+          fi
+          git fetch --no-tags origin "+refs/heads/$SOURCE_BRANCH:refs/remotes/origin/$SOURCE_BRANCH"
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          test "$(git rev-parse "origin/$SOURCE_BRANCH")" = "$SOURCE_COMMIT"
 
       - uses: actions/setup-node@v4
         with:
@@ -28,6 +55,8 @@ jobs:
       - name: Build (fetch live Google reviews)
         env:
           FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
+          PUBLIC_RELEASE_COMMIT: ${{ github.sha }}
+          PUBLIC_RELEASE_BRANCH: main
         run: npm run build
 
       # Pre-deploy guard: verify build matches MTC, not another site
@@ -57,7 +86,7 @@ jobs:
 
       - name: Verify production critically
         id: production_verify
-        run: node scripts/post-deploy-safety.mjs verify
+        run: node scripts/post-deploy-safety.mjs verify --expected-commit=${{ github.sha }}
 
       - name: Roll back to last-known-good deployment
         id: rollback
