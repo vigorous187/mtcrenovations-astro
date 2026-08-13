@@ -3,6 +3,7 @@ import { pathToFileURL } from "node:url";
 const DEFAULT_BASE_URL = "https://www.mtcrenovations.ca";
 const DEFAULT_PROJECT = "mtc-renovations";
 const CLOUDFLARE_API = "https://api.cloudflare.com/client/v4";
+const INDEXNOW_KEY = "ae0b529e-ad61-4957-b4d9-6e2e253a8bd5";
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -35,13 +36,14 @@ export async function verifyProduction({
   const base = baseUrl.replace(/\/$/, "");
   const uniqueMissingPath = `/__mtc_post_deploy_${Date.now()}`;
 
-  const [home, robots, sitemap, leadPage, estimateHealth, missing] =
+  const [home, robots, sitemap, leadPage, estimateHealth, indexNow, missing] =
     await Promise.all([
       fetchText(fetchImpl, `${base}/`),
       fetchText(fetchImpl, `${base}/robots.txt`),
       fetchText(fetchImpl, `${base}/sitemap.xml`),
       fetchText(fetchImpl, `${base}/newleadintake/`),
       fetchText(fetchImpl, `${base}/api/estimates/__postdeploy-health__/`),
+      fetchText(fetchImpl, `${base}/${INDEXNOW_KEY}.txt`),
       fetchText(fetchImpl, `${base}${uniqueMissingPath}`),
     ]);
 
@@ -70,6 +72,9 @@ export async function verifyProduction({
   assert(estimateHealth.response.status === 404, `Estimate KV health check returned ${estimateHealth.response.status}`);
   assert(estimateHealth.text.includes("Estimate not found"), "Estimate KV binding health response is invalid");
 
+  assert(indexNow.response.status === 200, `IndexNow key returned ${indexNow.response.status}`);
+  assert(indexNow.text === `${INDEXNOW_KEY}\n`, "IndexNow key response is not the exact public key");
+
   assert(missing.response.status === 404, `Unknown URL returned ${missing.response.status} instead of 404`);
 
   const checks = [
@@ -79,6 +84,7 @@ export async function verifyProduction({
     "sitemap_index",
     "lead_form",
     "estimate_kv_read",
+    "indexnow_key",
     "real_404",
   ];
   if (profile === "release") {

@@ -1,9 +1,22 @@
 name: SEO build health (weekly)
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/seo-build-health.yml'
   schedule:
     - cron: "0 12 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: mtc-seo-build-health

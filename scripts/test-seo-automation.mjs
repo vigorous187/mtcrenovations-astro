@@ -83,12 +83,13 @@ test("production verification covers identity, Zaraz, crawl files, lead form, KV
     if (path === "/newleadintake/") return response(200, '<form id="leadForm"></form><script src="/_astro/lead.js"></script>');
     if (path === "/_astro/lead.js") return response(200, 'fetch("/api/leads/submit/");const x={submissionId:"id"};zaraz.track("generate_lead")');
     if (path === "/api/estimates/__postdeploy-health__/") return response(404, '{"error":"Estimate not found"}');
+    if (path === "/ae0b529e-ad61-4957-b4d9-6e2e253a8bd5.txt") return response(200, "ae0b529e-ad61-4957-b4d9-6e2e253a8bd5\n");
     if (path.startsWith("/__mtc_post_deploy_")) return response(404, "not found");
     return response(500, "unexpected");
   };
 
   const result = await verifyProduction({ fetchImpl });
-  assert.equal(result.checks.length, 9);
+  assert.equal(result.checks.length, 10);
 });
 
 test("production verification rejects a soft 404", async () => {
@@ -99,6 +100,7 @@ test("production verification rejects a soft 404", async () => {
     if (path === "/sitemap.xml") return response(200, "<sitemapindex></sitemapindex>");
     if (path === "/newleadintake/") return response(200, '<form id="leadForm"></form>');
     if (path === "/api/estimates/__postdeploy-health__/") return response(404, "Estimate not found");
+    if (path === "/ae0b529e-ad61-4957-b4d9-6e2e253a8bd5.txt") return response(200, "ae0b529e-ad61-4957-b4d9-6e2e253a8bd5\n");
     return response(200, "homepage fallback");
   };
   await assert.rejects(() => verifyProduction({ fetchImpl, profile: "baseline" }), /instead of 404/);
