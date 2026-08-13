@@ -115,9 +115,21 @@ function hasReservedImageSpace(node) {
   if (attribute(node, "width") && attribute(node, "height")) return true;
   if (/\.svg(?:$|[?#])/i.test(attribute(node, "src") ?? "")) return true;
   const style = attribute(node, "style") ?? "";
-  return (
+  if (/(?:^|;)\s*aspect-ratio\s*:\s*[^;]+/i.test(style)) return true;
+  if (
     /(?:^|;)\s*(?:min-)?height\s*:\s*(?!auto\b)[^;]+/i.test(style) &&
-    /(?:^|;)\s*(?:min-)?width\s*:\s*(?!auto\b)[^;]+/i.test(style)
+    (/(?:^|;)\s*(?:min-)?width\s*:\s*(?!auto\b)[^;]+/i.test(style) ||
+      /(?:^|\s)w-100(?:\s|$)/.test(attribute(node, "class") ?? ""))
+  ) {
+    return true;
+  }
+  const fillsReservedFrame = /(?:^|\s)h-100(?:\s|$)/.test(
+    attribute(node, "class") ?? "",
+  );
+  const parentStyle = attribute(node.parentNode, "style") ?? "";
+  return (
+    fillsReservedFrame &&
+    /(?:^|;)\s*(?:min-)?height\s*:\s*(?!auto\b)[^;]+/i.test(parentStyle)
   );
 }
 

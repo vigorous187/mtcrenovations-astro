@@ -146,8 +146,11 @@ svg {
   --bg-surface-3: #222222;
   --bg-surface-4: #2a2a2a;
   --bg-elevated: #333333;
-  --mtc-red: #e8374a;
-  --mtc-red-dark: #bb2d3b;
+  /* Accessible brand pair: bright red for text/icons on dark surfaces and a
+     deeper action red that preserves white button-label contrast. */
+  --mtc-red: #ff5c6d;
+  --mtc-red-action: #d1263a;
+  --mtc-red-dark: #b51d30;
   --mtc-red-glow: rgba(220, 53, 69, 0.35);
   --text-primary: rgba(255, 255, 255, 0.92);
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -290,8 +293,9 @@ html {
 
 /* ── Button Styles ── */
 .btn-danger {
-  background-color: var(--mtc-red);
-  border-color: var(--mtc-red);
+  background-color: var(--mtc-red-action);
+  border-color: var(--mtc-red-action);
+  color: #fff;
   transition: all 0.3s ease;
 }
 
@@ -299,6 +303,37 @@ html {
   background-color: var(--mtc-red-dark);
   border-color: var(--mtc-red-dark);
   box-shadow: 0 6px 25px var(--mtc-red-glow);
+}
+
+/* Bootstrap's dark color mode and fixed utility colors can otherwise create
+   dark-on-dark or light-on-light combinations in generated service/location
+   templates. Keep these utilities aligned with the site's dark surfaces. */
+.bg-light {
+  background-color: var(--bg-surface-1) !important;
+}
+
+.text-danger {
+  color: var(--mtc-red) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.service-card .text-dark {
+  color: var(--text-primary) !important;
+}
+
+.btn-outline-dark {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus-visible {
+  border-color: #fff;
+  background-color: #fff;
+  color: #111;
 }
 
 .btn-ghost {

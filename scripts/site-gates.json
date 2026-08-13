@@ -25,7 +25,7 @@
     "requireExternalCitation": false
   },
   "websiteQuality": {
-    "maxImagesWithoutReservedSpace": 434,
+    "maxImagesWithoutReservedSpace": 0,
     "maxCompressedInitialJavaScriptBytes": 153600
   }
 }
