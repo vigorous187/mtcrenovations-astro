@@ -1,6 +1,7 @@
 name: Deploy to Cloudflare Pages
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -43,7 +44,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          command: pages deploy --project-name=mtc-renovations --branch=main --commit-dirty=true
+          command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-hash=${{ github.sha }} --commit-dirty=false
 
       - name: IndexNow (production URLs)
         if: success()
