@@ -1,0 +1,47 @@
+<section class="consent-banner" data-consent-banner hidden aria-labelledby="consent-title" aria-describedby="consent-description">
+  <h2 id="consent-title" class="h5 mb-2">Your privacy choices</h2>
+  <p id="consent-description" class="small mb-3">Necessary features always work. Analytics and advertising stay off unless you choose them.</p>
+  <div class="d-flex flex-wrap gap-2">
+    <button type="button" class="btn btn-danger" data-consent-accept>Accept all</button>
+    <button type="button" class="btn btn-outline-light" data-consent-reject>Reject all</button>
+    <button type="button" class="btn btn-link text-white" data-consent-open>Choose preferences</button>
+  </div>
+</section>
+
+<dialog class="consent-dialog" data-consent-dialog aria-labelledby="consent-dialog-title">
+  <h2 id="consent-dialog-title" class="h4">Privacy choices</h2>
+  <p>Necessary storage is always active for security and your saved choice.</p>
+  <label class="consent-option">
+    <input type="checkbox" name="consent-analytics" />
+    <span><strong>Analytics</strong><small>Helps MTC understand visits and useful actions.</small></span>
+  </label>
+  <label class="consent-option">
+    <input type="checkbox" name="consent-advertising" />
+    <span><strong>Advertising</strong><small>Allows advertising measurement, including Meta Pixel.</small></span>
+  </label>
+  <div class="d-flex flex-wrap gap-2 mt-4">
+    <button type="button" class="btn btn-danger" data-consent-save>Save choices</button>
+    <button type="button" class="btn btn-outline-light" data-consent-cancel>Cancel</button>
+  </div>
+</dialog>
+
+<aside class="consent-reload" data-consent-reload hidden role="status">
+  Your choice is now denied. Reload once to remove measurement code already loaded on this page.
+  <button type="button" class="btn btn-light btn-sm ms-2">Reload now</button>
+</aside>
+
+<style>
+  .consent-banner,.consent-reload{position:fixed;z-index:1080;left:1rem;right:1rem;bottom:1rem;max-width:760px;margin:auto;padding:1.25rem;border:1px solid rgba(255,255,255,.2);border-radius:1rem;background:#171717;color:#fff;box-shadow:0 1rem 3rem rgba(0,0,0,.45)}
+  .consent-dialog{width:min(92vw,560px);padding:1.5rem;border:1px solid #555;border-radius:1rem;background:#171717;color:#fff}
+  .consent-dialog::backdrop{background:rgba(0,0,0,.7)}
+  .consent-option{display:flex;gap:.75rem;align-items:flex-start;margin-top:.75rem;padding:1rem;border:1px solid #555;border-radius:.75rem;cursor:pointer}
+  .consent-option input{width:1.25rem;height:1.25rem;margin-top:.15rem}
+  .consent-option small{display:block;margin-top:.25rem;color:#ccc}
+  [hidden]{display:none!important}
+</style>
+
+<script>
+  import { initConsentManager } from '../lib/consent-manager.js';
+  initConsentManager();
+  document.addEventListener('astro:after-swap', initConsentManager);
+</script>

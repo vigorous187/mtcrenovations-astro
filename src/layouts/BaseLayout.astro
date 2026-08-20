@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SocialProofTicker from '../components/SocialProofTicker.astro';
+import ConsentManager from '../components/ConsentManager.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -43,23 +44,28 @@ const props = seoProps;
   {heroImage && <link rel="preload" href={heroImage} as="image" fetchpriority="high" />}
 
   <SEOHead {...props} />
-  <ViewTransitions />
-  <!-- Zaraz auto-injected by Cloudflare — manual script removed to prevent double-load -->
-
-  <!-- Meta Pixel — browser-side (CAPI upgrade pending Meta developer access) -->
+  <!-- Consent Mode v2 defaults run before any optional measurement code. -->
   <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1574962723611289');
-    fbq('track', 'PageView');
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied'
+    });
+    try {
+      const saved = JSON.parse(localStorage.getItem('mtc.consent.v1') || 'null');
+      if (saved?.version === 1 && typeof saved.analytics === 'boolean' && typeof saved.advertising === 'boolean') {
+        window.gtag('consent', 'update', {
+          analytics_storage: saved.analytics ? 'granted' : 'denied',
+          ad_storage: saved.advertising ? 'granted' : 'denied',
+          ad_user_data: saved.advertising ? 'granted' : 'denied',
+          ad_personalization: saved.advertising ? 'granted' : 'denied'
+        });
+      }
+    } catch {}
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1574962723611289&ev=PageView&noscript=1" /></noscript>
+  <ViewTransitions />
+  <!-- Zaraz is manually loaded after analytics consent. Disable Cloudflare auto-inject before release. -->
 </head>
 <body class="noise-overlay">
   <Header />
@@ -67,6 +73,7 @@ const props = seoProps;
     <slot />
   </main>
   <Footer />
+  <ConsentManager />
 
   <!-- Bootstrap JS Bundle -->
   <script is:inline src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -136,7 +143,7 @@ const props = seoProps;
       // Phone click tracking
       document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
         link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.mtcConsentAllowed?.('analytics') && typeof zaraz !== 'undefined') {
             zaraz.track('phone_click', {
               phone_number: link.getAttribute('href').replace('tel:', ''),
               link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
@@ -148,7 +155,7 @@ const props = seoProps;
       // CTA button click tracking
       document.querySelectorAll('a[href*="contact"], a[href*="estimate"], a[href*="quote"], button[type="submit"], .cta-button, [data-cta]').forEach(function(el) {
         el.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.mtcConsentAllowed?.('analytics') && typeof zaraz !== 'undefined') {
             zaraz.track('cta_click', {
               button_text: el.textContent?.trim().substring(0, 50),
               button_url: el.getAttribute('href') || '',
@@ -164,7 +171,7 @@ const props = seoProps;
 
     // Meta Pixel — fire PageView on Astro client-side navigations
     document.addEventListener('astro:after-swap', function() {
-      if (typeof fbq !== 'undefined') fbq('track', 'PageView');
+      if (window.mtcConsentAllowed?.('advertising') && typeof fbq !== 'undefined') fbq('track', 'PageView');
     });
   </script>
 </body>
