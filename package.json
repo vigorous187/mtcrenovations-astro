@@ -10,7 +10,8 @@
     "seo:guidelines:check": "node ./scripts/seo-check-guideline-baseline.mjs",
     "blog:opposing-review": "node ./scripts/blog-opposing-review.mjs",
     "build": "npm run generate:sitemap && astro build && node ./scripts/check-seo-baseline.mjs && node ./scripts/check-blog-chrome.mjs && node ./scripts/audit-headings.mjs && node ./scripts/check-blog-uniqueness.mjs && node ./scripts/blog-opposing-review.mjs && node ./scripts/check-blog-quality.mjs && node ./scripts/check-geo-lite.mjs && node ./scripts/check-brand-alignment.mjs && node ./scripts/check-pricing-alignment.mjs && echo '_worker.js' > dist/.assetsignore",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "release:test": "node --test scripts/send-release-receipt.test.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^11.0.0",
