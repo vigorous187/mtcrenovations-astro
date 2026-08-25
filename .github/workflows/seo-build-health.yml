@@ -35,6 +35,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test:seo-automation
+      - run: npm run release:test
       - name: Build (fetch live Google reviews)
         env:
           FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}

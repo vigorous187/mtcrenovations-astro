@@ -10,6 +10,7 @@
     "seo:guidelines:check": "node ./scripts/seo-check-guideline-baseline.mjs",
     "blog:opposing-review": "node ./scripts/blog-opposing-review.mjs",
     "test:seo-automation": "node --test ./scripts/test-seo-automation.mjs ./scripts/test-auto-deploy-guard.mjs",
+    "release:test": "node --test scripts/send-release-receipt.test.mjs",
     "build": "npm run generate:sitemap && astro build && node ./scripts/check-seo-baseline.mjs && npm run verify:site-quality && node ./scripts/check-blog-chrome.mjs && node ./scripts/audit-headings.mjs && node ./scripts/check-blog-uniqueness.mjs && node ./scripts/blog-opposing-review.mjs && node ./scripts/check-blog-quality.mjs && node ./scripts/check-geo-lite.mjs && node ./scripts/check-brand-alignment.mjs && node ./scripts/check-pricing-alignment.mjs && node ./scripts/check-indexnow-key.mjs && node ./scripts/check-release-metadata.mjs && echo '_worker.js' > dist/.assetsignore",
     "verify:site-quality": "node --test ./scripts/check-site-quality.test.mjs && node ./scripts/check-site-quality.mjs",
     "preview": "astro preview"

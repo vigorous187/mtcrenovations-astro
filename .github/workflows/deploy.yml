@@ -52,6 +52,7 @@ jobs:
 
       - run: npm ci
       - run: npm run test:seo-automation
+      - run: npm run release:test
       - name: Build (fetch live Google reviews)
         env:
           FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
@@ -168,6 +169,30 @@ jobs:
           ROLLBACK_OUTCOME: ${{ steps.rollback.outcome }}
           INDEXNOW_OUTCOME: ${{ steps.indexnow.outcome }}
         run: node scripts/write-release-receipt.mjs
+
+      - name: Send verified release receipt to SEO dashboard
+        id: release_receipt
+        if: ${{ steps.production_verify.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          RELEASE_RECEIPT_SITE: mtcrenovations.ca
+          RELEASE_RECEIPT_PROJECT: mtc-renovations
+          RELEASE_RECEIPT_BRANCH: main
+          RELEASE_RECEIPT_CANDIDATE_SHA: ${{ github.sha }}
+          RELEASE_RECEIPT_SECRET: ${{ secrets.RELEASE_RECEIPT_SECRET }}
+          RELEASE_RECEIPT_REPORT_PATH: ${{ runner.temp }}/mtc-release-receipt/release-receipt-sender.json
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/send-release-receipt.mjs
+
+      - name: Retain release receipt sender evidence
+        if: ${{ always() && steps.release_receipt.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtc-release-receipt-${{ github.sha }}
+          path: ${{ runner.temp }}/mtc-release-receipt/release-receipt-sender.json
+          if-no-files-found: error
+          retention-days: 90
 
       - name: Preserve release evidence
         if: always()
