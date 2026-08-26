@@ -194,8 +194,9 @@ const schemas = [localBusiness()];
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to submit');
 
-      if (typeof gtag === 'function') {
-        gtag('event', 'generate_lead', {
+      // Zaraz autoInject is on; gtag is never defined. zaraz.track reaches GA4 via All Tracks.
+      if (typeof zaraz !== 'undefined') {
+        zaraz.track('generate_lead', {
           form_name: 'price_guide_lead',
           page_path: window.location.pathname,
         });

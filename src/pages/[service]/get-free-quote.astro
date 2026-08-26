@@ -107,6 +107,19 @@ const schemas = [
       '<div class="text-right"><button data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div>' +
       '</div></div></form>';
 
+    var form = c.querySelector('form[data-jobtread-web-form]');
+    if (form && form.dataset.mtcGenerateLead !== '1') {
+      form.dataset.mtcGenerateLead = '1';
+      form.addEventListener('success', function() {
+        if (typeof zaraz !== 'undefined') {
+          zaraz.track('generate_lead', {
+            form_name: 'service_quote_lead',
+            page_path: window.location.pathname
+          });
+        }
+      });
+    }
+
     var s = document.createElement('script');
     s.src = 'https://app.jobtread.com/web-form.js';
     s.async = true;
