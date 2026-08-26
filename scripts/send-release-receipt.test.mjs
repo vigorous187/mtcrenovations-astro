@@ -172,7 +172,8 @@ test("sender runs only after the guarded production verification path", () => {
   const live = workflow.indexOf("Verify production critically");
   const localReceipt = workflow.indexOf("Record combined release receipt");
   const sender = workflow.indexOf("Send verified release receipt to SEO dashboard");
-  assert.ok(deploy >= 0 && live > deploy && localReceipt > live && sender > localReceipt);
+  const indexNow = workflow.indexOf("Submit changed canonical URLs through SEO dashboard");
+  assert.ok(deploy >= 0 && live > deploy && sender > live && indexNow > sender && localReceipt > indexNow);
   assert.match(workflow, /if: \$\{\{ steps\.production_verify\.outcome == 'success' \}\}/);
   assert.match(workflow, /continue-on-error:\s*true/);
   assert.match(workflow, /npm run release:test/);

@@ -315,6 +315,19 @@ test("IndexNow changed-route policy narrows only exact routes and otherwise fail
     selectChangedCanonicalUrls({ changedFiles: ["docs/release.md"], sitemapUrls }).urlList,
     [],
   );
+  assert.deepEqual(
+    selectChangedCanonicalUrls({
+      changedFiles: [
+        ".github/workflows/deploy.yml",
+        "docs/quality-evidence/dashboard-indexnow.md",
+        "scripts/build-indexnow-route-manifest.mjs",
+        "scripts/submit-indexnow.mjs",
+        "scripts/test-seo-automation.mjs",
+      ],
+      sitemapUrls,
+    }).urlList,
+    [],
+  );
 });
 
 test("IndexNow manifest derives a Git diff and falls back to every canonical on uncertainty", async () => {
@@ -351,7 +364,7 @@ test("IndexNow manifest derives a Git diff and falls back to every canonical on 
   }
 });
 
-test("IndexNow derives the public key and writes a non-secret receipt", async () => {
+test("IndexNow sends changed URLs through the dashboard and writes a non-secret receipt", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-"));
   try {
     await mkdir(path.join(root, "public"));
@@ -366,32 +379,47 @@ test("IndexNow derives the public key and writes a non-secret receipt", async ()
       JSON.stringify({ host: INDEXNOW_HOST, policy: "changed_canonical_urls", reason: "test", urlList: [`https://${INDEXNOW_HOST}/about/`] }),
     );
     let posted;
+    let requestHeaders;
     const receipt = await submitIndexNow({
       root,
       manifestPath: "manifest.json",
       now: () => new Date("2026-08-13T19:00:00.000Z"),
+      releaseReceiptSecret: "mtc-site-secret",
+      releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+      deploymentId: "deployment-123",
       fetchImpl: async (_url, options) => {
         posted = JSON.parse(options.body);
-        return new Response("accepted", { status: 200 });
+        requestHeaders = options.headers;
+        return new Response(JSON.stringify({
+          ok: true,
+          duplicate: false,
+          status: "accepted",
+          http_status: 200,
+          submission_id: "indexnow-mtc-123",
+        }), { status: 200, headers: { "content-type": "application/json" } });
       },
     });
-    assert.equal(posted.key, INDEXNOW_KEY);
-    assert.deepEqual(posted.urlList, [`https://${INDEXNOW_HOST}/about/`]);
-    assert.equal(receipt.accepted, true);
+    assert.deepEqual(posted, {
+      client_slug: "mtcrenovations",
+      deployment_id: "deployment-123",
+      urls: [`https://${INDEXNOW_HOST}/about/`],
+    });
+    assert.equal(requestHeaders["x-release-receipt-secret"], "mtc-site-secret");
+    assert.equal(receipt.status, "accepted");
     assert.equal(receipt.httpStatus, 200);
     assert.match(receipt.payloadSha256, /^[0-9a-f]{64}$/);
     const stored = JSON.parse(
       await readFile(path.join(root, "artifacts", "indexnow-receipt.json"), "utf8"),
     );
-    assert.equal(stored.requestedAt, "2026-08-13T19:00:00.000Z");
+    assert.equal(stored.attemptedAt, "2026-08-13T19:00:00.000Z");
     assert.equal(stored.selectionPolicy, "changed_canonical_urls");
-    assert.equal(stored.key, undefined);
+    assert.equal(JSON.stringify(stored).includes("mtc-site-secret"), false);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
 });
 
-test("IndexNow records a no-change skip without a network request", async () => {
+test("IndexNow records no-change through the dashboard without a provider submission", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-empty-"));
   try {
     await mkdir(path.join(root, "public"));
@@ -399,13 +427,78 @@ test("IndexNow records a no-change skip without a network request", async () => 
     await writeFile(path.join(root, "public", `${INDEXNOW_KEY}.txt`), `${INDEXNOW_KEY}\n`);
     await writeFile(path.join(root, "dist", "sitemap-0.xml"), `<urlset><url><loc>https://${INDEXNOW_HOST}/</loc></url></urlset>`);
     await writeFile(path.join(root, "manifest.json"), JSON.stringify({ host: INDEXNOW_HOST, policy: "changed_canonical_urls", reason: "none", urlList: [] }));
+    let requests = 0;
     const receipt = await submitIndexNow({
       root,
       manifestPath: "manifest.json",
-      fetchImpl: async () => { throw new Error("network must not be used"); },
+      releaseReceiptSecret: "mtc-site-secret",
+      releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+      deploymentId: "deployment-123",
+      fetchImpl: async (_url, options) => {
+        requests += 1;
+        assert.deepEqual(JSON.parse(options.body).urls, []);
+        return new Response(JSON.stringify({
+          ok: true,
+          duplicate: false,
+          status: "not_required_no_changed_urls",
+          url_count: 0,
+          capability_receipt_id: "indexnow-no-change-mtc",
+        }), { status: 200, headers: { "content-type": "application/json" } });
+      },
     });
-    assert.equal(receipt.status, "skipped_no_changed_urls");
+    assert.equal(receipt.status, "not_required_no_changed_urls");
     assert.equal(receipt.urlCount, 0);
+    assert.equal(requests, 1);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("IndexNow rejects missing site credentials before network and sanitizes provider failure", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-failure-"));
+  try {
+    await mkdir(path.join(root, "public"));
+    await mkdir(path.join(root, "dist"));
+    await writeFile(path.join(root, "public", `${INDEXNOW_KEY}.txt`), `${INDEXNOW_KEY}\n`);
+    await writeFile(path.join(root, "dist", "sitemap-0.xml"), `<urlset><url><loc>https://${INDEXNOW_HOST}/</loc></url></urlset>`);
+    await writeFile(path.join(root, "manifest.json"), JSON.stringify({ host: INDEXNOW_HOST, policy: "changed_canonical_urls", reason: "test", urlList: [`https://${INDEXNOW_HOST}/`] }));
+    let requests = 0;
+    await assert.rejects(
+      submitIndexNow({
+        root,
+        manifestPath: "manifest.json",
+        releaseReceiptSecret: "",
+        releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+        deploymentId: "deployment-123",
+        fetchImpl: async () => { requests += 1; },
+      }),
+      (error) => error.code === "missing_secret",
+    );
+    assert.equal(requests, 0);
+
+    const sensitive = "provider internal detail";
+    await assert.rejects(
+      submitIndexNow({
+        root,
+        manifestPath: "manifest.json",
+        releaseReceiptSecret: "mtc-site-secret",
+        releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+        deploymentId: "deployment-123",
+        fetchImpl: async () => new Response(JSON.stringify({
+          ok: true,
+          duplicate: true,
+          status: "failed",
+          http_status: 403,
+          submission_id: "indexnow-mtc-failed-123",
+          error: sensitive,
+        }), { status: 200, headers: { "content-type": "application/json" } }),
+      }),
+      (error) => error.code === "provider_failure",
+    );
+    const stored = await readFile(path.join(root, "artifacts", "indexnow-receipt.json"), "utf8");
+    assert.equal(stored.includes(sensitive), false);
+    assert.equal(stored.includes("mtc-site-secret"), false);
+    assert.match(stored, /indexnow-mtc-failed-123/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -486,11 +579,14 @@ test("production workflow binds build, deploy, verification, and rollback to the
   assert.match(workflow, /verify --profile=baseline --expected-commit=/);
   assert.doesNotMatch(workflow, /INDEXNOW_KEY_MTC/);
   assert.match(workflow, /id: indexnow[\s\S]+continue-on-error:\s*true/);
+  assert.match(workflow, /steps\.release_receipt\.outcome == 'success'/);
+  assert.match(workflow, /RELEASE_DEPLOYMENT_ID: \$\{\{ steps\.release_receipt\.outputs\.deployment_id \}\}/);
   assert.match(workflow, /build-indexnow-route-manifest\.mjs/);
   assert.match(workflow, /write-release-receipt\.mjs/);
   assert.match(workflow, /artifacts\/release-receipt\.json/);
   assert.match(workflow, /actions\/upload-artifact@v4/);
   assert.match(workflow, /artifacts\/indexnow-receipt\.json/);
+  assert.doesNotMatch(workflow, /api\.indexnow\.org/);
   assert.match(packageJson.scripts.build, /check-release-metadata\.mjs/);
 });
 

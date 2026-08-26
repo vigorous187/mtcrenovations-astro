@@ -24,6 +24,7 @@ const NON_RUNTIME_PATTERNS = [
   /^\.gitignore$/,
   /^scripts\/.*\.test\.mjs$/,
   /^scripts\/test-/,
+  /^scripts\/(?:submit-indexnow|build-indexnow-route-manifest)\.mjs$/,
 ];
 
 function staticPageUrl(file) {
