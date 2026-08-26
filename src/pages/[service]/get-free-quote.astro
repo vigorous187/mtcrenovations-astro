@@ -116,6 +116,10 @@ const schemas = [
             form_name: 'service_quote_lead',
             page_path: window.location.pathname
           });
+          zaraz.track('quote_request', {
+            form_name: 'service_quote_lead',
+            page_path: window.location.pathname
+          });
         }
       });
     }
