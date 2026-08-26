@@ -149,4 +149,25 @@ const schemas = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    // JobTread web-form.js dispatches CustomEvent('success') on the form after
+    // submitWebForm succeeds. Listen only — do not intercept submit or POST.
+    function bindContactGenerateLead() {
+      document.querySelectorAll('form[data-jobtread-web-form]').forEach(function(form) {
+        if (form.dataset.mtcGenerateLead === '1') return;
+        form.dataset.mtcGenerateLead = '1';
+        form.addEventListener('success', function() {
+          if (typeof zaraz !== 'undefined') {
+            zaraz.track('generate_lead', {
+              form_name: 'contact_lead',
+              page_path: window.location.pathname
+            });
+          }
+        });
+      });
+    }
+    bindContactGenerateLead();
+    document.addEventListener('astro:after-swap', bindContactGenerateLead);
+  </script>
 </BaseLayout>
