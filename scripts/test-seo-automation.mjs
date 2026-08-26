@@ -27,6 +27,7 @@ import {
   canonicalSitemapUrls,
   INDEXNOW_HOST,
   INDEXNOW_KEY,
+  MAX_DASHBOARD_RETRY_AFTER_SECONDS,
   submitIndexNow,
 } from "./submit-indexnow.mjs";
 import { writeReleaseReceipt } from "./write-release-receipt.mjs";
@@ -499,6 +500,112 @@ test("IndexNow rejects missing site credentials before network and sanitizes pro
     assert.equal(stored.includes(sensitive), false);
     assert.equal(stored.includes("mtc-site-secret"), false);
     assert.match(stored, /indexnow-mtc-failed-123/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("IndexNow stops on the first dashboard 429 and retains exact cooldown evidence", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-rate-limit-"));
+  try {
+    await mkdir(path.join(root, "public"));
+    await mkdir(path.join(root, "dist"));
+    await writeFile(path.join(root, "public", `${INDEXNOW_KEY}.txt`), `${INDEXNOW_KEY}\n`);
+    await writeFile(path.join(root, "dist", "sitemap-0.xml"), `<urlset><url><loc>https://${INDEXNOW_HOST}/</loc></url></urlset>`);
+    await writeFile(path.join(root, "manifest.json"), JSON.stringify({ host: INDEXNOW_HOST, policy: "changed_canonical_urls", reason: "test", urlList: [`https://${INDEXNOW_HOST}/`] }));
+    let requests = 0;
+    let sleeps = 0;
+    await assert.rejects(
+      submitIndexNow({
+        root,
+        manifestPath: "manifest.json",
+        releaseReceiptSecret: "mtc-site-secret",
+        releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+        deploymentId: "deployment-123",
+        fetchImpl: async () => {
+          requests += 1;
+          return new Response(JSON.stringify({
+            ok: false,
+            provider_http_status: 429,
+            attempts: 1,
+            submission_id: "indexnow-mtc-rate-limited",
+            retry_after_at: "2026-08-27T05:00:00.000Z",
+            retry_after_seconds: 86_400,
+            error: "provider detail not retained",
+          }), {
+            status: 429,
+            headers: { "content-type": "application/json", "Retry-After": "86400" },
+          });
+        },
+        sleep: async () => { sleeps += 1; },
+      }),
+      (error) => {
+        assert.equal(error.code, "provider_rate_limited");
+        assert.equal(error.attempts, 1);
+        assert.equal(error.httpStatus, 429);
+        assert.equal(error.retryAfterAt, "2026-08-27T05:00:00.000Z");
+        assert.equal(error.retryAfterSeconds, 86_400);
+        assert.equal(error.dashboardReceipt.providerHttpStatus, 429);
+        assert.equal(error.dashboardReceipt.submissionId, "indexnow-mtc-rate-limited");
+        assert.equal(JSON.stringify(error).includes("provider detail"), false);
+        return true;
+      },
+    );
+    const stored = JSON.parse(
+      await readFile(path.join(root, "artifacts", "indexnow-receipt.json"), "utf8"),
+    );
+    assert.equal(stored.errorCode, "provider_rate_limited");
+    assert.equal(stored.attempts, 1);
+    assert.equal(stored.retryAfterAt, "2026-08-27T05:00:00.000Z");
+    assert.equal(stored.retryAfterSeconds, 86_400);
+    assert.equal(stored.dashboardReceipt.submissionId, "indexnow-mtc-rate-limited");
+    assert.equal(JSON.stringify(stored).includes("mtc-site-secret"), false);
+    assert.equal(MAX_DASHBOARD_RETRY_AFTER_SECONDS, 604_800);
+    assert.equal(requests, 1);
+    assert.equal(sleeps, 0);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("IndexNow rejects malformed 429 evidence without a retry burst", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mtc-indexnow-invalid-rate-limit-"));
+  try {
+    await mkdir(path.join(root, "public"));
+    await mkdir(path.join(root, "dist"));
+    await writeFile(path.join(root, "public", `${INDEXNOW_KEY}.txt`), `${INDEXNOW_KEY}\n`);
+    await writeFile(path.join(root, "dist", "sitemap-0.xml"), `<urlset><url><loc>https://${INDEXNOW_HOST}/</loc></url></urlset>`);
+    await writeFile(path.join(root, "manifest.json"), JSON.stringify({ host: INDEXNOW_HOST, policy: "changed_canonical_urls", reason: "test", urlList: [`https://${INDEXNOW_HOST}/`] }));
+    let requests = 0;
+    let sleeps = 0;
+    await assert.rejects(
+      submitIndexNow({
+        root,
+        manifestPath: "manifest.json",
+        releaseReceiptSecret: "mtc-site-secret",
+        releaseCommit: "0123456789abcdef0123456789abcdef01234567",
+        deploymentId: "deployment-123",
+        fetchImpl: async () => {
+          requests += 1;
+          return new Response(JSON.stringify({
+            ok: false,
+            provider_http_status: 429,
+            attempts: 1,
+            submission_id: "indexnow-mtc-rate-limited",
+            retry_after_at: "2026-08-27T05:00:00.000Z",
+            retry_after_seconds: 86_400,
+          }), {
+            status: 429,
+            headers: { "content-type": "application/json", "Retry-After": "60" },
+          });
+        },
+        sleep: async () => { sleeps += 1; },
+      }),
+      (error) => error.code === "rate_limit_evidence_invalid" &&
+        error.retryAfterAt === null && error.retryAfterSeconds === null,
+    );
+    assert.equal(requests, 1);
+    assert.equal(sleeps, 0);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

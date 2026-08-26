@@ -8,16 +8,28 @@ export const INDEXNOW_KEY = "ae0b529e-ad61-4957-b4d9-6e2e253a8bd5";
 export const DASHBOARD_INDEXNOW_ENDPOINT =
   "https://api.forge-co.ca/internal/indexnow/submit";
 export const SITE_SLUG = "mtcrenovations";
+export const MAX_DASHBOARD_RETRY_AFTER_SECONDS = 7 * 24 * 60 * 60;
 const FULL_SHA = /^[0-9a-f]{40}$/;
 
 export class DashboardIndexNowError extends Error {
-  constructor(code, { attempts = 0, httpStatus = null, dashboardReceipt = null } = {}) {
+  constructor(
+    code,
+    {
+      attempts = 0,
+      httpStatus = null,
+      dashboardReceipt = null,
+      retryAfterAt = null,
+      retryAfterSeconds = null,
+    } = {},
+  ) {
     super(code);
     this.name = "DashboardIndexNowError";
     this.code = code;
     this.attempts = attempts;
     this.httpStatus = httpStatus;
     this.dashboardReceipt = dashboardReceipt;
+    this.retryAfterAt = retryAfterAt;
+    this.retryAfterSeconds = retryAfterSeconds;
   }
 }
 
@@ -133,13 +145,41 @@ function failedProviderResponse(value) {
 
 function sanitizedDashboardReceipt(value) {
   return {
-    duplicate: value.duplicate,
-    status: value.status,
-    providerHttpStatus: value.http_status ?? null,
-    submissionId: value.submission_id ?? null,
-    capabilityReceiptId: value.capability_receipt_id ?? null,
-    deploymentObservationId: value.deployment_observation_id ?? null,
+    duplicate: typeof value?.duplicate === "boolean" ? value.duplicate : null,
+    status: typeof value?.status === "string" ? value.status : null,
+    providerHttpStatus: value?.provider_http_status ?? value?.http_status ?? null,
+    submissionId: value?.submission_id ?? null,
+    capabilityReceiptId: value?.capability_receipt_id ?? null,
+    deploymentObservationId: value?.deployment_observation_id ?? null,
+    retryAfterAt: value?.retry_after_at ?? null,
+    retryAfterSeconds: value?.retry_after_seconds ?? null,
   };
+}
+
+function rateLimitEvidence(response, value) {
+  const header = response.headers.get("Retry-After");
+  const headerSeconds = /^\d{1,7}$/.test(header ?? "") ? Number(header) : null;
+  const bodySeconds = Number.isInteger(value?.retry_after_seconds)
+    ? value.retry_after_seconds
+    : null;
+  const retryAfterSeconds = headerSeconds !== null && headerSeconds === bodySeconds &&
+      headerSeconds >= 1 && headerSeconds <= MAX_DASHBOARD_RETRY_AFTER_SECONDS
+    ? headerSeconds
+    : null;
+  const parsedAt = typeof value?.retry_after_at === "string"
+    ? Date.parse(value.retry_after_at)
+    : Number.NaN;
+  const retryAfterAt = retryAfterSeconds !== null && Number.isFinite(parsedAt)
+    ? new Date(parsedAt).toISOString()
+    : null;
+  const valid = value?.ok === false &&
+    value?.provider_http_status === 429 &&
+    Number.isInteger(value?.attempts) &&
+    value.attempts >= 1 &&
+    typeof value?.submission_id === "string" &&
+    value.submission_id.length > 0 &&
+    retryAfterAt !== null;
+  return { valid, retryAfterAt, retryAfterSeconds };
 }
 
 function assertInputs({ releaseReceiptSecret, releaseCommit, deploymentId }) {
@@ -249,7 +289,32 @@ export async function submitIndexNow({
         dashboardReceipt: receipt.dashboardReceipt,
       });
     }
-    const retryable = response.status === 429 || response.status >= 500 ||
+    if (response.status === 429) {
+      const evidence = rateLimitEvidence(response, body);
+      const errorCode = evidence.valid
+        ? "provider_rate_limited"
+        : "rate_limit_evidence_invalid";
+      const dashboardReceipt = body ? sanitizedDashboardReceipt(body) : null;
+      const receipt = {
+        ...base,
+        status: "failed_noncritical",
+        attempts: attempt,
+        httpStatus: 429,
+        errorCode,
+        retryAfterAt: evidence.retryAfterAt,
+        retryAfterSeconds: evidence.retryAfterSeconds,
+        ...(dashboardReceipt ? { dashboardReceipt } : {}),
+      };
+      await writeReceipt(root, receiptPath, receipt);
+      throw new DashboardIndexNowError(errorCode, {
+        attempts: attempt,
+        httpStatus: 429,
+        dashboardReceipt,
+        retryAfterAt: evidence.retryAfterAt,
+        retryAfterSeconds: evidence.retryAfterSeconds,
+      });
+    }
+    const retryable = response.status >= 500 ||
       (response.ok && body?.status === "pending");
     if (retryable && attempt < maxAttempts) {
       await sleep(attempt * 1_000);
