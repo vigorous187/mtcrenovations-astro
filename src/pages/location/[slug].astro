@@ -16,6 +16,8 @@ export async function getStaticPaths() {
 
 const { city } = Astro.props;
 const { Content } = await city.render();
+const publishedCitySlugs = new Set((await getCollection('cities')).map(entry => entry.slug));
+const citySlug = (name: string) => name.toLowerCase().replace(/[\s.]+/g, '-');
 
 const schemas = [
   localBusiness(city.data.name),
@@ -63,7 +65,7 @@ const schemas = [
             <a href={`/${s.slug}/`} class="text-decoration-none">
               <div class="card border-0 shadow-sm service-card h-100">
                 <div class="card-body text-center p-4">
-                  <img src={s.icon} alt={s.name} style="height: 40px;" class="mb-3" loading="lazy" />
+                  <img src={s.icon} alt={s.name} width="40" height="40" style="height: 40px;" class="mb-3" loading="lazy" />
                   <h3 class="h5 fw-bold text-dark">{s.name} Renovation</h3>
                   <p class="text-secondary small mb-0">{s.tagline}</p>
                 </div>
@@ -81,14 +83,15 @@ const schemas = [
       <div class="container text-center">
         <h2 class="fw-bold mb-4">Nearby Areas We Serve</h2>
         <div class="d-flex flex-wrap justify-content-center gap-2">
-          {city.data.nearbyAreas.map((area: string) => (
-            <a
-              href={`/location/${area.toLowerCase().replace(/[\s.]+/g, '-')}/`}
-              class="btn btn-outline-dark btn-sm"
-            >
-              {area}
-            </a>
-          ))}
+          {city.data.nearbyAreas.map((area: string) =>
+            publishedCitySlugs.has(citySlug(area)) ? (
+              <a href={`/location/${citySlug(area)}/`} class="btn btn-outline-dark btn-sm">
+                {area}
+              </a>
+            ) : (
+              <span class="btn btn-outline-dark btn-sm" aria-disabled="true">{area}</span>
+            )
+          )}
         </div>
       </div>
     </section>

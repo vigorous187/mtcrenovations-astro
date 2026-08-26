@@ -28,10 +28,28 @@ const schemas = [
 >
   <!-- Hero Section — Full viewport with project photo -->
   <section class="position-relative d-flex align-items-center" style="min-height: 100vh;">
-    <div
-      class="position-absolute inset-0 w-100 h-100"
-      style="background: url('/assets/img/kitchen/hero.jpg?v=3') center/cover no-repeat; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
-    ></div>
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/assets/img/kitchen/hero-768.avif 768w, /assets/img/kitchen/hero.avif 1680w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/assets/img/kitchen/hero-768.webp 768w, /assets/img/kitchen/hero.webp 1680w"
+        sizes="100vw"
+      />
+      <img
+        class="position-absolute inset-0 w-100 h-100"
+        src="/assets/img/kitchen/hero.jpg?v=3"
+        alt=""
+        width="1680"
+        height="1120"
+        loading="eager"
+        fetchpriority="high"
+        style="object-fit: cover; position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
+      />
+    </picture>
     <div class="hero-overlay"></div>
     <div class="container position-relative text-center" style="z-index: 2;">
       <p class="text-uppercase small fw-semibold mb-3" style="color: var(--mtc-red); letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
@@ -68,7 +86,7 @@ const schemas = [
             <a href={`/${s.slug}/`} class="text-decoration-none d-block">
               <div class="service-card text-center rounded-3 p-4 h-100">
                 <div class="mb-3" style="height: 50px; display: flex; align-items: center; justify-content: center;">
-                  <img src={s.icon} alt={s.name} style="max-height: 40px; max-width: 40px; filter: brightness(0) invert(1); opacity: 0.8;" loading="lazy" />
+                  <img src={s.icon} alt={s.name} width="40" height="40" style="max-height: 40px; max-width: 40px; filter: brightness(0) invert(1); opacity: 0.8;" loading="lazy" />
                 </div>
                 <h2 class="h6 fw-bold mb-1" style="color: var(--text-primary);">{s.name}</h2>
                 <p class="mb-0 small" style="color: var(--text-muted);">Renovation</p>
@@ -171,7 +189,7 @@ const schemas = [
 
   <hr class="section-divider" />
 
-  <AggregateRatingSchema data={reviewsArtifact} itemReviewedName={site.name} />
+  <AggregateRatingSchema data={reviewsArtifact} itemReviewedName={site.name} itemReviewedUrl={site.url} />
   <ReviewsBlock data={reviewsArtifact} title="What Hamilton homeowners say" />
 
   <hr class="section-divider" />

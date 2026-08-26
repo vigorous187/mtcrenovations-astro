@@ -1,9 +1,24 @@
 name: SEO build health (weekly)
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'astro.config.mjs'
+      - 'wrangler.toml'
+      - '.github/workflows/seo-build-health.yml'
   schedule:
     - cron: "0 12 * * 1"
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: mtc-seo-build-health
@@ -19,7 +34,17 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
+      - run: npm run test:seo-automation
+      - run: npm run release:test
       - name: Build (fetch live Google reviews)
         env:
           FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
         run: npm run build
+      - name: Upload deterministic site-quality evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtc-site-quality-${{ github.event.pull_request.head.sha || github.sha }}
+          path: artifacts/site-quality-report.json
+          if-no-files-found: error
+          retention-days: 30

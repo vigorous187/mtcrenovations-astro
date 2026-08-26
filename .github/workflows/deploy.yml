@@ -7,16 +7,43 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
+      - 'scripts/**'
+      - '.github/workflows/deploy.yml'
       - 'astro.config.mjs'
       - 'wrangler.toml'
       - 'package.json'
       - 'blog-calendar.json'
 
+permissions:
+  contents: read
+
+concurrency:
+  group: mtc-production-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SOURCE_BRANCH: main
+      SOURCE_COMMIT: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Verify exact merged source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! "$SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::SOURCE_COMMIT must be a full 40-character Git SHA."
+            exit 1
+          fi
+          git fetch --no-tags origin "+refs/heads/$SOURCE_BRANCH:refs/remotes/origin/$SOURCE_BRANCH"
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          test "$(git rev-parse "origin/$SOURCE_BRANCH")" = "$SOURCE_COMMIT"
 
       - uses: actions/setup-node@v4
         with:
@@ -24,9 +51,13 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+      - run: npm run test:seo-automation
+      - run: npm run release:test
       - name: Build (fetch live Google reviews)
         env:
           FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
+          PUBLIC_RELEASE_COMMIT: ${{ github.sha }}
+          PUBLIC_RELEASE_BRANCH: main
         run: npm run build
 
       # Pre-deploy guard: verify build matches MTC, not another site
@@ -39,36 +70,146 @@ jobs:
             exit 1
           fi
 
+      - name: Capture last-known-good production deployment
+        id: last_known_good
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          checkpoint_json="$(node scripts/post-deploy-safety.mjs capture)"
+          deployment_id="$(jq -r '.id // empty' <<< "$checkpoint_json")"
+          previous_commit="$(jq -r '.commitHash // empty' <<< "$checkpoint_json")"
+          test -n "$deployment_id"
+          echo "deployment_id=$deployment_id" >> "$GITHUB_OUTPUT"
+          echo "previous_commit=$previous_commit" >> "$GITHUB_OUTPUT"
+
+          exact_restore_required=false
+          if [[ "$previous_commit" =~ ^[0-9a-f]{40}$ ]]; then
+            release_identity="$(node scripts/post-deploy-safety.mjs inspect-release --expected-commit="$previous_commit")"
+            exact_restore_required="$(jq -r '.available' <<< "$release_identity")"
+          fi
+          echo "exact_restore_required=$exact_restore_required" >> "$GITHUB_OUTPUT"
+
+      - name: Build fail-closed IndexNow changed-route manifest
+        env:
+          PREVIOUS_RELEASE_COMMIT: ${{ steps.last_known_good.outputs.previous_commit }}
+          INDEXNOW_MANIFEST_PATH: artifacts/indexnow-changed-routes.json
+        run: node scripts/build-indexnow-route-manifest.mjs
+
       - uses: cloudflare/wrangler-action@v3
+        id: deploy_pages
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
           command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-hash=${{ github.sha }} --commit-dirty=false
 
-      - name: IndexNow (production URLs)
-        if: success()
-        continue-on-error: true
+      - name: Confirm Cloudflare deployment identity
+        id: deployment_identity
         env:
-          INDEXNOW_HOST: www.mtcrenovations.ca
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY_MTC }}
-        run: node scripts/submit-indexnow.mjs
-
-      # Post-deploy: verify live site still serves MTC
-      - name: Verify live site
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        shell: bash
         run: |
-          sleep 15
-          LIVE=$(curl -sL --max-time 15 "https://www.mtcrenovations.ca" | grep -o '<title>[^<]*</title>' | head -1 | sed 's/<[^>]*>//g')
-          echo "Live title: $LIVE"
-          if ! echo "$LIVE" | grep -qi "MTC Renovations"; then
-            echo "::warning::Post-deploy check failed. Live title: $LIVE"
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            if identity_json="$(node scripts/post-deploy-safety.mjs confirm --expected-commit="$SOURCE_COMMIT")"; then
+              deployment_id="$(jq -r '.id // empty' <<< "$identity_json")"
+              test -n "$deployment_id"
+              echo "deployment_id=$deployment_id" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [[ "$attempt" -eq 6 ]]; then exit 1; fi
+            sleep 5
+          done
+
+      - name: Verify production critically
+        id: production_verify
+        run: node scripts/post-deploy-safety.mjs verify --expected-commit=${{ github.sha }}
+
+      - name: Roll back to last-known-good deployment
+        id: rollback
+        if: ${{ failure() && steps.deploy_pages.outcome == 'success' && (steps.deployment_identity.outcome == 'failure' || steps.production_verify.outcome == 'failure') }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/post-deploy-safety.mjs rollback --deployment-id=${{ steps.last_known_good.outputs.deployment_id }}
+
+      - name: Verify restored production
+        if: ${{ always() && steps.rollback.outcome == 'success' }}
+        env:
+          PREVIOUS_RELEASE_COMMIT: ${{ steps.last_known_good.outputs.previous_commit }}
+          EXACT_RESTORE_REQUIRED: ${{ steps.last_known_good.outputs.exact_restore_required }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$EXACT_RESTORE_REQUIRED" == "true" ]]; then
+            node scripts/post-deploy-safety.mjs verify --profile=baseline --expected-commit="$PREVIOUS_RELEASE_COMMIT"
+          else
+            node scripts/post-deploy-safety.mjs verify --profile=baseline
           fi
 
-      - name: Verify estimate save API (KV binding)
+      - name: Send verified release receipt to SEO dashboard
+        id: release_receipt
+        if: ${{ steps.production_verify.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          RELEASE_RECEIPT_SITE: mtcrenovations.ca
+          RELEASE_RECEIPT_PROJECT: mtc-renovations
+          RELEASE_RECEIPT_BRANCH: main
+          RELEASE_RECEIPT_CANDIDATE_SHA: ${{ github.sha }}
+          RELEASE_RECEIPT_SECRET: ${{ secrets.RELEASE_RECEIPT_SECRET }}
+          RELEASE_RECEIPT_REPORT_PATH: ${{ runner.temp }}/mtc-release-receipt/release-receipt-sender.json
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        shell: bash
         run: |
-          sleep 5
-          RESP=$(curl -sS --max-time 20 -X POST "https://www.mtcrenovations.ca/api/estimates/save/" \
-            -H "Content-Type: application/json" \
-            -d '{"type":"bathroom","typeLabel":"Bathroom Renovation","size":"powder","sizeLabel":"Powder Room","finish":"mid","finishLabel":"Mid-Range","addons":[],"addonLabels":[],"min":14696,"max":24300,"breakdown":[{"label":"Base","range":[12000,18000]}],"selections":[],"market":"Hamilton & Burlington","hstNote":"All ranges exclude 13% HST.","contingencyNote":"15% contingency"}')
-          echo "Save API response: $RESP"
-          echo "$RESP" | grep -q '"id"' || { echo "::error::Estimate save API failed — KV binding may be missing"; exit 1; }
+          set -euo pipefail
+          node scripts/send-release-receipt.mjs
+          DEPLOYMENT_ID="$(jq -er '.deployment_ids.pages' "$RELEASE_RECEIPT_REPORT_PATH")"
+          echo "deployment_id=$DEPLOYMENT_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Retain release receipt sender evidence
+        if: ${{ always() && steps.release_receipt.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtc-release-receipt-${{ github.sha }}
+          path: ${{ runner.temp }}/mtc-release-receipt/release-receipt-sender.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Submit changed canonical URLs through SEO dashboard
+        id: indexnow
+        if: ${{ steps.production_verify.outcome == 'success' && steps.release_receipt.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          INDEXNOW_RECEIPT_PATH: artifacts/indexnow-receipt.json
+          INDEXNOW_MANIFEST_PATH: artifacts/indexnow-changed-routes.json
+          RELEASE_RECEIPT_SECRET: ${{ secrets.RELEASE_RECEIPT_SECRET }}
+          RELEASE_DEPLOYMENT_ID: ${{ steps.release_receipt.outputs.deployment_id }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        run: node scripts/submit-indexnow.mjs
+
+      - name: Record combined release receipt
+        if: always()
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment_identity.outputs.deployment_id }}
+          DEPLOYMENT_IDENTITY_OUTCOME: ${{ steps.deployment_identity.outcome }}
+          PRODUCTION_VERIFY_OUTCOME: ${{ steps.production_verify.outcome }}
+          ROLLBACK_OUTCOME: ${{ steps.rollback.outcome }}
+          INDEXNOW_OUTCOME: ${{ steps.indexnow.outcome }}
+        run: node scripts/write-release-receipt.mjs
+
+      - name: Preserve release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtc-release-${{ github.sha }}
+          path: |
+            artifacts/release-receipt.json
+            artifacts/indexnow-changed-routes.json
+            artifacts/indexnow-receipt.json
+          if-no-files-found: error
+          retention-days: 90

@@ -30,7 +30,7 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas} heroImage={`${service.heroImage}?v=2`}>
   <ServiceHero
     title={`${service.name} Renovation Portfolio`}
     subtitle="Browse completed projects from Hamilton and the GTA"

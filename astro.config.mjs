@@ -22,6 +22,11 @@ export default defineConfig({
   site: "https://www.mtcrenovations.ca",
   output: "hybrid",
   trailingSlash: "always",
+  build: {
+    // The shared theme is only ~5.5 KB compressed. Inlining it removes the
+    // remaining generated render-blocking stylesheet on every static route.
+    inlineStylesheets: "always",
+  },
   adapter: cloudflare({
     imageService: "compile",
   }),

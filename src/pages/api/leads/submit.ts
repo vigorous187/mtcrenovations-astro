@@ -7,6 +7,11 @@ import {
   inferRemodelType,
 } from "../../../lib/estimate-to-jobtread";
 import { createCustomerLead } from "../../../lib/jobtread-pave";
+import {
+  normalizeSubmissionId,
+  readConfirmedLeadSubmission,
+  writeConfirmedLeadSubmission,
+} from "../../../lib/lead-conversion.mjs";
 import type {
   LeadSubmitInput,
   SavedEstimate,
@@ -30,6 +35,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const siteUrl = env.SITE_URL || "https://www.mtcrenovations.ca";
 
     const body = (await request.json()) as LeadSubmitInput;
+    const submissionId = normalizeSubmissionId(body.submissionId);
 
     if (
       !body.name?.trim() ||
@@ -43,10 +49,32 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    const cachedSubmission = await readConfirmedLeadSubmission(
+      kv,
+      submissionId,
+    );
+    if (cachedSubmission) return json(cachedSubmission);
+
     let estimate: SavedEstimate | null = null;
     if (body.estimateId && kv) {
       const raw = await kv.get(`estimate:${body.estimateId}`);
       if (raw) estimate = JSON.parse(raw) as SavedEstimate;
+    }
+
+    if (estimate?.leadSubmitted && estimate.jobTread?.jobId) {
+      const response = {
+        success: true,
+        syncPending: false,
+        conversionEligible: true,
+        deduplicated: true,
+        jobTread: {
+          accountId: estimate.jobTread.accountId,
+          jobId: estimate.jobTread.jobId,
+          created: false,
+        },
+      };
+      await writeConfirmedLeadSubmission(kv, submissionId, response);
+      return json(response);
     }
 
     const hearAbout = body.hearAbout || defaultHearAbout("price-guide");
@@ -137,6 +165,27 @@ export const POST: APIRoute = async ({ request, locals }) => {
       estimate = updated;
     }
 
+    const response = {
+      success: true,
+      syncPending,
+      conversionEligible: Boolean(
+        !syncPending && jobTreadResult?.jobId,
+      ),
+      deduplicated: false,
+      jobTread: jobTreadResult
+        ? {
+            accountId: jobTreadResult.accountId,
+            jobId: jobTreadResult.jobId,
+            created: jobTreadResult.created,
+          }
+        : null,
+      debug: debugInfo,
+    };
+
+    // Persist the confirmed result before email delivery so a client retry cannot
+    // create a second JobTread job after the first one already succeeded.
+    await writeConfirmedLeadSubmission(kv, submissionId, response);
+
     await sendLeadConfirmationEmail(
       estimate,
       {
@@ -146,18 +195,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       env,
     );
 
-    return json({
-      success: true,
-      syncPending,
-      jobTread: jobTreadResult
-        ? {
-            accountId: jobTreadResult.accountId,
-            jobId: jobTreadResult.jobId,
-            created: jobTreadResult.created,
-          }
-        : null,
-      debug: debugInfo,
-    });
+    return json(response);
   } catch (err) {
     console.error("lead submit error", err);
     return json({ error: "Failed to submit lead" }, 500);

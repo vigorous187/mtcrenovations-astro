@@ -7,6 +7,14 @@ interface Props {
   ctaLink?: string;
 }
 
+const heroDimensions: Record<string, [number, number]> = {
+  basement: [1200, 800],
+  bathroom: [1200, 800],
+  kitchen: [1680, 1120],
+  flooring: [1200, 800],
+  painting: [1680, 1120],
+};
+
 const {
   title,
   subtitle,
@@ -14,16 +22,37 @@ const {
   ctaText = 'Get Free Estimate',
   ctaLink = '/estimate/',
 } = Astro.props;
+const heroService = backgroundImage.match(/\/assets\/img\/([^/]+)\/hero\.jpg/)?.[1] ?? '';
+const [heroWidth, heroHeight] = heroDimensions[heroService] ?? [1200, 800];
+const heroBase = backgroundImage.replace(/\.jpg$/i, '');
 ---
 
 <section
   class="position-relative d-flex align-items-center"
   style="min-height: 60vh;"
 >
-  <div
-    class="position-absolute w-100 h-100"
-    style={`background: url('${backgroundImage}?v=2') center/cover no-repeat; top: 0; left: 0;`}
-  ></div>
+  <picture>
+    <source
+      type="image/avif"
+      srcset={`${heroBase}-768.avif 768w, ${heroBase}.avif ${heroWidth}w`}
+      sizes="100vw"
+    />
+    <source
+      type="image/webp"
+      srcset={`${heroBase}-768.webp 768w, ${heroBase}.webp ${heroWidth}w`}
+      sizes="100vw"
+    />
+    <img
+      class="position-absolute w-100 h-100"
+      src={`${backgroundImage}?v=2`}
+      alt=""
+      width={heroWidth}
+      height={heroHeight}
+      loading="eager"
+      fetchpriority="high"
+      style="object-fit: cover; top: 0; left: 0;"
+    />
+  </picture>
   <div class="hero-overlay"></div>
   <div class="container position-relative text-center py-5" style="z-index: 2;">
     <h1 class="font-display fw-bold mb-3" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--text-primary);">{title}</h1>

@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SocialProofTicker from '../components/SocialProofTicker.astro';
 import '../styles/global.css';
+import bootstrapCritical from '../styles/bootstrap-critical.css?raw';
 
 interface Props {
   title: string;
@@ -18,6 +19,19 @@ interface Props {
 
 const { heroImage, ...seoProps } = Astro.props;
 const props = seoProps;
+const heroBase = heroImage?.replace(/\?.*$/, '').replace(/\.jpg$/i, '');
+const heroService = heroBase?.match(/\/assets\/img\/([^/]+)\/hero$/)?.[1] ?? '';
+const heroWidths: Record<string, number> = {
+  basement: 1200,
+  bathroom: 1200,
+  kitchen: 1680,
+  flooring: 1200,
+  painting: 1680,
+};
+const heroWidth = heroWidths[heroService];
+const heroSrcSet = heroBase && heroWidth
+  ? `${heroBase}-768.avif 768w, ${heroBase}.avif ${heroWidth}w`
+  : undefined;
 ---
 
 <!DOCTYPE html>
@@ -29,18 +43,38 @@ const props = seoProps;
   <link rel="shortcut icon" href="https://www.mtcrenovations.ca/assets/img/logo/logo-white.png" />
   <link rel="apple-touch-icon" href="https://www.mtcrenovations.ca/assets/img/logo/logo-white.png" />
 
-  <!-- Bootstrap 5.3 CSS (self-hosted, render-blocking — controls layout/grid) -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!-- Preserve Bootstrap as the styling authority without putting its complete
+       31 KB compressed framework on the critical rendering path. -->
+  <style is:inline set:html={bootstrapCritical}></style>
+  <link rel="preload" href="/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/css/bootstrap.min.css" /></noscript>
 
   <!-- Font Awesome (self-hosted, non-render-blocking) -->
-  <link rel="stylesheet" href="/css/fontawesome.min.css" media="print" onload="this.media='all'" />
+  <link id="fontawesome-styles" rel="stylesheet" href="/css/fontawesome.min.css" media="print" />
   <noscript><link rel="stylesheet" href="/css/fontawesome.min.css" /></noscript>
+  <script is:inline>
+    window.addEventListener('load', function() {
+      const applyIcons = function() {
+        const stylesheet = document.getElementById('fontawesome-styles');
+        if (stylesheet) stylesheet.media = 'all';
+      };
+      // Non-essential icon glyphs must not compete with the hero and critical
+      // fonts; interactive controls retain text and accessible names.
+      setTimeout(function() {
+        if ('requestIdleCallback' in window) requestIdleCallback(applyIcons, { timeout: 1000 });
+        else applyIcons();
+      }, 3000);
+    }, { once: true });
+  </script>
 
-  <!-- Self-hosted fonts — preload critical weights -->
-  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Preload the two faces used in the first viewport. Combined with
+       font-display: optional, this avoids a measurable late text reflow. -->
+  <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-  {heroImage && <link rel="preload" href={heroImage} as="image" fetchpriority="high" />}
+  {heroSrcSet
+    ? <link rel="preload" href={`${heroBase}-768.avif`} as="image" type="image/avif" imagesrcset={heroSrcSet} imagesizes="100vw" fetchpriority="high" />
+    : heroImage && <link rel="preload" href={heroImage} as="image" fetchpriority="high" />}
 
   <SEOHead {...props} />
   <ViewTransitions />
@@ -62,8 +96,9 @@ const props = seoProps;
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1574962723611289&ev=PageView&noscript=1" /></noscript>
 </head>
 <body class="noise-overlay">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <Header />
-  <main>
+  <main id="main-content" tabindex="-1">
     <slot />
   </main>
   <Footer />
@@ -133,29 +168,39 @@ const props = seoProps;
   <!-- Event tracking via Zaraz (GA4 pageviews handled by Zaraz automatically) -->
   <script is:inline>
     function initGATracking() {
-      // Phone click tracking
-      document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
-        link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
-            zaraz.track('phone_click', {
-              phone_number: link.getAttribute('href').replace('tel:', ''),
-              link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
-            });
-          }
-        });
-      });
+      if (document.documentElement.dataset.mtcAnalyticsClickTrackingInstalled === 'true') return;
+      document.documentElement.dataset.mtcAnalyticsClickTrackingInstalled = 'true';
 
-      // CTA button click tracking
-      document.querySelectorAll('a[href*="contact"], a[href*="estimate"], a[href*="quote"], button[type="submit"], .cta-button, [data-cta]').forEach(function(el) {
-        el.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
-            zaraz.track('cta_click', {
-              button_text: el.textContent?.trim().substring(0, 50),
-              button_url: el.getAttribute('href') || '',
-              page_path: window.location.pathname
-            });
-          }
-        });
+      document.addEventListener('click', function(event) {
+        const target = event.target;
+        const link = target instanceof Element ? target.closest('a') : null;
+        if (!link || typeof zaraz === 'undefined') return;
+
+        const href = link.getAttribute('href') || '';
+        const linkLocation = link.closest('[data-section]')?.dataset.section || 'unknown';
+        if (href.startsWith('tel:')) {
+          zaraz.track('phone_click', {
+            link_location: linkLocation,
+            page_path: window.location.pathname
+          });
+          return;
+        }
+        if (href.startsWith('mailto:')) {
+          zaraz.track('email_click', {
+            link_location: linkLocation,
+            page_path: window.location.pathname
+          });
+          return;
+        }
+
+        // Link/button CTA intent only. Form conversions are emitted after confirmed success.
+        if (link.matches('a[href*="contact"], a[href*="estimate"], a[href*="quote"], .cta-button, [data-cta]')) {
+          zaraz.track('cta_click', {
+            button_text: link.textContent?.trim().substring(0, 50),
+            button_url: href,
+            page_path: window.location.pathname
+          });
+        }
       });
     }
 

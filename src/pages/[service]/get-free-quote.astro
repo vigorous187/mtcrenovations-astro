@@ -25,7 +25,7 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas} heroImage={`${service.heroImage}?v=2`}>
   <ServiceHero
     title={`Get Your Free ${service.name} Renovation Estimate`}
     subtitle="No obligation. We respond within 24 hours."

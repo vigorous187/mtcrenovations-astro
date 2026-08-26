@@ -13,21 +13,28 @@ function readSrc(rel) {
   return readFileSync(path.join(ROOT, rel), "utf8");
 }
 
-test("/newleadintake/ tracks generate_lead with zaraz after a successful submit response", () => {
+test("/newleadintake/ tracks generate_lead with confirmed-ID dedupe after a successful submit response", () => {
   const src = readSrc("src/pages/newleadintake.astro");
+  const conversion = readSrc("src/lib/lead-conversion.mjs");
   const fetchIdx = src.indexOf("fetch('/api/leads/submit/'");
   const okIdx = src.indexOf("if (!res.ok)", fetchIdx);
-  const trackIdx = src.indexOf("zaraz.track('generate_lead'", okIdx);
+  const buildIdx = src.indexOf("buildGenerateLeadEvent(json", okIdx);
+  const trackIdx = src.indexOf("trackGenerateLeadOnce(conversionEvent, window)", buildIdx);
 
   assert.ok(fetchIdx >= 0, "lead form must POST /api/leads/submit/");
   assert.ok(okIdx > fetchIdx, "must check res.ok after submit");
-  assert.ok(trackIdx > okIdx, "zaraz.track('generate_lead') must run only after res.ok");
+  assert.ok(buildIdx > okIdx, "confirmed conversion event must be built only after res.ok");
+  assert.ok(trackIdx > buildIdx, "deduplicated delivery must run only after confirmed event construction");
   assert.match(
-    src.slice(trackIdx, trackIdx + 240),
-    /form_name:\s*'price_guide_lead'/,
+    src.slice(buildIdx, buildIdx + 280),
+    /formName:\s*'price_guide_lead'/,
   );
+  assert.match(conversion, /target\?\.zaraz\?\.track/);
+  assert.match(conversion, /tracker\.call\(target\.zaraz,\s*"generate_lead",\s*event\)/);
+  assert.match(conversion, /value\.jobTread\?\.jobId/);
+  assert.match(conversion, /sessionStorage/);
   assert.doesNotMatch(src, /gtag\(\s*'event'\s*,\s*'generate_lead'/);
-  assert.doesNotMatch(src.slice(0, fetchIdx), /zaraz\.track\(\s*'generate_lead'/);
+  assert.doesNotMatch(src.slice(0, fetchIdx), /trackGenerateLeadOnce\(/);
 });
 
 test("/contact/ and get-free-quote listen for JobTread form success without posting", () => {

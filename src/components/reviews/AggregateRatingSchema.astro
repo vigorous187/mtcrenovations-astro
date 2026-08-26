@@ -5,12 +5,14 @@ interface Props {
   data: ReviewsBuildArtifact;
   itemReviewedName: string;
   itemReviewedType?: string;
+  itemReviewedUrl: string;
 }
 
 const {
   data,
   itemReviewedName,
   itemReviewedType = "HomeAndConstructionBusiness",
+  itemReviewedUrl,
 } = Astro.props;
 
 const { aggregate } = data;
@@ -21,6 +23,7 @@ const schema = showSchema
       "@context": "https://schema.org",
       "@type": itemReviewedType,
       name: itemReviewedName,
+      url: itemReviewedUrl,
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: String(aggregate.rating),

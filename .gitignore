@@ -1,7 +1,9 @@
 node_modules/
 dist/
+.lighthouseci/
 .astro/
 .wrangler/
+artifacts/
 src/data/reviews-artifact.json
 .firecrawl/
 .DS_Store
