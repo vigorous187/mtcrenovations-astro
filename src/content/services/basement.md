@@ -33,9 +33,11 @@ whyChooseUs:
     description: "We set a timeline and stick to it. Your project will not drag on."
 ---
 
-## Why Renovate Your Basement?
+## What a Hamilton Basement Renovation Includes
 
-Your basement represents up to 40% of your home's total square footage. A finished basement adds living space, increases property value, and can generate rental income as a legal suite.
+A basement renovation in Hamilton turns unused square footage into living space — a rec room, extra bedroom, home office, gym, or legal suite. MTC Renovations handles full finishing, legal suite conversions, waterproofing prep, and complete remodels for homeowners in Hamilton and our existing service area, including Burlington, Oakville, Stoney Creek, Ancaster, Dundas, and Waterdown.
+
+Your basement represents up to 40% of your home's total square footage. A finished basement adds living space, increases property value, and, where the layout and permits allow, can generate rental income as a legal suite.
 
 ## What We Do
 
