@@ -39,7 +39,7 @@ const schemas = [
   schema={schemas}
 >
   <ServiceHero
-    title={service.tagline}
+    title={service.h1 || service.tagline}
     subtitle={`Professional ${service.name} Renovation in Hamilton & the GTA`}
     backgroundImage={service.heroImage}
     ctaLink={`/${service.slug}/get-free-quote/`}
