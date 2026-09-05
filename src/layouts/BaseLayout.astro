@@ -46,20 +46,51 @@ const props = seoProps;
   <ViewTransitions />
   <!-- Zaraz auto-injected by Cloudflare — manual script removed to prevent double-load -->
 
-  <!-- Meta Pixel — browser-side (CAPI upgrade pending Meta developer access) -->
+  <!-- Zaraz's native consent manager owns visitor choices and persistence. -->
   <script is:inline>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1574962723611289');
-    fbq('track', 'PageView');
+    if (!window.__mtcConsentInitialized) {
+      window.__mtcConsentInitialized = true;
+      var metaLoaded = false;
+      function syncMtcConsent() {
+        var consent = window.zaraz?.consent;
+        var ready = consent?.APIReady === true;
+        document.querySelectorAll('[data-mtc-privacy-choices]').forEach(function(button) {
+          button.disabled = !ready;
+        });
+        if (!ready || consent.get('advertising') !== true) {
+          if (metaLoaded) {
+            fbq('consent', 'revoke');
+            window.location.reload();
+          }
+          return;
+        }
+        if (metaLoaded) return;
+        metaLoaded = true;
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('consent', 'grant');
+        fbq('init', '1574962723611289');
+        fbq('track', 'PageView');
+      }
+      document.addEventListener('zarazConsentAPIReady', syncMtcConsent);
+      document.addEventListener('zarazConsentChoicesUpdated', syncMtcConsent);
+      document.addEventListener('DOMContentLoaded', syncMtcConsent);
+      document.addEventListener('astro:after-swap', function() {
+        var alreadyLoaded = metaLoaded;
+        syncMtcConsent();
+        if (alreadyLoaded && window.zaraz?.consent?.get('advertising') === true) {
+          fbq('track', 'PageView');
+        }
+      });
+      syncMtcConsent();
+    }
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1574962723611289&ev=PageView&noscript=1" /></noscript>
 </head>
 <body class="noise-overlay">
   <Header />
@@ -136,7 +167,7 @@ const props = seoProps;
       // Phone click tracking
       document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
         link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.zaraz?.consent?.get('analytics') === true) {
             zaraz.track('phone_click', {
               phone_number: link.getAttribute('href').replace('tel:', ''),
               link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
@@ -148,7 +179,7 @@ const props = seoProps;
       // Email click tracking
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
         link.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.zaraz?.consent?.get('analytics') === true) {
             zaraz.track('email_click', {
               email_address: link.getAttribute('href').replace('mailto:', ''),
               link_location: link.closest('[data-section]')?.dataset.section || 'unknown'
@@ -160,7 +191,7 @@ const props = seoProps;
       // CTA button click tracking
       document.querySelectorAll('a[href*="contact"], a[href*="estimate"], a[href*="quote"], button[type="submit"], .cta-button, [data-cta]').forEach(function(el) {
         el.addEventListener('click', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.zaraz?.consent?.get('analytics') === true) {
             zaraz.track('cta_click', {
               button_text: el.textContent?.trim().substring(0, 50),
               button_url: el.getAttribute('href') || '',
@@ -173,11 +204,6 @@ const props = seoProps;
 
     document.addEventListener('DOMContentLoaded', initGATracking);
     document.addEventListener('astro:after-swap', initGATracking);
-
-    // Meta Pixel — fire PageView on Astro client-side navigations
-    document.addEventListener('astro:after-swap', function() {
-      if (typeof fbq !== 'undefined') fbq('track', 'PageView');
-    });
   </script>
 </body>
 </html>
