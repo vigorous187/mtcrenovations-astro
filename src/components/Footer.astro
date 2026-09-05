@@ -5,6 +5,8 @@ import services from '../data/services.json';
 
 <footer class="pt-5 pb-3" style="background: var(--bg-surface-1); border-top: 1px solid var(--border-subtle);">
   <div class="container">
+    <button type="button" class="btn btn-link p-0 mb-3" data-mtc-privacy-choices disabled
+      onclick="if (window.zaraz?.consent?.APIReady) window.zaraz.consent.modal = true;">Privacy choices</button>
     <div class="row">
       <!-- Brand -->
       <div class="col-md-4 mb-4">

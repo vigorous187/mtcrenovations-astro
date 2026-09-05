@@ -158,7 +158,7 @@ const schemas = [
         if (form.dataset.mtcGenerateLead === '1') return;
         form.dataset.mtcGenerateLead = '1';
         form.addEventListener('success', function() {
-          if (typeof zaraz !== 'undefined') {
+          if (window.zaraz?.consent?.get('analytics') === true) {
             zaraz.track('generate_lead', {
               form_name: 'contact_lead',
               page_path: window.location.pathname
