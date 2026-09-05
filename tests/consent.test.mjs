@@ -10,6 +10,7 @@ function browser({ ready = false, analytics = false, advertising = false } = {})
   const privacy = { disabled: true };
   const resources = [];
   const tracked = [];
+  const cleanups = [];
   let reloads = 0;
   const choices = { analytics, advertising };
   const links = new Map(['tel:', 'mailto:', 'cta'].map(kind => [kind, {
@@ -29,17 +30,17 @@ function browser({ ready = false, analytics = false, advertising = false } = {})
     createElement() { return {}; },
     getElementsByTagName() { return [{ parentNode: { insertBefore(script) { resources.push(script.src); } } }]; },
   };
-  const window = { document, location: { pathname: '/', reload() { reloads++; } },
+  const window = { document, fetch(url, options) { cleanups.push({ url, options }); return Promise.resolve({ ok: true }); }, location: { pathname: '/', reload() { reloads++; } },
     zaraz: { consent: { APIReady: ready, get(purpose) { return choices[purpose]; } },
       track(...args) { tracked.push(args); } } };
   window.window = window;
   const context = vm.createContext(window);
   const run = script => vm.runInContext(script, context);
-  const fire = name => (listeners.get(name) || []).forEach(fn => fn());
-  return { window, choices, resources, tracked, privacy, links, run, fire, reloads: () => reloads };
+  const fire = name => Promise.all((listeners.get(name) || []).map(fn => fn()));
+  return { window, choices, resources, tracked, cleanups, privacy, links, run, fire, reloads: () => reloads };
 }
 
-test('Meta stays unloaded until advertising consent, loads once, tracks navigation and reloads on withdrawal', () => {
+test('Meta stays unloaded until advertising consent, loads once, tracks navigation and reloads on withdrawal', async () => {
   const b = browser();
   const script = scripts.find(script => script.includes('__mtcConsentInitialized'));
   b.run(script);
@@ -61,7 +62,7 @@ test('Meta stays unloaded until advertising consent, loads once, tracks navigati
   b.fire('astro:after-swap');
   assert.equal(views(), 2);
   b.choices.advertising = false;
-  b.fire('zarazConsentChoicesUpdated');
+  await b.fire('zarazConsentChoicesUpdated');
   assert.equal(b.reloads(), 1);
   assert.equal(b.window.fbq.queue.at(-1)[1], 'revoke');
   assert.doesNotMatch(layout, /<noscript><img[^>]+facebook/);
@@ -97,4 +98,74 @@ test('JobTread success handlers preserve accepted conversions and do not queue r
     success();
     assert.deepEqual(b.tracked.map(args => args[0]), ['generate_lead', 'quote_request'], page);
   }
+});
+
+test('withdrawal waits for cookie cleanup and repeated choice events share the request', async () => {
+  const b = browser({ ready: true, analytics: true, advertising: true });
+  b.run(scripts.find(script => script.includes('__mtcConsentInitialized')));
+  let complete;
+  b.window.fetch = (url, options) => {
+    b.cleanups.push({ url, options });
+    return new Promise(resolve => { complete = resolve; });
+  };
+  b.choices.analytics = false;
+  b.choices.advertising = false;
+  const first = b.fire('zarazConsentChoicesUpdated');
+  const duplicate = b.fire('zarazConsentChoicesUpdated');
+  assert.equal(b.cleanups.length, 1);
+  assert.equal(b.reloads(), 0);
+  assert.equal(b.window.fbq.queue.at(-1)[1], 'revoke');
+  complete({ ok: true });
+  await Promise.all([first, duplicate]);
+  assert.equal(b.reloads(), 1);
+});
+
+test('pending consent cleans old cookies once without reload; failed cleanup never causes a reload loop', async () => {
+  const pending = browser({ ready: true });
+  pending.run(scripts.find(script => script.includes('__mtcConsentInitialized')));
+  await pending.fire('zarazConsentChoicesUpdated');
+  assert.equal(pending.cleanups.length, 1);
+  assert.equal(pending.cleanups[0].url, '/api/privacy/clear-analytics/');
+  assert.equal(pending.reloads(), 0);
+  const b = browser({ ready: true, analytics: true, advertising: true });
+  b.run(scripts.find(script => script.includes('__mtcConsentInitialized')));
+  b.window.fetch = () => Promise.reject(new Error('offline'));
+  b.choices.advertising = false;
+  await b.fire('zarazConsentChoicesUpdated');
+  await b.fire('zarazConsentChoicesUpdated');
+  assert.equal(b.reloads(), 0);
+  assert.equal(b.window.fbq.queue.at(-1)[1], 'revoke');
+});
+
+test('analytics-only withdrawal cleans without Meta reload and failed cleanup retries on a later event', async () => {
+  const b = browser({ ready: true, analytics: true });
+  b.run(scripts.find(script => script.includes('__mtcConsentInitialized')));
+  await b.fire('zarazConsentChoicesUpdated');
+  let requests = 0;
+  b.window.fetch = () => { requests++; return Promise.resolve({ ok: requests > 1 }); };
+  b.choices.analytics = false;
+  await b.fire('zarazConsentChoicesUpdated');
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(requests, 1);
+  await b.fire('zarazConsentChoicesUpdated');
+  assert.equal(requests, 2);
+  assert.equal(b.reloads(), 0);
+  assert.deepEqual(b.resources, []);
+});
+
+test('reaccepting advertising during cleanup cancels reload and restores existing Meta without reinitalization', async () => {
+  const b = browser({ ready: true, analytics: true, advertising: true });
+  b.run(scripts.find(script => script.includes('__mtcConsentInitialized')));
+  let complete;
+  b.window.fetch = () => new Promise(resolve => { complete = resolve; });
+  b.choices.advertising = false;
+  const withdrawal = b.fire('zarazConsentChoicesUpdated');
+  b.choices.advertising = true;
+  await b.fire('zarazConsentChoicesUpdated');
+  complete({ ok: true });
+  await withdrawal;
+  assert.equal(b.reloads(), 0);
+  assert.equal(b.resources.length, 1);
+  assert.equal(b.window.fbq.queue.filter(args => args[0] === 'init').length, 1);
+  assert.equal(b.window.fbq.queue.at(-1)[1], 'grant');
 });

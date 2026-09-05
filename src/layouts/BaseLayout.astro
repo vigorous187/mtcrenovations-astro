@@ -51,19 +51,46 @@ const props = seoProps;
     if (!window.__mtcConsentInitialized) {
       window.__mtcConsentInitialized = true;
       var metaLoaded = false;
-      function syncMtcConsent() {
+      var reloadAfterCleanup = false;
+      var cleanupChoice = null;
+      var cleanupPending;
+      async function syncMtcConsent() {
         var consent = window.zaraz?.consent;
         var ready = consent?.APIReady === true;
         document.querySelectorAll('[data-mtc-privacy-choices]').forEach(function(button) {
           button.disabled = !ready;
         });
-        if (!ready || consent.get('advertising') !== true) {
-          if (metaLoaded) {
-            fbq('consent', 'revoke');
-            window.location.reload();
-          }
-          return;
+        if (!ready) return;
+        var analytics = consent.get('analytics') === true;
+        var advertising = consent.get('advertising') === true;
+        if (metaLoaded && !advertising && !reloadAfterCleanup) {
+          fbq('consent', 'revoke');
+          reloadAfterCleanup = true;
         }
+        if (!analytics || !advertising) {
+          var choice = analytics + ':' + advertising;
+          if (cleanupChoice !== choice) {
+            cleanupChoice = choice;
+            cleanupPending = fetch('/api/privacy/clear-analytics/', {
+              method: 'POST', credentials: 'same-origin', cache: 'no-store'
+            }).then(function(response) { return response.ok; }).catch(function() { return false; }).then(function(cleared) {
+              if (!cleared && cleanupChoice === choice) cleanupChoice = null;
+              return cleared;
+            });
+          }
+          if (reloadAfterCleanup) {
+            var cleared = await cleanupPending;
+            if (cleared && reloadAfterCleanup && consent.get('advertising') !== true) {
+              reloadAfterCleanup = false;
+              window.location.reload();
+            }
+          }
+        } else {
+          cleanupChoice = null;
+        }
+        if (!advertising || consent.get('advertising') !== true) return;
+        if (reloadAfterCleanup) fbq('consent', 'grant');
+        reloadAfterCleanup = false;
         if (metaLoaded) return;
         metaLoaded = true;
         !function(f,b,e,v,n,t,s)
