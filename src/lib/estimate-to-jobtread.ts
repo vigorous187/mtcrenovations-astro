@@ -1,11 +1,14 @@
 import { estimateSummaryText } from "./estimate-format";
 import type { SavedEstimate } from "./estimate-types";
 
-const REMODEL_TYPE =
-  'Remodel (includes "Full Remodel," "Kitchen Remodel," "Bathroom Remodel," "Basement Remodel," etc.)';
-
-const NEW_CONSTRUCTION_TYPE =
-  'New Construction (includes "New Build," "Multi-unit Build," "Garage," etc';
+// JobTread customer Lead Source and job Remodel Type options, verified 2026-09-06.
+export const LEAD_SOURCES = [
+  "Referral", "Cybertruck", "Banner Sign", "Facebook", "Google", "Home Advisor",
+  "Instagram", "Internet Search", "Price Guide", "Website",
+];
+export const REMODEL_TYPES = [
+  "New construction", "Remodel", "Addition", "Exterior project", "General contracting", "Other",
+];
 
 export function inferRemodelType(type: string, scope?: string | null): string {
   if (
@@ -13,9 +16,9 @@ export function inferRemodelType(type: string, scope?: string | null): string {
     type === "garden-suite-adu" ||
     type === "multi-unit"
   ) {
-    return NEW_CONSTRUCTION_TYPE;
+    return "New construction";
   }
-  return REMODEL_TYPE;
+  return "Remodel";
 }
 
 export function buildJobName(estimate: SavedEstimate): string {
