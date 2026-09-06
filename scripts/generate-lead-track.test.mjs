@@ -16,7 +16,7 @@ function readSrc(rel) {
 test("/newleadintake/ tracks generate_lead with zaraz after a successful submit response", () => {
   const src = readSrc("src/pages/newleadintake.astro");
   const fetchIdx = src.indexOf("fetch('/api/leads/submit/'");
-  const okIdx = src.indexOf("if (!res.ok)", fetchIdx);
+  const okIdx = src.indexOf("if (!res.ok || json.success !== true || !json.jobTread?.jobId)", fetchIdx);
   const trackIdx = src.indexOf("zaraz.track('generate_lead'", okIdx);
 
   assert.ok(fetchIdx >= 0, "lead form must POST /api/leads/submit/");
@@ -119,7 +119,7 @@ test("mailto links track email_click through Zaraz without gtag or network", () 
   assert.ok(selectorIdx >= 0, "BaseLayout must select mailto links");
   assert.ok(listenerIdx > selectorIdx, "email_click must run from a click listener");
   assert.ok(trackIdx > listenerIdx, "email_click must run after the click");
-  assert.match(hook, /typeof zaraz !== 'undefined'/);
+  assert.match(hook, /window\.zaraz\?\.consent\?\.get\('analytics'\) === true/);
   assert.match(hook, /email_address:/);
   assert.doesNotMatch(hook, /fetch\(|submitWebForm/);
   assert.doesNotMatch(src, /gtag\(\s*'event'\s*,\s*'email_click'/);

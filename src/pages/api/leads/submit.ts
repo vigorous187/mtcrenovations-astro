@@ -5,6 +5,8 @@ import {
   buildProjectNotes,
   defaultHearAbout,
   inferRemodelType,
+  LEAD_SOURCES,
+  REMODEL_TYPES,
 } from "../../../lib/estimate-to-jobtread";
 import { createCustomerLead } from "../../../lib/jobtread-pave";
 import type {
@@ -56,6 +58,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
         ? inferRemodelType(estimate.type, estimate.scope)
         : inferRemodelType("basement"));
 
+    if (!LEAD_SOURCES.includes(hearAbout) || !REMODEL_TYPES.includes(remodelType)) {
+      return json({ error: "Please select a valid lead source and project type." }, 400);
+    }
+    if (!grantKey || !orgId) {
+      console.error("JobTread lead delivery is not configured");
+      return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 503);
+    }
+
     const projectNotes = estimate
       ? buildProjectNotes(estimate, siteUrl, body.projectNotes)
       : body.projectNotes || "Lead from MTC website";
@@ -64,52 +74,22 @@ export const POST: APIRoute = async ({ request, locals }) => {
       ? buildJobName(estimate)
       : `Web Lead - ${body.name}`;
 
-    let jobTreadResult: {
-      accountId: string;
-      contactId: string;
-      locationId: string;
-      jobId: string;
-      created: boolean;
-    } | null = null;
+    let jobTreadResult: Awaited<ReturnType<typeof createCustomerLead>>;
 
-    let syncPending = false;
-    // TEMP DEBUG (2026-07-07, ops-builder) — remove once JobTread sync is confirmed working.
-    // Never includes secret values, only presence booleans + error message.
-    let debugInfo: Record<string, unknown> | undefined;
-
-    if (grantKey && orgId) {
-      try {
-        jobTreadResult = await createCustomerLead(grantKey, orgId, {
-          name: body.name.trim(),
-          email: body.email.trim().toLowerCase(),
-          phone: body.phone.trim(),
-          address: body.address.trim(),
-          hearAbout,
-          remodelType,
-          projectNotes,
-          jobName,
-        });
-      } catch (err) {
-        console.error("JobTread sync failed", err);
-        syncPending = true;
-        debugInfo = {
-          hasGrantKey: !!grantKey,
-          hasOrgId: !!orgId,
-          grantKeyLength: grantKey?.length ?? 0,
-          errorMessage: err instanceof Error ? err.message : String(err),
-          errorDetails:
-            err && typeof err === "object" && "details" in err
-              ? (err as { details?: unknown }).details
-              : undefined,
-        };
-      }
-    } else {
-      syncPending = true;
-      debugInfo = {
-        hasGrantKey: !!grantKey,
-        hasOrgId: !!orgId,
-        grantKeyLength: grantKey?.length ?? 0,
-      };
+    try {
+      jobTreadResult = await createCustomerLead(grantKey, orgId, {
+        name: body.name.trim(),
+        email: body.email.trim().toLowerCase(),
+        phone: body.phone.trim(),
+        address: body.address.trim(),
+        hearAbout,
+        remodelType,
+        projectNotes,
+        jobName,
+      });
+    } catch (err) {
+      console.error("JobTread sync failed", err);
+      return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 502);
     }
 
     if (estimate && kv) {
@@ -118,19 +98,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
         name: body.name.trim(),
         email: body.email.trim().toLowerCase(),
         leadSubmitted: true,
-        jobTread: jobTreadResult
-          ? {
-              accountId: jobTreadResult.accountId,
-              contactId: jobTreadResult.contactId,
-              locationId: jobTreadResult.locationId,
-              jobId: jobTreadResult.jobId,
-            }
-          : estimate.jobTread,
+        jobTread: {
+          accountId: jobTreadResult.accountId,
+          contactId: jobTreadResult.contactId,
+          locationId: jobTreadResult.locationId,
+          jobId: jobTreadResult.jobId,
+        },
       };
-      if (syncPending) {
-        (updated as SavedEstimate & { syncPending?: boolean }).syncPending =
-          true;
-      }
       await kv.put(`estimate:${estimate.id}`, JSON.stringify(updated), {
         expirationTtl: 90 * 24 * 60 * 60,
       });
@@ -148,15 +122,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     return json({
       success: true,
-      syncPending,
-      jobTread: jobTreadResult
-        ? {
-            accountId: jobTreadResult.accountId,
-            jobId: jobTreadResult.jobId,
-            created: jobTreadResult.created,
-          }
-        : null,
-      debug: debugInfo,
+      syncPending: false,
+      jobTread: {
+        accountId: jobTreadResult.accountId,
+        jobId: jobTreadResult.jobId,
+        created: jobTreadResult.created,
+      },
     });
   } catch (err) {
     console.error("lead submit error", err);
