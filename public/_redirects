@@ -14,3 +14,6 @@
 
 # Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
 # /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.
+
+# SSR intake: prerender=false, so Astro does not emit the trailing-slash 308
+/newleadintake /newleadintake/ 301
