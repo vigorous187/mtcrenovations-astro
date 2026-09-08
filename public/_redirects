@@ -14,3 +14,4 @@
 
 # Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
 # /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.
+# Do not add /newleadintake here — _redirects steal the SSR Function (PR #19 / #20).
