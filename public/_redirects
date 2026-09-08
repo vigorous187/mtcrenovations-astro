@@ -14,7 +14,3 @@
 
 # Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
 # /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.
-
-# SSR intake: slashless 404s because Worker route is /newleadintake/ only.
-# Apex→www is handled at the Cloudflare host layer, not this file.
-/newleadintake /newleadintake/ 301
