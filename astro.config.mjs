@@ -24,6 +24,13 @@ export default defineConfig({
   trailingSlash: "always",
   adapter: cloudflare({
     imageService: "compile",
+    // Slashless intake must hit the Worker so middleware can 301 it.
+    // public/_redirects cannot do this: it takes precedence over Functions.
+    routes: {
+      extend: {
+        include: [{ pattern: "/newleadintake" }],
+      },
+    },
   }),
   integrations: [tailwind(), googleReviewsIntegration],
 });
