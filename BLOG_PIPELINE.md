@@ -1,6 +1,6 @@
 # MTC Renovations — blog & SEO automation pipeline
 
-Canonical Google checklist: [~/Developer/shared/docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md](file:///Users/user/Developer/shared/docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md)
+Canonical Google checklist: [docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md](docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md)
 
 ## Schedule
 

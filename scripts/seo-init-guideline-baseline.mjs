@@ -31,7 +31,10 @@ async function main() {
   const cfg = JSON.parse(await readFile(sourcesPath, "utf8"));
   const fingerprints = {};
   for (const { id, url } of cfg.urls) {
-    const res = await fetch(url, { redirect: "follow" });
+    const res = await fetch(url, {
+      redirect: "follow",
+      headers: { "Accept-Language": "en" },
+    });
     const text = await res.text();
     fingerprints[id] = {
       url,
