@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Compare guideline fingerprints
         id: drift
         run: node scripts/seo-check-guideline-baseline.mjs
@@ -26,7 +26,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          title="SEO: Google guideline page changed — review checklist"
+          open_count=$(gh issue list --state open --limit 50 --json title \
+            --jq "[.[] | select(.title == \"$title\")] | length")
+          if [ "$open_count" != "0" ]; then
+            echo "Open guideline-drift issue already exists; skipping create."
+            exit 0
+          fi
           gh issue create \
-            --title "SEO: Google guideline page changed — review checklist" \
+            --title "$title" \
             --body "Monthly guideline fingerprint check failed. Review logs in this workflow run. Update shared docs/BLOG_PIPELINE_GOOGLE_CHECKLIST.md and repo gate scripts; run npm run seo:guidelines:init and commit automation/guideline-baseline.json." \
             || true

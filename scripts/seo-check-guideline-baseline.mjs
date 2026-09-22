@@ -32,7 +32,10 @@ async function main() {
   const mismatches = [];
 
   for (const { id, url } of cfg.urls) {
-    const res = await fetch(url, { redirect: "follow" });
+    const res = await fetch(url, {
+      redirect: "follow",
+      headers: { "Accept-Language": "en" },
+    });
     const text = await res.text();
     const live = hash(stripNoise(text));
     const expected = baseline.fingerprints[id]?.sha256;
