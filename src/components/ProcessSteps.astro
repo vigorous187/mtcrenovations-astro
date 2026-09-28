@@ -5,11 +5,14 @@ interface Props {
 
 const { serviceName } = Astro.props;
 
+// Homepage passes an empty serviceName; avoid rendering "your  renovation" with a double space.
+const serviceWord = serviceName ? `${serviceName.toLowerCase()} ` : '';
+
 const steps = [
   {
     number: '01',
     title: 'Free Consultation',
-    description: `Contact us for a free in-home consultation. We'll discuss your ${serviceName.toLowerCase()} renovation goals, timeline, and budget.`,
+    description: `Contact us for a free in-home consultation. We'll discuss your ${serviceWord}renovation goals, timeline, and budget.`,
   },
   {
     number: '02',
