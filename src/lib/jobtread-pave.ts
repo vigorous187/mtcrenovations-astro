@@ -123,80 +123,13 @@ export async function createCustomerLead(
   jobId: string;
   created: boolean;
 }> {
-  const existing = await findContactByEmail(grantKey, orgId, input.email);
-
-  if (existing) {
-    const locationData = await paveQuery(grantKey, {
-      createLocation: {
-        $: {
-          accountId: existing.accountId,
-          address: input.address,
-          parseAddress: true,
-        },
-        createdLocation: { id: {}, name: {}, address: {} },
-      },
-    });
-
-    const locationId = (
-      locationData.createLocation as { createdLocation: { id: string } }
-    ).createdLocation.id;
-
-    const jobData = await paveQuery(grantKey, {
-      createJob: {
-        $: {
-          name: input.jobName.slice(0, 30),
-          locationId,
-          customFieldValues: {
-            "22Nh8W9jKBnL": input.remodelType,
-          },
-        },
-        createdJob: { id: {}, name: {}, number: {} },
-      },
-    });
-
-    const jobId = (jobData.createJob as { createdJob: { id: string } })
-      .createdJob.id;
-
-    await paveQuery(grantKey, {
-      updateAccount: {
-        $: {
-          id: existing.accountId,
-          customFieldValues: {
-            "22Nh8ReugeSg": input.hearAbout,
-            "22Nh8Re8atBj": input.projectNotes,
-          },
-        },
-        account: { $: { id: existing.accountId }, id: {} },
-      },
-    });
-
-    await paveQuery(grantKey, {
-      createComment: {
-        $: {
-          targetId: jobId,
-          targetType: "job",
-          name: "Price Guide Lead",
-          message: input.projectNotes,
-          isVisibleToInternalRoles: true,
-        },
-        createdComment: { id: {} },
-      },
-    });
-
-    return {
-      accountId: existing.accountId,
-      contactId: existing.contactId,
-      locationId,
-      jobId,
-      created: false,
-    };
-  }
-
+  // Public submissions are unverified. Never select or mutate an existing account.
+  // Staff must reconcile this isolated lead before merging customer records.
   const accountData = await paveQuery(grantKey, {
     createAccount: {
       $: {
         organizationId: orgId,
-        name: input.name,
+        name: `[Unverified Web Lead] ${input.name}`,
         type: "customer",
         customFieldValues: {
           "22Nh8ReugeSg": input.hearAbout,
