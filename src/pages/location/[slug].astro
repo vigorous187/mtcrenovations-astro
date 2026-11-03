@@ -15,6 +15,11 @@ export async function getStaticPaths() {
 }
 
 const { city } = Astro.props;
+const citySlugs = new Set((await getCollection('cities')).map(entry => entry.slug));
+const nearbyAreas = (city.data.nearbyAreas || [])
+  .map((name: string) => ({ name, slug: name.toLowerCase().replace(/[\s.]+/g, '-') }))
+  .filter(area => citySlugs.has(area.slug));
+const isPriorityCity = ['hamilton', 'burlington'].includes(city.slug);
 const { Content } = await city.render();
 
 const schemas = [
@@ -38,7 +43,12 @@ const schemas = [
       <span class="text-uppercase small text-danger fw-bold">Service Area</span>
       <h1 class="display-5 fw-bold mt-2 mb-3">{city.data.h1}</h1>
       <p class="lead text-white-50 mb-4">Licensed and insured renovation contractor serving {city.data.name} homeowners.</p>
-      <a href="/estimate/" class="btn btn-danger btn-lg px-5">Get Free Estimate</a>
+      {isPriorityCity ? (
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="/newleadintake/" class="btn btn-danger btn-lg px-5">Request a renovation consultation</a>
+          <a href="/estimate/" class="btn btn-outline-light btn-lg px-5">Get a price range</a>
+        </div>
+      ) : <a href="/estimate/" class="btn btn-danger btn-lg px-5">Get a price range</a>}
     </div>
   </section>
 
@@ -46,7 +56,7 @@ const schemas = [
   <section class="py-5">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 prose">
+        <div class:list={['col-lg-8 prose', { 'priority-city-copy': isPriorityCity }]}>
           <Content />
         </div>
       </div>
@@ -76,17 +86,17 @@ const schemas = [
   </section>
 
   <!-- Nearby Areas -->
-  {city.data.nearbyAreas && city.data.nearbyAreas.length > 0 && (
+  {nearbyAreas.length > 0 && (
     <section class="py-5">
       <div class="container text-center">
         <h2 class="fw-bold mb-4">Nearby Areas We Serve</h2>
         <div class="d-flex flex-wrap justify-content-center gap-2">
-          {city.data.nearbyAreas.map((area: string) => (
+          {nearbyAreas.map(area => (
             <a
-              href={`/location/${area.toLowerCase().replace(/[\s.]+/g, '-')}/`}
+              href={`/location/${area.slug}/`}
               class="btn btn-outline-dark btn-sm"
             >
-              {area}
+              {area.name}
             </a>
           ))}
         </div>
@@ -96,6 +106,15 @@ const schemas = [
 
   <CTABanner
     title={`Ready to Renovate in ${city.data.name}?`}
-    subtitle="Get your free estimate today."
+    subtitle="Tell us about the rooms, scope and timing you have in mind."
+    ctaText="Request a renovation consultation"
+    ctaLink="/newleadintake/"
   />
 </BaseLayout>
+
+<style>
+  .priority-city-copy :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+</style>

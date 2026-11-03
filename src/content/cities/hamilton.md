@@ -34,3 +34,12 @@ Century homes often need updated electrical, plumbing, and insulation before cos
 We live and work in Hamilton. Our crew knows the local building code requirements, permit processes, and inspection timelines. We use local suppliers when possible and keep our overhead low so your renovation dollar goes further.
 
 Every project starts with a free in-home consultation and a detailed, fixed-price quote. No surprises, no hidden fees, no cost overruns.
+
+
+## Planning a full home renovation?
+
+If your project involves several rooms, start by telling us which spaces need work, what you want to change and whether you plan to stay in the home during construction. Include any drawings and your preferred timing in your [renovation consultation request](/newleadintake/).
+
+Explore our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+
+For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote.

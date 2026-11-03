@@ -42,6 +42,7 @@ const schemas = [
     title={service.h1 || service.tagline}
     subtitle={`Professional ${service.name} Renovation in Hamilton & the GTA`}
     backgroundImage={service.heroImage}
+    ctaText="Request a consultation"
     ctaLink={`/${service.slug}/get-free-quote/`}
   />
 
@@ -77,6 +78,16 @@ const schemas = [
     </section>
   )}
 
+  {['bathroom', 'kitchen'].includes(service.slug) && (
+    <section class="py-5">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-3">Explore our {service.name.toLowerCase()} renovation work</h2>
+        <p>Browse <a class="text-decoration-underline" href={`/${service.slug}/our-work/`}>{service.name.toLowerCase()} project photos</a> for finishes and layout ideas.</p>
+        <p>Planning several rooms? See our <a class="text-decoration-underline" href="/location/hamilton/">Hamilton renovation services</a> or <a class="text-decoration-underline" href="/location/burlington/">Burlington renovation services</a>, then tell us about your project.</p>
+      </div>
+    </section>
+  )}
+
   <EstimatorCTA serviceSlug={service.slug} serviceName={service.name} />
 
   <!-- Why Choose Us -->
@@ -101,6 +112,7 @@ const schemas = [
 
   <CTABanner
     title={`Ready for Your ${service.name} Renovation?`}
+    ctaText="Request a consultation"
     ctaLink={`/${service.slug}/get-free-quote/`}
   />
 </BaseLayout>

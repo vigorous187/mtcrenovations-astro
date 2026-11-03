@@ -30,3 +30,12 @@ Burlington features a mix of established neighbourhoods with mature homes and ne
 ## Free Estimates for Burlington Homeowners
 
 Contact MTC Renovations for a free in-home consultation. We provide detailed, fixed-price quotes within 24 hours of your visit.
+
+
+## Planning a full home renovation?
+
+If your project involves several rooms, start by telling us which spaces need work, what you want to change and whether you plan to stay in the home during construction. Include any drawings and your preferred timing in your [renovation consultation request](/newleadintake/).
+
+Explore our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+
+For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote.
