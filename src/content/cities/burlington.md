@@ -1,9 +1,9 @@
 ---
 name: "Burlington"
 province: "Ontario"
-metaTitle: "Home Renovation Burlington | MTC Renovations"
-metaDescription: "Burlington home renovations by MTC. Basements, kitchens, bathrooms, flooring, painting. Licensed & insured. Free estimates for Burlington homeowners."
-h1: "Home Renovation Services in Burlington, Ontario"
+metaTitle: "Home Renovations in Burlington | MTC Renovations"
+metaDescription: "Planning a home renovation in Burlington? Discuss kitchens, bathrooms and multi-room scope with MTC. Request a consultation or explore a planning price range."
+h1: "Home Renovations in Burlington, Ontario"
 isServiceArea: true
 nearbyAreas: ["Hamilton", "Oakville", "Waterdown"]
 coordinates:
@@ -11,31 +11,37 @@ coordinates:
   lng: -79.7990
 ---
 
-## Burlington Home Renovations
+## Plan your Burlington home renovation
 
-MTC Renovations serves Burlington homeowners with full-service basement finishing, kitchen and bathroom remodels, flooring installation, and professional interior painting. From Aldershot to Appleby, we deliver quality renovations on time and on budget.
-
-## Burlington's Housing Market
-
-Burlington features a mix of established neighbourhoods with mature homes and newer developments. Many Burlington homes built in the 1970s and 1980s are prime candidates for kitchen updates, bathroom remodels, and basement finishing. The strong local real estate market means well-executed renovations deliver excellent return on investment.
-
-## Renovation Services in Burlington
-
-- **Basement Finishing** -- Convert unused space into a family room, home office, or rental suite
-- **Kitchen Remodels** -- Modern layouts, quality cabinets, and premium countertops
-- **Bathroom Renovations** -- Walk-in showers, updated tile, and new vanities
-- **Flooring** -- Hardwood, LVP, and tile installation
-- **Painting** -- Interior painting with meticulous prep work
-
-## Free Estimates for Burlington Homeowners
-
-Contact MTC Renovations for a free in-home consultation. We provide detailed, fixed-price quotes within 24 hours of your visit.
-
+Whether you are updating one room or planning work across your home, start with the changes that matter most to you. MTC Renovations offers kitchen, bathroom, basement, flooring and painting services for Burlington homeowners.
 
 ## Planning a full home renovation?
 
-If your project involves several rooms, start by telling us which spaces need work, what you want to change and whether you plan to stay in the home during construction. Include any drawings and your preferred timing in your [renovation consultation request](/newleadintake/).
+A project involving several rooms needs a clear scope before a useful quote can be prepared. Tell us which rooms need work, what you want to keep, and whether you plan to stay in the home during construction. Discuss any changes to layouts, plumbing, electrical or structural elements during the consultation so they can be considered in the project plan.
 
-Explore our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+For your [renovation consultation request](/newleadintake/), include:
 
-For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote.
+- The rooms and changes you have in mind
+- Your priorities, preferred timing and initial budget range
+- Photos of the existing spaces and any drawings you already have
+- Access arrangements and whether the home will remain occupied
+
+## Renovation services in Burlington
+
+Explore the services that fit your scope:
+
+- [Kitchen renovations](/kitchen/) — cabinets, countertops and layout updates
+- [Bathroom renovations](/bathroom/) — showers, tile, vanities and remodels
+- [Basement renovations](/basement/) — finishing and plans for how you want to use the space
+- [Flooring installation](/flooring/) — hardwood, luxury vinyl and tile
+- [Interior painting](/painting/) — preparation and finishes
+
+## Explore room-by-room renovation work
+
+Browse our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+
+## Choose your next step
+
+[Request a renovation consultation](/newleadintake/) to share your project details with MTC. The consultation request starts a discussion about your scope; sending it does not book a construction date.
+
+For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote. A project-specific quote depends on the work and existing conditions reviewed with you.

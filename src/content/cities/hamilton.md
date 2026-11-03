@@ -1,9 +1,9 @@
 ---
 name: "Hamilton"
 province: "Ontario"
-metaTitle: "Home Renovation Hamilton | MTC Renovations"
-metaDescription: "Hamilton's trusted renovation contractor. Basement finishing, kitchen & bathroom remodels, flooring, painting. Free quotes. Licensed & insured."
-h1: "Home Renovation Services in Hamilton, Ontario"
+metaTitle: "Home Renovations in Hamilton | MTC Renovations"
+metaDescription: "Planning a home renovation in Hamilton? Discuss kitchens, bathrooms and multi-room scope with MTC. Request a consultation or explore a planning price range."
+h1: "Home Renovations in Hamilton, Ontario"
 isServiceArea: true
 nearbyAreas: ["Burlington", "Stoney Creek", "Ancaster", "Dundas", "Waterdown"]
 coordinates:
@@ -11,35 +11,37 @@ coordinates:
   lng: -79.8711
 ---
 
-## Hamilton's Most Trusted Renovation Contractor
+## Plan your Hamilton home renovation
 
-MTC Renovations has been transforming Hamilton homes with quality basement finishing, kitchen and bathroom remodels, flooring installation, and professional interior painting. From Westdale to the east Mountain, Dundurn to Stoney Creek, we know Hamilton's housing stock inside and out.
-
-## Renovating in Hamilton
-
-Hamilton's diverse housing stock ranges from century homes in Kirkendall and Locke Street to post-war bungalows on the Mountain and newer builds in Binbrook. Each type brings its own renovation challenges and opportunities.
-
-Century homes often need updated electrical, plumbing, and insulation before cosmetic work can begin. Mountain bungalows are prime candidates for basement finishing and open-concept kitchen conversions. Newer subdivisions benefit from upgraded finishes and personalized layouts.
-
-## Our Hamilton Services
-
-- **Basement Renovation** -- Full finishing, legal suites, and waterproofing prep
-- **Bathroom Renovation** -- Walk-in showers, tile work, vanities, and full remodels
-- **Kitchen Renovation** -- Cabinets, countertops, open-concept conversions
-- **Flooring Installation** -- Hardwood, luxury vinyl plank, and tile
-- **Interior Painting** -- Clean prep, premium paint, zero mess
-
-## Why Hamilton Homeowners Choose MTC
-
-We live and work in Hamilton. Our crew knows the local building code requirements, permit processes, and inspection timelines. We use local suppliers when possible and keep our overhead low so your renovation dollar goes further.
-
-Every project starts with a free in-home consultation and a detailed, fixed-price quote. No surprises, no hidden fees, no cost overruns.
-
+Whether you are updating one room or planning work across your home, start with the changes that matter most to you. MTC Renovations offers kitchen, bathroom, basement, flooring and painting services for Hamilton homeowners.
 
 ## Planning a full home renovation?
 
-If your project involves several rooms, start by telling us which spaces need work, what you want to change and whether you plan to stay in the home during construction. Include any drawings and your preferred timing in your [renovation consultation request](/newleadintake/).
+A project involving several rooms needs a clear scope before a useful quote can be prepared. Tell us which rooms need work, what you want to keep, and whether you plan to stay in the home during construction. Discuss any changes to layouts, plumbing, electrical or structural elements during the consultation so they can be considered in the project plan.
 
-Explore our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+For your [renovation consultation request](/newleadintake/), include:
 
-For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote.
+- The rooms and changes you have in mind
+- Your priorities, preferred timing and initial budget range
+- Photos of the existing spaces and any drawings you already have
+- Access arrangements and whether the home will remain occupied
+
+## Renovation services in Hamilton
+
+Explore the services that fit your scope:
+
+- [Kitchen renovations](/kitchen/) — cabinets, countertops and layout updates
+- [Bathroom renovations](/bathroom/) — showers, tile, vanities and remodels
+- [Basement renovations](/basement/) — finishing and plans for how you want to use the space
+- [Flooring installation](/flooring/) — hardwood, luxury vinyl and tile
+- [Interior painting](/painting/) — preparation and finishes
+
+## Explore room-by-room renovation work
+
+Browse our [kitchen renovation work](/kitchen/our-work/) and [bathroom renovation work](/bathroom/our-work/) for examples of finishes and layouts. These galleries cover individual rooms; discuss the scope of your own home with us before planning a whole-home project.
+
+## Choose your next step
+
+[Request a renovation consultation](/newleadintake/) to share your project details with MTC. The consultation request starts a discussion about your scope; sending it does not book a construction date.
+
+For an initial budget guide, [get a price range from the calculator](/estimate/). A calculator range is a starting point, not a project quote. A project-specific quote depends on the work and existing conditions reviewed with you.

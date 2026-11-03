@@ -42,7 +42,9 @@ const schemas = [
     <div class="container py-4">
       <span class="text-uppercase small text-danger fw-bold">Service Area</span>
       <h1 class="display-5 fw-bold mt-2 mb-3">{city.data.h1}</h1>
-      <p class="lead text-white-50 mb-4">Licensed and insured renovation contractor serving {city.data.name} homeowners.</p>
+      <p class="lead text-white-50 mb-4">{isPriorityCity
+        ? `Plan your rooms, scope and timing with MTC Renovations in ${city.data.name}.`
+        : `Licensed and insured renovation contractor serving ${city.data.name} homeowners.`}</p>
       {isPriorityCity ? (
         <div class="d-flex flex-wrap gap-3 justify-content-center">
           <a href="/newleadintake/" class="btn btn-danger btn-lg px-5">Request a renovation consultation</a>
@@ -64,7 +66,7 @@ const schemas = [
   </section>
 
   <!-- Services in this city -->
-  <section class="py-5 bg-light">
+  <section class:list={['py-5', isPriorityCity ? 'priority-city-services' : 'bg-light']}>
     <div class="container">
       <h2 class="text-center fw-bold mb-4">Our Services in {city.data.name}</h2>
       <div class="row g-4">
@@ -74,8 +76,8 @@ const schemas = [
               <div class="card border-0 shadow-sm service-card h-100">
                 <div class="card-body text-center p-4">
                   <img src={s.icon} alt={s.name} style="height: 40px;" class="mb-3" loading="lazy" />
-                  <h3 class="h5 fw-bold text-dark">{s.name} Renovation</h3>
-                  <p class="text-secondary small mb-0">{s.tagline}</p>
+                  <h3 class:list={['h5 fw-bold', { 'text-dark': !isPriorityCity }]}>{s.name} Renovation</h3>
+                  <p class:list={['small mb-0', { 'text-secondary': !isPriorityCity }]}>{isPriorityCity ? `Explore ${s.name.toLowerCase()} services for your project.` : s.tagline}</p>
                 </div>
               </div>
             </a>
@@ -94,7 +96,7 @@ const schemas = [
           {nearbyAreas.map(area => (
             <a
               href={`/location/${area.slug}/`}
-              class="btn btn-outline-dark btn-sm"
+              class:list={['btn btn-sm', isPriorityCity ? 'btn-outline-light' : 'btn-outline-dark']}
             >
               {area.name}
             </a>
@@ -113,6 +115,15 @@ const schemas = [
 </BaseLayout>
 
 <style>
+  .priority-city-services {
+    background: var(--bg-deepest);
+  }
+  .priority-city-services h3 {
+    color: var(--text-primary);
+  }
+  .priority-city-services p {
+    color: var(--text-secondary);
+  }
   .priority-city-copy :global(a) {
     text-decoration: underline;
     text-underline-offset: 0.15em;
