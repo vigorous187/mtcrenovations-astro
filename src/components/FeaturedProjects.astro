@@ -20,7 +20,10 @@ const projects = [
           <div class="portfolio-item position-relative" style="height: 300px;">
             <img
               src={`${project.src}?v=2`}
+              srcset={`${project.src.replace(/\.jpg$/, '-800w.webp')} 800w, ${project.src}?v=2 1200w`}
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt={project.alt}
+              decoding="async"
               class="w-100 h-100"
               style="object-fit: cover;"
               loading="lazy"
