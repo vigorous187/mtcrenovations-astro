@@ -13,11 +13,10 @@ interface Props {
   ogImage?: string;
   schema?: object | object[];
   noindex?: boolean;
-  heroImage?: string;
+  heroPreload?: { src: string; srcset: string };
 }
 
-const { heroImage, ...seoProps } = Astro.props;
-const props = seoProps;
+const { heroPreload, ...props } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -36,11 +35,19 @@ const props = seoProps;
   <link rel="stylesheet" href="/css/fontawesome.min.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/css/fontawesome.min.css" /></noscript>
 
-  <!-- Self-hosted fonts — preload critical weights -->
-  <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- H1 uses Playfair. Preload only that face so it does not wait behind the hero photo. -->
   <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-
-  {heroImage && <link rel="preload" href={heroImage} as="image" fetchpriority="high" />}
+  {heroPreload && (
+    <link
+      rel="preload"
+      as="image"
+      href={heroPreload.src}
+      imagesrcset={heroPreload.srcset}
+      imagesizes="100vw"
+      type="image/webp"
+      fetchpriority="high"
+    />
+  )}
 
   <SEOHead {...props} />
   <ViewTransitions />

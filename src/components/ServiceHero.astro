@@ -10,20 +10,33 @@ interface Props {
 const {
   title,
   subtitle,
-  backgroundImage = '/assets/img/home/hero.jpg',
+  backgroundImage = '/assets/img/kitchen/hero.jpg',
   ctaText = 'Get Free Estimate',
   ctaLink = '/estimate/',
 } = Astro.props;
+
+const heroSlug = backgroundImage.match(/\/img\/([^/]+)\/hero\.jpg$/)?.[1] ?? '';
 ---
 
 <section
   class="position-relative d-flex align-items-center"
   style="min-height: 60vh;"
 >
-  <div
-    class="position-absolute w-100 h-100"
-    style={`background: url('${backgroundImage}?v=2') center/cover no-repeat; top: 0; left: 0;`}
-  ></div>
+  <picture class="hero-media">
+    <source
+      type="image/webp"
+      srcset={`/assets/img/${heroSlug}/hero-800.webp 800w, /assets/img/${heroSlug}/hero-1280.webp 1280w`}
+      sizes="100vw"
+    />
+    <img
+      src={`/assets/img/${heroSlug}/hero.jpg`}
+      alt=""
+      width="1200"
+      height="800"
+      fetchpriority="high"
+      decoding="sync"
+    />
+  </picture>
   <div class="hero-overlay"></div>
   <div class="container position-relative text-center py-5" style="z-index: 2;">
     <h1 class="font-display fw-bold mb-3" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--text-primary);">{title}</h1>

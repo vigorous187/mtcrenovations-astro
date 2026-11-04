@@ -464,6 +464,20 @@ html {
   color: var(--text-secondary);
 }
 
+/* Real <img> so the hero is the LCP element and mobile can download the 800px WebP. */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  background-color: var(--bg-deepest);
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* ── Hero Gradient Overlays ── */
 .hero-overlay {
   position: absolute;
