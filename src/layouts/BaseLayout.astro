@@ -120,6 +120,7 @@ const props = seoProps;
   </script>
 </head>
 <body class="noise-overlay">
+<!--email_off-->
   <Header />
   <main>
     <slot />
@@ -232,5 +233,6 @@ const props = seoProps;
     document.addEventListener('DOMContentLoaded', initGATracking);
     document.addEventListener('astro:after-swap', initGATracking);
   </script>
+<!--/email_off-->
 </body>
 </html>
