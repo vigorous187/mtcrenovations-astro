@@ -550,3 +550,10 @@ html {
     transition: none;
   }
 }
+
+/* Zaraz consent modal (Cloudflare-injected <dialog> in shadow DOM) hard-codes a
+   white background, but <dialog> text uses CanvasText, which turns white under
+   the dark color-scheme set by data-bs-theme="dark". Keep the modal light. */
+.cf_modal_container {
+  color-scheme: light;
+}
