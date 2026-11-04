@@ -27,8 +27,8 @@ whyChooseUs:
     description: "Fully licensed and insured renovation contractor with WSIB coverage."
   - title: "Fixed-Price Quotes"
     description: "No surprises. Your quote is your price — guaranteed."
-  - title: "5-Star Reviews"
-    description: "50+ Google reviews with a perfect 5.0 rating from Hamilton homeowners."
+  - title: "Google Reviews"
+    description: "{{reviewSummary}} from Hamilton homeowners."
   - title: "On-Time Delivery"
     description: "We set a timeline and stick to it. Your project will not drag on."
 ---

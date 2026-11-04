@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import { reviewCount, reviewRating } from '../lib/googleReviews';
 
 interface Props {
   title?: string;
@@ -10,7 +11,9 @@ interface Props {
 
 const {
   title = 'Ready to Start Your Renovation?',
-  subtitle = `Join ${site.googleReviews.count}+ satisfied homeowners across Hamilton and the GTA.`,
+  subtitle = reviewCount !== null
+    ? `Rated ${reviewRating !== null ? `${reviewRating} out of 5 ` : ''}from ${reviewCount} Google reviews. Request your free estimate today.`
+    : 'Request your free estimate today.',
   ctaText = 'Get Free Estimate',
   ctaLink = '/newleadintake/',
 } = Astro.props;

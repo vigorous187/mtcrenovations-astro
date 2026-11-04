@@ -1,11 +1,11 @@
 ---
-import site from '../data/site.json';
+import { reviewCount, reviewRating } from '../lib/googleReviews';
 
-const stats = [
+const stats: { value: number; suffix: string; label: string; isDecimal?: boolean }[] = [
   { value: 15, suffix: '+', label: 'Years Experience' },
   { value: 500, suffix: '+', label: 'Projects Completed' },
-  { value: 4.9, suffix: '', label: 'Google Rating', isDecimal: true },
-  { value: site.googleReviews.count, suffix: '+', label: '5-Star Reviews' },
+  ...(reviewRating !== null ? [{ value: reviewRating, suffix: '', label: 'Google Rating', isDecimal: true }] : []),
+  ...(reviewCount !== null ? [{ value: reviewCount, suffix: '', label: 'Google Reviews' }] : []),
 ];
 ---
 

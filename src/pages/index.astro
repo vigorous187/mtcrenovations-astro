@@ -10,6 +10,7 @@ import ProcessSteps from '../components/ProcessSteps.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
+import { reviewCount, reviewRating, reviewSummary } from '../lib/googleReviews';
 import services from '../data/services.json';
 
 const schemas = [
@@ -42,7 +43,7 @@ const schemas = [
         Your Home Renovation Contractor in Burlington & Hamilton
       </p>
       <p class="mb-5 mx-auto" style="max-width: 550px; font-size: 1.15rem; color: var(--text-secondary);">
-        Licensed, insured, and backed by {site.googleReviews.count}+ five-star Google reviews. From basements to kitchens — we build it right.
+        Licensed, insured, and backed by {reviewSummary}. From basements to kitchens — we build it right.
       </p>
       <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
         <a href="/estimate/" class="btn btn-danger btn-lg px-5 py-3">
@@ -126,14 +127,14 @@ const schemas = [
               <div class="d-flex align-items-start gap-2">
                 <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
                 <div>
-                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">5-Star Reviews</h3>
+                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">Google Reviews</h3>
                   <p class="small mb-0" style="color: var(--text-muted);">
                     {[...Array(5)].map(() => (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05" style="margin-right: 1px;">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
                     ))}
-                    <span class="ms-1">{site.googleReviews.count}+</span>
+                    {reviewCount !== null && <span class="ms-1">{reviewRating !== null ? `${reviewRating} · ` : ''}{reviewCount} reviews</span>}
                   </p>
                 </div>
               </div>

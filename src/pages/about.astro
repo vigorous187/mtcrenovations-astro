@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
+import { reviewCount } from '../lib/googleReviews';
 
 const title = 'About MTC Renovations | Burlington & Hamilton';
 const description = 'Licensed, insured renovation contractor serving Burlington, Hamilton & the GTA. Meet our team, learn our story, and see why homeowners trust MTC.';
@@ -60,8 +61,8 @@ const schemas = [
           <div class="bg-dark text-white rounded-3 p-5 text-center">
             <div class="row g-4">
               <div class="col-6">
-                <div class="display-4 fw-bold text-danger">{site.googleReviews.count}+</div>
-                <div class="text-white-50 small mt-1">Five-Star Reviews</div>
+                <div class="display-4 fw-bold text-danger">{reviewCount !== null ? reviewCount : 'Google'}</div>
+                <div class="text-white-50 small mt-1">{reviewCount !== null ? 'Google Reviews' : 'Reviews'}</div>
               </div>
               <div class="col-6">
                 <div class="display-4 fw-bold text-danger">100%</div>
@@ -123,7 +124,7 @@ const schemas = [
                 <i class="fas fa-star text-danger fa-2x"></i>
               </div>
             </div>
-            <h3 class="h5 fw-bold mb-2">{site.googleReviews.count}+ Five-Star Reviews</h3>
+            <h3 class="h5 fw-bold mb-2">{reviewCount !== null ? `${reviewCount} Google Reviews` : 'Google Reviews'}</h3>
             <p class="text-secondary small mb-0">
               Google-verified reviews from real Burlington and Hamilton homeowners. Our reputation is built on results, not promises.
             </p>
