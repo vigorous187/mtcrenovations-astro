@@ -1,7 +1,7 @@
 ---
 name: "Basement"
 tagline: "Transform Your Basement Into a Stunning Living Space"
-description: "Full basement renovations in Hamilton and the GTA. Finishing, legal suites, waterproofing prep, and complete remodels by licensed contractors."
+description: "Full basement renovations in Hamilton, Burlington and Halton. Finishing, legal suites, waterproofing prep, and complete remodels by licensed contractors."
 features:
   - "Full basement finishing and framing"
   - "Legal basement suite conversions"

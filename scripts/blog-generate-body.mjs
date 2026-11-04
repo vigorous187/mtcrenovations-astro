@@ -113,7 +113,7 @@ Output Markdown body only — no YAML frontmatter. Conservative, people-first ad
 Include a clear disclaimer that content is not a substitute for an on-site assessment by a qualified HVAC technician.`;
   }
   if (vertical === "renovation") {
-    return `You write people-first renovation guides for ${brand} (${domain}), a Hamilton/GTA contractor.
+    return `You write people-first renovation guides for ${brand} (${domain}), a Hamilton/Burlington/Halton contractor.
 Output Markdown body only — no YAML frontmatter. Practical Ontario-specific notes on permits, timelines, and budgeting where relevant.
 Never guarantee exact prices, timelines, or permit outcomes. Use ranges and "often / may / typically" language.`;
   }

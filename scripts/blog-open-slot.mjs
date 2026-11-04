@@ -87,7 +87,7 @@ function calendarToTopic(row) {
   return {
     slug: row.slug,
     title: row.topic,
-    metaDescription: `Practical guide: ${row.keyword}. Hamilton and GTA homeowners — MTC Renovations.`,
+    metaDescription: `Practical guide: ${row.keyword}. Hamilton, Burlington and Halton homeowners — MTC Renovations.`,
     tags: [row.type || "guide", "Hamilton"],
   };
 }
@@ -99,7 +99,7 @@ function buildFrontmatter(row, { generated, slotOpened }) {
 title: "${yamlQuote(row.topic)}"
 metaTitle: "${yamlQuote(String(row.topic).slice(0, 60))}"
 metaDescription: "${yamlQuote(
-    `Practical guide: ${row.keyword}. Hamilton and GTA homeowners — MTC Renovations.`.slice(
+    `Practical guide: ${row.keyword}. Hamilton, Burlington and Halton homeowners — MTC Renovations.`.slice(
       0,
       160,
     ),
