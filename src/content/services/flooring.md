@@ -35,7 +35,7 @@ whyChooseUs:
 
 ## New Floors, New Feel
 
-Nothing transforms a room faster than new flooring. Whether you prefer the warmth of hardwood, the durability of luxury vinyl plank, or the elegance of tile, MTC Renovations delivers professional installation across Hamilton and the GTA.
+Nothing transforms a room faster than new flooring. Whether you prefer the warmth of hardwood, the durability of luxury vinyl plank, or the elegance of tile, MTC Renovations delivers professional installation across Hamilton, Burlington and Halton.
 
 ## Our Flooring Services
 

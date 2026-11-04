@@ -47,6 +47,19 @@ export async function fetchReviewsFromWorker() {
       throw new Error(`Reviews API ${res.status}`);
     }
     const data = await res.json();
+    // Never publish an invented or empty number: if the aggregate is missing
+    // or invalid, fall through to the last known value in site.json.
+    const agg = data?.aggregate;
+    if (
+      !agg ||
+      !Number.isInteger(agg.count) ||
+      agg.count <= 0 ||
+      typeof agg.rating !== "number" ||
+      !(agg.rating > 0 && agg.rating <= 5) ||
+      !Array.isArray(data.reviews)
+    ) {
+      throw new Error("Reviews API returned no valid aggregate");
+    }
     const artifact = {
       aggregate: data.aggregate,
       reviews: data.reviews,

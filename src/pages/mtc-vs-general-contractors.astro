@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
+import { reviewCount } from '../lib/googleReviews';
 
 const schemas = [
   localBusiness(),
@@ -223,8 +224,8 @@ const steps = [
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body p-4">
               <i class="fas fa-star text-danger mb-3" style="font-size: 2rem;"></i>
-              <div class="display-6 fw-bold mb-1">{site.googleReviews.count}+</div>
-              <p class="text-secondary small mb-0">Five-Star Google Reviews</p>
+              <div class="display-6 fw-bold mb-1">{reviewCount !== null ? reviewCount : 'Google'}</div>
+              <p class="text-secondary small mb-0">{reviewCount !== null ? 'Google Reviews' : 'Reviews'}</p>
             </div>
           </div>
         </div>
@@ -344,7 +345,7 @@ const steps = [
             See the process in detail at <a href="/basement/how-it-works/" class="text-dark fw-semibold">How It Works</a>, or read more about <a href="/basement/why-mtc/" class="text-dark fw-semibold">Why Homeowners Choose MTC</a>.
           </p>
           <p class="text-secondary mb-0">
-            We serve homeowners across <a href="/location/burlington/" class="text-dark fw-semibold">Burlington</a>, <a href="/location/hamilton/" class="text-dark fw-semibold">Hamilton</a>, <a href="/location/oakville/" class="text-dark fw-semibold">Oakville</a>, and the surrounding GTA.
+            We serve homeowners across <a href="/location/burlington/" class="text-dark fw-semibold">Burlington</a>, <a href="/location/hamilton/" class="text-dark fw-semibold">Hamilton</a>, <a href="/location/oakville/" class="text-dark fw-semibold">Oakville</a>, and nearby communities.
           </p>
         </div>
       </div>

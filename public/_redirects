@@ -19,3 +19,33 @@
 # /services/ is the natural guess; nav uses top-level service URLs instead
 /services / 301
 /services/ / 301
+
+# City pages retired 2026-11-04 (outside driving radius of Hamilton/Burlington). 301 to the nearest kept city page within ~25 km, else the /locations/ hub.
+/location/mississauga /location/oakville/ 301
+/location/mississauga/ /location/oakville/ 301
+/location/cambridge /location/flamborough/ 301
+/location/cambridge/ /location/flamborough/ 301
+/location/georgetown /location/milton/ 301
+/location/georgetown/ /location/milton/ 301
+/location/etobicoke /location/oakville/ 301
+/location/etobicoke/ /location/oakville/ 301
+/location/guelph /locations/ 301
+/location/guelph/ /locations/ 301
+/location/brampton /location/milton/ 301
+/location/brampton/ /location/milton/ 301
+/location/st-catharines /location/lincoln/ 301
+/location/st-catharines/ /location/lincoln/ 301
+/location/toronto /locations/ 301
+/location/toronto/ /locations/ 301
+/location/kitchener /locations/ 301
+/location/kitchener/ /locations/ 301
+/location/north-york /locations/ 301
+/location/north-york/ /locations/ 301
+/location/welland /location/lincoln/ 301
+/location/welland/ /location/lincoln/ 301
+/location/niagara-falls /location/lincoln/ 301
+/location/niagara-falls/ /location/lincoln/ 301
+/location/scarborough /locations/ 301
+/location/scarborough/ /locations/ 301
+/location/markham /locations/ 301
+/location/markham/ /locations/ 301

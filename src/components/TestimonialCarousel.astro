@@ -1,6 +1,7 @@
 ---
 import reviews from '../data/reviews.json';
 import site from '../data/site.json';
+import { reviewCount, reviewRating } from '../lib/googleReviews';
 ---
 
 <section class="py-5" style="background: var(--bg-surface-1);">
@@ -18,7 +19,7 @@ import site from '../data/site.json';
       </div>
       <h2 class="font-display fw-bold mb-2" style="color: var(--text-primary);">What Our Clients Say</h2>
       <div class="d-flex align-items-center justify-content-center gap-2">
-        <span class="fs-3 fw-bold" style="color: var(--text-primary);">{site.googleReviews.rating}</span>
+        {reviewRating !== null && <span class="fs-3 fw-bold" style="color: var(--text-primary);">{reviewRating}</span>}
         <div>
           {[...Array(5)].map((_, i) => (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="#FBBC05">
@@ -26,7 +27,7 @@ import site from '../data/site.json';
             </svg>
           ))}
         </div>
-        <span style="color: var(--text-muted);">({site.googleReviews.count}+ reviews)</span>
+        {reviewCount !== null && <span style="color: var(--text-muted);">({reviewCount} reviews)</span>}
       </div>
     </div>
 

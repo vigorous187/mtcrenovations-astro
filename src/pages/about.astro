@@ -3,9 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { localBusiness, breadcrumbList } from '../components/seo/schemas';
 import site from '../data/site.json';
+import { reviewCount } from '../lib/googleReviews';
 
 const title = 'About MTC Renovations | Burlington & Hamilton';
-const description = 'Licensed, insured renovation contractor serving Burlington, Hamilton & the GTA. Meet our team, learn our story, and see why homeowners trust MTC.';
+const description = 'Licensed, insured renovation contractor serving Hamilton, Burlington and Halton. Meet our team, learn our story, and see why homeowners trust MTC.';
 const canonical = `${site.url}/about/`;
 
 const schemas = [
@@ -47,7 +48,7 @@ const schemas = [
           <span class="text-danger fw-bold small text-uppercase letter-spacing-1">Our Story</span>
           <h2 class="display-6 fw-bold mt-2 mb-4">Built on Trust, Delivered on Time</h2>
           <p class="text-secondary mb-3">
-            MTC Renovations was founded with a single purpose: bring quality, transparent renovation services to Burlington, Hamilton, and the Greater Toronto Area. Too many homeowners had been burned by contractors who changed prices mid-project, disappeared mid-build, or delivered work that didn't match the vision.
+            MTC Renovations was founded with a single purpose: bring quality, transparent renovation services to Hamilton, Burlington and Halton. Too many homeowners had been burned by contractors who changed prices mid-project, disappeared mid-build, or delivered work that didn't match the vision.
           </p>
           <p class="text-secondary mb-3">
             We set out to do things differently. Every project starts with a fixed-price quote — what we quote is what you pay. Our team shows up on schedule, communicates clearly, and doesn't consider a job finished until you've done a final walkthrough and signed off on every detail.
@@ -60,16 +61,16 @@ const schemas = [
           <div class="bg-dark text-white rounded-3 p-5 text-center">
             <div class="row g-4">
               <div class="col-6">
-                <div class="display-4 fw-bold text-danger">{site.googleReviews.count}+</div>
-                <div class="text-white-50 small mt-1">Five-Star Reviews</div>
+                <div class="display-4 fw-bold text-danger">{reviewCount !== null ? reviewCount : 'Google'}</div>
+                <div class="text-white-50 small mt-1">{reviewCount !== null ? 'Google Reviews' : 'Reviews'}</div>
               </div>
               <div class="col-6">
                 <div class="display-4 fw-bold text-danger">100%</div>
                 <div class="text-white-50 small mt-1">Fixed-Price Quotes</div>
               </div>
               <div class="col-6">
-                <div class="display-4 fw-bold text-danger">GTA</div>
-                <div class="text-white-50 small mt-1">Wide Coverage</div>
+                <div class="display-4 fw-bold text-danger">Local</div>
+                <div class="text-white-50 small mt-1">Hamilton, Burlington and Halton</div>
               </div>
               <div class="col-6">
                 <div class="display-4 fw-bold text-danger">WSIB</div>
@@ -123,7 +124,7 @@ const schemas = [
                 <i class="fas fa-star text-danger fa-2x"></i>
               </div>
             </div>
-            <h3 class="h5 fw-bold mb-2">{site.googleReviews.count}+ Five-Star Reviews</h3>
+            <h3 class="h5 fw-bold mb-2">{reviewCount !== null ? `${reviewCount} Google Reviews` : 'Google Reviews'}</h3>
             <p class="text-secondary small mb-0">
               Google-verified reviews from real Burlington and Hamilton homeowners. Our reputation is built on results, not promises.
             </p>
@@ -199,7 +200,7 @@ const schemas = [
       <div class="text-center mb-5 reveal">
         <span class="text-danger fw-bold small text-uppercase">Where We Work</span>
         <h2 class="display-6 fw-bold mt-2">Service Area</h2>
-        <p class="text-secondary mt-2">We serve homeowners across Burlington, Hamilton, and the Greater Toronto Area.</p>
+        <p class="text-secondary mt-2">We serve homeowners across Hamilton, Burlington and Halton.</p>
       </div>
       <div class="row justify-content-center g-3 reveal">
         {site.serviceAreaCities.map(city => (

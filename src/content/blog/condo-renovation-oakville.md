@@ -98,7 +98,7 @@ Neither model is better in absolute terms. The right choice depends on how invol
 
 ## Tips for a Smooth Condo Renovation
 
-Having done condo work across the GTA, here are the things that separate smooth projects from chaotic ones:
+Having done condo work across Hamilton, Burlington and Halton, here are the things that separate smooth projects from chaotic ones:
 
 - **Submit your board application early.** Don't sign a contractor and then find out approval takes six weeks. Start the board process the moment you're serious about renovating.
 
@@ -128,6 +128,6 @@ For a basic refresh, yes — with some discomfort. For a full gut renovation, we
 
 ## Ready to Renovate Your Oakville Condo?
 
-We've done condo renovations across the GTA and understand the logistics that make these projects different. If you're planning a condo renovation in Oakville, we'll walk you through board requirements, realistic timelines, and an honest cost estimate before any work begins.
+We've done condo renovations across Hamilton, Burlington and Halton and understand the logistics that make these projects different. If you're planning a condo renovation in Oakville, we'll walk you through board requirements, realistic timelines, and an honest cost estimate before any work begins.
 
 [Request a free condo renovation estimate](/contact/)
