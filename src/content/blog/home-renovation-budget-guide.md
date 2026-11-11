@@ -32,7 +32,7 @@ Every renovation is different, but after years of work across the Hamilton, Burl
 | Project                                                               | Typical Cost Range   |
 | --------------------------------------------------------------------- | -------------------- |
 | Bathroom renovation                                                   | $15,000 – $40,000    |
-| [Kitchen renovation](/blog/kitchen-renovation-guide-hamilton/)        | $25,000 – $80,000    |
+| [Kitchen renovation](/blog/kitchen-renovation-cost-burlington/)       | $25,000 – $75,000+   |
 | Basement finish                                                       | $25,000 – $60,000    |
 | [Basement with legal suite](/blog/basement-renovation-cost-hamilton/) | $60,000 – $120,000   |
 | Full home renovation                                                  | $100,000 – $250,000+ |
@@ -107,7 +107,7 @@ If you have the cash and it doesn't drain your emergency fund, paying cash avoid
 
 ### What's the average kitchen renovation cost in Ontario?
 
-In the Hamilton, Burlington, and Oakville area, most mid-range kitchen renovations land between $35,000 and $55,000. That typically includes new cabinetry, countertops, backsplash, flooring, lighting, and minor layout changes. High-end kitchens with custom cabinetry, premium appliances, and structural modifications start around $60,000 and can exceed $80,000. Read our full [kitchen renovation guide](/blog/kitchen-renovation-guide-hamilton/) and the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
+In the Hamilton, Burlington, and Oakville area, kitchen renovations run from $25,000 to $75,000+. A refresh with the same layout is about $25,000–$40,000. Most mid-range kitchens, with new cabinets and counters, flooring, lighting, and some plumbing or electrical moves, land between $40,000 and $60,000. A full remodel with a layout change, walls moved, custom cabinets and premium finishes is $60,000–$75,000+. Final pricing depends on size, materials and site conditions. Read the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 
 ---
 

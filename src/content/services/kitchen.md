@@ -56,9 +56,13 @@ Layout is the decision that changes everything else. Keeping the sink, stove, an
 
 ## How kitchen pricing works
 
-Hamilton kitchen renovations typically range from $25,000 for a refreshed galley kitchen to $75,000+ for a full open-concept remodel with premium finishes. We provide transparent quotes so there are never surprises.
+Hamilton and Burlington kitchen renovations run from $25,000 to $75,000+. Final pricing depends on size, materials and site conditions. We provide transparent quotes so there are never surprises.
 
-That range is the figure published on this page. It is not a quote. A fixed-price quote comes after we see the kitchen, measure it, and write down what is included: cabinets, countertops, tile, fixtures, flooring, and any plumbing or electrical work. The number on the quote is the number for that scope. If you change the scope, the quote changes with it.
+- **Refresh** — same layout, with cabinet refacing or paint, counters, backsplash and fixtures: about $25,000–$40,000
+- **Mid-range** — new cabinets and counters, flooring, lighting, and some plumbing or electrical moves: about $40,000–$60,000
+- **Full remodel** — layout change, walls moved, custom cabinets and premium finishes: $60,000–$75,000+
+
+That range is the figure published on this page. It is not a quote. A fixed-price quote comes after we see the kitchen, measure it, and write down what is included. The number on the quote is the number for that scope. If you change the scope, the quote changes with it.
 
 For the tier table we publish for Burlington — basic refresh, mid-range, and custom gut — read the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/). Related reading: the [kitchen renovation guide for Hamilton](/blog/kitchen-renovation-guide-hamilton/) and [kitchen refresh versus a full reno](/blog/kitchen-refresh-vs-full-reno-hamilton-2026/). If you want a planning range before a visit, use the [renovation price guide](/estimate/).
 
