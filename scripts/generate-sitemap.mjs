@@ -21,6 +21,7 @@ const staticPages = [
   "/mtc-vs-diy-renovation/",
   "/mtc-vs-general-contractors/",
   "/bathroom-remodel-hamilton/",
+  "/gta-renovation-contractor/",
   "/licensed-insured-renovation-contractor-ontario/",
   "/privacy-policy/",
   "/terms-of-use/",

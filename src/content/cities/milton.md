@@ -37,4 +37,4 @@ Milton's Halton Region permit process is one we know well. We submit accurate ap
 
 Milton's growing population and strong resale market make renovation a smart investment. A finished basement adds a full level of livable space. A modernized kitchen is often the single highest-return project in a resale scenario. Our crew delivers both on time and at the price we quoted.
 
-Book a free in-home consultation and receive a written quote within 24 hours.
+Book a free in-home consultation and receive a written quote within 24 hours. Halton and Hamilton, including Mississauga and Toronto with no second office, are described on the [GTA west renovation contractor](/gta-renovation-contractor/) page.
