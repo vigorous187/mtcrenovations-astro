@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const canonical = `${site.url}/bathroom-remodel-hamilton/`;
+const title = 'Bathroom Remodel Hamilton | Cost, Process & Permits | MTC';
+const description =
+  'Planning a bathroom remodel in Hamilton? See typical cost ranges, the permit basics and how MTC\'s fixed-price process works. Free estimate.';
+
+const faqs = [
+  {
+    question: 'How much does a bathroom remodel cost in Hamilton?',
+    answer:
+      'The bathroom tiers published for Burlington also apply in Hamilton. A basic update is $15,000–$22,000. A mid-range full renovation is $22,000–$38,000. An ensuite or luxury renovation is $38,000–$65,000+. A walk-in shower in the existing footprint is $6,000–$15,000, depending on size and tile. These are ranges, not a quote.',
+  },
+  {
+    question: 'Do I need a permit to remodel a bathroom in Hamilton?',
+    answer:
+      'Plumbing layout changes, electrical work beyond a fixture swap, and structural changes need a City of Hamilton building permit. The Hamilton permit guide on this site puts a bathroom renovation permit at $200–$500, depending on scope. Cosmetic work that leaves the plumbing and structure in place generally does not. MTC pulls the permit when the scope requires one.',
+  },
+  {
+    question: 'Can you convert a tub to a walk-in shower?',
+    answer:
+      'Yes. Replacing a tub-shower with a walk-in shower is a standard bathroom remodel. In the existing footprint, the published range is $6,000–$15,000, depending on size and tile.',
+  },
+  {
+    question: 'How long does a bathroom remodel take?',
+    answer:
+      'The site FAQ says a bathroom remodel takes 2–4 weeks. Timeline depends on project scope, permit processing, material lead times, and trade scheduling. The bathroom service page describes most standard renovations as 2 to 3 weeks. The written quote includes the schedule for your room.',
+  },
+  {
+    question: 'Is MTC fully insured?',
+    answer:
+      'Yes. MTC Renovations is fully insured and carries commercial general liability insurance. Proof of insurance is available on request before work begins. Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Bathroom Remodel in Hamilton',
+    serviceType: 'Bathroom remodelling',
+    url: canonical,
+    provider: { '@id': businessId },
+    areaServed: ['Hamilton', 'Ancaster', 'Dundas', 'Stoney Creek', 'Waterdown'].map((name) => ({
+      '@type': 'City',
+      name,
+      containedInPlace: { '@type': 'AdministrativeArea', name: 'Ontario' },
+    })),
+  },
+  faqPage(faqs),
+  breadcrumbList([
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Bathroom Renovation', url: `${site.url}/bathroom/` },
+    { name: 'Bathroom Remodel in Hamilton', url: canonical },
+  ]),
+];
+
+const photos = [
+  {
+    src: '/assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg',
+    alt: 'Premium finished bathroom with excellent lighting and material contrast — Stonehenge, Hamilton | MTC Renovations',
+  },
+  {
+    src: '/assets/img/bathroom/our-work/virtual-tour-327738-35.B6GSpeWQ.jpg',
+    alt: 'Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity — premium portfolio shot — Rosedene, Hamilton | MTC Renovations',
+  },
+  {
+    src: '/assets/img/bathroom/our-work/virtual-tour-333305-mls-high-res-image-28.jpg',
+    alt: 'Stunning finished bathroom with dramatic navy subway tile and brass fixtures — premium portfolio shot with strong design impact — Gateshead, Hamilton | MTC Renovations',
+  },
+  {
+    src: '/assets/img/bathroom/our-work/IMG_7332.jpeg',
+    alt: 'Stunning hexagon tile shower with modern black fixtures — premium portfolio shot showcasing current design trends — Queensway, Hamilton | MTC Renovations',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item"><a href="/bathroom/" class="text-white-50">Bathroom</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Hamilton remodel</li>
+        </ol>
+      </nav>
+      <div class="row">
+        <div class="col-lg-9">
+          <h1 class="display-5 fw-bold mb-3">Bathroom Remodel in Hamilton, Ontario</h1>
+          <p class="lead text-white-50 mb-4">
+            A bathroom remodel in Hamilton is a new shower, vanity, and tile, plus the plumbing and electrical the room actually needs. MTC Renovations writes a fixed-price quote after we see the space. The ranges on this page are the same tiers we publish for Burlington, and they apply in Hamilton.
+          </p>
+          <a href="/newleadintake/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request a consultation</a>
+          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3">What a Hamilton bathroom remodel includes</h2>
+          <p>
+            The <a href="/bathroom/">bathroom renovation</a> scope is the same list we use in Hamilton: a walk-in shower conversion, a full remodel, custom tile, a vanity and countertop, plumbing upgrades, heated flooring when you want it, accessibility changes, and lighting and ventilation. Demolition, waterproofing, fixture mounting, and paint are part of coordinating the room, not separate contractors you have to hire.
+          </p>
+          <p>
+            The most common change is a tub-to-shower conversion. The <a href="/blog/bathroom-renovation-burlington/">Burlington bathroom renovation guide</a> describes that job as removing a tub-shower combo and building a walk-in shower in the same footprint. A curbless entry is the version homeowners ask for when they want a flush floor. Vanities, tile, and the plumbing and electrical that feed the new fixtures are the rest of a typical remodel. Tile choice is covered in <a href="/blog/selecting-tile-and-grout-bathroom-durability/">selecting tile and grout</a>. Larger ensuites are in the <a href="/blog/master-bathroom-renovation-burlington/">master bathroom renovation guide</a>.
+          </p>
+          <p>
+            Finished rooms from Hamilton projects are in the <a href="/bathroom/our-work/">bathroom project gallery</a>. The photos below are those existing gallery images.
+          </p>
+          <div class="row g-3 mb-4">
+            {photos.map((photo) => (
+              <div class="col-6">
+                <img src={photo.src} alt={photo.alt} class="img-fluid rounded" loading="lazy" width="640" height="480" />
+              </div>
+            ))}
+          </div>
+
+          <h2 class="fw-bold mb-3">Bathroom remodel cost in Hamilton</h2>
+          <p>
+            These are the three tiers from the Burlington bathroom guide. They apply to a bathroom remodel in Hamilton as well. A walk-in shower added in the existing footprint is published at $6,000–$15,000, depending on size and tile.
+          </p>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Tier</th>
+                  <th scope="col">Published range</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Basic update</th>
+                  <td>$15,000–$22,000</td>
+                </tr>
+                <tr>
+                  <th scope="row">Mid-range full renovation</th>
+                  <td>$22,000–$38,000</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ensuite or luxury</th>
+                  <td>$38,000–$65,000+</td>
+                </tr>
+                <tr>
+                  <th scope="row">Walk-in shower, existing footprint</th>
+                  <td>$6,000–$15,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            A basic update replaces the major fixtures and refreshes the tile without moving plumbing. The Burlington guide lists a new vanity and sink, a new toilet, a tile surround, new flooring, lighting and an exhaust fan, and paint and caulking. It does not include moving walls, relocating plumbing, or adding square footage.
+          </p>
+          <p>
+            The mid-range tier is a full gut to the studs. That guide lists a walk-in shower with custom tile or a large-format slab, a new tub or a tub removal when you are converting to a shower, heated floors, a custom or semi-custom vanity, a new exhaust fan, and new fixtures. It is the tier for moisture damage, a shower-tub change, or a full rebuild of the room.
+          </p>
+          <p>
+            The ensuite tier is the luxury scope in that same guide: large-format porcelain, a curbless walk-in shower with a linear drain, a freestanding tub, a double vanity, and heated floors. None of these numbers is a quote. The quote is written after we measure your Hamilton bathroom and list the materials. You can start with a planning range on the <a href="/estimate/">renovation price guide</a>.
+          </p>
+
+          <h2 class="fw-bold mb-3">Permits for a Hamilton bathroom remodel</h2>
+          <p>
+            The <a href="/blog/bathroom-renovation-permit-hamilton/">Hamilton bathroom permit guide</a> is the detail. Moving plumbing, changing the electrical capacity, or moving walls needs a permit. Replacing a toilet, vanity, or tile in the same location generally does not. A bathroom renovation permit in Hamilton is published on that guide at $200–$500, depending on scope. The City of Hamilton describes how to apply on its <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/building-permit">building permit application page</a>. When the scope needs a permit, we submit it and book the inspections.
+          </p>
+
+          <h2 class="fw-bold mb-3">Remodel timeline and what to expect</h2>
+          <p>
+            The site FAQ says a bathroom remodel takes 2–4 weeks. The bathroom service page describes most standard renovations as 2 to 3 weeks from demo to final install. Permit review, tile lead times, and the size of the room are what move a job inside that span. Our bathroom sequence is a consultation, a design and fixed-price quote, material selection, construction, and a final walkthrough of the grout and fixtures. You get the schedule in the quote, not a guessed number of weeks.
+          </p>
+
+          <h2 class="fw-bold mb-3">Hamilton neighbourhoods we work in</h2>
+          <p>
+            Hamilton remodel work covers the city and the communities named on the <a href="/location/hamilton/">Hamilton location page</a>:
+          </p>
+          <ul>
+            <li><a href="/location/ancaster/">Ancaster</a></li>
+            <li><a href="/location/dundas/">Dundas</a></li>
+            <li><a href="/location/stoney-creek/">Stoney Creek</a></li>
+            <li><a href="/location/waterdown/">Waterdown</a></li>
+          </ul>
+          <p>
+            The same bathroom crew works in <a href="/location/burlington/">Burlington</a>. Tell us the neighbourhood when you request the visit so we plan access and the permit office that applies.
+          </p>
+
+          <h2 class="fw-bold mb-3">Get your bathroom price range</h2>
+          <p>
+            Use the <a href="/estimate/">price guide</a> for a planning range, then <a href="/newleadintake/">request a consultation</a> for a fixed-price quote. You can also call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. Proof of insurance is available before work starts. What we carry, and what to ask any contractor for, is on <a href="/licensed-insured-renovation-contractor-ontario/">fully insured renovation contractor in Ontario</a>.
+          </p>
+
+          <h2 class="fw-bold mb-4">Bathroom remodel questions</h2>
+          {faqs.map((faq) => (
+            <div class="mb-4">
+              <h3 class="h5 fw-bold">{faq.question}</h3>
+              <p class="mb-0">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ready to price a Hamilton bathroom?"
+    subtitle="Tell us about the room. We will measure it and send a fixed-price quote."
+    ctaText="Request a consultation"
+    ctaLink="/newleadintake/"
+  />
+</BaseLayout>

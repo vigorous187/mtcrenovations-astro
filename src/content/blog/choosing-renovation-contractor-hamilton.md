@@ -4,7 +4,7 @@ metaTitle: "How to Choose a Renovation Contractor in Hamilton"
 metaDescription: "Looking for a renovation contractor in Hamilton? Here's how to vet contractors, spot red flags, and protect yourself before signing a contract."
 author: "MTC Renovations"
 datePublished: "2026-02-28"
-dateModified: "2026-02-28"
+dateModified: "2026-11-11"
 tags:
   ["renovation contractor", "Hamilton", "hiring contractor", "renovation tips"]
 ---
@@ -19,10 +19,10 @@ Ontario doesn't require a general contractor license the way some provinces do, 
 
 Before you sign anything, ask for:
 
-- **WSIB clearance certificate** — This confirms the contractor is registered with the Workplace Safety and Insurance Board and their account is in good standing. If a worker gets injured on your property and the contractor doesn't have WSIB coverage, you could be held liable. Ask for the certificate number and verify it on the WSIB website.
+- **Proof the contractor is fully insured** — Hiring an uninsured contractor puts your home and finances at risk. MTC is fully insured and will provide proof of insurance on request. Details are on [licensed and insured renovation contractor in Ontario](/licensed-insured-renovation-contractor-ontario/).
 - **Liability insurance ($2M minimum)** — General liability insurance protects you if the contractor damages your property during the renovation. $2 million is the standard minimum in Ontario. Ask for a copy of the certificate of insurance, not just a verbal confirmation.
 - **Business registration** — A legitimate contractor should have a registered business in Ontario. Ask for their HST number. If they don't charge HST, that's a problem.
-- **Certificate numbers you can verify** — Any contractor who hesitates to provide certificate numbers for WSIB or insurance is telling you something. Legitimate contractors hand these over without blinking.
+- **Certificate numbers you can verify** — Any contractor who hesitates to provide an insurance certificate is telling you something. Legitimate contractors hand these over without blinking. What we provide is spelled out on [licensed and insured renovation contractor in Ontario](/licensed-insured-renovation-contractor-ontario/).
 
 We provide all of this upfront to every client before they even ask. That should be the standard.
 
@@ -46,7 +46,7 @@ We've been in this industry long enough to know what the warning signs look like
 - **Asking for 50% or more upfront.** A deposit is normal. Half the project cost before a single board is cut is not. This is the most common setup for a contractor who disappears.
 - **No written contract.** "We'll figure it out as we go" is not a renovation plan. It's a guarantee of disputes.
 - **"Cash discount" pressure.** If a contractor pushes you to pay cash to avoid HST, they're asking you to participate in tax fraud. It also means you'll have no paper trail if something goes wrong.
-- **Can't provide WSIB or insurance certificates.** Full stop. No paperwork, no deal.
+- **Can't provide an insurance certificate.** Full stop. No paperwork, no deal.
 - **Vague timelines.** "We'll get started in a few weeks" or "it should take about a month" isn't a timeline. You need specific start dates and projected completion dates.
 - **No discussion about permits.** If your renovation requires permits (and many do — structural changes, plumbing, electrical), a contractor who doesn't bring this up is either cutting corners or doesn't know what they're doing. Both are bad.
 

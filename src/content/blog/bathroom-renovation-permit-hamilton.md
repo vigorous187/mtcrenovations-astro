@@ -4,7 +4,7 @@ metaTitle: "Bathroom Renovation Permit Hamilton: What's Required"
 metaDescription: "Do you need a building permit for a bathroom renovation in Hamilton? We break down what requires a permit, what doesn't, and how to apply."
 author: "MTC Renovations"
 datePublished: "2026-01-18"
-dateModified: "2026-01-18"
+dateModified: "2026-11-11"
 tags:
   [
     "bathroom renovation",
@@ -107,4 +107,4 @@ Expect **2 to 4 weeks** from the date of application. Review times depend on the
 
 If you're planning a bathroom renovation in Hamilton and you're not sure whether you need a permit, we can tell you in five minutes. We've handled the permit process on hundreds of projects across Hamilton, Stoney Creek, Ancaster, and Dundas — from small powder room updates to full master ensuite builds. We know what the City of Hamilton Building Division expects, and we handle the paperwork and inspections so you don't have to.
 
-[Request a free bathroom renovation estimate](/contact/) and we'll walk you through exactly what your project requires — permits included.
+The cost tiers and neighbourhoods are on [bathroom remodel in Hamilton](/bathroom-remodel-hamilton/). [Request a free bathroom renovation estimate](/contact/) and we'll walk you through exactly what your project requires — permits included.

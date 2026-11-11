@@ -8,6 +8,16 @@ function trailingSlash(url: string): string {
 /** Stable id for the sitewide HomeAndConstructionBusiness node. */
 export const businessId = `${trailingSlash(site.url)}#business`;
 
+/** Service-area cities only. No street address is published. */
+export function areasServed() {
+  const names = site.areaServed?.length ? site.areaServed : site.serviceAreaCities;
+  return names.map((city) => ({
+    "@type": "City",
+    name: city,
+    containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
+  }));
+}
+
 export function localBusiness(cityName?: string) {
   const address: Record<string, string> = {
     "@type": "PostalAddress",
@@ -15,9 +25,6 @@ export function localBusiness(cityName?: string) {
     addressRegion: site.address.province,
     addressCountry: site.address.country,
   };
-  if (site.address.street) address.streetAddress = site.address.street;
-  if (site.address.postalCode) address.postalCode = site.address.postalCode;
-
   const node: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -31,11 +38,7 @@ export function localBusiness(cityName?: string) {
     email: site.email,
     address,
     image: `${site.url}/assets/img/logo/logo.png`,
-    areaServed: site.serviceAreaCities.map((city) => ({
-      "@type": "City",
-      name: city,
-      containedInPlace: { "@type": "AdministrativeArea", name: "Ontario" },
-    })),
+    areaServed: areasServed(),
     priceRange: "$$$$",
     openingHours: "Mo-Fr 08:00-18:00",
   };
@@ -84,10 +87,7 @@ export function serviceSchema(
       url: trailingSlash(site.url),
       telephone: site.phone,
     },
-    areaServed: site.serviceAreaCities.map((city) => ({
-      "@type": "City",
-      name: city,
-    })),
+    areaServed: areasServed(),
     url: trailingSlash(`${site.url}/${serviceSlug}`),
   };
 }

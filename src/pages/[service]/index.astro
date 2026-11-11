@@ -41,6 +41,28 @@ const serviceFaqs: Record<string, { question: string; answer: string }[]> = {
         'Yes. Hamilton, Burlington, and Oakville are in the MTC service area. Each city has its own location page, and the written quote is based on the kitchen we measure.',
     },
   ],
+  bathroom: [
+    {
+      question: 'How much does a bathroom renovation cost?',
+      answer:
+        'The bathroom tiers published for Burlington also apply in Hamilton. A basic update is $15,000–$22,000. A mid-range full renovation is $22,000–$38,000. An ensuite or luxury renovation is $38,000–$65,000+. A walk-in shower in the existing footprint is $6,000–$15,000, depending on size and tile. These are ranges, not a quote.',
+    },
+    {
+      question: 'Can you convert a tub to a walk-in shower?',
+      answer:
+        'Yes. Tub-to-shower conversions are part of our bathroom scope. The Burlington bathroom guide prices a walk-in shower in an existing footprint at $6,000–$15,000, depending on size and tile.',
+    },
+    {
+      question: 'How long does a bathroom remodel take?',
+      answer:
+        'The site FAQ says a bathroom remodel takes 2–4 weeks. This page describes most standard bathroom renovations as 2 to 3 weeks from demo to final install. The written quote includes the schedule for your room.',
+    },
+    {
+      question: 'Is MTC fully insured?',
+      answer:
+        'Yes. MTC Renovations is fully insured and carries commercial general liability insurance. Proof of insurance is available on request before work begins. Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified.',
+    },
+  ],
 };
 
 const pageFaqs = serviceFaqs[service.slug] ?? [];
@@ -130,6 +152,9 @@ const schemas = [
         <h2 class="fw-bold mb-3">Explore our {service.name.toLowerCase()} renovation work</h2>
         <p>Browse <a class="text-decoration-underline" href={`/${service.slug}/our-work/`}>{service.name.toLowerCase()} project photos</a> for finishes and layout ideas.</p>
         <p>Planning several rooms? See our <a class="text-decoration-underline" href="/location/hamilton/">Hamilton renovation services</a> or <a class="text-decoration-underline" href="/location/burlington/">Burlington renovation services</a>, then tell us about your project.</p>
+        {service.slug === 'bathroom' && (
+          <p>Remodelling in Hamilton? Read <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for the published cost tiers, permit basics, and the neighbourhoods we work in.</p>
+        )}
       </div>
     </section>
   )}

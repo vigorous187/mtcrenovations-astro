@@ -24,7 +24,7 @@ processSteps:
     description: "We walk through every detail until you are 100% satisfied."
 whyChooseUs:
   - title: "Licensed & Insured"
-    description: "Fully licensed and insured renovation contractor with WSIB coverage."
+    description: "Fully insured renovation contractor. Proof of insurance is available before work starts."
   - title: "Fixed-Price Quotes"
     description: "No surprises. Your quote is your price — guaranteed."
   - title: "Google Reviews"
