@@ -38,7 +38,10 @@ const schemas = [
   description={service.seo.description}
   ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`}
   schema={schemas}
-  heroImage={`${service.heroImage}?v=2`}
+  heroPreload={{
+    src: `/assets/img/${service.slug}/hero-800.webp`,
+    srcset: `/assets/img/${service.slug}/hero-800.webp 800w, /assets/img/${service.slug}/hero-1280.webp 1280w`,
+  }}
 >
   <ServiceHero
     title={service.h1 || service.tagline}

@@ -25,9 +25,9 @@ const { Content } = await city.render();
 const schemas = [
   localBusiness(city.data.name),
   breadcrumbList([
-    { name: 'Home', url: site.url },
-    { name: 'Locations', url: `${site.url}/locations` },
-    { name: city.data.name, url: `${site.url}/location/${city.slug}` },
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Locations', url: `${site.url}/locations/` },
+    { name: city.data.name, url: `${site.url}/location/${city.slug}/` },
   ]),
 ];
 ---
