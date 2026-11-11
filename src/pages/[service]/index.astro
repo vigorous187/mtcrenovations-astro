@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import CTABanner from '../../components/CTABanner.astro';
 import EstimatorCTA from '../../components/estimator/EstimatorCTA.astro';
-import { localBusiness, serviceSchema, breadcrumbList } from '../../components/seo/schemas';
+import { localBusiness, serviceSchema, breadcrumbList, faqPage } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import { reviewSummary } from '../../lib/googleReviews';
 import services from '../../data/services.json';
@@ -23,6 +23,28 @@ export async function getStaticPaths() {
 const { service, entry } = Astro.props;
 const { Content } = entry ? await entry.render() : { Content: null };
 
+const serviceFaqs: Record<string, { question: string; answer: string }[]> = {
+  kitchen: [
+    {
+      question: 'How much does a kitchen renovation cost?',
+      answer:
+        'Hamilton kitchen renovations typically range from $25,000 for a refreshed galley kitchen to $75,000+ for a full open-concept remodel with premium finishes. That is the range published on this page, not a quote. A fixed-price quote is prepared after an in-home consultation. The Burlington cost guide publishes its own tier table.',
+    },
+    {
+      question: 'What does a kitchen renovation include?',
+      answer:
+        'Kitchen renovations include demolition, plumbing, electrical, framing, drywall, cabinetry, countertops, flooring, paint, and trim. Scope also covers custom cabinets, quartz or granite countertops, backsplash tile, islands, and lighting when those are part of the written scope.',
+    },
+    {
+      question: 'Do you renovate kitchens in Hamilton, Burlington, and Oakville?',
+      answer:
+        'Yes. Hamilton, Burlington, and Oakville are in the MTC service area. Each city has its own location page, and the written quote is based on the kitchen we measure.',
+    },
+  ],
+};
+
+const pageFaqs = serviceFaqs[service.slug] ?? [];
+
 const schemas = [
   localBusiness(),
   serviceSchema(service.name, service.slug, service.seo.description),
@@ -30,6 +52,7 @@ const schemas = [
     { name: 'Home', url: site.url },
     { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
   ]),
+  ...(pageFaqs.length ? [faqPage(pageFaqs)] : []),
 ];
 ---
 
@@ -77,6 +100,24 @@ const schemas = [
         <div class="row justify-content-center">
           <div class="col-lg-8 prose">
             <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {pageFaqs.length > 0 && (
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-4">{service.name} renovation questions</h2>
+            {pageFaqs.map((faq) => (
+              <div class="mb-4">
+                <h3 class="h5 fw-bold">{faq.question}</h3>
+                <p class="mb-0">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

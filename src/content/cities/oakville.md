@@ -22,7 +22,7 @@ Oakville homes tend toward higher-end finishes and materials. Our team is experi
 ## Our Oakville Services
 
 - **Basement Renovation** -- Full finishing with premium materials and finishes
-- **Kitchen Renovation** -- Custom cabinetry, quartz and granite countertops, designer backsplash
+- **Kitchen Renovation** -- Custom cabinetry, quartz and granite countertops, designer backsplash. Published tiers are in the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 - **Bathroom Renovation** -- Spa-like walk-in showers, heated floors, custom tile
 - **Flooring Installation** -- Engineered hardwood, wide-plank LVP, porcelain tile
 - **Interior Painting** -- Benjamin Moore and Sherwin-Williams with flawless prep

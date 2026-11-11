@@ -5,6 +5,9 @@ function trailingSlash(url: string): string {
   return url.endsWith("/") ? url : `${url}/`;
 }
 
+/** Stable id for the sitewide HomeAndConstructionBusiness node. */
+export const businessId = `${trailingSlash(site.url)}#business`;
+
 export function localBusiness(cityName?: string) {
   const address: Record<string, string> = {
     "@type": "PostalAddress",
@@ -15,7 +18,7 @@ export function localBusiness(cityName?: string) {
   if (site.address.street) address.streetAddress = site.address.street;
   if (site.address.postalCode) address.postalCode = site.address.postalCode;
 
-  return {
+  const node: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: cityName ? `${site.name} — ${cityName}` : site.name,
@@ -36,6 +39,33 @@ export function localBusiness(cityName?: string) {
     priceRange: "$$$$",
     openingHours: "Mo-Fr 08:00-18:00",
   };
+  if (!cityName) node["@id"] = businessId;
+  return node;
+}
+
+/** Pull ### questions from a markdown FAQ section. Answers are plain text. */
+export function faqsFromMarkdown(markdown: string) {
+  const heading = markdown.match(/^## (?:Frequently Asked Questions|FAQ)\s*$/m);
+  if (!heading || heading.index === undefined) return [];
+  const rest = markdown.slice(heading.index + heading[0].length);
+  const nextH2 = rest.search(/\n## /);
+  const section = nextH2 === -1 ? rest : rest.slice(0, nextH2);
+  return section
+    .split(/\n### /)
+    .slice(1)
+    .map((chunk) => {
+      const breakAt = chunk.indexOf("\n");
+      const question = (breakAt === -1 ? chunk : chunk.slice(0, breakAt))
+        .replace(/[#*_]/g, "")
+        .trim();
+      const answer = (breakAt === -1 ? "" : chunk.slice(breakAt + 1))
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/[*_`]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+      return { question, answer };
+    })
+    .filter((faq) => faq.question && faq.answer);
 }
 
 export function serviceSchema(
