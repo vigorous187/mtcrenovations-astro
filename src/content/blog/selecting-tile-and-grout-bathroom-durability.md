@@ -4,7 +4,7 @@ metaTitle: "Bathroom Tile and Grout Selection Guide: Durability 2026"
 metaDescription: "Which tile and grout actually survive steam, daily use, and Ontario humidity? We break down material choices that hold up in Hamilton bathrooms."
 author: "MTC Renovations"
 datePublished: "2026-05-05"
-dateModified: "2026-05-05"
+dateModified: "2026-11-11"
 tags: ["bathroom renovation", "tile selection", "grout", "bathroom durability"]
 ---
 
@@ -83,4 +83,4 @@ Properly installed porcelain tile over proper waterproofing should last 20 – 3
 
 Tile and grout decisions have a 20-year lifespan in a bathroom. Getting the material selection right upfront is far less expensive than remedying it afterward.
 
-[Request a free estimate](/contact/) and we'll walk through material options for your bathroom at the initial site visit.
+Hamilton remodel scope and cost tiers are on [bathroom remodel in Hamilton](/bathroom-remodel-hamilton/). [Request a free estimate](/contact/) and we'll walk through material options for your bathroom at the initial site visit.

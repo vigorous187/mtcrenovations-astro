@@ -20,6 +20,8 @@ const staticPages = [
   "/mtc-vs-big-box-renovations/",
   "/mtc-vs-diy-renovation/",
   "/mtc-vs-general-contractors/",
+  "/bathroom-remodel-hamilton/",
+  "/licensed-insured-renovation-contractor-ontario/",
   "/privacy-policy/",
   "/terms-of-use/",
 ];

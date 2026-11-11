@@ -31,7 +31,7 @@ For your [renovation consultation request](/newleadintake/), include:
 Explore the services that fit your scope:
 
 - [Kitchen renovations](/kitchen/) — cabinets, countertops and layout updates. See [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
-- [Bathroom renovations](/bathroom/) — showers, tile, vanities and remodels
+- [Bathroom renovations](/bathroom/) — showers, tile, vanities and remodels. Cost detail is in the [bathroom renovation guide for Burlington](/blog/bathroom-renovation-burlington/).
 - [Basement renovations](/basement/) — finishing and plans for how you want to use the space
 - [Flooring installation](/flooring/) — hardwood, luxury vinyl and tile
 - [Interior painting](/painting/) — preparation and finishes

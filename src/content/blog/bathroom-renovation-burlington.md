@@ -4,7 +4,7 @@ metaTitle: "Bathroom Renovation Burlington: Costs & Trends 2026"
 metaDescription: "Thinking about a bathroom renovation in Burlington? See what homeowners pay, popular upgrades, and tips for hiring the right contractor."
 author: "MTC Renovations"
 datePublished: "2025-11-22"
-dateModified: "2025-11-22"
+dateModified: "2026-11-11"
 tags:
   ["bathroom renovation", "Burlington", "renovation costs", "bathroom remodel"]
 ---
@@ -116,6 +116,6 @@ Tile lead times can affect scheduling. For specialty or large-format tile, we re
 
 ## Ready to Update Your Burlington Bathroom?
 
-We renovate bathrooms across Burlington, Oakville, Hamilton, and the surrounding area. Our estimates are free, detailed in writing, and come without pressure.
+We renovate bathrooms across Burlington, Oakville, Hamilton, and the surrounding area. For Hamilton cost tiers and permits, see [bathroom remodel in Hamilton](/bathroom-remodel-hamilton/). Our estimates are free, detailed in writing, and come without pressure. The [Burlington renovation page](/location/burlington/) covers the rest of the house.
 
 [Request a free bathroom renovation estimate](/contact/) and we'll get back to you within one business day.
