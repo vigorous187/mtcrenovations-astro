@@ -4,7 +4,7 @@ metaTitle: "Open Concept Renovation Hamilton: Costs & Permits 2026"
 metaDescription: "Planning an open concept renovation in Hamilton? Get real 2026 cost breakdowns, permit requirements, and what's involved in removing load-bearing walls."
 author: "MTC Renovations"
 datePublished: "2026-05-15"
-dateModified: "2026-05-15"
+dateModified: "2026-11-11"
 tags: ["open concept renovation", "Hamilton", "load-bearing wall", "home renovation"]
 ---
 
@@ -93,7 +93,7 @@ Ask any contractor you're considering:
 
 [Choosing the right contractor](/blog/choosing-renovation-contractor-hamilton/) matters more on structural projects than almost any other renovation category. The wrong call doesn't just mean a bad paint job — it means structural problems that affect the home's long-term integrity and resale value.
 
-Our team at MTC Renovations handles the full scope of open concept conversions — from coordinating with the structural engineer through to the final coat of paint. [See our kitchen renovation services](/kitchen/).
+Our team at MTC Renovations handles the full scope of open concept conversions — from coordinating with the structural engineer through to the final coat of paint. [See our kitchen renovation services](/kitchen/). Published kitchen tiers are in the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 
 ## FAQ
 

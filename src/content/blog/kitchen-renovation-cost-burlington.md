@@ -4,12 +4,20 @@ metaTitle: "Kitchen Renovation Cost Burlington: 2026 Price Guide"
 metaDescription: "What does a kitchen renovation cost in Burlington? Real price ranges from $20K basic refreshes to $80K+ custom builds, from a local contractor."
 author: "MTC Renovations"
 datePublished: "2026-01-08"
-dateModified: "2026-01-08"
+dateModified: "2026-11-11"
 tags:
   ["kitchen renovation", "Burlington", "renovation costs", "kitchen remodel"]
 ---
 
-The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. A 1960s bungalow in Aldershot is a different job than a 2010s build in Headon Forest. Here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton.
+Most Burlington kitchens we price land in the mid-range tier on this page: between $40,000 and $60,000. The published span runs from a basic refresh at $20,000–$35,000 to a custom gut at $65,000–$100,000+.
+
+| Tier | Published range on this page |
+| --- | --- |
+| Basic refresh | $20,000 – $35,000 |
+| Mid-range renovation | $40,000 – $60,000 |
+| Custom / full gut | $65,000 – $100,000+ |
+
+The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. A 1960s bungalow in Aldershot is a different job than a 2010s build in Headon Forest. Here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton. The tiers above are the same figures broken out in the sections below.
 
 ## What Drives Kitchen Renovation Costs
 
@@ -117,7 +125,7 @@ Cabinet refacing paired with new quartz countertops delivers the strongest retur
 
 ## Ready to Price Out Your Kitchen?
 
-Every kitchen renovation cost in Burlington starts with what's already there. We walk through your space, talk about what's working and what isn't, and put together a detailed scope and estimate — no pressure, no vague ballpark numbers.
+Every kitchen renovation cost in Burlington starts with what's already there. We walk through your space, talk about what's working and what isn't, and put together a detailed scope and estimate — no pressure, no vague ballpark numbers. If you want a planning range before that visit, start with the [renovation price guide](/estimate/).
 
 Our team works across Burlington, Oakville, and Hamilton, and we've renovated kitchens in every style of home the area has to offer. Quick refresh or full custom build — we'll give you honest numbers and a realistic timeline.
 

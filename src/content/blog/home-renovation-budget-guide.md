@@ -4,7 +4,7 @@ metaTitle: "Home Renovation Budget Ontario: Planning Guide 2026"
 metaDescription: "How much should you budget for a home renovation in Ontario? We break down costs by project type, hidden expenses, and a realistic budgeting framework."
 author: "MTC Renovations"
 datePublished: "2026-02-12"
-dateModified: "2026-02-12"
+dateModified: "2026-11-11"
 tags: ["home renovation", "Ontario", "renovation budget", "renovation planning"]
 ---
 
@@ -107,7 +107,7 @@ If you have the cash and it doesn't drain your emergency fund, paying cash avoid
 
 ### What's the average kitchen renovation cost in Ontario?
 
-In the Hamilton, Burlington, and Oakville area, most mid-range kitchen renovations land between $35,000 and $55,000. That typically includes new cabinetry, countertops, backsplash, flooring, lighting, and minor layout changes. High-end kitchens with custom cabinetry, premium appliances, and structural modifications start around $60,000 and can exceed $80,000. Read our full [kitchen renovation guide](/blog/kitchen-renovation-guide-hamilton/) for a detailed breakdown.
+In the Hamilton, Burlington, and Oakville area, most mid-range kitchen renovations land between $35,000 and $55,000. That typically includes new cabinetry, countertops, backsplash, flooring, lighting, and minor layout changes. High-end kitchens with custom cabinetry, premium appliances, and structural modifications start around $60,000 and can exceed $80,000. Read our full [kitchen renovation guide](/blog/kitchen-renovation-guide-hamilton/) and the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 
 ---
 
