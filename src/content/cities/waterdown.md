@@ -31,4 +31,4 @@ Basement finishing is the top request in Waterdown's newer builds, where unfinis
 
 ## Why Waterdown Homeowners Choose MTC
 
-We are a Hamilton-area contractor who works in Waterdown regularly. Fixed-price quotes, licensed and insured, WSIB coverage. Every project starts with a free in-home consultation — no obligation, no pressure.
+We are a Hamilton-area contractor who works in Waterdown regularly. Fixed-price quotes, licensed and fully insured. Every project starts with a free in-home consultation — no obligation, no pressure.

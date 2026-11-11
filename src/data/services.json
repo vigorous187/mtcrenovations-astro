@@ -40,6 +40,7 @@
   {
     "slug": "bathroom",
     "name": "Bathroom",
+    "h1": "Bathroom Renovations in Burlington & Hamilton: Walk-in Showers & Full Remodels",
     "tagline": "Custom Bathroom Renovations — Walk-in Showers & Full Remodels",
     "icon": "/assets/img/home/bathtub-cleaning.png",
     "heroImage": "/assets/img/bathroom/hero.jpg",
@@ -77,12 +78,13 @@
   {
     "slug": "kitchen",
     "name": "Kitchen",
+    "h1": "Kitchen Renovations in Hamilton & Burlington: Cabinets, Countertops & More",
     "tagline": "Complete Kitchen Renovations — Cabinets, Countertops & More",
     "icon": "/assets/img/home/kitchen-sink.png",
     "heroImage": "/assets/img/kitchen/hero.jpg",
     "seo": {
-      "title": "Kitchen Renovations Burlington & Hamilton | MTC",
-      "description": "Plan a kitchen renovation in Burlington or Hamilton with clear scope, quality finishes and a fixed-price quote from MTC Renovations."
+      "title": "Kitchen Renovation Hamilton & Burlington | MTC Renovations",
+      "description": "Kitchen renovation Hamilton and Burlington: cabinets, countertops, open layouts, and a fixed-price quote from MTC Renovations."
     },
     "subPages": {
       "about-us": {

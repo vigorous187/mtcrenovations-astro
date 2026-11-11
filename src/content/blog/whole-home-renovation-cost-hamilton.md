@@ -4,7 +4,7 @@ metaTitle: "Whole Home Renovation Cost Hamilton 2026"
 metaDescription: "How much does a whole home renovation cost in Hamilton? Real 2026 price ranges from $80K updates to $350K+ full rebuilds, plus what drives the numbers."
 author: "MTC Renovations"
 datePublished: "2026-06-15"
-dateModified: "2026-06-15"
+dateModified: "2026-11-11"
 tags: ["whole home renovation", "Hamilton", "renovation costs", "cost guide"]
 ---
 
@@ -54,7 +54,7 @@ A few factors push budgets significantly in either direction:
 - **Age and condition of existing systems** — In Hamilton's older housing stock, it's common to find knob-and-tube wiring and lead or galvanized supply pipes once walls are opened. Updating both adds $15,000–$40,000 to a project, but it's non-negotiable under the OBC and for insurance purposes.
 - **Structural changes** — Removing a load-bearing wall requires an engineer's drawing, a temporary support system, and a proper beam installation. Expect $8,000–$18,000 per wall, including permit and inspection. Our [open concept renovation guide](/blog/open-concept-renovation-hamilton/) covers this process in detail.
 - **Permit scope** — A whole-home renovation in Hamilton almost always triggers a building permit, and often an electrical permit. Permit fees for a project of this scope typically run $3,000–$6,000, and the inspection process adds time to the schedule.
-- **Material selections** — The difference between a $25,000 kitchen and a $60,000 kitchen isn't the layout or the labour — it's the cabinet line, countertop material, and appliances. The same logic applies to every room throughout the house.
+- **Material selections** — The difference between a $25,000 kitchen and a $60,000 kitchen isn't the layout or the labour — it's the cabinet line, countertop material, and appliances. The same logic applies to every room throughout the house. The tier table we publish for that city is in the guide to [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 
 For a full breakdown of how to set and manage a budget before a project of this scale, our [home renovation budget guide](/blog/home-renovation-budget-guide/) walks through the process step by step, including how to build a realistic contingency.
 

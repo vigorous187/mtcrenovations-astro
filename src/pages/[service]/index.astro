@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import CTABanner from '../../components/CTABanner.astro';
 import EstimatorCTA from '../../components/estimator/EstimatorCTA.astro';
-import { localBusiness, serviceSchema, breadcrumbList } from '../../components/seo/schemas';
+import { localBusiness, serviceSchema, breadcrumbList, faqPage } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import { reviewSummary } from '../../lib/googleReviews';
 import services from '../../data/services.json';
@@ -23,6 +23,67 @@ export async function getStaticPaths() {
 const { service, entry } = Astro.props;
 const { Content } = entry ? await entry.render() : { Content: null };
 
+const serviceFaqs: Record<string, { question: string; answer: string }[]> = {
+  kitchen: [
+    {
+      question: 'How much does a kitchen renovation cost?',
+      answer:
+        'Kitchen renovations run from $25,000 to $75,000+. A refresh with the same layout — cabinet refacing or paint, counters, backsplash and fixtures — is about $25,000–$40,000. A mid-range kitchen with new cabinets and counters, flooring, lighting, and some plumbing or electrical moves is about $40,000–$60,000. A full remodel with a layout change, walls moved, custom cabinets and premium finishes is $60,000–$75,000+. Final pricing depends on size, materials and site conditions. A fixed-price quote is prepared after an in-home consultation.',
+    },
+    {
+      question: 'What does a kitchen renovation include?',
+      answer:
+        'Kitchen renovations include demolition, plumbing, electrical, framing, drywall, cabinetry, countertops, flooring, paint, and trim. Scope also covers custom cabinets, quartz or granite countertops, backsplash tile, islands, and lighting when those are part of the written scope.',
+    },
+    {
+      question: 'Do you renovate kitchens in Hamilton, Burlington, and Oakville?',
+      answer:
+        'Yes. Hamilton, Burlington, and Oakville are in the MTC service area. Each city has its own location page, and the written quote is based on the kitchen we measure.',
+    },
+  ],
+  bathroom: [
+    {
+      question: 'How much does a bathroom renovation cost?',
+      answer:
+        'The bathroom tiers published for Burlington also apply in Hamilton. A basic update is $15,000–$22,000. A mid-range full renovation is $22,000–$38,000. An ensuite or luxury renovation is $38,000–$65,000+. A walk-in shower in the existing footprint is $6,000–$15,000, depending on size and tile. These are ranges, not a quote.',
+    },
+    {
+      question: 'Can you convert a tub to a walk-in shower?',
+      answer:
+        'Yes. Tub-to-shower conversions are part of our bathroom scope. The Burlington bathroom guide prices a walk-in shower in an existing footprint at $6,000–$15,000, depending on size and tile.',
+    },
+    {
+      question: 'How long does a bathroom remodel take?',
+      answer:
+        'The site FAQ says a bathroom remodel takes 2–4 weeks. This page describes most standard bathroom renovations as 2 to 3 weeks from demo to final install. The written quote includes the schedule for your room.',
+    },
+    {
+      question: 'Is MTC fully insured?',
+      answer:
+        'Yes. MTC Renovations is fully insured and carries commercial general liability insurance. Proof of insurance is available on request before work begins. Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified.',
+    },
+  ],
+  basement: [
+    {
+      question: 'How much does a basement renovation cost?',
+      answer:
+        'On this page, basement renovation costs in Hamilton typically range from $35 to $75 per square foot. A standard 1,000 sq ft basement finishing runs $35,000 to $55,000. A full legal suite with kitchen and bathroom can range from $60,000 to $90,000+. The quote lists every line item.',
+    },
+    {
+      question: 'Can you build a legal basement suite?',
+      answer:
+        'Yes, where the layout and permits allow. A legal suite has to meet Ontario Building Code requirements for fire separation, egress, a full bathroom, and a kitchen. We manage permit drawings, the application, and inspections when that is the scope.',
+    },
+    {
+      question: 'How long does a basement renovation take?',
+      answer:
+        'The site FAQ says a basic basement finishing typically takes 4–6 weeks, and a complete basement suite with kitchen and bathroom can take 8–12 weeks. Timeline depends on scope, permit processing, material lead times, and trade scheduling.',
+    },
+  ],
+};
+
+const pageFaqs = serviceFaqs[service.slug] ?? [];
+
 const schemas = [
   localBusiness(),
   serviceSchema(service.name, service.slug, service.seo.description),
@@ -30,6 +91,7 @@ const schemas = [
     { name: 'Home', url: site.url },
     { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
   ]),
+  ...(pageFaqs.length ? [faqPage(pageFaqs)] : []),
 ];
 ---
 
@@ -83,12 +145,33 @@ const schemas = [
     </section>
   )}
 
+  {pageFaqs.length > 0 && (
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-4">{service.name} renovation questions</h2>
+            {pageFaqs.map((faq) => (
+              <div class="mb-4">
+                <h3 class="h5 fw-bold">{faq.question}</h3>
+                <p class="mb-0">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   {['bathroom', 'kitchen'].includes(service.slug) && (
     <section class="py-5">
       <div class="container text-center">
         <h2 class="fw-bold mb-3">Explore our {service.name.toLowerCase()} renovation work</h2>
         <p>Browse <a class="text-decoration-underline" href={`/${service.slug}/our-work/`}>{service.name.toLowerCase()} project photos</a> for finishes and layout ideas.</p>
         <p>Planning several rooms? See our <a class="text-decoration-underline" href="/location/hamilton/">Hamilton renovation services</a> or <a class="text-decoration-underline" href="/location/burlington/">Burlington renovation services</a>, then tell us about your project.</p>
+        {service.slug === 'bathroom' && (
+          <p>Remodelling in Hamilton? Read <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for the published cost tiers, permit basics, and the neighbourhoods we work in.</p>
+        )}
       </div>
     </section>
   )}

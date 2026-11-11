@@ -5,12 +5,30 @@
   "phone": "(647) 560-1095",
   "email": "info@mtcrenovations.ca",
   "address": {
-    "street": "3520 Ketelbey Ct",
     "city": "Burlington",
     "province": "Ontario",
-    "postalCode": "L7M 3B4",
     "country": "CA"
   },
+  "areaServed": [
+    "Burlington",
+    "Hamilton",
+    "Oakville",
+    "Milton",
+    "Mississauga",
+    "Toronto",
+    "Stoney Creek",
+    "Ancaster",
+    "Dundas",
+    "Waterdown",
+    "Grimsby",
+    "Binbrook",
+    "Winona",
+    "Caledonia",
+    "Brantford",
+    "Flamborough",
+    "Beamsville",
+    "Lincoln"
+  ],
   "googlePlaceId": "ChIJ6-q1dq4tjyER7l1iLW6MdNk",
   "colors": {
     "primary": "#0a0a0a",
@@ -20,7 +38,7 @@
     "surface2": "#141414",
     "surface3": "#1a1a1a"
   },
-  "serviceArea": "Hamilton, Burlington and Halton",
+  "serviceArea": "Hamilton, Burlington, Halton, Mississauga and Toronto",
   "serviceAreaCities": [
     "Burlington",
     "Hamilton",

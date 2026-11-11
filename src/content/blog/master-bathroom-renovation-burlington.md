@@ -4,7 +4,7 @@ metaTitle: "Master Bathroom Renovation Burlington: Cost & Timeline Guide"
 metaDescription: "What does a master bathroom renovation cost in Burlington? From curbless showers to soaker tubs, we break down real costs and timelines."
 author: "MTC Renovations"
 datePublished: "2026-02-20"
-dateModified: "2026-02-20"
+dateModified: "2026-11-11"
 tags:
   ["master bathroom", "Burlington", "bathroom renovation", "renovation costs"]
 ---
@@ -108,6 +108,6 @@ For floors, go with porcelain — it's durable, water-resistant, and available i
 
 ## Ready to Plan Your Master Bathroom Renovation?
 
-We renovate master bathrooms across Burlington, Oakville, Hamilton, and the surrounding area. Every project starts with a free in-home walkthrough where we assess the existing space, discuss your goals, and provide a detailed written estimate — no pressure, no obligation.
+We renovate master bathrooms across Burlington, Oakville, Hamilton, and the surrounding area. Hamilton ranges and permits are on [bathroom remodel in Hamilton](/bathroom-remodel-hamilton/). Every project starts with a free in-home walkthrough where we assess the existing space, discuss your goals, and provide a detailed written estimate — no pressure, no obligation.
 
 [Request a free bathroom renovation estimate](/contact/) and we'll get back to you within one business day.

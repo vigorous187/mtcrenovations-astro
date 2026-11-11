@@ -1,15 +1,25 @@
 ---
 title: "Kitchen Renovation Cost in Burlington: What Homeowners Actually Pay (2026)"
 metaTitle: "Kitchen Renovation Cost Burlington: 2026 Price Guide"
-metaDescription: "What does a kitchen renovation cost in Burlington? Real price ranges from $20K basic refreshes to $80K+ custom builds, from a local contractor."
+metaDescription: "What does a kitchen renovation cost in Burlington? Published ranges run from about $25K for a refresh to $75K+ for a full remodel."
 author: "MTC Renovations"
 datePublished: "2026-01-08"
-dateModified: "2026-01-08"
+dateModified: "2026-11-11"
 tags:
   ["kitchen renovation", "Burlington", "renovation costs", "kitchen remodel"]
 ---
 
-The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. A 1960s bungalow in Aldershot is a different job than a 2010s build in Headon Forest. Here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton.
+Most Burlington kitchens we price land in the mid-range tier on this page: between $40,000 and $60,000. The published span runs from a refresh at about $25,000–$40,000 to a full remodel at $60,000–$75,000+.
+
+| Tier | What it covers | Published range |
+| --- | --- | --- |
+| Refresh | Same layout. Cabinet refacing or paint, counters, backsplash, fixtures. | about $25,000 – $40,000 |
+| Mid-range | New cabinets and counters, flooring, lighting, some plumbing or electrical moves. | about $40,000 – $60,000 |
+| Full remodel | Layout change, walls moved, custom cabinets, premium finishes. | $60,000 – $75,000+ |
+
+Final pricing depends on size, materials and site conditions.
+
+The kitchen is the most-used room in most Burlington homes, and it's where homeowners tend to spend the most on renovations. We get more questions about kitchen renovation cost in Burlington than any other project type — and the honest answer is that it depends on what you're working with and how far you want to go. A 1960s bungalow in Aldershot is a different job than a 2010s build in Headon Forest. Here's what our team sees homeowners actually paying across Burlington, Oakville, and Hamilton. The tiers above are the same figures broken out in the sections below.
 
 ## What Drives Kitchen Renovation Costs
 
@@ -27,11 +37,11 @@ Before we get into dollar figures, it helps to understand which decisions have t
 
 ## Price Ranges by Scope
 
-We break kitchen renovations into three tiers based on the scope of work. These ranges reflect what we've seen across our projects in Burlington and the surrounding area.
+We break kitchen renovations into three tiers. These are the same ranges used on the kitchen service page. Final pricing depends on size, materials and site conditions.
 
-### Basic Refresh: $20,000 – $35,000
+### Refresh: about $25,000 – $40,000
 
-A basic refresh keeps the existing layout and cabinet boxes intact. It's the right approach when your kitchen is structurally sound but visually dated.
+A refresh keeps the same layout. It is the right approach when the kitchen works and needs new surfaces and fixtures rather than a new floor plan.
 
 What's typically included:
 
@@ -46,9 +56,9 @@ What's not included: new appliances, flooring, lighting upgrades, or any layout 
 
 This tier works well for homeowners planning to sell within a few years or those who want a visual lift without a major disruption. If you're also considering updates elsewhere in the house, our [bathroom renovation guide for Burlington](/blog/bathroom-renovation-burlington/) covers similar cost tiers for that space.
 
-### Mid-Range Renovation: $40,000 – $60,000
+### Mid-range: about $40,000 – $60,000
 
-This is the sweet spot for most Burlington homeowners. You're getting a fully new kitchen without moving walls or tackling structural work.
+This is the sweet spot for most Burlington homeowners. You get new cabinets and counters, flooring, lighting, and some plumbing or electrical moves, without a full layout change.
 
 What's typically included:
 
@@ -63,9 +73,9 @@ What's typically included:
 
 At this level, we typically see a 4–8 week project timeline. The kitchen is fully gutted to the studs, but the footprint stays the same. Flooring choices at this price point often overlap with what we cover in our [flooring options](/blog/flooring-guide-hamilton/) guide — LVP is the most popular choice for kitchens because it handles moisture and heavy traffic well.
 
-### Custom / Full Gut: $65,000 – $100,000+
+### Full remodel: $60,000 – $75,000+
 
-This tier is for homeowners who want to rethink the kitchen entirely. We're talking layout changes, wall removals, and premium everything.
+This tier is a layout change: walls moved, custom cabinets, and premium finishes.
 
 What's typically included:
 
@@ -117,7 +127,7 @@ Cabinet refacing paired with new quartz countertops delivers the strongest retur
 
 ## Ready to Price Out Your Kitchen?
 
-Every kitchen renovation cost in Burlington starts with what's already there. We walk through your space, talk about what's working and what isn't, and put together a detailed scope and estimate — no pressure, no vague ballpark numbers.
+Every kitchen renovation cost in Burlington starts with what's already there. We walk through your space, talk about what's working and what isn't, and put together a detailed scope and estimate — no pressure, no vague ballpark numbers. If you want a planning range before that visit, start with the [renovation price guide](/estimate/).
 
 Our team works across Burlington, Oakville, and Hamilton, and we've renovated kitchens in every style of home the area has to offer. Quick refresh or full custom build — we'll give you honest numbers and a realistic timeline.
 

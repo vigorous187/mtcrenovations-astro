@@ -45,6 +45,7 @@ const breadcrumb = breadcrumbList([
       <h1 class="display-5 fw-bold mb-3">Frequently Asked Questions</h1>
       <p class="lead text-white-50 mb-0" style="max-width: 600px; margin: 0 auto;">
         Everything you need to know about renovating your Burlington or Hamilton home with MTC.
+        For published kitchen tiers, see <a href="/blog/kitchen-renovation-cost-burlington/" class="text-white">kitchen renovation cost in Burlington</a>.
       </p>
     </div>
   </section>
@@ -75,6 +76,9 @@ const breadcrumb = breadcrumbList([
             >
               <div class="accordion-body text-secondary">
                 {faq.answer}
+                {faq.order === 4 && (
+                  <p class="mb-0 mt-3"><a href="/licensed-insured-renovation-contractor-ontario/">What to check before you hire a renovation contractor in Ontario</a></p>
+                )}
               </div>
             </div>
           </div>

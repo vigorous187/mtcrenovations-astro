@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const canonical = `${site.url}/gta-renovation-contractor/`;
+const title = 'GTA West Renovation Contractor | Halton & Hamilton | MTC';
+const description =
+  'Looking for a GTA renovation contractor? MTC renovates kitchens, bathrooms and basements across Halton Region and Hamilton with fixed-price quotes.';
+
+const cityLinks = [
+  ['Burlington', '/location/burlington/'],
+  ['Oakville', '/location/oakville/'],
+  ['Milton', '/location/milton/'],
+  ['Hamilton', '/location/hamilton/'],
+  ['Ancaster', '/location/ancaster/'],
+  ['Dundas', '/location/dundas/'],
+  ['Stoney Creek', '/location/stoney-creek/'],
+  ['Waterdown', '/location/waterdown/'],
+];
+
+const steps = [
+  ['Free Consultation', 'We visit your home, discuss your vision, and assess the space. No obligation — just a straightforward conversation about what you want to achieve.'],
+  ['Design & Planning', 'Detailed design, material selection, and full project scope. We nail down every decision before a single tool is lifted.'],
+  ['Fixed-Price Quote', 'Transparent pricing with no hidden fees. You receive a written fixed-price quote that covers everything — materials, labour, and cleanup.'],
+  ['Expert Build', 'Our team gets to work on schedule. We communicate progress throughout, keep the site clean, and handle every trade with professionalism.'],
+  ['Final Walkthrough', "We don't consider it done until you're satisfied. We walk through every detail together — and we fix anything that isn't exactly right."],
+];
+
+const faqs = [
+  {
+    question: 'What counts as the GTA, and where does MTC work?',
+    answer:
+      'Halton Region — Burlington, Oakville, and Milton — is part of the GTA. MTC also renovates in Hamilton and in Mississauga and Toronto. The rest of the published service area includes Stoney Creek, Ancaster, Dundas, Waterdown, Grimsby, Binbrook, Winona, Caledonia, Brantford, Flamborough, Beamsville, and Lincoln. We do not publish a street address, and we do not list an office in Mississauga or Toronto.',
+  },
+  {
+    question: 'Do you renovate in Oakville and Milton as well as Burlington?',
+    answer:
+      'Yes. Oakville and Milton are in Halton Region, with their own location pages, and Burlington is where MTC is based. The same fixed-price process applies in each city.',
+  },
+  {
+    question: 'Is MTC fully insured?',
+    answer:
+      'Yes. MTC Renovations is fully insured and carries commercial general liability insurance. Proof of insurance is available on request before work begins. Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified. We do not publish a general-contractor licence number.',
+  },
+  {
+    question: 'How do fixed-price quotes work?',
+    answer:
+      'You receive a written quote for a written scope: materials, labour, and cleanup. The number on the quote is the price for that scope. If you change the scope, the quote changes with it.',
+  },
+  {
+    question: 'How do I book a free estimate?',
+    answer:
+      'Use the consultation request on this website or call (647) 560-1095. A project manager follows up to schedule a free in-home visit, then prepares a detailed fixed-price written quote. There is no obligation.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    about: { '@id': businessId },
+    areaServed: site.areaServed.map((name) => ({
+      '@type': 'City',
+      name,
+      containedInPlace: { '@type': 'AdministrativeArea', name: 'Ontario' },
+    })),
+  },
+  faqPage(faqs),
+  breadcrumbList([
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Locations', url: `${site.url}/locations/` },
+    { name: 'GTA west renovation contractor', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item"><a href="/locations/" class="text-white-50">Locations</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">GTA west</li>
+        </ol>
+      </nav>
+      <div class="col-lg-9">
+        <h1 class="display-5 fw-bold mb-3">GTA West Renovation Contractor: Halton Region &amp; Hamilton</h1>
+        <p class="lead text-white-50 mb-4">
+          Looking for a GTA renovation contractor for a kitchen, bathroom, or basement? MTC Renovations is based in Burlington and writes fixed-price quotes for homes in Halton Region and Hamilton, and for homes in Mississauga and Toronto. We do not publish a street address.
+        </p>
+        <a href="/newleadintake/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request a consultation</a>
+        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3">Who we are: a Burlington-based renovation contractor</h2>
+          <p>
+            MTC is a GTA renovation contractor for the west side of the region: Halton and Hamilton, plus Mississauga and Toronto. The company is based in Burlington. Fully insured, with commercial general liability insurance and proof of insurance available before work starts. Electricians, plumbers, and HVAC technicians on our projects are Red Seal or Ontario-certified. What that checklist means is on <a href="/licensed-insured-renovation-contractor-ontario/">licensed and insured renovation contractor in Ontario</a>, and the short answers are on the <a href="/faq/">FAQ</a>.
+          </p>
+          <p>
+            Every project starts with a written scope and a fixed-price quote. The number on the quote is the price for that scope. There is no second office to visit. You call, we come to the house, and the quote is for that house.
+          </p>
+
+          <h2 class="fw-bold mb-3">Where we work in the GTA west</h2>
+          <p>
+            These cities have their own pages. Halton Region here is Burlington, Oakville, and Milton. Hamilton includes the communities already named on the Hamilton page.
+          </p>
+          <ul>
+            {cityLinks.map(([name, href]) => (
+              <li><a href={href}>{name}</a></li>
+            ))}
+          </ul>
+          <p>
+            Mississauga and Toronto are part of the service area. We take renovation work in both cities. We do not list a street address or an office in either one, and we do not publish separate city pages for them. The full list we state, including the Niagara and Brant communities already on the site, is:
+          </p>
+          <ul>
+            {site.areaServed.map((city) => <li>{city}</li>)}
+          </ul>
+          <p>The map of pages that already exist is on <a href="/locations/">locations</a>.</p>
+
+          <h2 class="fw-bold mb-3">What we renovate</h2>
+          <ul>
+            <li><a href="/kitchen/">Kitchens</a> — cabinets, countertops, backsplash, lighting, and layout changes when the scope includes them.</li>
+            <li><a href="/bathroom/">Bathrooms</a> — walk-in showers, vanities, tile, and full remodels.</li>
+            <li><a href="/basement/">Basements</a> — finishing, and legal suites where the layout and permits allow.</li>
+            <li><a href="/flooring/">Flooring</a> — hardwood, luxury vinyl plank, and tile, with subfloor preparation.</li>
+            <li><a href="/painting/">Painting</a> — interior prep, premium paint, and a clean job site.</li>
+          </ul>
+
+          <h2 class="fw-bold mb-3">How a fixed-price renovation works</h2>
+          <p>These are the steps already published on the about page. Nothing here is a new promise.</p>
+          <ol>
+            {steps.map(([name, text], i) => (
+              <li class="mb-3">
+                <h3 class="h5 fw-bold">{name}</h3>
+                <p class="mb-0">{text}</p>
+              </li>
+            ))}
+          </ol>
+
+          <h2 class="fw-bold mb-3">What renovations cost in Halton and Hamilton</h2>
+          <p>
+            This page does not add a new price. Use the guides that already publish ranges, then get a fixed-price quote for your house:
+          </p>
+          <ul>
+            <li><a href="/blog/kitchen-renovation-cost-burlington/">Kitchen renovation cost in Burlington</a> — the sitewide kitchen tiers, $25,000–$75,000+.</li>
+            <li><a href="/blog/bathroom-renovation-burlington/">Bathroom renovation in Burlington</a> — the tiers that also apply in Hamilton.</li>
+            <li><a href="/blog/bathroom-renovation-cost-oakville/">Bathroom renovation cost in Oakville</a>.</li>
+            <li><a href="/blog/basement-renovation-cost-hamilton/">Basement renovation cost in Hamilton</a>.</li>
+            <li><a href="/blog/whole-home-renovation-cost-hamilton/">Whole-home renovation cost in Hamilton</a>.</li>
+          </ul>
+          <p>A planning range, before anyone visits, is on the <a href="/estimate/">price guide</a>.</p>
+
+          <h2 class="fw-bold mb-3">Permits and code in Halton and Hamilton</h2>
+          <p>
+            Permits depend on the city and the scope. Two guides already on the site cover the questions we get most often: <a href="/blog/bathroom-renovation-permit-hamilton/">bathroom renovation permits in Hamilton</a>, and <a href="/blog/legal-basement-suite-ontario/">legal basement suites in Ontario</a>. When a project needs a permit, we submit it. Cosmetic work such as painting or a cabinet swap typically does not.
+          </p>
+
+          <h2 class="fw-bold mb-3">Get a fixed-price quote</h2>
+          <p>
+            <a href="/newleadintake/">Request a consultation</a> or call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. The visit is for a written quote. Sending the request does not book a construction date.
+          </p>
+
+          <h2 class="fw-bold mb-4">GTA renovation questions</h2>
+          {faqs.map((faq) => (
+            <div class="mb-4">
+              <h3 class="h5 fw-bold">{faq.question}</h3>
+              <p class="mb-0">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Get a fixed-price quote"
+    subtitle="Tell us the city and the rooms. We will come measure the house."
+    ctaText="Request a consultation"
+    ctaLink="/newleadintake/"
+  />
+</BaseLayout>

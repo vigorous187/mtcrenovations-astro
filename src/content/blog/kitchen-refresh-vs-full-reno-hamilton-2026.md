@@ -4,7 +4,7 @@ metaTitle: "Kitchen Refresh vs Full Reno Hamilton 2026"
 metaDescription: "Should you refresh or gut your Hamilton kitchen? We break down costs, timelines, and the decision criteria that matter most in 2026."
 author: "MTC Renovations"
 datePublished: "2026-05-13"
-dateModified: "2026-05-13"
+dateModified: "2026-11-11"
 tags: ["kitchen renovation", "Hamilton", "kitchen refresh", "renovation cost"]
 ---
 
@@ -45,12 +45,11 @@ Full renovations take 6 – 12 weeks and require you to have an alternate kitche
 
 | Scope | Typical Cost Range |
 |---|---|
-| **Basic refresh** (paint, hardware, backsplash, lighting) | $3,500 – $7,500 |
-| **Mid-range refresh** (reface cabinets, new countertop, sink, fixtures) | $9,000 – $19,000 |
-| **Full renovation, same layout** (new cabinets, countertops, flooring, electrical) | $28,000 – $48,000 |
-| **Full renovation with layout change** (move plumbing or electrical, new everything) | $42,000 – $80,000+ |
+| **Refresh** (same layout; cabinet refacing or paint, counters, backsplash, fixtures) | about $25,000 – $40,000 |
+| **Mid-range** (new cabinets and counters, flooring, lighting, some plumbing or electrical moves) | about $40,000 – $60,000 |
+| **Full remodel** (layout change, walls moved, custom cabinets, premium finishes) | $60,000 – $75,000+ |
 
-These ranges cover Hamilton in 2026 at mid-range materials. Custom cabinetry, premium appliances, or structural wall removal push costs toward the high end of each range. For a full breakdown of kitchen renovation pricing in the area, see our [kitchen renovation cost guide](/blog/kitchen-renovation-cost-burlington/).
+These are the kitchen tiers used across the site. Final pricing depends on size, materials and site conditions. For the full breakdown, see [kitchen renovation cost in Burlington](/blog/kitchen-renovation-cost-burlington/).
 
 ## Three Questions That Drive the Decision
 

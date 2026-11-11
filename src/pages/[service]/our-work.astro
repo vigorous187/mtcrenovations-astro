@@ -43,6 +43,9 @@ const schemas = [
     <section class="py-4">
       <div class="container text-center">
         <p>Use these project photos to compare finishes and layouts, then explore our <a class="text-decoration-underline" href={`/${service.slug}/`}>{service.name.toLowerCase()} renovation services</a> to plan your own scope.</p>
+        {service.slug === 'bathroom' && (
+          <p>Planning a Hamilton project? See <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for cost ranges and permit basics.</p>
+        )}
         <p><a class="text-decoration-underline" href={`/${service.slug}/get-free-quote/`}>Request a consultation</a> to discuss the work you have in mind.</p>
       </div>
     </section>

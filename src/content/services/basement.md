@@ -24,7 +24,7 @@ processSteps:
     description: "We walk through every detail until you are 100% satisfied."
 whyChooseUs:
   - title: "Licensed & Insured"
-    description: "Fully licensed and insured renovation contractor with WSIB coverage."
+    description: "Fully insured renovation contractor. Proof of insurance is available before work starts."
   - title: "Fixed-Price Quotes"
     description: "No surprises. Your quote is your price — guaranteed."
   - title: "Google Reviews"
@@ -50,3 +50,11 @@ Our basement renovations include framing, insulation, electrical, plumbing rough
 Basement renovation costs in Hamilton typically range from $35 to $75 per square foot depending on the scope and finishes. A standard 1,000 sq ft basement finishing runs $35,000 to $55,000, while a full legal suite with kitchen and bathroom can range from $60,000 to $90,000+.
 
 We provide detailed, transparent quotes with no hidden fees. Every line item is visible so you know exactly where your money goes.
+
+## Hamilton neighbourhoods and legal suites
+
+Basement work in Hamilton includes the communities already named for that city: [Ancaster](/location/ancaster/), [Dundas](/location/dundas/), [Stoney Creek](/location/stoney-creek/), and [Waterdown](/location/waterdown/), plus [Burlington](/location/burlington/) and [Oakville](/location/oakville/). A finished basement can be a rec room, bedroom, office, or gym. A legal suite is a different scope. It is one we take on when the layout and the permits allow.
+
+The Ontario rules for ceiling height, egress, fire separation, and a real kitchen and bathroom are in the [legal basement suite guide](/blog/legal-basement-suite-ontario/). Underpinning, when the ceiling is the problem, is priced in the [Hamilton underpinning guide](/blog/basement-underpinning-cost-hamilton/). The room-by-room dollar bands we publish for finishing are in the [Hamilton basement cost guide](/blog/basement-renovation-cost-hamilton/). Window requirements for a bedroom are in the [egress window guide](/blog/basement-egress-windows-ontario-code-basics/).
+
+We manage permit drawings, the application, and inspections when the suite needs them. A legal suite is not a finished rec room with a hot plate. The quote says which one you are buying. Halton and Hamilton coverage, including Mississauga and Toronto with no second office, is on the [GTA west renovation contractor](/gta-renovation-contractor/) page.
