@@ -99,6 +99,16 @@ async function main() {
       }),
     );
     urls.push(
+      toSitemapUrlTag(buildUrl(`/${service.slug}/how-it-works/`), {
+        priority: "0.7",
+      }),
+    );
+    urls.push(
+      toSitemapUrlTag(buildUrl(`/${service.slug}/why-mtc/`), {
+        priority: "0.7",
+      }),
+    );
+    urls.push(
       toSitemapUrlTag(buildUrl(`/${service.slug}/get-free-quote/`), {
         priority: "0.9",
       }),
