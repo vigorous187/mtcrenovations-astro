@@ -1,5 +1,11 @@
 ---
 import type { ReviewsBuildArtifact } from "../../lib/reviews-types";
+import site from "../../data/site.json";
+import {
+  businessId,
+  disambiguatingDescription,
+  ownProfiles,
+} from "../seo/schemas";
 
 interface Props {
   data: ReviewsBuildArtifact;
@@ -20,7 +26,11 @@ const schema = showSchema
   ? {
       "@context": "https://schema.org",
       "@type": itemReviewedType,
+      "@id": businessId,
       name: itemReviewedName,
+      url: site.url.endsWith("/") ? site.url : `${site.url}/`,
+      sameAs: ownProfiles(),
+      disambiguatingDescription,
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: String(aggregate.rating),
