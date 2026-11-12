@@ -32,7 +32,7 @@ Explore the services that fit your scope:
 
 - [Kitchen renovations](/kitchen/) — cabinets, countertops and layout updates
 - [Bathroom renovations](/bathroom/) — showers, tile, vanities and remodels. Hamilton cost tiers, permits, and neighbourhoods are on [bathroom remodel in Hamilton](/bathroom-remodel-hamilton/).
-- [Basement renovations](/basement/) — finishing and plans for how you want to use the space
+- [Basement renovations](/basement/) — finishing and plans for how you want to use the space. A permitted second unit is [legal basement apartment in Hamilton](/legal-basement-apartment-hamilton/). Adding more dwellings, where zoning allows, is [fourplex conversion in Hamilton](/fourplex-conversion-hamilton/).
 - [Flooring installation](/flooring/) — hardwood, luxury vinyl and tile
 - [Interior painting](/painting/) — preparation and finishes
 

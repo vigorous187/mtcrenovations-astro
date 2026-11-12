@@ -18,7 +18,7 @@ Before you hire an architect or price out steel beams, confirm your property's z
 
 **Hamilton's residential zoning** categories determine how many dwelling units are permitted on a given lot. Not every residential zone allows four units. You'll need to check:
 
-- **Zoning designation** — Hamilton uses categories like R1 through R6, with higher numbers generally permitting higher density. A fourplex typically requires at least R4 or equivalent.
+- **Zoning designation** — In Zoning By-law 05-200, the Low Density Residential zones (R1, R1a, and R2) list a fourplex dwelling as a permitted use. That is not every lot in Hamilton. Rural zones, open space, heritage properties, and lots still under an older by-law can differ. The Hamilton overview, with the city's own pages, is [fourplex conversion in Hamilton](/fourplex-conversion-hamilton/). A single basement apartment is [legal basement apartment in Hamilton](/legal-basement-apartment-hamilton/).
 - **Site plan approval** — even if zoning allows the density, the city may require a formal site plan showing parking, setbacks, lot coverage, and landscaping before issuing a building permit.
 - **Zoning amendment** — if your property isn't zoned for four units, you can apply for a rezoning or minor variance through the Committee of Adjustment. This adds months and isn't guaranteed.
 

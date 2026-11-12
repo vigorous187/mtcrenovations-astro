@@ -109,4 +109,6 @@ The honest answer: DIY can save money on cosmetic work, but structural, mechanic
 
 We offer free, no-pressure estimates for basement renovations across Hamilton, Stoney Creek, Dundas, Ancaster, and Waterdown. We handle permits, coordinate licensed trades, and give you a fixed scope of work in writing before anything starts.
 
+A legal basement apartment is a different project from a finished rec room. The Hamilton overview is [legal basement apartment in Hamilton](/legal-basement-apartment-hamilton/). Adding more dwellings, where zoning allows, is [fourplex conversion in Hamilton](/fourplex-conversion-hamilton/).
+
 [Request a free estimate](/contact/) and we'll be in touch within one business day.
