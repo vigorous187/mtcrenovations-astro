@@ -120,15 +120,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       env,
     );
 
-    return json({
-      success: true,
-      syncPending: false,
-      jobTread: {
-        accountId: jobTreadResult.accountId,
-        jobId: jobTreadResult.jobId,
-        created: jobTreadResult.created,
-      },
-    });
+    return json({ success: true, syncPending: false });
   } catch (err) {
     console.error("lead submit error", err);
     return json({ error: "Failed to submit lead" }, 500);
