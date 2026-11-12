@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
-import { localBusiness, breadcrumbList } from '../../components/seo/schemas';
+import { localBusiness, breadcrumbList, faqPage } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
 
@@ -14,49 +14,353 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const seo = service.subPages['get-free-quote'];
+const name = service.name;
+const lower = service.name.toLowerCase();
+
+type Guide = { label: string; href: string };
+type ServiceQuote = {
+  lead: string;
+  scope: string[];
+  prepare: string;
+  visit: string;
+  schedule: string;
+  guides: Guide[];
+  faqs: { question: string; answer: string }[];
+};
+
+const quotes: Record<string, ServiceQuote> = {
+  kitchen: {
+    lead: 'A kitchen quote starts with the layout, not a catalogue. Tell us whether the sink, stove, and fridge stay where they are, or whether a wall, an island, or a plumbing move is part of the job. MTC Renovations has been a residential renovation contractor since 2011, and the kitchen is quoted as one scope: demolition, plumbing, electrical, cabinets, counters, flooring, paint, and trim.',
+    scope: [
+      'Cabinet installation, including a refresh that keeps the boxes or a new cabinet layout',
+      'Countertops, backsplash tile, and the lighting over the work zones',
+      'Open-concept changes when a wall between the kitchen and dining room is coming out',
+      'Island builds, flooring replacement, and the plumbing or electrical moves those choices require',
+    ],
+    prepare: 'Photos of the whole kitchen, including the ceiling and the floor in front of the sink, are enough to start. Add a note if appliances are staying, if a gas line is involved, or if you already know the cabinet direction. You do not need a finished design before the form.',
+    visit: 'On the visit we measure the room, check what is behind the sink and stove, and write down what stays. Keeping the plumbing and electrical in place is a different kitchen from one that relocates the sink or opens a wall. That choice is in the written scope before demo.',
+    schedule: 'The kitchen service page describes construction as typically 3–5 weeks from demo through final install. The site FAQ describes a full kitchen renovation as 4–8 weeks, depending on scope, permits, and material lead times. The schedule printed on your quote is the one for your kitchen.',
+    guides: [
+      { label: 'Kitchen renovation services', href: '/kitchen/' },
+      { label: 'Kitchen project photos', href: '/kitchen/our-work/' },
+      { label: 'Kitchen renovation cost in Burlington', href: '/blog/kitchen-renovation-cost-burlington/' },
+      { label: 'Kitchen renovation guide for Hamilton', href: '/blog/kitchen-renovation-guide-hamilton/' },
+    ],
+    faqs: [
+      {
+        question: 'What should I include in a kitchen renovation quote request?',
+        answer: 'Name the city, say whether the sink, stove, and fridge stay put, and note any wall, island, or appliance change. Photos of the current kitchen help. A fixed-price quote is written after we measure the room. Sending the form does not book a construction date.',
+      },
+      {
+        question: 'Do you quote kitchens in Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto?',
+        answer: 'Yes. Burlington, Hamilton, Milton, and Oakville each have a location page. Mississauga and Toronto are in the service area and are described on the GTA west page. We do not publish a street address, and we do not list an office in Mississauga or Toronto.',
+      },
+      {
+        question: 'How does the kitchen quote become a price?',
+        answer: 'We visit, measure, and write a scope that lists the cabinets, counters, flooring, lighting, and any plumbing or electrical moves. The number on the quote is the price for that scope. If the scope changes, the quote changes with it. Published ranges on the kitchen and blog pages are planning figures, not this quote.',
+      },
+      {
+        question: 'Can I pay for a kitchen renovation with financing or a credit card?',
+        answer: 'Financing is available, and credit cards are accepted. Ask about both when you request the quote. Rates and payment schedules are not published on this page.',
+      },
+    ],
+  },
+  bathroom: {
+    lead: 'Most bathroom quotes are for a full room: a walk-in shower or a tub that stays, a vanity, tile, and the plumbing and fan behind the walls. MTC Renovations has renovated houses since 2011. A faucet swap by itself is not the job this page is for. Tub-to-shower conversions are.',
+    scope: [
+      'Walk-in shower conversions and full bathroom remodels',
+      'Tile, vanity and countertop installation, and fixture replacement',
+      'Plumbing upgrades, heated flooring, lighting, and ventilation',
+      'Accessibility changes when the room has to be easier to enter and use',
+    ],
+    prepare: 'A photo of the whole room from the door, plus a close photo of the tub or shower and the vanity, is the useful set. Say whether anyone needs to keep using a second bathroom during the work, and whether the drain can stay where it is.',
+    visit: 'We look at the waterproofing, the fan duct, and whether the layout can stay. Keeping the drain in place avoids a larger plumbing move. Soft drywall, a fan that was never ducted outside, or a tub that has to move all belong in the scope before tile is ordered.',
+    schedule: 'This site describes most standard bathroom renovations as 2 to 3 weeks from demo to final install. The FAQ gives a bathroom remodel as 2–4 weeks, depending on scope, permits, material lead times, and scheduling. Your quote carries the schedule for your room.',
+    guides: [
+      { label: 'Bathroom renovation services', href: '/bathroom/' },
+      { label: 'Bathroom project photos', href: '/bathroom/our-work/' },
+      { label: 'Bathroom remodel in Hamilton', href: '/bathroom-remodel-hamilton/' },
+      { label: 'Bathroom renovation in Burlington', href: '/blog/bathroom-renovation-burlington/' },
+    ],
+    faqs: [
+      {
+        question: 'Can this quote cover a tub-to-shower conversion?',
+        answer: 'Yes. Tub-to-shower conversions are part of the bathroom scope. Tell us the city and whether the drain stays. The written quote lists the waterproofing, tile, glass, and fixtures for that room. It is not a commitment until you accept it.',
+      },
+      {
+        question: 'What do you need before an in-home bathroom visit?',
+        answer: 'Photos of the tub or shower, the vanity, and the door swing are enough to book the visit. We measure on site. You do not need to pick every tile before we arrive. Material choices are written into the scope after the visit.',
+      },
+      {
+        question: 'Which cities do you quote bathrooms in?',
+        answer: 'Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto are in the service area, along with the other cities on the locations page. We do not publish a street address. Proof of insurance is available on request before work begins.',
+      },
+      {
+        question: 'What warranty applies after a bathroom renovation?',
+        answer: 'Completed work includes a 2-year workmanship warranty. If a defect is in our installation, we return and correct it. Warranties on the vanity, fixtures, and other products stay with the manufacturers.',
+      },
+    ],
+  },
+  basement: {
+    lead: 'A basement quote has to say which project you are buying. A finished rec room, bedroom, office, or gym is one scope. A legal suite, with fire separation, egress, a full bathroom, and a kitchen, is another. MTC Renovations has done residential renovations since 2011 and writes those as separate scopes.',
+    scope: [
+      'Framing, insulation, electrical, drywall, flooring, paint, and trim for a finished basement',
+      'Bathroom or kitchenette rough-ins when they are part of the written scope',
+      'Legal suite work where the layout and permits allow, including permit drawings, the application, and inspections',
+      'Egress windows and waterproofing preparation when the basement needs them',
+    ],
+    prepare: 'Tell us the city, the ceiling height if you know it, and whether you want living space or a legal suite. Photos of the stairs, the mechanical room, any existing windows, and signs of past water are the ones that change the conversation.',
+    visit: 'We look at headroom, the path to an egress window, the electrical panel, and whether water has already been a problem. A legal suite is not a rec room with a hot plate. The quote names which one is included, and permit handling is in the scope only when the suite needs it.',
+    schedule: 'The site FAQ says a basic basement finishing typically takes 4–6 weeks, and a complete basement suite with a kitchen and bathroom can take 8–12 weeks. Permit processing and material lead times move those ranges. The schedule on the quote is the one we build to.',
+    guides: [
+      { label: 'Basement renovation services', href: '/basement/' },
+      { label: 'Basement project photos', href: '/basement/our-work/' },
+      { label: 'Legal basement suite guide', href: '/blog/legal-basement-suite-ontario/' },
+      { label: 'Basement renovation cost in Hamilton', href: '/blog/basement-renovation-cost-hamilton/' },
+    ],
+    faqs: [
+      {
+        question: 'Can the quote include a legal basement suite?',
+        answer: 'Yes, where the layout and permits allow. A legal suite has to meet Ontario Building Code requirements for fire separation, egress, a full bathroom, and a kitchen. The quote says whether you are getting a finished living space or a suite, and it includes permit drawings, the application, and inspections only when that is the scope.',
+      },
+      {
+        question: 'What do you look at before pricing a basement?',
+        answer: 'Ceiling height, stairs, windows, the electrical panel, moisture, and how you want to use the space. Photos of those items help us prepare. The price is written after the in-home visit, for the scope we measure. Published cost guides are ranges, not this quote.',
+      },
+      {
+        question: 'Do you take basement projects in Milton, Oakville, Mississauga, and Toronto as well as Hamilton and Burlington?',
+        answer: 'Yes. Hamilton, Burlington, Milton, and Oakville have location pages. Mississauga and Toronto are covered on the GTA west page. We do not publish a street address and we do not list an office in Mississauga or Toronto.',
+      },
+      {
+        question: 'Is emergency basement work the same as this quote form?',
+        answer: 'No. MTC offers 24-hour emergency service for urgent residential repair. Call (647) 560-1095 for that. This form is for a planned basement renovation quote. Financing is available and credit cards are accepted; ask when you call or write. Rates are not listed here.',
+      },
+    ],
+  },
+  flooring: {
+    lead: 'A flooring quote is a measured area plus the shape of the subfloor, not a price per box from a store. MTC Renovations, a residential renovation contractor since 2011, installs hardwood, engineered hardwood, luxury vinyl plank, ceramic and porcelain tile, and laminate, and removes the old floor when that is in the scope.',
+    scope: [
+      'Hardwood, engineered hardwood, luxury vinyl plank, tile, and laminate installation',
+      'Subfloor inspection, preparation, and levelling before the new floor goes down',
+      'Floor removal and disposal, baseboard and trim, and stair treads and risers when they are part of the job',
+      'Room-by-room material choices, including moisture-prone rooms that should not get the same floor as a living room',
+    ],
+    prepare: 'A room list with approximate sizes is a start. Photos of transitions, stairs, and any soft or squeaky spots tell us more. Say if furniture has to be moved and if the old floor is tile, carpet, vinyl, or hardwood.',
+    visit: 'We measure each room, check the subfloor, and match the material to the room. Hardwood is the usual main-floor choice on our flooring page. Luxury vinyl plank is the moisture-tolerant option for basements and kitchens. Tile is the usual choice for bathrooms and entries. Those choices are written down before installation.',
+    schedule: 'The flooring service page describes most flooring jobs as 1–3 days per room. Stairs, tile, and a floor that has to come up first take longer. Multi-room work is scheduled in the quote, not guessed from a single room.',
+    guides: [
+      { label: 'Flooring installation services', href: '/flooring/' },
+      { label: 'Flooring project photos', href: '/flooring/our-work/' },
+      { label: 'Flooring guide for Hamilton', href: '/blog/flooring-guide-hamilton/' },
+      { label: 'Renovation FAQ', href: '/faq/' },
+    ],
+    faqs: [
+      {
+        question: 'Do you quote hardwood, vinyl plank, and tile on the same visit?',
+        answer: 'Yes. One visit can cover more than one material when the rooms are in the same house. The quote separates the rooms, the material, the subfloor prep, and whether the old floor is removed. You can keep one material off the list if you are not ready to decide it.',
+      },
+      {
+        question: 'Does the flooring quote include taking up the old floor?',
+        answer: 'Only when removal is written into the scope. Tell us what is down now, including tile that may be stuck to the subfloor. Disposal, baseboards, and stair parts are listed the same way: in the quote if they are included, absent if they are not.',
+      },
+      {
+        question: 'Where do you install flooring?',
+        answer: 'Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto, plus the other cities on the locations page. We publish a service area, not a street address. The same crew measures the rooms and writes the quote.',
+      },
+      {
+        question: 'What happens if the new floor has a problem after installation?',
+        answer: 'Completed installation includes a 2-year workmanship warranty. We come back if the defect is in our work. Product warranties on the flooring itself stay with the manufacturer. MTC is insured, and proof of insurance is available before work starts.',
+      },
+    ],
+  },
+  painting: {
+    lead: 'An interior painting quote is mostly a prep quote. MTC Renovations has painted and renovated houses since 2011. The scope can include walls, ceilings, trim, doors, baseboards, cabinet painting, wallpaper removal, and the drywall patches those surfaces need before paint.',
+    scope: [
+      'Walls, ceilings, trim, baseboards, and doors',
+      'Drywall patching, sanding, and priming where the surface needs it',
+      'Accent or feature walls, colour guidance, and cabinet painting',
+      'Wallpaper removal when the paper has to come off before the new finish',
+    ],
+    prepare: 'Count the rooms and say which ceilings, closets, and cabinets are included. Photos of damaged drywall, dark colours that need covering, and any wallpaper help. If the paint is part of a kitchen or bathroom renovation, say so — that work is quoted with the rest of the room.',
+    visit: 'We walk the rooms, check patches and water stains, and confirm which lines stay sharp: ceiling lines, trim, and door edges. The painting page names Benjamin Moore and Sherwin-Williams as the lines we use. Colour choices are confirmed before we tape.',
+    schedule: 'The painting service page describes a typical interior job as 2–4 days. Cabinets, wallpaper removal, and heavy drywall repair are extra days and are called out in the quote. Occupied rooms are protected and put back into use as each space is finished.',
+    guides: [
+      { label: 'Interior painting services', href: '/painting/' },
+      { label: 'Painting project photos', href: '/painting/our-work/' },
+      { label: 'Kitchen renovations', href: '/kitchen/' },
+      { label: 'Bathroom renovations', href: '/bathroom/' },
+    ],
+    faqs: [
+      {
+        question: 'Does the painting quote include prep, ceilings, and trim?',
+        answer: 'Prep is part of the job: patching, sanding, priming where it is needed, and protection for floors and furniture. Ceilings, trim, doors, and closets are included only when the quote lists them. Tell us which of those you want before the visit so they are measured.',
+      },
+      {
+        question: 'Can you quote cabinet painting without a full kitchen renovation?',
+        answer: 'Yes. Cabinet painting can be its own scope. If the cabinets are being replaced, that belongs on the kitchen renovation page instead. Say which one you want so the quote does not mix the two.',
+      },
+      {
+        question: 'Do you paint houses in Milton, Oakville, Mississauga, and Toronto?',
+        answer: 'Yes, along with Burlington and Hamilton and the rest of the published service area. We do not publish a street address. Mississauga and Toronto are served from the same crew; we do not list an office in either city.',
+      },
+      {
+        question: 'How do I pay, and what warranty covers the paint work?',
+        answer: 'Financing is available and credit cards are accepted. Ask when you request the quote. Rates are not published here. Finished work includes a 2-year workmanship warranty on our application. The paint manufacturer’s warranty is separate. For an urgent repair rather than a paint quote, call (647) 560-1095 — MTC offers 24-hour emergency service.',
+      },
+    ],
+  },
+};
+
+const page = quotes[service.slug];
+const otherServices = services.filter((item) => item.slug !== service.slug);
 
 const schemas = [
   localBusiness(),
   breadcrumbList([
     { name: 'Home', url: site.url },
-    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: `${name} Renovation`, url: `${site.url}/${service.slug}` },
     { name: 'Get Free Quote', url: `${site.url}/${service.slug}/get-free-quote` },
   ]),
+  ...(page ? [faqPage(page.faqs)] : []),
 ];
 ---
 
 <BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
   <ServiceHero
-    title={`Get Your Free ${service.name} Renovation Estimate`}
+    title={`Get Your Free ${name} Renovation Estimate`}
     subtitle="No obligation. We respond within 24 hours."
     backgroundImage={service.heroImage}
     ctaText="Call (647) 560-1095"
     ctaLink="tel:6475601095"
   />
 
-  <section class="py-5">
+  {page && (
+    <section class="py-5 thin-copy" style="background: var(--bg-base);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 prose">
+            <h2>What this {lower} quote covers</h2>
+            <p>{page.lead}</p>
+            <ul>
+              {page.scope.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>{page.prepare}</p>
+            <p>Read these before you send the form:</p>
+            <ul>
+              {page.guides.map((guide) => (
+                <li><a href={guide.href}>{guide.label}</a></li>
+              ))}
+            </ul>
+
+            <h2>How the {lower} quote is prepared</h2>
+            <h3>1. You send the project</h3>
+            <p>
+              Use the form on this page or call <a href="tel:6475601095">(647) 560-1095</a>.
+              The <a href="/faq/">renovation FAQ</a> describes the follow-up: a project manager contacts you to set a free in-home visit. There is no obligation. Sending the form does not reserve a start date.
+            </p>
+            <h3>2. We visit and measure</h3>
+            <p>{page.visit} The visit is at your house. We do not publish a street address for MTC.</p>
+            <h3>3. You get a written scope and a fixed price</h3>
+            <p>
+              The quote lists materials, labour, and cleanup for the work we measured. The number is the price for that scope. A change in the work changes the quote. Planning ranges, when we publish them, live on the service and guide pages linked above — they are not a substitute for the written quote.
+            </p>
+            <h3>4. Materials are chosen before demo</h3>
+            <p>
+              Colours, fixtures, and products are written into the scope before construction starts. {page.schedule}
+            </p>
+            <h3>5. We build, then walk the job with you</h3>
+            <p>
+              You get one point of contact, protection for the rest of the house, and a final walkthrough. Completed work includes a 2-year workmanship warranty. If the defect is in our installation, we come back and correct it. Product warranties stay with the manufacturers. MTC is insured. Ask for proof of insurance before work begins. Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified trades.
+            </p>
+            <p>
+              Financing is available, and credit cards are accepted. Ask about either when you request the quote. This page does not list rates or a payment schedule. For an urgent repair, MTC offers 24-hour emergency service at the same phone number. Use the form for a planned {lower} quote.
+            </p>
+
+            <h2>Where we quote {lower} renovations</h2>
+            <p>
+              The service area is Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto. We also work in the other cities on the <a href="/locations/">locations</a> list, including Stoney Creek, Ancaster, Dundas, and Waterdown. We do not publish a street address, and we do not list an office in Mississauga or Toronto.
+            </p>
+            <ul>
+              <li><a href="/location/burlington/">Burlington renovations</a></li>
+              <li><a href="/location/hamilton/">Hamilton renovations</a></li>
+              <li><a href="/location/milton/">Milton renovations</a></li>
+              <li><a href="/location/oakville/">Oakville renovations</a></li>
+              <li><a href="/gta-renovation-contractor/">Mississauga, Toronto, and the rest of the GTA west area</a></li>
+              <li><a href="/location/stoney-creek/">Stoney Creek</a>, <a href="/location/ancaster/">Ancaster</a>, <a href="/location/dundas/">Dundas</a>, and <a href="/location/waterdown/">Waterdown</a></li>
+            </ul>
+            <p>Other rooms we quote, if this {lower} job is part of a larger house:</p>
+            <ul>
+              {otherServices.map((item) => (
+                <li><a href={`/${item.slug}/`}>{item.name} renovations</a></li>
+              ))}
+            </ul>
+            <p>
+              The <a href="/about/">about page</a> describes how a fixed-price quote is written. Questions that apply to every trade are on the <a href="/faq/">FAQ</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="py-5" id="quote-form">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-          {service.slug === 'bathroom' && (
-            <p class="mb-4">Read <a href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for published cost ranges, permit basics, and neighbourhoods before you send this request.</p>
-          )}
+          <h2 class="h3 fw-bold mb-3">Send your {lower} project</h2>
+          <p class="mb-4" style="color: var(--text-secondary);">
+            The form asks for your name, phone, email, the house address, and a short description. Photos are optional and make the first conversation more specific. We reply within 24 hours. This request is free and does not lock in a price.
+          </p>
           <div id="jt-service-form"></div>
         </div>
       </div>
     </div>
   </section>
 
+  {page && (
+    <section class="py-5 thin-copy" style="background: var(--bg-base);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-4">Questions before you request a {lower} quote</h2>
+            {page.faqs.map((faq) => (
+              <div class="mb-4">
+                <h3 class="h5 fw-bold">{faq.question}</h3>
+                <p class="mb-0" style="color: var(--text-secondary);">{faq.answer}</p>
+              </div>
+            ))}
+            <p class="mt-4 mb-0">
+              <a href={`/${service.slug}/our-work/`}>See completed {lower} projects</a>
+              {' '}before you write, or go straight to the <a href={`/${service.slug}/`}>service page</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="py-5">
     <div class="container text-center">
       <h2 class="h3 fw-bold mb-3">Prefer to Call?</h2>
-      <p class="text-secondary mb-3">Speak directly with our team about your {service.name.toLowerCase()} renovation.</p>
+      <p class="mb-3" style="color: var(--text-secondary);">Speak directly with our team about your {lower} renovation. The same number reaches 24-hour emergency service.</p>
       <a href="tel:6475601095" class="btn btn-outline-danger btn-lg">
         <i class="fas fa-phone me-2"></i>(647) 560-1095
       </a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .thin-copy a {
+    color: #C0202F;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+  .thin-copy a:hover,
+  .thin-copy a:focus {
+    color: #A2181D;
+  }
+</style>
 
 <style is:global>
   .jtwf { font-family: inherit; color: #111; }
