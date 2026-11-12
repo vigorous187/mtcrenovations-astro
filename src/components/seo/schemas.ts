@@ -18,6 +18,16 @@ export function areasServed() {
   }));
 }
 
+/** Public profiles that belong to MTC Renovations. No other MTC business. */
+export function ownProfiles(): string[] {
+  return [site.social.facebook, site.social.instagram, site.googleReviews.url].filter(
+    (url): url is string => Boolean(url),
+  );
+}
+
+export const disambiguatingDescription =
+  "MTC Renovations is a residential renovation contractor and is not affiliated with Ontario Multi-Trade Corporation.";
+
 export function localBusiness(cityName?: string) {
   const address: Record<string, string> = {
     "@type": "PostalAddress",
@@ -34,6 +44,8 @@ export function localBusiness(cityName?: string) {
           `${site.url}/location/${cityName.toLowerCase().replace(/[\s.]+/g, "-")}`,
         )
       : trailingSlash(site.url),
+    sameAs: ownProfiles(),
+    disambiguatingDescription,
     telephone: site.phone,
     email: site.email,
     address,
@@ -167,7 +179,11 @@ export function article(post: {
     },
     publisher: {
       "@type": "Organization",
+      "@id": businessId,
       name: site.name,
+      url: trailingSlash(site.url),
+      sameAs: ownProfiles(),
+      disambiguatingDescription,
       logo: {
         "@type": "ImageObject",
         url: `${site.url}/assets/img/logo/logo.png`,
