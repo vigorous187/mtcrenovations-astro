@@ -50,6 +50,13 @@ const currentPath = Astro.url.pathname;
                   <a class="dropdown-item" href={`/${s.slug}/`}>{s.name} Renovation</a>
                 </li>
               ))}
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class:list={['dropdown-item', { active: currentPath === '/legal-basement-apartment-hamilton/' }]} href="/legal-basement-apartment-hamilton/">Legal basement apartment, Hamilton</a>
+              </li>
+              <li>
+                <a class:list={['dropdown-item', { active: currentPath === '/fourplex-conversion-hamilton/' }]} href="/fourplex-conversion-hamilton/">Fourplex conversion, Hamilton</a>
+              </li>
             </ul>
           </li>
 

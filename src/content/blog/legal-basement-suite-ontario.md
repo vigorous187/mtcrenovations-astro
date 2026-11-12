@@ -149,6 +149,6 @@ The permit process exists for real reasons. We've been called to fix unpermitted
 
 We've built legal basement suites across Hamilton, Stoney Creek, Dundas, and Ancaster. We handle the full scope: permits, trades coordination, inspections, and final walkthroughs.
 
-For a look at what's involved in a full basement renovation, see our [basement renovation cost guide](/blog/basement-renovation-cost-hamilton/).
+For a look at what's involved in a full basement renovation, see our [basement renovation cost guide](/blog/basement-renovation-cost-hamilton/). The Hamilton service page is [legal basement apartment in Hamilton](/legal-basement-apartment-hamilton/). A project that adds more than one suite is [fourplex conversion in Hamilton](/fourplex-conversion-hamilton/).
 
 [Contact us for a free estimate](/contact/) and we'll walk through your basement, assess what's needed for compliance, and give you a written quote within the week.
