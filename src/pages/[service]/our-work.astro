@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import PortfolioGrid from '../../components/PortfolioGrid.astro';
 import CTABanner from '../../components/CTABanner.astro';
-import { localBusiness, breadcrumbList, imageGallery } from '../../components/seo/schemas';
+import { localBusiness, breadcrumbList, imageGallery, faqPage } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
 import portfolioData from '../../data/portfolio.json';
@@ -17,46 +17,341 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const seo = service.subPages['our-work'];
-const servicePhotos = (portfolioData as Record<string, { file: string; alt: string; project: string }[]>)[service.slug] || [];
+const name = service.name;
+const lower = service.name.toLowerCase();
+const servicePhotos = (portfolioData as Record<string, { file: string; alt: string; project: string; room?: string; type?: string }[]>)[service.slug] || [];
+
+type Guide = { label: string; href: string };
+type WorkCopy = {
+  show: string;
+  lookFor: string[];
+  includes: string[];
+  build: string;
+  guides: Guide[];
+  faqs: { question: string; answer: string }[];
+};
+
+const work: Record<string, WorkCopy> = {
+  kitchen: {
+    show: 'These photos are finished kitchens and the rooms as they were before work started. Use them to compare cabinet runs, counters, backsplash, islands, and lighting — not as a menu with a price attached. Labels on the photos are job names. We do not publish a street address.',
+    lookFor: [
+      'Whether the sink, stove, and fridge stayed in a line or moved',
+      'How the backsplash meets the counter, and whether an island was added',
+      'The lighting over the work surface and the floor that was chosen for a room that gets wet',
+    ],
+    includes: [
+      'Custom cabinet installation and, when the layout allows, keeping the existing footprint',
+      'Quartz or granite countertops, backsplash tile, and flooring replacement',
+      'Open-concept layout changes, island builds, and the plumbing, electrical, and lighting that go with them',
+    ],
+    build: 'A kitchen on this page followed the same sequence we still use: a consultation about what has to stay, a written scope, material selection, construction, and a walkthrough of the drawers, seams, and appliances. The service page describes that build as typically 3–5 weeks. The FAQ describes a full kitchen as 4–8 weeks. The quote for your house carries its own schedule.',
+    guides: [
+      { label: 'kitchen renovation services', href: '/kitchen/' },
+      { label: 'kitchen renovation cost in Burlington', href: '/blog/kitchen-renovation-cost-burlington/' },
+      { label: 'kitchen refresh versus a full reno', href: '/blog/kitchen-refresh-vs-full-reno-hamilton-2026/' },
+      { label: 'flooring', href: '/flooring/' },
+    ],
+    faqs: [
+      {
+        question: 'Are the kitchen photos finished MTC projects?',
+        answer: 'Yes. The gallery shows completed kitchens and the condition of those rooms before the work. They are examples of layout and finish, not a promise that the next kitchen will match a photo. Your scope is written after we measure your room.',
+      },
+      {
+        question: 'Can I ask for a kitchen like one of these in Milton, Oakville, Mississauga, or Toronto?',
+        answer: 'Yes. Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto are in the service area. Burlington, Hamilton, Milton, and Oakville have location pages. Mississauga and Toronto are described on the GTA west page. We do not publish a street address and we do not list an office in Mississauga or Toronto.',
+      },
+      {
+        question: 'What should I decide before I request a kitchen quote?',
+        answer: 'Decide whether the sink and appliances stay put, and whether a wall or an island is part of the job. Those two choices change the plumbing and electrical. Bring the photos that are closest to the layout you want when you request a consultation.',
+      },
+      {
+        question: 'Do you still renovate kitchens, and what stands behind the work?',
+        answer: 'Yes. Request a consultation from this page. MTC has been a residential renovation contractor since 2011, is insured, accepts credit cards, and offers financing. Completed work includes a 2-year workmanship warranty. Rates and prices are not listed on this portfolio.',
+      },
+    ],
+  },
+  bathroom: {
+    show: 'The bathroom gallery is finished rooms and the same rooms before demolition. Look at the shower opening, the tile, the vanity, and the lighting. A photo is not a quote. Job names on the images are not a published street address.',
+    lookFor: [
+      'Tub-to-shower conversions versus a tub that stayed',
+      'How the tile turns the corner at the curb, niche, and window',
+      'Vanity size, mirror lighting, and whether the floor is heated tile or another waterproof surface',
+    ],
+    includes: [
+      'Walk-in shower conversions and full bathroom remodels',
+      'Tile, vanity and countertop installation, and plumbing fixture replacement',
+      'Heated flooring, ventilation, lighting, and accessibility changes when the room needs them',
+    ],
+    build: 'Bathroom work on these photos ran from protection of the rest of the house, through demolition and waterproofing, to tile, the vanity, fixtures, and a walkthrough. The service page describes most standard bathrooms as 2 to 3 weeks from demo to final install. The FAQ gives 2–4 weeks. The written quote is the schedule that applies.',
+    guides: [
+      { label: 'bathroom renovation services', href: '/bathroom/' },
+      { label: 'bathroom remodel in Hamilton', href: '/bathroom-remodel-hamilton/' },
+      { label: 'bathroom renovation in Burlington', href: '/blog/bathroom-renovation-burlington/' },
+      { label: 'master bathroom renovation in Burlington', href: '/blog/master-bathroom-renovation-burlington/' },
+    ],
+    faqs: [
+      {
+        question: 'What are these bathroom photos showing?',
+        answer: 'Finished bathrooms and the rooms before the renovation. Use them to compare shower layouts, tile, and vanities. They do not include a price. The Hamilton remodel page and the Burlington bathroom guide are where published ranges and permit notes live.',
+      },
+      {
+        question: 'Can you build a walk-in shower like the ones in the gallery?',
+        answer: 'Yes, when the room and the drain allow it. Tell us if the tub is going and whether the drain stays. Keeping the drain avoids a larger plumbing move. Glass, waterproofing, and the curb or curbless opening are written into the scope.',
+      },
+      {
+        question: 'Do you renovate bathrooms across Burlington, Hamilton, Milton, and Oakville?',
+        answer: 'Yes, and in Mississauga and Toronto as well. City pages cover Burlington, Hamilton, Milton, and Oakville. The GTA west page covers Mississauga and Toronto without listing a second office. We do not publish a street address.',
+      },
+      {
+        question: 'What warranty and payment options apply to a bathroom?',
+        answer: 'Completed installation includes a 2-year workmanship warranty. Manufacturer warranties on fixtures and the vanity are separate. MTC is insured, offers financing, and accepts credit cards. Ask about payment when you request a consultation. For an urgent leak or failed fixture, call (647) 560-1095 — that is the 24-hour emergency line, not this gallery.',
+      },
+    ],
+  },
+  basement: {
+    show: 'Basement photos here are finished living space and the basement before framing and finishes. You will see rec rooms and other below-grade rooms, not a floor plan you can copy into a permit application. Photo labels are job names. We do not publish a street address.',
+    lookFor: [
+      'How the ceiling, bulkheads, and lighting were handled around ducts and beams',
+      'Flooring choice in a below-grade room, and how the stairs land',
+      'Whether the room reads as living space — a rec room, bedroom, or office — rather than a suite with a kitchen',
+    ],
+    includes: [
+      'Framing, insulation, electrical, drywall, flooring, paint, and trim',
+      'Bathroom or kitchenette additions when they are part of the scope',
+      'Legal suite conversions where layout and permits allow, including egress and the permit path',
+      'Waterproofing preparation before finishes go on',
+    ],
+    build: 'The basements in the gallery were scoped before framing: living space or a legal suite, not both under one vague label. A legal suite needs fire separation, egress, a full bathroom, and a kitchen, and we manage permit drawings, the application, and inspections when that is the job. The FAQ puts basic finishing at 4–6 weeks and a suite with a kitchen and bathroom at 8–12 weeks. Your quote states which timeline you are on.',
+    guides: [
+      { label: 'basement renovation services', href: '/basement/' },
+      { label: 'legal basement suite guide', href: '/blog/legal-basement-suite-ontario/' },
+      { label: 'basement renovation cost in Hamilton', href: '/blog/basement-renovation-cost-hamilton/' },
+      { label: 'egress window guide', href: '/blog/basement-egress-windows-ontario-code-basics/' },
+    ],
+    faqs: [
+      {
+        question: 'Do these photos include legal basement suites?',
+        answer: 'The gallery shows finished basement space from completed projects. A legal suite is a different scope from a rec room. If you want a suite, say so when you request a consultation. We take that on where the layout and the permits allow, and the quote names the difference.',
+      },
+      {
+        question: 'What should I check in a basement photo before I call?',
+        answer: 'Look at ceiling height around ducts, the stair, the windows, and the floor. Those are the items we measure on site. A photo cannot show moisture history or panel capacity. Mention both if you already know them.',
+      },
+      {
+        question: 'Where were these basements, and where do you work now?',
+        answer: 'We do not publish project street addresses. The service area includes Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto, plus the other cities on the locations page. We do not list an office in Mississauga or Toronto.',
+      },
+      {
+        question: 'How do I start a basement project from this page?',
+        answer: 'Request a consultation and describe the rooms you want. MTC has renovated houses since 2011, is insured, offers financing, and accepts credit cards. Finished work includes a 2-year workmanship warranty. This page does not list prices. For an urgent repair, call (647) 560-1095. That number is the 24-hour emergency line.',
+      },
+    ],
+  },
+  flooring: {
+    show: 'Flooring photos cover kitchens, stairs, bathrooms, living rooms, basements, bedrooms, and hallways after installation. Use them to compare plank direction, tile layout, and how a floor meets a stair or a doorway. They are not a price list, and the job names are not a street address.',
+    lookFor: [
+      'Plank or tile direction through a doorway and at a stair',
+      'Transitions between rooms that use different materials',
+      'How a below-grade floor and a bathroom floor differ from a living-room floor',
+    ],
+    includes: [
+      'Hardwood, engineered hardwood, luxury vinyl plank, ceramic and porcelain tile, and laminate',
+      'Subfloor preparation and levelling before the finish floor',
+      'Removal of the old floor, baseboards, and stair treads when those are in the scope',
+    ],
+    build: 'Each floor in the gallery was measured room by room. The subfloor was checked before the new material went down. Hardwood is the usual main-living choice, luxury vinyl plank is the moisture-tolerant choice for basements and kitchens, and tile is the usual bathroom and entry choice. The service page describes most flooring jobs as 1–3 days per room. Stairs and removal add time, and that time is in the quote.',
+    guides: [
+      { label: 'flooring installation services', href: '/flooring/' },
+      { label: 'flooring guide for Hamilton', href: '/blog/flooring-guide-hamilton/' },
+      { label: 'kitchen renovations', href: '/kitchen/' },
+      { label: 'basement renovations', href: '/basement/' },
+    ],
+    faqs: [
+      {
+        question: 'Which floors are in this gallery?',
+        answer: 'Completed installations in kitchens, stairs, bathrooms, living rooms, basements, bedrooms, and hallways. Materials follow the flooring we install: hardwood, engineered hardwood, luxury vinyl plank, tile, and laminate. The photo shows the finish, not the subfloor work underneath it.',
+      },
+      {
+        question: 'Can one house use more than one of these floors?',
+        answer: 'Yes. A common split is a harder-wearing floor in a wet room and a different floor on the main level. The quote lists each room, the material, and whether the old floor comes up. You can leave a room out.',
+      },
+      {
+        question: 'Do you install floors in Oakville, Milton, Mississauga, and Toronto?',
+        answer: 'Yes, and in Burlington and Hamilton. Location pages cover Burlington, Hamilton, Milton, and Oakville. Mississauga and Toronto are on the GTA west page. We publish the service area only — no street address, and no office listed in Mississauga or Toronto.',
+      },
+      {
+        question: 'What if a transition or a stair looks wrong after the floor is in?',
+        answer: 'That is workmanship. Completed installation includes a 2-year workmanship warranty, and we come back if the defect is in our work. The flooring product’s own warranty stays with the manufacturer. MTC is insured. Financing is available and credit cards are accepted. Ask when you request a consultation.',
+      },
+    ],
+  },
+  painting: {
+    show: 'Painting photos are finished living rooms, hallways, stairs, and bedrooms. Look at the ceiling line, the trim, and the colour break between spaces. Prep is not visible once the last coat is on, which is why the notes under the photos matter less than the edges you can see. Job names are not a published street address.',
+    lookFor: [
+      'How the wall colour meets the ceiling and the casing',
+      'Whether trim, doors, and stairs were painted with the walls or left as they were',
+      'Colour changes between a hallway and the rooms off it',
+    ],
+    includes: [
+      'Walls, ceilings, trim, baseboards, and doors',
+      'Drywall patching, sanding, and priming before finish coats',
+      'Accent walls, cabinet painting, and wallpaper removal when that is the scope',
+    ],
+    build: 'Paint jobs in this gallery started with protection and patching, then primer where the surface needed it, then finish coats. The painting page names Benjamin Moore and Sherwin-Williams as the lines we use, and it describes a typical interior as 2–4 days. Cabinets and wallpaper removal are called out separately in the quote so they are not assumed.',
+    guides: [
+      { label: 'interior painting services', href: '/painting/' },
+      { label: 'kitchen renovations', href: '/kitchen/' },
+      { label: 'bathroom renovations', href: '/bathroom/' },
+      { label: 'renovation FAQ', href: '/faq/' },
+    ],
+    faqs: [
+      {
+        question: 'What rooms are in the painting gallery?',
+        answer: 'Finished living rooms, hallways, stairways, and bedrooms from completed projects. Ceilings, trim, and doors are part of a paint scope only when the quote lists them. Use the photos to judge cut lines, not to assume every surface in the room was painted.',
+      },
+      {
+        question: 'Can cabinet painting be quoted from these photos?',
+        answer: 'Cabinet painting is a separate scope from a kitchen replacement. If you want the boxes painted, say that. If you want new cabinets, start from the kitchen service page. The photos of painted rooms are not cabinet replacements.',
+      },
+      {
+        question: 'Where do you paint?',
+        answer: 'Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto, plus the other cities linked from the locations page. We do not publish a street address. We do not list an office in Mississauga or Toronto.',
+      },
+      {
+        question: 'What should I know before requesting a painting consultation?',
+        answer: 'Count the rooms and note ceilings, closets, cabinets, and wallpaper. MTC has been renovating since 2011, is insured, offers financing, and accepts credit cards. Finished work includes a 2-year workmanship warranty. Prices are not on this page. For 24-hour emergency service, call (647) 560-1095.',
+      },
+    ],
+  },
+};
+
+const page = work[service.slug];
+const otherServices = services.filter((item) => item.slug !== service.slug);
 
 const schemas = [
   localBusiness(),
   breadcrumbList([
     { name: 'Home', url: site.url },
-    { name: `${service.name} Renovation`, url: `${site.url}/${service.slug}` },
+    { name: `${name} Renovation`, url: `${site.url}/${service.slug}` },
     { name: 'Our Work', url: `${site.url}/${service.slug}/our-work` },
   ]),
-  imageGallery(service.name, service.slug, servicePhotos.slice(0, 24)),
+  imageGallery(name, service.slug, servicePhotos.slice(0, 24)),
+  ...(page ? [faqPage(page.faqs)] : []),
 ];
 ---
 
 <BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
   <ServiceHero
-    title={`${service.name} Renovation Portfolio`}
+    title={`${name} Renovation Portfolio`}
     subtitle="Browse completed projects from Hamilton, Burlington and Halton"
     backgroundImage={service.heroImage}
     ctaText="Request a consultation"
     ctaLink={`/${service.slug}/get-free-quote/`}
   />
 
-  {['bathroom', 'kitchen'].includes(service.slug) && (
-    <section class="py-4">
-      <div class="container text-center">
-        <p>Use these project photos to compare finishes and layouts, then explore our <a class="text-decoration-underline" href={`/${service.slug}/`}>{service.name.toLowerCase()} renovation services</a> to plan your own scope.</p>
-        {service.slug === 'bathroom' && (
-          <p>Planning a Hamilton project? See <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for cost ranges and permit basics.</p>
-        )}
-        <p><a class="text-decoration-underline" href={`/${service.slug}/get-free-quote/`}>Request a consultation</a> to discuss the work you have in mind.</p>
+  {page && (
+    <section class="py-5 thin-copy" style="background: var(--bg-base);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 prose">
+            <h2>What these {lower} photos show</h2>
+            <p>{page.show}</p>
+            <p>When you scroll the gallery, compare:</p>
+            <ul>
+              {page.lookFor.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>Then read:</p>
+            <ul>
+              {page.guides.map((guide) => (
+                <li><a href={guide.href}>{guide.label}</a></li>
+              ))}
+            </ul>
+            <p>
+              <a href={`/${service.slug}/get-free-quote/`}>Request a consultation</a> when you know which parts you want in your own scope.
+            </p>
+
+            <h2>What the {lower} work includes</h2>
+            <p>
+              MTC Renovations is a residential renovation contractor, in business since 2011. The photos sit on top of the same scope we still write down:
+            </p>
+            <ul>
+              {page.includes.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>{page.build}</p>
+            <p>
+              Finished work includes a 2-year workmanship warranty on our installation. Product warranties stay with the manufacturers. MTC is insured, and proof of insurance is available before work starts. Financing is available and credit cards are accepted. Neither a rate nor a project price is published on this page. For an urgent repair, call <a href="tel:6475601095">(647) 560-1095</a> — that line is 24-hour emergency service.
+            </p>
+
+            <h2>How a project like this is built</h2>
+            <h3>Consultation at the house</h3>
+            <p>We look at the room, hear what has to stay, and leave with measurements. The visit is free. It does not reserve a start date, and it does not publish your address on this site.</p>
+            <h3>Written scope</h3>
+            <p>Materials, labour, and cleanup are listed. The number on the quote is the price for that list. Changing the list changes the quote. Published guides linked above are for planning. They are not this gallery and they are not your quote.</p>
+            <h3>Build and walkthrough</h3>
+            <p>One contact runs the job. The rest of the house is protected, and the last step is a walkthrough of the finished {lower} work. Touch-ups that belong to our installation are part of closing the job, and the 2-year workmanship warranty covers defects in that installation after you move back in.</p>
+
+            <h2>Service area for these projects</h2>
+            <p>
+              We work in Burlington, Hamilton, Milton, Oakville, Mississauga, and Toronto. Nearby cities on the <a href="/locations/">locations</a> page include Stoney Creek, Ancaster, Dundas, and Waterdown. We do not publish a street address. We do not list an office in Mississauga or Toronto. <a href="/gta-renovation-contractor/">GTA west renovation contractor</a> explains that coverage.
+            </p>
+            <ul>
+              <li><a href="/location/burlington/">Burlington</a></li>
+              <li><a href="/location/hamilton/">Hamilton</a></li>
+              <li><a href="/location/milton/">Milton</a></li>
+              <li><a href="/location/oakville/">Oakville</a></li>
+              <li><a href="/location/stoney-creek/">Stoney Creek</a>, <a href="/location/ancaster/">Ancaster</a>, <a href="/location/dundas/">Dundas</a>, <a href="/location/waterdown/">Waterdown</a></li>
+            </ul>
+            <p>If the {lower} photos are only part of the house, the other services are:</p>
+            <ul>
+              {otherServices.map((item) => (
+                <li><a href={`/${item.slug}/`}>{item.name} renovations</a></li>
+              ))}
+            </ul>
+            <p>
+              Company background is on the <a href="/about/">about page</a>. Trade-wide questions are on the <a href="/faq/">FAQ</a>.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )}
 
-  <PortfolioGrid service={service.slug} serviceName={service.name} />
+  {page && (
+    <section class="py-5 thin-copy">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-4">Questions about this {lower} portfolio</h2>
+            {page.faqs.map((faq) => (
+              <div class="mb-4">
+                <h3 class="h5 fw-bold">{faq.question}</h3>
+                <p class="mb-0" style="color: var(--text-secondary);">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <PortfolioGrid service={service.slug} serviceName={name} />
 
   <CTABanner
     title={`Like What You See?`}
-    subtitle="Let us transform your space next."
+    subtitle="Request a consultation and we will scope the work in your house."
     ctaText="Request a consultation"
     ctaLink={`/${service.slug}/get-free-quote/`}
   />
 </BaseLayout>
+
+<style>
+  .thin-copy a {
+    color: #C0202F;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+  .thin-copy a:hover,
+  .thin-copy a:focus {
+    color: #A2181D;
+  }
+</style>
