@@ -163,18 +163,22 @@ const schemas = [
     </section>
   )}
 
-  {['bathroom', 'kitchen'].includes(service.slug) && (
-    <section class="py-5">
-      <div class="container text-center">
-        <h2 class="fw-bold mb-3">Explore our {service.name.toLowerCase()} renovation work</h2>
-        <p>Browse <a class="text-decoration-underline" href={`/${service.slug}/our-work/`}>{service.name.toLowerCase()} project photos</a> for finishes and layout ideas.</p>
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-3">Explore our {service.name.toLowerCase()} renovation work</h2>
+      <p>Browse <a class="text-decoration-underline" href={`/${service.slug}/our-work/`}>{service.name.toLowerCase()} project photos</a> for finishes and layout ideas.</p>
+      <p>
+        Read <a class="text-decoration-underline" href={`/${service.slug}/how-it-works/`}>how a {service.name.toLowerCase()} renovation works</a>
+        and <a class="text-decoration-underline" href={`/${service.slug}/why-mtc/`}>why homeowners choose MTC</a>.
+      </p>
+      {['bathroom', 'kitchen'].includes(service.slug) && (
         <p>Planning several rooms? See our <a class="text-decoration-underline" href="/location/hamilton/">Hamilton renovation services</a> or <a class="text-decoration-underline" href="/location/burlington/">Burlington renovation services</a>, then tell us about your project.</p>
-        {service.slug === 'bathroom' && (
-          <p>Remodelling in Hamilton? Read <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for the published cost tiers, permit basics, and the neighbourhoods we work in.</p>
-        )}
-      </div>
-    </section>
-  )}
+      )}
+      {service.slug === 'bathroom' && (
+        <p>Remodelling in Hamilton? Read <a class="text-decoration-underline" href="/bathroom-remodel-hamilton/">bathroom remodel in Hamilton</a> for the published cost tiers, permit basics, and the neighbourhoods we work in.</p>
+      )}
+    </div>
+  </section>
 
   <EstimatorCTA serviceSlug={service.slug} serviceName={service.name} />
 

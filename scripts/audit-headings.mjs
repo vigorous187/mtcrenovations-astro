@@ -22,8 +22,7 @@ function walkHtmlFiles(dir, acc = []) {
 function stripNoise(html) {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
-    .replace(/<footer[\s\S]*?<\/footer>/gi, "");
+    .replace(/<style[\s\S]*?<\/style>/gi, "");
 }
 
 function extractHeadings(html) {

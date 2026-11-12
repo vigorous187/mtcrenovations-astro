@@ -37,7 +37,7 @@ import services from '../data/services.json';
 
       <!-- Services -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Services</h6>
+        <p class="h6 text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Services</p>
         <ul class="list-unstyled">
           {services.map(s => (
             <li class="mb-2">
@@ -55,7 +55,7 @@ import services from '../data/services.json';
 
       <!-- Company -->
       <div class="col-md-2 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Company</h6>
+        <p class="h6 text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Company</p>
         <ul class="list-unstyled">
           <li class="mb-2"><a href="/about/" class="text-decoration-none small" style="color: var(--text-muted);">About Us</a></li>
           <li class="mb-2"><a href="/newleadintake/" class="text-decoration-none small" style="color: var(--text-muted);">Get an Estimate</a></li>
@@ -76,7 +76,7 @@ import services from '../data/services.json';
 
       <!-- Compare -->
       <div class="col-md-2 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Why MTC</h6>
+        <p class="h6 text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Why MTC</p>
         <ul class="list-unstyled">
           <li class="mb-2"><a href="/mtc-vs-big-box-renovations/" class="text-decoration-none small" style="color: var(--text-muted);">MTC vs. Big Box</a></li>
           <li class="mb-2"><a href="/mtc-vs-diy-renovation/" class="text-decoration-none small" style="color: var(--text-muted);">MTC vs. DIY</a></li>
@@ -87,7 +87,7 @@ import services from '../data/services.json';
 
       <!-- Contact -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Contact</h6>
+        <p class="h6 text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Contact</p>
         <ul class="list-unstyled">
           <li class="mb-2 small" style="color: var(--text-muted);">
             <i class="fas fa-phone me-2" style="color: var(--mtc-red);"></i>
@@ -95,7 +95,7 @@ import services from '../data/services.json';
           </li>
           <li class="mb-2 small" style="color: var(--text-muted);">
             <i class="fas fa-envelope me-2" style="color: var(--mtc-red);"></i>
-            <a href={`mailto:${site.email}`} class="text-decoration-none" style="color: var(--text-muted);">{site.email}</a>
+            <a href="/contact/" class="text-decoration-none" style="color: var(--text-muted);">Email us</a>
           </li>
           <li class="mb-2 small" style="color: var(--text-muted);">
             <i class="fas fa-map-marker-alt me-2" style="color: var(--mtc-red);"></i>
