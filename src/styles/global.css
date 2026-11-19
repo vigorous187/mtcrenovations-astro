@@ -67,11 +67,11 @@
 }
 
 @font-face {
-  font-family: "Playfair Display";
+  font-family: "Archivo";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-display: swap;
-  src: url("/fonts/playfair-display-latin-400-normal.woff2") format("woff2");
+  src: url("/fonts/archivo-latin-500-normal.woff2") format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
@@ -79,11 +79,23 @@
 }
 
 @font-face {
-  font-family: "Playfair Display";
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/archivo-latin-600-normal.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Archivo";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/playfair-display-latin-700-normal.woff2") format("woff2");
+  src: url("/fonts/archivo-latin-700-normal.woff2") format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
@@ -91,23 +103,11 @@
 }
 
 @font-face {
-  font-family: "Playfair Display";
-  font-style: italic;
-  font-weight: 400;
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
-  src: url("/fonts/playfair-display-latin-400-italic.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/playfair-display-latin-700-italic.woff2") format("woff2");
+  src: url("/fonts/archivo-latin-800-normal.woff2") format("woff2");
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
@@ -115,7 +115,7 @@
 }
 
 /* ═══════════════════════════════════════
-   MTC RENOVATIONS — PREMIUM DARK THEME
+   MTC RENOVATIONS — LIGHT THEME
    ═══════════════════════════════════════ */
 
 /* Fix Tailwind Preflight conflicts with Bootstrap */
@@ -139,22 +139,50 @@ svg {
 
 /* ── CSS Custom Properties ── */
 :root {
-  --bg-deepest: #0a0a0a;
-  --bg-base: #0f0f0f;
-  --bg-surface-1: #141414;
-  --bg-surface-2: #1a1a1a;
-  --bg-surface-3: #222222;
-  --bg-surface-4: #2a2a2a;
-  --bg-elevated: #333333;
-  --mtc-red: #e8374a;
-  --mtc-red-dark: #bb2d3b;
-  --mtc-red-glow: rgba(220, 53, 69, 0.35);
-  --text-primary: rgba(255, 255, 255, 0.92);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.55);
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-emphasis: rgba(255, 255, 255, 0.12);
+  --bg-deepest: #ffffff;
+  --bg-base: #f6f6f4;
+  --bg-surface-1: #f6f6f4;
+  --bg-surface-2: #ffffff;
+  --bg-surface-3: #f0efec;
+  --bg-surface-4: #e9e8e4;
+  --bg-elevated: #ffffff;
+  --mtc-red: #c8102e;
+  --mtc-red-dark: #9e0b25;
+  --mtc-red-glow: rgba(200, 16, 46, 0.22);
+  --text-primary: rgba(20, 20, 20, 0.94);
+  --text-secondary: rgba(20, 20, 20, 0.72);
+  --text-muted: #5b5b57;
+  --border-subtle: rgba(20, 20, 20, 0.06);
+  --border-default: rgba(20, 20, 20, 0.1);
+  --border-emphasis: rgba(20, 20, 20, 0.2);
+}
+
+/* ── Bootstrap Recolor (light theme, MTC red) ── */
+:root {
+  --bs-danger: #c8102e;
+  --bs-danger-rgb: 200, 16, 46;
+  --bs-link-color: #9e0b25;
+  --bs-link-hover-color: #c8102e;
+}
+
+.btn-danger {
+  --bs-btn-bg: #c8102e;
+  --bs-btn-border-color: #c8102e;
+  --bs-btn-hover-bg: #9e0b25;
+  --bs-btn-hover-border-color: #9e0b25;
+  --bs-btn-active-bg: #9e0b25;
+  --bs-btn-active-border-color: #9e0b25;
+}
+
+/* Carousels sit on light sections now: use Bootstrap's dark-control treatment
+   (the old data-bs-theme="dark" auto-invert no longer applies). */
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  filter: invert(1) grayscale(100%);
+}
+
+.carousel .carousel-indicators [data-bs-target] {
+  background-color: #141414;
 }
 
 /* ── Base Typography ── */
@@ -180,20 +208,8 @@ html {
 }
 
 .font-display {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Archivo", "Inter", system-ui, sans-serif;
   letter-spacing: 0.02em;
-}
-
-/* ── Film Grain Noise Overlay ── */
-.noise-overlay::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background-image: url("/assets/img/noise-128.png");
-  opacity: 0.03;
-  mix-blend-mode: overlay;
 }
 
 /* ── Section Dividers ── */
@@ -203,7 +219,7 @@ html {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(220, 53, 69, 0.3),
+    rgba(200, 16, 46, 0.3),
     transparent
   );
   margin: 0;
@@ -256,7 +272,7 @@ html {
 
 /* ── Glass Nav ── */
 .glass-nav {
-  background: transparent;
+  background: #141414;
   transition:
     background 0.4s ease,
     backdrop-filter 0.4s ease,
@@ -264,7 +280,7 @@ html {
 }
 
 .glass-nav.scrolled {
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(20, 20, 20, 0.96);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -300,6 +316,22 @@ html {
   color: white;
 }
 
+.btn-ghost-dark {
+  background: transparent;
+  border: 1px solid #141414;
+  color: #141414;
+  padding: 0.75rem 2.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost-dark:hover {
+  background: #141414;
+  border-color: #141414;
+  color: #fff;
+}
+
 /* ── Navbar Overrides ── */
 .navbar-dark .navbar-nav .nav-link {
   font-size: 0.9rem;
@@ -325,8 +357,8 @@ html {
 .service-card:hover {
   transform: translateY(-8px);
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(220, 53, 69, 0.1);
+    0 20px 40px rgba(20, 20, 20, 0.12),
+    0 0 0 1px rgba(200, 16, 46, 0.1);
 }
 
 /* ── Portfolio Images ── */
@@ -336,20 +368,20 @@ html {
 }
 
 .portfolio-item img {
-  filter: saturate(0.85) contrast(1.05) brightness(0.9);
+  filter: saturate(0.92) contrast(1.02);
   transition:
     filter 0.6s ease,
     transform 0.5s ease;
 }
 
 .portfolio-item:hover img {
-  filter: saturate(1) contrast(1) brightness(1);
+  filter: saturate(1) contrast(1);
   transform: scale(1.05);
 }
 
 /* ── Review Cards ── */
 .review-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border: 1px solid var(--border-default);
   backdrop-filter: blur(10px);
   transition:
@@ -364,16 +396,16 @@ html {
 
 /* ── Counter Stats ── */
 .stat-number {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Archivo", "Inter", system-ui, sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  color: white;
+  color: #ffffff;
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: #c9c9c5;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 500;
@@ -431,7 +463,7 @@ html {
 
 /* ── Prose styling for content pages ── */
 .prose h2 {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Archivo", "Inter", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 2rem;
@@ -496,29 +528,29 @@ html {
   background-image:
     radial-gradient(
       ellipse 80% 50% at 50% -20%,
-      rgba(220, 53, 69, 0.08),
+      rgba(200, 16, 46, 0.08),
       transparent
     ),
     radial-gradient(
       ellipse 60% 40% at 80% 50%,
-      rgba(220, 53, 69, 0.04),
+      rgba(200, 16, 46, 0.04),
       transparent
     );
 }
 
-/* ── Dropdown Dark Theme ── */
+/* ── Dropdown Dark Theme (lives in the dark header) ── */
 .dropdown-menu {
-  background: var(--bg-surface-3);
-  border: 1px solid var(--border-default);
+  background: #1d1d1d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .dropdown-item {
-  color: var(--text-secondary);
+  color: #e8e8e6;
 }
 
 .dropdown-item:hover {
-  background: var(--bg-surface-4);
-  color: white;
+  background: #2a2a2a;
+  color: #fff;
 }
 
 /* ── Scroll Indicator ── */
@@ -560,6 +592,7 @@ html {
   .review-card,
   .btn-danger,
   .btn-ghost,
+  .btn-ghost-dark,
   .glass-nav {
     transition: none;
   }

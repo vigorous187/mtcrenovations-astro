@@ -137,7 +137,7 @@ const { types, finishes, meta } = pricingData;
 
 <style>
   .estimator-progress { height: 4px; background: var(--bs-border-color, #dee2e6); border-radius: 2px; overflow: hidden; }
-  .estimator-progress-bar { height: 100%; background: #dc3545; transition: width 0.3s ease; }
+  .estimator-progress-bar { height: 100%; background: #c8102e; transition: width 0.3s ease; }
   .step-badge {
     width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center;
     justify-content: center; font-size: 0.85rem; font-weight: 700; margin-right: 0.75rem; flex-shrink: 0;
@@ -152,15 +152,15 @@ const { types, finishes, meta } = pricingData;
   .estimator-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
-    border-color: rgba(220, 53, 69, 0.35) !important;
+    border-color: rgba(200, 16, 46, 0.35) !important;
   }
   .estimator-card:active { transform: translateY(0) scale(0.98); }
   :global(.estimator-card.selected) {
-    border-color: #dc3545 !important;
-    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.22), 0 8px 20px rgba(220, 53, 69, 0.12) !important;
+    border-color: #c8102e !important;
+    box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.22), 0 8px 20px rgba(200, 16, 46, 0.12) !important;
     transform: translateY(-1px);
   }
-  :global(.estimator-card.selected i.text-secondary) { color: #dc3545 !important; }
+  :global(.estimator-card.selected i.text-secondary) { color: #c8102e !important; }
 
   .estimator-card--type {
     padding: 0.35rem 0.35rem 0.5rem;
@@ -196,30 +196,30 @@ const { types, finishes, meta } = pricingData;
   .addon-card:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
-    border-color: rgba(220, 53, 69, 0.3) !important;
+    border-color: rgba(200, 16, 46, 0.3) !important;
   }
   .addon-card:active { transform: scale(0.99); }
   :global(.addon-card.selected) {
-    border-color: #dc3545 !important;
-    background: rgba(220, 53, 69, 0.04);
-    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.15) !important;
+    border-color: #c8102e !important;
+    background: rgba(200, 16, 46, 0.04);
+    box-shadow: 0 0 0 1px rgba(200, 16, 46, 0.15) !important;
   }
   .addon-check {
     width: 22px; height: 22px; border: 2px solid #dee2e6; border-radius: 4px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s ease;
   }
-  :global(.addon-card.selected .addon-check) { background: #dc3545; border-color: #dc3545; color: white; }
+  :global(.addon-card.selected .addon-check) { background: #c8102e; border-color: #c8102e; color: white; }
 
   .estimator-widget :global(.btn-estimator-cta) {
     transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
   }
   .estimator-widget :global(.btn-estimator-cta:hover) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.25);
+    box-shadow: 0 6px 18px rgba(200, 16, 46, 0.25);
   }
   .estimator-widget :global(.btn-estimator-cta:active) {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2);
+    box-shadow: 0 2px 6px rgba(200, 16, 46, 0.2);
   }
   .estimator-widget :global(.btn-estimator-secondary:hover) {
     transform: translateY(-1px);
