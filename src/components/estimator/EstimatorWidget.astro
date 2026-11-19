@@ -962,9 +962,13 @@ const { types, finishes, meta } = pricingData;
 
   document.querySelectorAll('.estimator-widget').forEach(el => initEstimator(el as HTMLElement));
   document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('.estimator-widget').forEach(el => {
-      (el as HTMLElement).dataset.initialized = 'false';
-      initEstimator(el as HTMLElement);
-    });
+    // Initialize only widgets that have not been initialized yet. A widget
+    // rendered fresh by client-side navigation is a new element with no
+    // guard flag, so it is initialized here. An element that is already
+    // initialized must NOT be initialized again: a second init binds a
+    // duplicate set of handlers with its own state, which made one quote
+    // click fire two estimate saves (one of them missing add-on selections
+    // made after the add-on list re-rendered). Never clear the guard.
+    document.querySelectorAll('.estimator-widget').forEach(el => initEstimator(el as HTMLElement));
   });
 </script>
