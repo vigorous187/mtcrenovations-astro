@@ -106,15 +106,39 @@ const currentPath = Astro.url.pathname;
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
       const nav = document.getElementById('mainNav');
-      if (!nav || !nav.classList.contains('show')) return;
       const toggler = document.querySelector('.navbar-toggler');
-      const bootstrapLib = (window as any).bootstrap;
-      if (bootstrapLib?.Collapse) {
-        bootstrapLib.Collapse.getOrCreateInstance(nav).hide();
-      } else if (toggler instanceof HTMLElement) {
-        toggler.click();
+      if (!nav || !(toggler instanceof HTMLElement)) return;
+      // The menu counts as open while it carries 'show' AND while it is still
+      // animating open ('collapsing' with aria-expanded="true"). Checking only
+      // for 'show' missed Escape presses that landed during the opening
+      // transition (e.g. focus still on the toggle right after Enter), and
+      // Bootstrap's hide() is a no-op mid-transition — so defer the hide until
+      // the open transition completes in that case.
+      const isOpen = nav.classList.contains('show');
+      const isOpening =
+        nav.classList.contains('collapsing') &&
+        toggler.getAttribute('aria-expanded') === 'true';
+      if (!isOpen && !isOpening) return;
+      const hideNav = () => {
+        const bootstrapLib = (window as any).bootstrap;
+        if (bootstrapLib?.Collapse) {
+          bootstrapLib.Collapse.getOrCreateInstance(nav).hide();
+        } else {
+          toggler.click();
+        }
+      };
+      if (isOpening) {
+        nav.addEventListener(
+          'shown.bs.collapse',
+          function onShown() {
+            nav.removeEventListener('shown.bs.collapse', onShown);
+            hideNav();
+          },
+        );
+      } else {
+        hideNav();
       }
-      if (toggler instanceof HTMLElement) toggler.focus();
+      toggler.focus();
     });
   }
 
