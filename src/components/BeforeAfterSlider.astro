@@ -1,0 +1,156 @@
+---
+// Before/after comparison slider, ported from the approved preview design.
+// The top (before) layer is clipped with clip-path driven by a real
+// <input type="range">, so keyboard operation (arrows, Home/End) works
+// natively. Pointer drag anywhere on the figure also moves the divider.
+// A side's badge fades out when that photo is fully concealed.
+interface Props {
+  beforeSrc: string;
+  afterSrc: string;
+  beforeAlt: string;
+  afterAlt: string;
+  caption?: string;
+}
+
+const { beforeSrc, afterSrc, beforeAlt, afterAlt, caption } = Astro.props;
+---
+
+<figure class="ba-slider">
+  <div class="ba-stage">
+    <img class="ba-img ba-after" src={afterSrc} alt={afterAlt} loading="lazy" />
+    <div class="ba-top">
+      <img class="ba-img" src={beforeSrc} alt={beforeAlt} loading="lazy" />
+    </div>
+    <span class="ba-badge ba-badge-before">Before</span>
+    <span class="ba-badge ba-badge-after">After</span>
+    <input
+      class="ba-range"
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      step="1"
+      aria-label="Reveal the before and after photos"
+    />
+  </div>
+  {caption && <figcaption class="ba-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .ba-slider {
+    margin: 0 auto;
+    max-width: 860px;
+  }
+  .ba-stage {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    touch-action: none;
+  }
+  .ba-img {
+    display: block;
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+  }
+  @media (max-width: 640px) {
+    .ba-img {
+      height: 300px;
+    }
+  }
+  .ba-top {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 50% 0 0);
+  }
+  .ba-top .ba-img {
+    height: 100%;
+  }
+  .ba-badge {
+    position: absolute;
+    top: 12px;
+    background: rgba(10, 10, 10, 0.72);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.35em 0.8em;
+    border-radius: 999px;
+    text-transform: uppercase;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .ba-badge-before {
+    left: 12px;
+  }
+  .ba-badge-after {
+    right: 12px;
+  }
+  .ba-badge.is-hidden {
+    opacity: 0;
+  }
+  .ba-range {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    width: 100%;
+    accent-color: #c8102e;
+    cursor: ew-resize;
+  }
+  .ba-caption {
+    margin-top: 12px;
+    font-size: 0.92rem;
+    color: var(--text-muted, #5b5b57);
+    text-align: center;
+  }
+</style>
+
+<script>
+  function initBaSliders() {
+    document
+      .querySelectorAll<HTMLElement>('.ba-slider:not([data-ba-init])')
+      .forEach((root) => {
+        root.dataset.baInit = '1';
+        const stage = root.querySelector<HTMLElement>('.ba-stage');
+        const top = root.querySelector<HTMLElement>('.ba-top');
+        const range = root.querySelector<HTMLInputElement>('.ba-range');
+        const badgeBefore = root.querySelector<HTMLElement>('.ba-badge-before');
+        const badgeAfter = root.querySelector<HTMLElement>('.ba-badge-after');
+        if (!stage || !top || !range) return;
+
+        const apply = (pct: number) => {
+          const v = Math.max(0, Math.min(100, pct));
+          top.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+          // Before photo fully concealed at 0; after photo fully concealed at 100.
+          badgeBefore?.classList.toggle('is-hidden', v <= 1);
+          badgeAfter?.classList.toggle('is-hidden', v >= 99);
+        };
+
+        range.addEventListener('input', () => apply(Number(range.value)));
+        apply(Number(range.value));
+
+        let dragging = false;
+        const moveFromEvent = (e: PointerEvent) => {
+          const rect = stage.getBoundingClientRect();
+          const pct = ((e.clientX - rect.left) / rect.width) * 100;
+          range.value = String(Math.round(Math.max(0, Math.min(100, pct))));
+          apply(Number(range.value));
+        };
+        stage.addEventListener('pointerdown', (e) => {
+          if (e.target === range) return;
+          dragging = true;
+          stage.setPointerCapture(e.pointerId);
+          moveFromEvent(e);
+        });
+        stage.addEventListener('pointermove', (e) => {
+          if (dragging) moveFromEvent(e);
+        });
+        stage.addEventListener('pointerup', () => (dragging = false));
+        stage.addEventListener('pointercancel', () => (dragging = false));
+      });
+  }
+
+  initBaSliders();
+  document.addEventListener('astro:after-swap', initBaSliders);
+</script>
