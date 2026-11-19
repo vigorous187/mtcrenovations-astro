@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SocialProofTicker from '../components/SocialProofTicker.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -20,7 +21,7 @@ const { heroPreload, ...props } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en-CA" data-bs-theme="dark">
+<html lang="en-CA" data-bs-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,8 +38,8 @@ const { heroPreload, ...props } = Astro.props;
   <link rel="stylesheet" href="/css/fontawesome.min.css" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/css/fontawesome.min.css" /></noscript>
 
-  <!-- H1 uses Playfair. Preload only that face so it does not wait behind the hero photo. -->
-  <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- H1 uses Archivo. Preload only that face so it does not wait behind the hero photo. -->
+  <link rel="preload" href="/fonts/archivo-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
   {heroPreload && (
     <link
       rel="preload"
@@ -128,7 +129,7 @@ const { heroPreload, ...props } = Astro.props;
     }
   </script>
 </head>
-<body class="noise-overlay">
+<body>
 <!--email_off-->
   <Header />
   <main>
@@ -197,6 +198,7 @@ const { heroPreload, ...props } = Astro.props;
   </script>
 
   <SocialProofTicker />
+  <ChatWidget />
 
   <!-- Event tracking via Zaraz (GA4 pageviews handled by Zaraz automatically) -->
   <script is:inline>

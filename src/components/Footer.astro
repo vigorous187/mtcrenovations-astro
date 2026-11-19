@@ -3,7 +3,7 @@ import site from '../data/site.json';
 import services from '../data/services.json';
 ---
 
-<footer class="pt-5 pb-3" style="background: var(--bg-surface-1); border-top: 1px solid var(--border-subtle);">
+<footer class="pt-5 pb-3" style="background: #0d0d0d; border-top: 1px solid rgba(255,255,255,0.12);">
   <div class="container">
     <button type="button" class="btn btn-link p-0 mb-3" data-mtc-privacy-choices disabled
       onclick="if (window.zaraz?.consent?.APIReady) window.zaraz.consent.modal = true;">Privacy choices</button>
@@ -13,22 +13,22 @@ import services from '../data/services.json';
         <a href="/">
           <img src="/assets/img/logo/logo-white-100h.webp" width="106" height="100" alt={site.name} style="height: 50px; width: auto; max-height: 50px;" class="mb-3" />
         </a>
-        <p class="small" style="color: var(--text-muted);">
+        <p class="small" style="color: #b5b5b1;">
           Burlington & Hamilton's trusted renovation contractor. Basement finishing, kitchen and bathroom remodels, flooring, and painting. Licensed and insured.
         </p>
         <div class="d-flex gap-3 mt-3">
           {site.social.facebook && (
-            <a href={site.social.facebook} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Facebook">
+            <a href={site.social.facebook} target="_blank" rel="noopener" style="color: #b5b5b1; transition: color 0.3s;" aria-label="Facebook">
               <i class="fab fa-facebook-f"></i>
             </a>
           )}
           {site.social.instagram && (
-            <a href={site.social.instagram} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Instagram">
+            <a href={site.social.instagram} target="_blank" rel="noopener" style="color: #b5b5b1; transition: color 0.3s;" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
           )}
           {site.googleReviews.url && (
-            <a href={site.googleReviews.url} target="_blank" rel="noopener" style="color: var(--text-muted); transition: color 0.3s;" aria-label="Google Reviews">
+            <a href={site.googleReviews.url} target="_blank" rel="noopener" style="color: #b5b5b1; transition: color 0.3s;" aria-label="Google Reviews">
               <i class="fab fa-google"></i>
             </a>
           )}
@@ -37,68 +37,68 @@ import services from '../data/services.json';
 
       <!-- Services -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Services</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 0.08em; font-size: 0.8rem;">Services</h6>
         <ul class="list-unstyled">
           {services.map(s => (
             <li class="mb-2">
-              <a href={`/${s.slug}/`} class="text-decoration-none small" style="color: var(--text-muted); transition: color 0.3s;">{s.name} Renovation</a>
+              <a href={`/${s.slug}/`} class="text-decoration-none small" style="color: #b5b5b1; transition: color 0.3s;">{s.name} Renovation</a>
             </li>
           ))}
           <li class="mb-2">
-            <a href="/legal-basement-apartment-hamilton/" class="text-decoration-none small" style="color: var(--text-muted); transition: color 0.3s;">Legal basement apartment, Hamilton</a>
+            <a href="/legal-basement-apartment-hamilton/" class="text-decoration-none small" style="color: #b5b5b1; transition: color 0.3s;">Legal basement apartment, Hamilton</a>
           </li>
           <li class="mb-2">
-            <a href="/fourplex-conversion-hamilton/" class="text-decoration-none small" style="color: var(--text-muted); transition: color 0.3s;">Fourplex conversion, Hamilton</a>
+            <a href="/fourplex-conversion-hamilton/" class="text-decoration-none small" style="color: #b5b5b1; transition: color 0.3s;">Fourplex conversion, Hamilton</a>
           </li>
         </ul>
       </div>
 
       <!-- Company -->
       <div class="col-md-2 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Company</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 0.08em; font-size: 0.8rem;">Company</h6>
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="/about/" class="text-decoration-none small" style="color: var(--text-muted);">About Us</a></li>
-          <li class="mb-2"><a href="/newleadintake/" class="text-decoration-none small" style="color: var(--text-muted);">Get an Estimate</a></li>
-          <li class="mb-2"><a href="/contact/" class="text-decoration-none small" style="color: var(--text-muted);">Contact</a></li>
-          <li class="mb-2"><a href="/blog/" class="text-decoration-none small" style="color: var(--text-muted);">Blog</a></li>
-          <li class="mb-2"><a href="/basement/careers/" class="text-decoration-none small" style="color: var(--text-muted);">Careers</a></li>
-          <li class="mb-2"><a href="/newvendorintake/" class="text-decoration-none small" style="color: var(--text-muted);">Vendor Signup</a></li>
-          <li class="mb-2"><a href={site.jobtreadLogin} target="_blank" rel="noopener" class="text-decoration-none small" style="color: var(--text-muted);">Customer Login</a></li>
-          <li class="mb-2"><a href="/locations/" class="text-decoration-none small" style="color: var(--text-muted);">Locations</a></li>
-          <li class="mb-2"><a href="/gta-renovation-contractor/" class="text-decoration-none small" style="color: var(--text-muted);">GTA West</a></li>
-          <li class="mb-2"><a href="/location/oakville/" class="text-decoration-none small" style="color: var(--text-muted);">Oakville</a></li>
-          <li class="mb-2"><a href="/location/milton/" class="text-decoration-none small" style="color: var(--text-muted);">Milton</a></li>
-          <li class="mb-2"><a href="/faq/" class="text-decoration-none small" style="color: var(--text-muted);">FAQ</a></li>
-          <li class="mb-2"><a href="/privacy-policy/" class="text-decoration-none small" style="color: var(--text-muted);">Privacy Policy</a></li>
-          <li class="mb-2"><a href="/terms-of-use/" class="text-decoration-none small" style="color: var(--text-muted);">Terms of Use</a></li>
+          <li class="mb-2"><a href="/about/" class="text-decoration-none small" style="color: #b5b5b1;">About Us</a></li>
+          <li class="mb-2"><a href="/newleadintake/" class="text-decoration-none small" style="color: #b5b5b1;">Get an Estimate</a></li>
+          <li class="mb-2"><a href="/contact/" class="text-decoration-none small" style="color: #b5b5b1;">Contact</a></li>
+          <li class="mb-2"><a href="/blog/" class="text-decoration-none small" style="color: #b5b5b1;">Blog</a></li>
+          <li class="mb-2"><a href="/basement/careers/" class="text-decoration-none small" style="color: #b5b5b1;">Careers</a></li>
+          <li class="mb-2"><a href="/newvendorintake/" class="text-decoration-none small" style="color: #b5b5b1;">Vendor Signup</a></li>
+          <li class="mb-2"><a href={site.jobtreadLogin} target="_blank" rel="noopener" class="text-decoration-none small" style="color: #b5b5b1;">Customer Login</a></li>
+          <li class="mb-2"><a href="/locations/" class="text-decoration-none small" style="color: #b5b5b1;">Locations</a></li>
+          <li class="mb-2"><a href="/gta-renovation-contractor/" class="text-decoration-none small" style="color: #b5b5b1;">GTA West</a></li>
+          <li class="mb-2"><a href="/location/oakville/" class="text-decoration-none small" style="color: #b5b5b1;">Oakville</a></li>
+          <li class="mb-2"><a href="/location/milton/" class="text-decoration-none small" style="color: #b5b5b1;">Milton</a></li>
+          <li class="mb-2"><a href="/faq/" class="text-decoration-none small" style="color: #b5b5b1;">FAQ</a></li>
+          <li class="mb-2"><a href="/privacy-policy/" class="text-decoration-none small" style="color: #b5b5b1;">Privacy Policy</a></li>
+          <li class="mb-2"><a href="/terms-of-use/" class="text-decoration-none small" style="color: #b5b5b1;">Terms of Use</a></li>
         </ul>
       </div>
 
       <!-- Compare -->
       <div class="col-md-2 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Why MTC</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 0.08em; font-size: 0.8rem;">Why MTC</h6>
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="/mtc-vs-big-box-renovations/" class="text-decoration-none small" style="color: var(--text-muted);">MTC vs. Big Box</a></li>
-          <li class="mb-2"><a href="/mtc-vs-diy-renovation/" class="text-decoration-none small" style="color: var(--text-muted);">MTC vs. DIY</a></li>
-          <li class="mb-2"><a href="/mtc-vs-general-contractors/" class="text-decoration-none small" style="color: var(--text-muted);">MTC vs. Contractors</a></li>
-          <li class="mb-2"><a href="/licensed-insured-renovation-contractor-ontario/" class="text-decoration-none small" style="color: var(--text-muted);">Licensed &amp; Insured</a></li>
+          <li class="mb-2"><a href="/mtc-vs-big-box-renovations/" class="text-decoration-none small" style="color: #b5b5b1;">MTC vs. Big Box</a></li>
+          <li class="mb-2"><a href="/mtc-vs-diy-renovation/" class="text-decoration-none small" style="color: #b5b5b1;">MTC vs. DIY</a></li>
+          <li class="mb-2"><a href="/mtc-vs-general-contractors/" class="text-decoration-none small" style="color: #b5b5b1;">MTC vs. Contractors</a></li>
+          <li class="mb-2"><a href="/licensed-insured-renovation-contractor-ontario/" class="text-decoration-none small" style="color: #b5b5b1;">Licensed &amp; Insured</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div class="col-md-3 mb-4">
-        <h6 class="text-uppercase fw-bold mb-3" style="color: var(--text-primary); letter-spacing: 0.08em; font-size: 0.8rem;">Contact</h6>
+        <h6 class="text-uppercase fw-bold mb-3" style="color: #ffffff; letter-spacing: 0.08em; font-size: 0.8rem;">Contact</h6>
         <ul class="list-unstyled">
-          <li class="mb-2 small" style="color: var(--text-muted);">
-            <i class="fas fa-phone me-2" style="color: var(--mtc-red);"></i>
-            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-decoration-none" style="color: var(--text-muted);">{site.phone}</a>
+          <li class="mb-2 small" style="color: #b5b5b1;">
+            <i class="fas fa-phone me-2" style="color: #f0a3ae;"></i>
+            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-decoration-none" style="color: #b5b5b1;">{site.phone}</a>
           </li>
-          <li class="mb-2 small" style="color: var(--text-muted);">
-            <i class="fas fa-envelope me-2" style="color: var(--mtc-red);"></i>
-            <a href={`mailto:${site.email}`} class="text-decoration-none" style="color: var(--text-muted);">{site.email}</a>
+          <li class="mb-2 small" style="color: #b5b5b1;">
+            <i class="fas fa-envelope me-2" style="color: #f0a3ae;"></i>
+            <a href={`mailto:${site.email}`} class="text-decoration-none" style="color: #b5b5b1;">{site.email}</a>
           </li>
-          <li class="mb-2 small" style="color: var(--text-muted);">
-            <i class="fas fa-map-marker-alt me-2" style="color: var(--mtc-red);"></i>
+          <li class="mb-2 small" style="color: #b5b5b1;">
+            <i class="fas fa-map-marker-alt me-2" style="color: #f0a3ae;"></i>
             {site.serviceArea}
           </li>
         </ul>
@@ -106,9 +106,9 @@ import services from '../data/services.json';
     </div>
 
     <!-- Bottom -->
-    <hr style="border-color: var(--border-default);" />
-    <div class="text-center small" style="color: var(--text-muted);">
-      <p class="mb-0">&copy; {new Date().getFullYear()} {site.name}. All rights reserved. Website by <a href="https://forge-co.ca/" style="color: var(--text-muted);">Forge</a>.</p>
+    <hr style="border-color: rgba(255,255,255,0.14);" />
+    <div class="text-center small" style="color: #b5b5b1;">
+      <p class="mb-0">&copy; {new Date().getFullYear()} {site.name}. All rights reserved. Website by <a href="https://forge-co.ca/" style="color: #b5b5b1;">Forge</a>.</p>
     </div>
   </div>
 </footer>

@@ -5,22 +5,22 @@ export default {
     extend: {
       colors: {
         surface: {
-          0: '#0a0a0a',
-          1: '#0f0f0f',
-          2: '#141414',
-          3: '#1a1a1a',
-          4: '#222222',
-          5: '#2a2a2a',
+          0: '#ffffff',
+          1: '#f6f6f4',
+          2: '#fbfbfa',
+          3: '#f0efec',
+          4: '#e9e8e4',
+          5: '#dedcd8',
         },
         'mtc-red': {
-          DEFAULT: '#dc3545',
-          light: '#e4606d',
-          dark: '#bb2d3b',
-          muted: 'rgba(220, 53, 69, 0.15)',
+          DEFAULT: '#c8102e',
+          light: '#f0a3ae',
+          dark: '#9e0b25',
+          muted: 'rgba(200, 16, 46, 0.12)',
         },
       },
       fontFamily: {
-        display: ['Playfair Display', 'Georgia', 'serif'],
+        display: ['Archivo', 'Inter', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {

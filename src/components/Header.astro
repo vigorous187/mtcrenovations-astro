@@ -98,3 +98,26 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 </header>
+
+<script>
+  function initHeaderEscape() {
+    if (document.documentElement.dataset.mtcHeaderEscapeInit) return;
+    document.documentElement.dataset.mtcHeaderEscapeInit = 'true';
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const nav = document.getElementById('mainNav');
+      if (!nav || !nav.classList.contains('show')) return;
+      const toggler = document.querySelector('.navbar-toggler');
+      const bootstrapLib = (window as any).bootstrap;
+      if (bootstrapLib?.Collapse) {
+        bootstrapLib.Collapse.getOrCreateInstance(nav).hide();
+      } else if (toggler instanceof HTMLElement) {
+        toggler.click();
+      }
+      if (toggler instanceof HTMLElement) toggler.focus();
+    });
+  }
+
+  initHeaderEscape();
+  document.addEventListener('astro:after-swap', initHeaderEscape);
+</script>
