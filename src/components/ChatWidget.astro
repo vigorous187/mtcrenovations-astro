@@ -1,0 +1,944 @@
+---
+/**
+ * ChatWidget.astro — MTC Renovations staging chat demo.
+ *
+ * Self-contained: markup, scoped styles and a bundled script.
+ * Answers only from published site facts baked into the script below.
+ * Callback intake is a small state machine (idle → consent → name →
+ * phone → details → done/idle) that POSTs to /api/chat/lead/.
+ * Staging only: a successful POST is reported as "recorded for this
+ * staging test" — never as sent to the team or to JobTread.
+ */
+---
+
+<div class="mtc-chat-root" data-mtc-chat-root>
+  <button
+    type="button"
+    class="mtc-chat-fab"
+    data-mtc-chat-fab
+    aria-expanded="false"
+    aria-controls="mtc-chat-panel"
+  >
+    Chat with MTC
+  </button>
+
+  <div
+    class="mtc-chat-panel"
+    data-mtc-chat-panel
+    id="mtc-chat-panel"
+    role="dialog"
+    aria-modal="false"
+    aria-label="Chat with MTC"
+  >
+    <div class="mtc-chat-header">
+      <div class="mtc-chat-header-text">
+        <span class="mtc-chat-title">Chat with MTC</span>
+        <span class="mtc-chat-subtitle">Answers from our site · Staging demo</span>
+      </div>
+      <button
+        type="button"
+        class="mtc-chat-close"
+        data-mtc-chat-close
+        aria-label="Close chat"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="mtc-chat-transcript" data-mtc-chat-transcript></div>
+
+    <div class="mtc-chat-chips" data-mtc-chat-chips>
+      <button type="button" class="mtc-chat-chip" data-mtc-chat-chip="Price ranges">Price ranges</button>
+      <button type="button" class="mtc-chat-chip" data-mtc-chat-chip="Our process">Our process</button>
+      <button type="button" class="mtc-chat-chip" data-mtc-chat-chip="Areas served">Areas served</button>
+      <button type="button" class="mtc-chat-chip" data-mtc-chat-chip="Request a callback">Request a callback</button>
+    </div>
+
+    <div class="mtc-chat-input-row">
+      <input
+        type="text"
+        class="mtc-chat-input"
+        data-mtc-chat-input
+        id="mtc-chat-input"
+        placeholder="Type your message…"
+        aria-label="Type your message"
+        autocomplete="off"
+      />
+      <button type="button" class="mtc-chat-send" data-mtc-chat-send>Send</button>
+    </div>
+
+    <div class="mtc-chat-visually-hidden" data-mtc-chat-live aria-live="polite"></div>
+  </div>
+</div>
+
+<style>
+  .mtc-chat-root {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #141414;
+  }
+
+  .mtc-chat-fab {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1080;
+    background: #c8102e;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.85em 1.3em;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(20, 20, 20, 0.3);
+  }
+  .mtc-chat-fab:hover {
+    background: #9e0b25;
+  }
+
+  .mtc-chat-panel {
+    position: fixed;
+    right: 16px;
+    bottom: 84px;
+    z-index: 1080;
+    width: min(360px, calc(100vw - 24px));
+    height: min(560px, calc(100vh - 120px));
+    height: min(560px, calc(100dvh - 120px));
+    background: #fff;
+    border: 1px solid #e4e4e0;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(20, 20, 20, 0.28);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #141414;
+  }
+  .mtc-chat-panel.mtc-chat-open {
+    display: flex;
+  }
+
+  .mtc-chat-header {
+    flex: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    background: #141414;
+    color: #fff;
+    padding: 14px 16px;
+  }
+  .mtc-chat-header-text {
+    min-width: 0;
+  }
+  .mtc-chat-title {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+  .mtc-chat-subtitle {
+    display: block;
+    font-size: 0.78rem;
+    color: #c9c9c5;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+  .mtc-chat-close {
+    flex: none;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0 2px;
+    cursor: pointer;
+  }
+
+  .mtc-chat-transcript {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 16px;
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+  .mtc-chat-msg {
+    border-radius: 12px;
+    padding: 0.7em 0.9em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  .mtc-chat-msg-bot {
+    background: #f6f6f4;
+    border: 1px solid #e4e4e0;
+    margin-right: 36px;
+  }
+  .mtc-chat-msg-user {
+    background: #fdeaea;
+    border: 1px solid #f3c2c9;
+    margin-left: 36px;
+  }
+
+  .mtc-chat-chips {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 12px;
+  }
+  .mtc-chat-chips.mtc-chat-chips-hidden {
+    display: none;
+  }
+  .mtc-chat-chip {
+    border: 1px solid #e4e4e0;
+    background: #fff;
+    color: #141414;
+    border-radius: 999px;
+    padding: 0.45em 0.9em;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .mtc-chat-chip:hover {
+    border-color: #c8102e;
+    color: #9e0b25;
+  }
+
+  .mtc-chat-input-row {
+    flex: none;
+    display: flex;
+    border-top: 1px solid #e4e4e0;
+    background: #fff;
+  }
+  .mtc-chat-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: none;
+    padding: 0.85em 1em;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    color: #141414;
+    background: #fff;
+  }
+  .mtc-chat-input:focus {
+    outline: 2px solid #c8102e;
+    outline-offset: -2px;
+  }
+  .mtc-chat-send {
+    flex: none;
+    background: #c8102e;
+    color: #fff;
+    border: none;
+    padding: 0 1.2em;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .mtc-chat-send:hover {
+    background: #9e0b25;
+  }
+  .mtc-chat-send:disabled,
+  .mtc-chat-input:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .mtc-chat-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 760px) {
+    .mtc-chat-fab {
+      bottom: 76px;
+    }
+    .mtc-chat-panel {
+      bottom: 140px;
+      /* Panel bottom (140px) + height must fit short viewports: at 375x667
+         the desktop subtraction (120px) pushed the header ~20px off-screen.
+         164px keeps the whole panel, header included, inside the viewport. */
+      height: min(560px, calc(100vh - 164px));
+      height: min(560px, calc(100dvh - 164px));
+    }
+  }
+</style>
+
+<script>
+  function initChat() {
+    const root = document.querySelector('[data-mtc-chat-root]');
+    if (!root) return;
+    if (root.dataset.mtcChatInit === 'true') return;
+    root.dataset.mtcChatInit = 'true';
+
+    const fab = root.querySelector('[data-mtc-chat-fab]');
+    const panel = root.querySelector('[data-mtc-chat-panel]');
+    const closeBtn = root.querySelector('[data-mtc-chat-close]');
+    const transcript = root.querySelector('[data-mtc-chat-transcript]');
+    const chipsRow = root.querySelector('[data-mtc-chat-chips]');
+    const input = root.querySelector('[data-mtc-chat-input]');
+    const sendBtn = root.querySelector('[data-mtc-chat-send]');
+    const live = root.querySelector('[data-mtc-chat-live]');
+    if (!fab || !panel || !transcript || !input || !sendBtn) return;
+
+    const PHONE = '(647) 560-1095';
+    const EMAIL = 'info@mtcrenovations.ca';
+
+    const SERVED_CITIES = [
+      'Burlington',
+      'Hamilton',
+      'Oakville',
+      'Stoney Creek',
+      'Ancaster',
+      'Dundas',
+      'Waterdown',
+      'Grimsby',
+      'Binbrook',
+      'Winona',
+      'Caledonia',
+      'Brantford',
+      'Milton',
+      'Flamborough',
+      'Beamsville',
+      'Lincoln',
+      'Toronto',
+      'Mississauga',
+    ];
+
+    // Common Ontario places that are NOT in the published service area.
+    // Used only to answer "do you serve X?" plainly when X is not served.
+    const NOT_SERVED_CITIES = [
+      'London',
+      'Vaughan',
+      'Richmond Hill',
+      'Markham',
+      'Scarborough',
+      'Etobicoke',
+      'North York',
+      'Brampton',
+      'Caledon',
+      'Barrie',
+      'Guelph',
+      'Cambridge',
+      'Kitchener',
+      'Waterloo',
+      'Niagara Falls',
+      'St. Catharines',
+      'Kingston',
+      'Ottawa',
+      'Windsor',
+      'Ajax',
+      'Pickering',
+      'Whitby',
+      'Oshawa',
+      'Newmarket',
+      'Aurora',
+      'Thornhill',
+      'Woodbridge',
+      'Georgetown',
+      'Orangeville',
+      'Simcoe',
+      'Paris',
+      'Dunnville',
+      'Port Dover',
+      'Fergus',
+      'Elora',
+    ];
+
+    const BANNED_NAME_TOKENS = new Set([
+      'book',
+      'call',
+      'callback',
+      'cancel',
+      'phone',
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+      'yes',
+      'no',
+      'test',
+      'tomorrow',
+      'today',
+    ]);
+
+    // ---- State (per init, lives in this closure / the DOM) ----
+    let state = 'idle'; // idle | consent | name | phone | details
+    let consentReasks = 0;
+    let leadName = '';
+    let leadPhone = '';
+    let submitting = false;
+
+    // ---- Rendering ----
+    function scrollToBottom() {
+      transcript.scrollTop = transcript.scrollHeight;
+    }
+
+    function addMessage(text, who) {
+      const div = document.createElement('div');
+      div.className =
+        'mtc-chat-msg ' + (who === 'user' ? 'mtc-chat-msg-user' : 'mtc-chat-msg-bot');
+      // textContent only: user text is never inserted as HTML.
+      div.textContent = text;
+      transcript.appendChild(div);
+      if (who !== 'user' && live) live.textContent = text;
+      scrollToBottom();
+      return div;
+    }
+
+    function addBot(text) {
+      addMessage(text, 'bot');
+    }
+
+    function addUser(text) {
+      addMessage(text, 'user');
+    }
+
+    function setChipsVisible(visible) {
+      if (!chipsRow) return;
+      chipsRow.classList.toggle('mtc-chat-chips-hidden', !visible);
+    }
+
+    // ---- Open / close ----
+    function isOpen() {
+      return panel.classList.contains('mtc-chat-open');
+    }
+
+    function openChat() {
+      panel.classList.add('mtc-chat-open');
+      fab.setAttribute('aria-expanded', 'true');
+      input.focus();
+    }
+
+    function closeChat() {
+      panel.classList.remove('mtc-chat-open');
+      fab.setAttribute('aria-expanded', 'false');
+      fab.focus();
+    }
+
+    fab.addEventListener('click', () => {
+      if (isOpen()) {
+        closeChat();
+      } else {
+        openChat();
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        closeChat();
+      });
+    }
+
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isOpen()) {
+        event.preventDefault();
+        closeChat();
+      }
+    });
+
+    // ---- Intake helpers ----
+    function lowerText(text) {
+      return text.trim().toLowerCase();
+    }
+
+    function isCancel(text) {
+      const t = lowerText(text);
+      // Exact / starts-with per spec, plus a bare "cancel"/"stop" word
+      // anywhere (e.g. "No phone, cancel" in the phone step is caught
+      // here first, before phone validation runs).
+      return /\b(cancel|stop)\b/.test(t);
+    }
+
+    function isRefusal(text) {
+      const t = lowerText(text);
+      if (/^no\b/.test(t)) return true;
+      if (/^nope\b/.test(t)) return true;
+      if (/^nah\b/.test(t)) return true;
+      if (t.includes("don't call")) return true;
+      if (t.includes('dont call')) return true;
+      if (t.includes('do not call')) return true;
+      if (t.includes('not interested')) return true;
+      if (t.includes('never mind')) return true;
+      if (t.includes('nevermind')) return true;
+      return false;
+    }
+
+    function isAffirmative(text) {
+      const t = lowerText(text);
+      return (
+        /^yes\b/.test(t) ||
+        /^yeah\b/.test(t) ||
+        /^yep\b/.test(t) ||
+        /^sure\b/.test(t) ||
+        /^ok\b/.test(t) ||
+        /^okay\b/.test(t) ||
+        /^please do\b/.test(t) ||
+        /^go ahead\b/.test(t) ||
+        /^sounds good\b/.test(t)
+      );
+    }
+
+    function endIntake() {
+      state = 'idle';
+      consentReasks = 0;
+      setChipsVisible(true);
+    }
+
+    function startIntake() {
+      state = 'consent';
+      consentReasks = 0;
+      leadName = '';
+      leadPhone = '';
+      setChipsVisible(false);
+      addBot('Would you like us to call you back? Please reply yes or no.');
+    }
+
+    function firstNameOf(name) {
+      return name.trim().split(/\s+/)[0];
+    }
+
+    function validateName(raw) {
+      const name = raw.trim();
+      if (name.length < 2 || name.length > 60) return null;
+      if (/\d/.test(name)) return null;
+      if (!/^[A-Za-zÀ-ÖØ-öø-ÿ'’\-.\s]+$/.test(name)) return null;
+      const tokens = name
+        .toLowerCase()
+        .split(/[\s\-]+/)
+        .map((tok) => tok.replace(/[^a-z]/g, ''))
+        .filter(Boolean);
+      for (const tok of tokens) {
+        if (BANNED_NAME_TOKENS.has(tok)) return null;
+      }
+      return name;
+    }
+
+    function validatePhone(raw) {
+      let digits = raw.replace(/\D/g, '');
+      if (digits.length === 11 && digits.startsWith('1')) {
+        digits = digits.slice(1);
+      }
+      if (digits.length !== 10) return null;
+      return digits;
+    }
+
+    async function submitLead(details) {
+      submitting = true;
+      input.disabled = true;
+      sendBtn.disabled = true;
+      const first = firstNameOf(leadName);
+      try {
+        const res = await fetch('/api/chat/lead/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: leadName,
+            phone: leadPhone,
+            projectNotes: details,
+          }),
+        });
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (e) {
+          data = null;
+        }
+        if (res.ok && data && data.success === true) {
+          addBot(
+            `Thanks, ${first} — your callback request has been recorded for this staging test. Staging only: requests from this demo aren't sent to the team yet.`
+          );
+        } else {
+          addBot(
+            `Something went wrong recording that request. Please call us at ${PHONE} and we'll take it from there.`
+          );
+        }
+      } catch (err) {
+        addBot(
+          `Something went wrong recording that request. Please call us at ${PHONE} and we'll take it from there.`
+        );
+      } finally {
+        submitting = false;
+        input.disabled = false;
+        sendBtn.disabled = false;
+        endIntake();
+        if (isOpen()) input.focus();
+      }
+    }
+
+    function handleIntake(text) {
+      // Order matters: cancel first, then refusal, then the state handler.
+      // Q&A keywords never hijack an intake step.
+      if (isCancel(text)) {
+        addBot('Cancelled — no callback request has been made.');
+        endIntake();
+        return;
+      }
+      if (isRefusal(text)) {
+        addBot(
+          `No problem — I won't arrange a callback. If you need us, we're at ${PHONE}.`
+        );
+        endIntake();
+        return;
+      }
+
+      if (state === 'consent') {
+        if (isAffirmative(text)) {
+          state = 'name';
+          addBot("Great — what's your name?");
+        } else if (consentReasks === 0) {
+          consentReasks = 1;
+          addBot('Just to confirm — would you like a callback? Please answer yes or no.');
+        } else {
+          addBot(
+            `No problem — I'll leave it there. You can reach us at ${PHONE}.`
+          );
+          endIntake();
+        }
+        return;
+      }
+
+      if (state === 'name') {
+        const name = validateName(text);
+        if (!name) {
+          addBot("That doesn't look like a name — could I get your name?");
+          return;
+        }
+        leadName = name;
+        state = 'phone';
+        addBot(`Thanks, ${firstNameOf(name)}. What's the best phone number for the callback?`);
+        return;
+      }
+
+      if (state === 'phone') {
+        const phone = validatePhone(text);
+        if (!phone) {
+          addBot("That doesn't look like a valid phone number — please enter a 10-digit number.");
+          return;
+        }
+        leadPhone = phone;
+        state = 'details';
+        addBot("And briefly, what is the project about? (You can type 'skip'.)");
+        return;
+      }
+
+      if (state === 'details') {
+        const trimmed = text.trim();
+        const details = lowerText(trimmed) === 'skip' ? '' : trimmed;
+        // submitLead returns the chat to idle when it settles.
+        submitLead(details);
+        return;
+      }
+    }
+
+    // ---- Knowledge answers ----
+    function serviceAreaLine() {
+      return (
+        'We serve Burlington, Hamilton, Oakville, Stoney Creek, Ancaster, Dundas, ' +
+        'Waterdown, Grimsby, Binbrook, Winona, Caledonia, Brantford, Milton, ' +
+        'Flamborough, Beamsville and Lincoln, and Toronto and Mississauga are also served.'
+      );
+    }
+
+    function findCitiesInOrder(text, cities) {
+      const t = text.toLowerCase();
+      const found = [];
+      for (const city of cities) {
+        const idx = t.indexOf(city.toLowerCase());
+        if (idx !== -1) found.push({ city, idx });
+      }
+      found.sort((a, b) => a.idx - b.idx);
+      return found.map((f) => f.city);
+    }
+
+    function joinNames(names) {
+      if (names.length === 1) return names[0];
+      if (names.length === 2) return `${names[0]} and ${names[1]}`;
+      return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+    }
+
+    function areaAnswer(text) {
+      const t = lowerText(text);
+      if (/\bgta\b/.test(t)) {
+        return serviceAreaLine();
+      }
+      const served = findCitiesInOrder(text, SERVED_CITIES);
+      const notServed = findCitiesInOrder(text, NOT_SERVED_CITIES).filter(
+        (c) => !served.includes(c)
+      );
+      if (served.length && !notServed.length) {
+        return `Yes — we serve ${joinNames(served)}.`;
+      }
+      if (!served.length && notServed.length) {
+        return `No — ${joinNames(notServed)} isn't in our service area. ${serviceAreaLine()}`;
+      }
+      if (served.length && notServed.length) {
+        return (
+          `We serve ${joinNames(served)}, but ${joinNames(notServed)} isn't in our service area. ` +
+          serviceAreaLine()
+        );
+      }
+      return serviceAreaLine();
+    }
+
+    function priceRangesAnswer() {
+      return (
+        'Here are our published planning ranges (planning ranges only, not a quote for your job): ' +
+        'Kitchen refresh $25,000–$40,000; mid-range $40,000–$60,000; full remodel $60,000–$75,000+. ' +
+        'Bathroom refresh $6,000–$15,000; mid-range $15,000–$22,000; full renovation $22,000–$38,000; premium $38,000–$65,000+. ' +
+        'Basement finishing (1,000 sq ft) $35,000–$55,000. ' +
+        'Flooring and painting are priced per project after a free consultation.'
+      );
+    }
+
+    function basementAnswer(t) {
+      const wantsSuite =
+        /legal|suite|apartment|second unit|in-law/.test(t);
+      if (wantsSuite) {
+        return (
+          'For a basement legal suite, there are two published planning ranges: ' +
+          '$60,000–$90,000+ per the basement service page, and $60,000–$120,000 depending on scope per the Hamilton legal-basement guide. ' +
+          'Basement finishing (1,000 sq ft) is $35,000–$55,000 as a planning range.'
+        );
+      }
+      return (
+        'Basement planning ranges: finishing (1,000 sq ft) $35,000–$55,000. ' +
+        'A basement legal suite is $60,000–$90,000+ per the basement service page, and the Hamilton legal-basement guide cites $60,000–$120,000 depending on scope.'
+      );
+    }
+
+    function answerQuestion(rawText) {
+      const text = rawText.trim();
+      const t = lowerText(text);
+
+      // Refusals in idle: never treat the word "callback" inside one as consent.
+      if (isRefusal(text) && (/callback|call back|call/.test(t))) {
+        addBot(
+          `No problem — I won't arrange a callback. If you need us, we're at ${PHONE}.`
+        );
+        return;
+      }
+
+      // Callback intake triggers (idle only).
+      if (
+        /\bcallback\b/.test(t) ||
+        /\bcall me back\b/.test(t) ||
+        /\bcall back\b/.test(t) ||
+        /\bspeak to someone\b/.test(t) ||
+        /\btalk to someone\b/.test(t) ||
+        /\bspeak with someone\b/.test(t) ||
+        /\btalk with someone\b/.test(t) ||
+        /\bsomeone (to )?call me\b/.test(t) ||
+        /\brequest a call\b/.test(t)
+      ) {
+        startIntake();
+        return;
+      }
+
+      // Hard limit: discounts / promotions.
+      if (/\b(discount|discounts|promotion|promotions|promo|coupon|coupons)\b/.test(t) || /\bany deals\b/.test(t)) {
+        addBot(
+          `Discounts aren't something chat can offer, and a free consultation gives exact pricing for your project. You can reach us at ${PHONE} or ${EMAIL}.`
+        );
+        return;
+      }
+
+      // Hard limit: booking / scheduling a date.
+      if (/\b(book|booking|schedule|appointment)\b/.test(t)) {
+        addBot(
+          `I can't book dates in chat. Please call us at ${PHONE} and the team can sort out timing, or tap Request a callback and we'll call you.`
+        );
+        return;
+      }
+
+      // Hard limit: pricing the user's specific job.
+      const asksPrice = /how much|price|cost|quote|estimate|pricing/.test(t);
+      const specificJob =
+        /\bmy\b/.test(t) ||
+        /\bour (kitchen|bathroom|basement|house|home)\b/.test(t) ||
+        /\d+\s*(x|by)\s*\d+/.test(t) ||
+        /\d+\s*(sq\.?\s*ft|square feet)/.test(t);
+      if (asksPrice && specificJob) {
+        addBot(
+          `I can't price a specific job in chat — the planning ranges are a guide, and a free consultation gives an exact price for your project. ` +
+            priceRangesAnswer() +
+            ` You can call us at ${PHONE}, or tap Request a callback.`
+        );
+        return;
+      }
+
+      // Service areas (before generic topics so multi-city questions are
+      // answered for every city named, in the order asked).
+      const areaIntent =
+        /serve|serving|service area|areas served|work in|cover|come to|located|\bgta\b/.test(t) ||
+        findCitiesInOrder(text, SERVED_CITIES).length > 0 ||
+        findCitiesInOrder(text, NOT_SERVED_CITIES).length > 0;
+      if (t === 'areas served' || areaIntent) {
+        // Only treat a bare city mention as an area question when the
+        // message looks like a question about areas; otherwise fall
+        // through if another intent is clearly present.
+        const otherIntent =
+          /price|cost|how much|timeline|how long|process|rating|review|phone|email/.test(t);
+        if (t === 'areas served' || /serve|service area|areas|work in|cover|come to|\bgta\b/.test(t) || !otherIntent) {
+          addBot(areaAnswer(text));
+          return;
+        }
+      }
+
+      // Ratings.
+      if (/rating|reviews|rated|stars|google/.test(t)) {
+        addBot("We're rated 4.9 out of 5 from 34 Google reviews.");
+        return;
+      }
+
+      // Contact.
+      if (/phone|email|contact|reach you|call you|number/.test(t)) {
+        addBot(`You can reach us at ${PHONE} or ${EMAIL}.`);
+        return;
+      }
+
+      // Timelines.
+      if (/how long|timeline|duration|take to|weeks/.test(t)) {
+        if (/full gut|custom gut|gut renovation|gut/.test(t) && /kitchen/.test(t)) {
+          addBot(
+            'A full custom kitchen gut typically runs 8–12 weeks (per the Burlington kitchen cost guide).'
+          );
+          return;
+        }
+        if (/kitchen/.test(t) || !(/bathroom|basement/.test(t))) {
+          addBot(
+            'A standard kitchen renovation typically runs 4–8 weeks (per the FAQ). Full gut renovations run longer, at 8–12 weeks.'
+          );
+          return;
+        }
+        addBot(
+          `I don't have a published timeline for that in our site content. A standard kitchen renovation typically runs 4–8 weeks, and you can call us at ${PHONE} for project-specific timing.`
+        );
+        return;
+      }
+
+      // Process.
+      if (/process|steps|how does it work|how do you work|what happens|our process/.test(t)) {
+        addBot(
+          'Our process has 5 steps: Free Consultation → Design & Quote → Material Selection → Construction → Final Walkthrough. ' +
+            'We learn about your project and quote it, help you choose materials, build the work, then walk through the finished result with you.'
+        );
+        return;
+      }
+
+      // Prices by topic.
+      if (/basement/.test(t) && asksPrice) {
+        addBot(basementAnswer(t));
+        return;
+      }
+      if (/kitchen/.test(t) && asksPrice) {
+        addBot(
+          'Kitchen planning ranges: refresh $25,000–$40,000; mid-range $40,000–$60,000; full remodel $60,000–$75,000+. ' +
+            'These are planning ranges, not a quote for a specific job.'
+        );
+        return;
+      }
+      if (/bathroom|bath\b/.test(t) && asksPrice) {
+        addBot(
+          'Bathroom planning ranges: refresh $6,000–$15,000; mid-range $15,000–$22,000; full renovation $22,000–$38,000; premium $38,000–$65,000+. ' +
+            'These are planning ranges, not a quote for a specific job.'
+        );
+        return;
+      }
+      if (/flooring|painting|paint/.test(t) && asksPrice) {
+        addBot('Flooring and painting are priced per project after a free consultation — there is no published range for them.');
+        return;
+      }
+      if (asksPrice || t === 'price ranges') {
+        addBot(priceRangesAnswer());
+        return;
+      }
+
+      // Services.
+      if (/service|what do you do|offer|renovat|fourplex|legal basement/.test(t)) {
+        addBot(
+          'We do kitchen, bathroom, basement, flooring and painting renovations, plus legal basement apartments and fourplex conversions in Hamilton.'
+        );
+        return;
+      }
+
+      // Greetings.
+      if (/^(hi|hello|hey)\b/.test(t)) {
+        addBot(
+          'Hi — I can help with services, published price ranges, our 5-step process, service areas and timelines. What would you like to know?'
+        );
+        return;
+      }
+
+      // Off-topic / unknown: do not start intake automatically.
+      addBot(
+        `I can only help with MTC renovation questions. I can help with services, price ranges, our process, service areas, timelines, or contact details — or you can call us at ${PHONE}.`
+      );
+    }
+
+    // ---- Sending ----
+    function handleUserText(raw) {
+      const text = raw.trim();
+      if (!text || submitting) return;
+      addUser(text);
+      if (state !== 'idle') {
+        handleIntake(text);
+      } else {
+        answerQuestion(text);
+      }
+    }
+
+    function sendFromInput() {
+      const value = input.value;
+      input.value = '';
+      handleUserText(value);
+    }
+
+    sendBtn.addEventListener('click', sendFromInput);
+
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        sendFromInput();
+      }
+    });
+
+    if (chipsRow) {
+      chipsRow.querySelectorAll('[data-mtc-chat-chip]').forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const label = chip.getAttribute('data-mtc-chat-chip') || chip.textContent.trim();
+          if (submitting) return;
+          if (label === 'Request a callback') {
+            // Enters intake directly; the label is not sent as a message.
+            if (state === 'idle') startIntake();
+            return;
+          }
+          handleUserText(label);
+        });
+      });
+    }
+
+    // Welcome message (once per init).
+    addBot(
+      "Hi — I answer questions about MTC services, published price ranges, the 5-step process, service areas and timelines. I can't quote a specific job, offer discounts, or book dates."
+    );
+  }
+
+  document.addEventListener('DOMContentLoaded', initChat);
+  document.addEventListener('astro:after-swap', initChat);
+  initChat();
+</script>
