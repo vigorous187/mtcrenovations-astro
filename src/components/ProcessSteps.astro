@@ -1,0 +1,59 @@
+---
+interface Props {
+  serviceName: string;
+}
+
+const { serviceName } = Astro.props;
+
+// Homepage passes an empty serviceName; avoid rendering "your  renovation" with a double space.
+const serviceWord = serviceName ? `${serviceName.toLowerCase()} ` : '';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Free Consultation',
+    description: `Contact us for a free in-home consultation. We'll discuss your ${serviceWord}renovation goals, timeline, and budget.`,
+  },
+  {
+    number: '02',
+    title: 'Design & Quote',
+    description: 'Our team prepares a detailed scope of work and transparent quote. No hidden fees, no surprises.',
+  },
+  {
+    number: '03',
+    title: 'Material Selection',
+    description: 'Choose your materials, colours, and finishes. We guide you through every option to match your vision.',
+  },
+  {
+    number: '04',
+    title: 'Construction',
+    description: 'Our licensed crew gets to work. You get daily updates and a clean, organized job site throughout.',
+  },
+  {
+    number: '05',
+    title: 'Final Walkthrough',
+    description: 'We walk through every detail together. Your renovation is not done until you are 100% satisfied.',
+  },
+];
+---
+
+<section class="py-5" style="background: var(--bg-base);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Our Process</p>
+      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">How {serviceName} Renovation Works</h2>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {steps.map(step => (
+          <div class="process-step reveal">
+            <div class="process-step-number">{step.number}</div>
+            <h3 class="h5 fw-bold mb-2" style="color: var(--text-primary);">{step.title}</h3>
+            <p class="mb-0" style="color: var(--text-secondary); font-size: 0.95rem;">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

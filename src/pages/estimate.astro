@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import EstimatorWidget from '../components/estimator/EstimatorWidget.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const presetType = Astro.url.searchParams.get('type') || '';
+
+const title = 'Renovation Price Guide | MTC Renovations';
+const description = 'Get a safe renovation price range in under a minute. Select your project, size, finish level, and options. Built for Burlington & Hamilton homeowners.';
+const canonical = `${site.url}/estimate/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Price Guide', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  schema={schemas}
+>
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Price Guide</li>
+        </ol>
+      </nav>
+      <span class="badge bg-danger mb-3">Free · No sign-up · Excl. HST</span>
+      <h1 class="display-5 fw-bold mb-3">Renovation Price Guide</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 620px;">
+        Give homeowners what they want upfront — a safe price range for Hamilton &amp; Burlington —
+        without locking yourself into a quote. Select your scope, size, and finish to see a defensible ballpark.
+        For a written kitchen breakdown, see <a href="/blog/kitchen-renovation-cost-burlington/" class="text-white">kitchen renovation cost in Burlington</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container" style="max-width: 960px;">
+      <EstimatorWidget presetType={presetType} showHero={true} />
+    </div>
+  </section>
+
+  <section class="py-5 bg-white border-top">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <i class="fas fa-bolt text-danger mb-3" style="font-size: 2rem;" aria-hidden="true"></i>
+          <h2 class="h5 fw-bold text-dark mb-2">Quick setup</h2>
+          <p class="text-body-secondary small mb-0">Answer 4 simple questions and see your range instantly.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-handshake text-danger mb-3" style="font-size: 2rem;" aria-hidden="true"></i>
+          <h2 class="h5 fw-bold text-dark mb-2">Build trust</h2>
+          <p class="text-body-secondary small mb-0">Transparent pricing educates buyers before they ever call.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-chart-line text-danger mb-3" style="font-size: 2rem;" aria-hidden="true"></i>
+          <h2 class="h5 fw-bold text-dark mb-2">Better leads</h2>
+          <p class="text-body-secondary small mb-0">Qualified homeowners arrive knowing your ballpark range.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Want an Exact Fixed-Price Quote?"
+    subtitle="We'll visit your home, assess the space, and give you a detailed fixed-price quote — free, no obligation."
+    ctaText="Get Free Estimate"
+  />
+</BaseLayout>

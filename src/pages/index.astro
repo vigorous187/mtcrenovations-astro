@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StatsCounter from '../components/StatsCounter.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import ReviewsBlock from '../components/reviews/ReviewsBlock.astro';
+import AggregateRatingSchema from '../components/reviews/AggregateRatingSchema.astro';
+import reviewsArtifact from '../data/reviews-artifact.json';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+import { reviewCount, reviewRating, reviewSummary } from '../lib/googleReviews';
+import services from '../data/services.json';
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+  ]),
+];
+---
+
+<BaseLayout
+  title="MTC Renovations | Home Renovation Contractor Burlington"
+  description="Licensed and insured renovation contractor serving Burlington and Hamilton. Fixed-price quotes for kitchens, bathrooms, basements, flooring and painting."
+  schema={schemas}
+  heroPreload={{
+    src: '/assets/img/kitchen/hero-800.webp',
+    srcset: '/assets/img/kitchen/hero-800.webp 800w, /assets/img/kitchen/hero-1280.webp 1280w',
+  }}
+>
+  <!-- Hero Section — Full viewport with project photo -->
+  <section class="position-relative d-flex align-items-center" style="min-height: 100vh;">
+    <picture class="hero-media">
+      <source
+        type="image/webp"
+        srcset="/assets/img/kitchen/hero-800.webp 800w, /assets/img/kitchen/hero-1280.webp 1280w"
+        sizes="100vw"
+      />
+      <img
+        src="/assets/img/kitchen/hero.jpg"
+        alt=""
+        width="1200"
+        height="800"
+        fetchpriority="high"
+        decoding="sync"
+      />
+    </picture>
+    <div class="hero-overlay"></div>
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <p class="text-uppercase small fw-semibold mb-3" style="color: var(--mtc-red); letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
+      <h1 class="font-display fw-bold mb-3" style="font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text-primary);">
+        Renovations That<br/>Speak for Themselves
+      </h1>
+      <p class="h5 fw-semibold mb-4 mx-auto" style="max-width: 640px; color: var(--text-primary);">
+        Your Home Renovation Contractor in Burlington & Hamilton
+      </p>
+      <p class="mb-5 mx-auto" style="max-width: 550px; font-size: 1.15rem; color: var(--text-secondary);">
+        Licensed, insured, and backed by {reviewSummary}. From basements to kitchens — we build it right.
+      </p>
+      <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+        <a href="/estimate/" class="btn btn-danger btn-lg px-5 py-3">
+          Get Your Free Estimate
+        </a>
+        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn-ghost rounded-pill">
+          <i class="fas fa-phone me-2"></i>{site.phone}
+        </a>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="position-absolute bottom-0 start-50 mb-4 scroll-indicator" style="z-index: 2;">
+      <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 1.2rem;"></i>
+    </div>
+  </section>
+
+  <!-- Service Navigation Strip -->
+  <section class="py-4" style="background: var(--bg-surface-1); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="row g-3 justify-content-center reveal-stagger">
+        {services.map(s => (
+          <div class="col-6 col-md-4 col-lg reveal">
+            <a href={`/${s.slug}/`} class="text-decoration-none d-block">
+              <div class="service-card text-center rounded-3 p-4 h-100">
+                <div class="mb-3" style="height: 50px; display: flex; align-items: center; justify-content: center;">
+                  <img src={s.icon} alt={s.name} style="max-height: 40px; max-width: 40px; filter: brightness(0) invert(1); opacity: 0.8;" loading="lazy" />
+                </div>
+                <h2 class="h6 fw-bold mb-1" style="color: var(--text-primary);">{s.name}</h2>
+                <p class="mb-0 small" style="color: var(--text-muted);">Renovation</p>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Stats Counter -->
+  <StatsCounter />
+
+  <hr class="section-divider" />
+
+  <!-- Featured Projects Gallery -->
+  <FeaturedProjects />
+
+  <hr class="section-divider" />
+
+  <!-- Why MTC Section -->
+  <section class="py-5 gradient-mesh">
+    <div class="container">
+      <div class="row align-items-center g-3 g-lg-5">
+        <div class="col-lg-6 reveal">
+          <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Why Homeowners Choose Us</p>
+          <h2 class="font-display fw-bold mb-4" style="font-size: clamp(1.75rem, 3vw, 3rem);">Quality You Can See.<br/>Honesty You Can Trust.</h2>
+          <p class="mb-4" style="color: var(--text-secondary); font-size: 1.05rem;">
+            We deliver quality renovations on time and on budget. Every project starts with a detailed, fixed-price quote. No surprises, no hidden fees. For one published breakdown, see <a href="/blog/kitchen-renovation-cost-burlington/">kitchen renovation cost in Burlington</a>. Bathroom scope and tiers are in the <a href="/blog/bathroom-renovation-burlington/">Burlington bathroom renovation guide</a>.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
+                <div>
+                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);"><a href="/licensed-insured-renovation-contractor-ontario/" style="color: inherit;">Licensed &amp; Insured</a></h3>
+                  <p class="small mb-0" style="color: var(--text-muted);">Fully insured</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
+                <div>
+                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">Fixed-Price Quotes</h3>
+                  <p class="small mb-0" style="color: var(--text-muted);">No hidden fees</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
+                <div>
+                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">Google Reviews</h3>
+                  <p class="small mb-0" style="color: var(--text-muted);">
+                    {[...Array(5)].map(() => (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBC05" style="margin-right: 1px;">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    ))}
+                    {reviewCount !== null && <span class="ms-1">{reviewRating !== null ? `${reviewRating} · ` : ''}{reviewCount} reviews</span>}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check-circle mt-1" style="color: var(--mtc-red);"></i>
+                <div>
+                  <h3 class="h6 fw-bold mb-1" style="color: var(--text-primary);">On-Time Delivery</h3>
+                  <p class="small mb-0" style="color: var(--text-muted);">We stick to timelines</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal">
+          <div class="portfolio-item rounded-3 overflow-hidden">
+            <img
+              src="/assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-4.jpg?v=2"
+              alt="Kitchen renovation with wood grain contrast by MTC Renovations in Burlington"
+              class="w-100"
+              style="height: 450px; object-fit: cover;"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Trust Badges -->
+  <TrustBadges />
+
+  <hr class="section-divider" />
+
+  <AggregateRatingSchema data={reviewsArtifact} itemReviewedName={site.name} />
+  <ReviewsBlock data={reviewsArtifact} title="What Hamilton homeowners say" />
+
+  <hr class="section-divider" />
+
+  <!-- Process Steps -->
+  <ProcessSteps serviceName="" />
+
+  <hr class="section-divider" />
+
+  <!-- Service Area -->
+  <section class="py-5" style="background: var(--bg-surface-1);">
+    <div class="container text-center">
+      <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Service Area</p>
+      <h2 class="font-display fw-bold mb-4" style="font-size: clamp(1.75rem, 3vw, 3rem);">Serving Hamilton, Burlington and Halton</h2>
+      <p class="mb-4" style="color: var(--text-secondary); max-width: 640px; margin: 0 auto;">
+        We provide renovation services across Hamilton, Burlington, and Halton Region, the GTA west area on our <a href="/gta-renovation-contractor/">GTA west renovation contractor</a> page, plus Mississauga and Toronto. We do not publish a street address.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        {site.serviceAreaCities.map(city => (
+          <a
+            href={`/location/${city.toLowerCase().replace(/[\s.]+/g, '-')}/`}
+            class="btn btn-sm px-3 py-1 rounded-pill"
+            style="border: 1px solid var(--border-default); color: var(--text-secondary); background: transparent; transition: all 0.3s ease;"
+            onmouseover="this.style.borderColor='var(--mtc-red)';this.style.color='white'"
+            onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'"
+          >
+            {city}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- CTA -->
+  <CTABanner />
+</BaseLayout>

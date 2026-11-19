@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Page Not Found | MTC Renovations"
+  description="The page you're looking for doesn't exist. Browse our renovation services or contact MTC Renovations."
+  noindex={true}
+>
+  <section class="bg-dark text-white py-5 text-center" style="min-height: 60vh; display: flex; align-items: center;">
+    <div class="container">
+      <h1 class="display-1 fw-bold mb-3" style="font-size: 8rem; opacity: 0.15;">404</h1>
+      <h2 class="h3 fw-bold mb-3" style="margin-top: -3rem;">Page Not Found</h2>
+      <p class="text-white-50 mb-4" style="max-width: 480px; margin: 0 auto;">
+        The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+      </p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="/" class="btn btn-danger btn-lg px-4">Back to Home</a>
+        <a href="/estimate/" class="btn btn-outline-light btn-lg px-4">Get Free Estimate</a>
+      </div>
+      <div class="mt-5">
+        <p class="text-white-50 small mb-2">Or call us directly:</p>
+        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-white text-decoration-none fs-5 fw-bold">
+          <i class="fas fa-phone me-2"></i>{site.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

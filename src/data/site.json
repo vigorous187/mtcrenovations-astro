@@ -1,0 +1,74 @@
+{
+  "name": "MTC Renovations",
+  "domain": "www.mtcrenovations.ca",
+  "url": "https://www.mtcrenovations.ca",
+  "phone": "(647) 560-1095",
+  "email": "info@mtcrenovations.ca",
+  "address": {
+    "city": "Burlington",
+    "province": "Ontario",
+    "country": "CA"
+  },
+  "areaServed": [
+    "Burlington",
+    "Hamilton",
+    "Oakville",
+    "Milton",
+    "Mississauga",
+    "Toronto",
+    "Stoney Creek",
+    "Ancaster",
+    "Dundas",
+    "Waterdown",
+    "Grimsby",
+    "Binbrook",
+    "Winona",
+    "Caledonia",
+    "Brantford",
+    "Flamborough",
+    "Beamsville",
+    "Lincoln"
+  ],
+  "googlePlaceId": "ChIJ6-q1dq4tjyER7l1iLW6MdNk",
+  "colors": {
+    "primary": "#0a0a0a",
+    "accent": "#dc3545",
+    "secondary": "#6c757d",
+    "surface1": "#0f0f0f",
+    "surface2": "#141414",
+    "surface3": "#1a1a1a"
+  },
+  "serviceArea": "Hamilton, Burlington, Halton, Mississauga and Toronto",
+  "serviceAreaCities": [
+    "Burlington",
+    "Hamilton",
+    "Oakville",
+    "Stoney Creek",
+    "Ancaster",
+    "Dundas",
+    "Waterdown",
+    "Grimsby",
+    "Binbrook",
+    "Winona",
+    "Caledonia",
+    "Brantford",
+    "Milton",
+    "Flamborough",
+    "Beamsville",
+    "Lincoln"
+  ],
+  "googleReviews": {
+    "count": 34,
+    "rating": 4.9,
+    "url": "https://g.page/r/mtcrenovations/review"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61579019361994",
+    "instagram": "https://www.instagram.com/mtcrenovations/"
+  },
+  "jobtreadLogin": "https://app.jobtread.com/sign-in/MTC-Renovations",
+  "api": {
+    "baseUrl": "https://api.michaelthehomebuyer.ca",
+    "quoteEndpoint": "/mtc-renovations/get-a-quote"
+  }
+}

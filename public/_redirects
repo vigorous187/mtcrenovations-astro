@@ -1,0 +1,98 @@
+# Legacy URLs — redirect to prevent 404s and clean up GSC
+/home-buyers-still-open /about/ 301
+
+# GSC 404 cleanup 2026-07-03
+/location/thorold /locations/ 301
+/location/thorold/ /locations/ 301
+/location/caledon /locations/ 301
+/location/caledon/ /locations/ 301
+/basement/financing /basement/ 301
+/basement/financing/ /basement/ 301
+
+# Legacy Article JSON-LD image (file lives at /assets/img/og/default.png)
+/assets/img/og-default.png /assets/img/og/default.png 301
+
+# Inner pages: Astro trailingSlash: "always" (308). Root / is already the slash path.
+# /sitemap.xml is a real sitemapindex file (see generate-sitemap.mjs), not a redirect.
+# Do not add /newleadintake here — _redirects steal the SSR Function (PR #19 / #20).
+
+# /services/ is the natural guess; nav uses top-level service URLs instead
+/services / 301
+/services/ / 301
+
+# City pages retired 2026-11-04 (outside driving radius of Hamilton/Burlington). 301 to the nearest kept city page within ~25 km, else the /locations/ hub.
+/location/mississauga /location/oakville/ 301
+/location/mississauga/ /location/oakville/ 301
+/location/cambridge /location/flamborough/ 301
+/location/cambridge/ /location/flamborough/ 301
+/location/georgetown /location/milton/ 301
+/location/georgetown/ /location/milton/ 301
+/location/etobicoke /location/oakville/ 301
+/location/etobicoke/ /location/oakville/ 301
+/location/guelph /locations/ 301
+/location/guelph/ /locations/ 301
+/location/brampton /location/milton/ 301
+/location/brampton/ /location/milton/ 301
+/location/st-catharines /location/lincoln/ 301
+/location/st-catharines/ /location/lincoln/ 301
+/location/toronto /locations/ 301
+/location/toronto/ /locations/ 301
+/location/kitchener /locations/ 301
+/location/kitchener/ /locations/ 301
+/location/north-york /locations/ 301
+/location/north-york/ /locations/ 301
+/location/welland /location/lincoln/ 301
+/location/welland/ /location/lincoln/ 301
+/location/niagara-falls /location/lincoln/ 301
+/location/niagara-falls/ /location/lincoln/ 301
+/location/scarborough /locations/ 301
+/location/scarborough/ /locations/ 301
+/location/markham /locations/ 301
+/location/markham/ /locations/ 301
+
+# Nearby-area links that 404 (crawled 2026-10-16). One hop to the nearest kept city page, else /locations/.
+# Do not point these at another redirect (that would be a chain).
+/location/acton /location/milton/ 301
+/location/acton/ /location/milton/ 301
+/location/ajax /locations/ 301
+/location/ajax/ /locations/ 301
+/location/campbellville /location/milton/ 301
+/location/campbellville/ /location/milton/ 301
+/location/carlisle /location/flamborough/ 301
+/location/carlisle/ /location/flamborough/ 301
+/location/cayuga /location/caledonia/ 301
+/location/cayuga/ /location/caledonia/ 301
+/location/erin /location/milton/ 301
+/location/erin/ /location/milton/ 301
+/location/fergus /locations/ 301
+/location/fergus/ /locations/ 301
+/location/hagersville /location/caledonia/ 301
+/location/hagersville/ /location/caledonia/ 301
+/location/halton-hills /location/milton/ 301
+/location/halton-hills/ /location/milton/ 301
+/location/jordan /location/lincoln/ 301
+/location/jordan/ /location/lincoln/ 301
+/location/new-hamburg /locations/ 301
+/location/new-hamburg/ /locations/ 301
+/location/niagara-on-the-lake /locations/ 301
+/location/niagara-on-the-lake/ /locations/ 301
+/location/paris /location/brantford/ 301
+/location/paris/ /location/brantford/ 301
+/location/pickering /locations/ 301
+/location/pickering/ /locations/ 301
+/location/port-colborne /locations/ 301
+/location/port-colborne/ /locations/ 301
+/location/richmond-hill /locations/ 301
+/location/richmond-hill/ /locations/ 301
+/location/st.-catharines /location/lincoln/ 301
+/location/st.-catharines/ /location/lincoln/ 301
+/location/stouffville /locations/ 301
+/location/stouffville/ /locations/ 301
+/location/stratford /locations/ 301
+/location/stratford/ /locations/ 301
+/location/vaughan /locations/ 301
+/location/vaughan/ /locations/ 301
+/location/vineland /location/lincoln/ 301
+/location/vineland/ /location/lincoln/ 301
+/location/waterloo /locations/ 301
+/location/waterloo/ /locations/ 301

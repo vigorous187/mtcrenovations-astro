@@ -1,0 +1,37 @@
+---
+import { reviewCount, reviewRating } from '../lib/googleReviews';
+
+const stats: { value: number; suffix: string; label: string; isDecimal?: boolean }[] = [
+  { value: 15, suffix: '+', label: 'Years Experience' },
+  { value: 500, suffix: '+', label: 'Projects Completed' },
+  ...(reviewRating !== null ? [{ value: reviewRating, suffix: '', label: 'Google Rating', isDecimal: true }] : []),
+  ...(reviewCount !== null ? [{ value: reviewCount, suffix: '', label: 'Google Reviews' }] : []),
+];
+---
+
+<section class="py-5" style="background: var(--bg-surface-1);">
+  <div class="container">
+    <div class="row g-4 text-center reveal-stagger">
+      {stats.map(stat => (
+        <div class="col-6 col-md-3 reveal">
+          <div class="py-3">
+            {stat.isDecimal ? (
+              <div class="stat-number" style="color: var(--mtc-red);">{stat.value}</div>
+            ) : (
+              <div
+                class="stat-number"
+                style="color: var(--mtc-red);"
+                data-counter
+                data-target={stat.value}
+                data-suffix={stat.suffix}
+              >
+                {stat.value}{stat.suffix}
+              </div>
+            )}
+            <div class="stat-label mt-2">{stat.label}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

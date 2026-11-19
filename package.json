@@ -1,0 +1,28 @@
+{
+  "name": "mtcrenovations-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "generate:sitemap": "node ./scripts/generate-sitemap.mjs",
+    "blog:inventory": "node ./scripts/blog-inventory.mjs",
+    "seo:guidelines:init": "node ./scripts/seo-init-guideline-baseline.mjs",
+    "seo:guidelines:check": "node ./scripts/seo-check-guideline-baseline.mjs",
+    "blog:opposing-review": "node ./scripts/blog-opposing-review.mjs",
+    "test:generate-lead": "node --test ./scripts/generate-lead-track.test.mjs",
+    "build": "npm run generate:sitemap && astro build && node ./scripts/check-seo-baseline.mjs && node ./scripts/check-blog-chrome.mjs && node ./scripts/audit-headings.mjs && node ./scripts/check-blog-uniqueness.mjs && node ./scripts/blog-opposing-review.mjs && node ./scripts/check-blog-quality.mjs && node ./scripts/check-geo-lite.mjs && node ./scripts/check-brand-alignment.mjs && node ./scripts/check-pricing-alignment.mjs && node ./scripts/check-review-count.mjs && echo '_worker.js' > dist/.assetsignore",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^11.0.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
+    "astro": "^4.16.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2"
+  }
+}

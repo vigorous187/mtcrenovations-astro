@@ -1,0 +1,2432 @@
+{
+  "kitchen": [
+    {
+      "file": "virtual-tour-327738-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-17.jpg",
+      "alt": "Premium open-concept kitchen with excellent natural light, professional staging, and strong material contrast \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium open-concept kitchen with excellent natural light, professional staging, and strong material contrast \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-327738-24.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-24.jpg",
+      "alt": "Premium finished kitchen with herringbone floors, sage cabinets, and open shelving \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with herringbone floors, sage cabinets, and open shelving \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-11 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-11 2.JPG",
+      "alt": "Premium finished kitchen with dramatic hexagon backsplash and strong material contrast \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic hexagon backsplash and strong material contrast \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-12 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-12 2.JPG",
+      "alt": "Premium wide-angle finished kitchen with striking blue cabinets, hexagon backsplash, and open-concept flow \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium wide-angle finished kitchen with striking blue cabinets, hexagon backsplash, and open-concept flow \u2014 perfect hero shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-4 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-4 2.JPG",
+      "alt": "Premium finished kitchen with stunning wood grain contrast, professional staging, and wide-angle composition perfect for virtual tours and hero imagery \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with stunning wood grain contrast, professional staging, and wide-angle composition perfect for virtual tours and hero imagery."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-6 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-6 2.JPG",
+      "alt": "Premium finished kitchen with striking material contrast and professional staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with striking material contrast and professional staging \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-7 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-7 2.JPG",
+      "alt": "Premium finished kitchen with dramatic two-tone cabinetry, hex tile backsplash, and excellent wide-angle composition \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic two-tone cabinetry, hex tile backsplash, and excellent wide-angle composition \u2014 perfect hero shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-03.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-03.jpg",
+      "alt": "Stunning finished kitchen with dramatic geometric backsplash, bold orange chairs, and excellent natural lighting \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Stunning finished kitchen with dramatic geometric backsplash, bold orange chairs, and excellent natural lighting \u2014 premium portfolio hero shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-04.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-04.jpg",
+      "alt": "Premium finished kitchen with dramatic navy cabinets, geometric backsplash, and warm wood floors \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic navy cabinets, geometric backsplash, and warm wood floors \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-07.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-07.jpg",
+      "alt": "Stunning finished kitchen with dramatic material contrast, perfect staging, and bright natural light \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Stunning finished kitchen with dramatic material contrast, perfect staging, and bright natural light \u2014 premium portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-11.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-11.jpg",
+      "alt": "Premium finished kitchen with dramatic hexagon backsplash and strong material contrast \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic hexagon backsplash and strong material contrast \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-12.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-12.jpg",
+      "alt": "Premium wide-angle finished kitchen with striking blue cabinets, hexagon backsplash, and open-concept flow \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium wide-angle finished kitchen with striking blue cabinets, hexagon backsplash, and open-concept flow \u2014 perfect hero shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-4.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-4.jpg",
+      "alt": "Premium finished kitchen with stunning wood grain contrast, professional staging, and wide-angle composition perfect for virtual tours and hero imagery \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with stunning wood grain contrast, professional staging, and wide-angle composition perfect for virtual tours and hero imagery."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-6.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-6.jpg",
+      "alt": "Premium finished kitchen with striking material contrast and professional staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with striking material contrast and professional staging \u2014 perfect hero shot for all marketing channels."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-7.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-7.jpg",
+      "alt": "Premium finished kitchen with dramatic two-tone cabinetry, hex tile backsplash, and excellent wide-angle composition \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic two-tone cabinetry, hex tile backsplash, and excellent wide-angle composition \u2014 perfect hero shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-10 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-10 2.JPG",
+      "alt": "Stunning finished kitchen with dramatic black hexagon backsplash, floating wood shelves, and excellent natural light \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Stunning finished kitchen with dramatic black hexagon backsplash, floating wood shelves, and excellent natural light \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-05.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-05.jpg",
+      "alt": "Stunning finished kitchen with dramatic geometric backsplash, navy cabinets, and excellent natural light \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Stunning finished kitchen with dramatic geometric backsplash, navy cabinets, and excellent natural light \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-10.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-10.jpg",
+      "alt": "Stunning finished kitchen with dramatic black hexagon backsplash, floating wood shelves, and excellent natural light \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Stunning finished kitchen with dramatic black hexagon backsplash, floating wood shelves, and excellent natural light \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-11.CXvtX8MI.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-11.CXvtX8MI.jpg",
+      "alt": "Professional wide-angle finished kitchen with strong dark/light contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with strong dark/light contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-15.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-15.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-17.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-19 (2).jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-19 (2).jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-20.CbowRtMv.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-20.CbowRtMv.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-21.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-21.jpg",
+      "alt": "Bright open-concept kitchen with dramatic waterfall quartz island and excellent natural light \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright open-concept kitchen with dramatic waterfall quartz island and excellent natural light \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-22.HTDce70W.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-22.HTDce70W.jpg",
+      "alt": "Professional wide-angle finished kitchen with strong dark/light contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with strong dark/light contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-07.CqD3sG3z.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-07.CqD3sG3z.jpg",
+      "alt": "Bright finished kitchen with beautiful hardwood floors and clean white cabinetry \u2014 premium portfolio shot perfect for virtual tours and marketing \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with beautiful hardwood floors and clean white cabinetry \u2014 premium portfolio shot perfect for virtual tours and marketing."
+    },
+    {
+      "file": "virtual-tour-320787-08.C0A0lxf-.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-08.C0A0lxf-.jpg",
+      "alt": "Bright finished kitchen with live-edge wood shelves and clean white cabinetry \u2014 premium portfolio shot with strong material contrast \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with live-edge wood shelves and clean white cabinetry \u2014 premium portfolio shot with strong material contrast."
+    },
+    {
+      "file": "virtual-tour-320787-09.GSCtWwlt.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-09.GSCtWwlt.jpg",
+      "alt": "Bright finished kitchen with strong two-tone cabinet contrast and clean staging \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with strong two-tone cabinet contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-10.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-10.jpg",
+      "alt": "Clean modern kitchen with excellent wide-angle composition showing full layout \u2014 premium portfolio shot with strong material contrast \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean modern kitchen with excellent wide-angle composition showing full layout \u2014 premium portfolio shot with strong material contrast."
+    },
+    {
+      "file": "virtual-tour-320787-11.DHMjnxXZ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-11.DHMjnxXZ.jpg",
+      "alt": "Bright finished kitchen with sage green cabinets and white quartz \u2014 premium wide-angle portfolio shot perfect for virtual tours \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with sage green cabinets and white quartz \u2014 premium wide-angle portfolio shot perfect for virtual tours."
+    },
+    {
+      "file": "virtual-tour-320787-13.DczzwhIE.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-13.DczzwhIE.jpg",
+      "alt": "Bright modern kitchen with excellent natural light and strong two-tone cabinet contrast \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light and strong two-tone cabinet contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-16.CRho2PTp.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-16.CRho2PTp.jpg",
+      "alt": "Bright finished kitchen with strong two-tone cabinet contrast and clean staging \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with strong two-tone cabinet contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-20.CVixEeTS.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-20.CVixEeTS.jpg",
+      "alt": "Bright open-concept kitchen with excellent natural light and clean modern finishes \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright open-concept kitchen with excellent natural light and clean modern finishes \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-13.BJ25UW56.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-13.BJ25UW56.jpg",
+      "alt": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-14.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-14.jpg",
+      "alt": "Bright finished breakfast nook with custom built-ins and professional staging \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished breakfast nook with custom built-ins and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-15.DvnuJ8vB.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-15.DvnuJ8vB.jpg",
+      "alt": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-18.jpg",
+      "alt": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-19.05aaf77b058cf504.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-19.05aaf77b058cf504.jpg",
+      "alt": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-20.3P3DgdvR.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-20.3P3DgdvR.jpg",
+      "alt": "Professional wide-angle finished kitchen with warm wood shelving, modern blue cabinets, and excellent natural lighting \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with warm wood shelving, modern blue cabinets, and excellent natural lighting \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-21.EkMgiSUm.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-21.EkMgiSUm.jpg",
+      "alt": "Bright finished kitchen with natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-22.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-22.jpg",
+      "alt": "Premium finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 ideal portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-327738-25.D66Ppe6g.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-25.D66Ppe6g.jpg",
+      "alt": "Bright modern kitchen with excellent natural light and clean staging \u2014 premium portfolio shot with strong material contrast \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright modern kitchen with excellent natural light and clean staging \u2014 premium portfolio shot with strong material contrast."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-19.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-19.jpg",
+      "alt": "Professional finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-20.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-20.jpg",
+      "alt": "Professional finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-21.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-21.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-3 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-3 2.JPG",
+      "alt": "Professional wide-angle finished kitchen with warm wood tones and clean staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with warm wood tones and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-348484-53.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-348484-53.jpg",
+      "alt": "Bright finished kitchen with smart laundry integration and strong material contrast \u2014 premium portfolio shot \u2014 Queensdale, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Queensdale",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with smart laundry integration and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-06.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-06.jpg",
+      "alt": "Bright finished kitchen with premium quartz countertops and modern black fixtures \u2014 excellent portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with premium quartz countertops and modern black fixtures \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-3.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-3.jpg",
+      "alt": "Professional wide-angle finished kitchen with warm wood tones and clean staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with warm wood tones and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "IMG_5524.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5524.JPG",
+      "alt": "Bright open-concept kitchen with excellent lighting and clean staging \u2014 premium portfolio shot showing full space flow \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright open-concept kitchen with excellent lighting and clean staging \u2014 premium portfolio shot showing full space flow."
+    },
+    {
+      "file": "IMG_5525.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5525.JPG",
+      "alt": "Bright open-concept kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright open-concept kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "IMG_5537.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5537.JPG",
+      "alt": "Bright open-concept kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright open-concept kitchen with excellent natural light, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-11.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/virtual-tour-318929-mls-high-res-image-11.jpg",
+      "alt": "Premium finished kitchen with excellent material contrast and professional staging \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with excellent material contrast and professional staging \u2014 ideal portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-16.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-16.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent lighting, clean staging, and strong material contrast \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent lighting, clean staging, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-18.jpg",
+      "alt": "Premium finished kitchen with dramatic dark cabinets, quartz counters, and professional wide-angle composition \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic dark cabinets, quartz counters, and professional wide-angle composition \u2014 excellent portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-19.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-19.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-20.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/virtual-tour-318929-mls-high-res-image-20.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-22.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/virtual-tour-318929-mls-high-res-image-22.jpg",
+      "alt": "Premium finished kitchen with excellent material contrast and open-concept flow \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with excellent material contrast and open-concept flow \u2014 perfect portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-23.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-23.jpg",
+      "alt": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished kitchen with excellent material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-15.Dj47Dutu.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-15.Dj47Dutu.jpg",
+      "alt": "Clean finished kitchen with trendy sage cabinets, white quartz counters, and excellent natural light \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with trendy sage cabinets, white quartz counters, and excellent natural light \u2014 strong portfolio piece."
+    },
+    {
+      "file": "IMG_7311.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7311.jpeg",
+      "alt": "Modern two-tone kitchen with strong dark/light contrast and clean finishes \u2014 excellent portfolio shot \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Modern two-tone kitchen with strong dark/light contrast and clean finishes \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "IMG_7312.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7312.jpeg",
+      "alt": "Clean finished kitchen with strong two-tone cabinet contrast and quality quartz countertops \u2014 excellent portfolio shot \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with strong two-tone cabinet contrast and quality quartz countertops \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "IMG_7313.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7313.jpeg",
+      "alt": "Clean finished kitchen with dramatic quartz veining and good material contrast \u2014 strong portfolio shot despite artificial lighting \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with dramatic quartz veining and good material contrast \u2014 strong portfolio shot despite artificial lighting."
+    },
+    {
+      "file": "virtual-tour-320787-38.KbWP33Yc.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-38.KbWP33Yc.jpg",
+      "alt": "Clean finished kitchen with wide-angle view showing full layout \u2014 excellent multi-channel marketing value \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.95,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with wide-angle view showing full layout \u2014 excellent multi-channel marketing value."
+    },
+    {
+      "file": "virtual-tour-320787-39.NzEmjUje.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-39.NzEmjUje.jpg",
+      "alt": "Clean finished kitchen with good lighting and wide-angle view showing full layout \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.95,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with good lighting and wide-angle view showing full layout \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-12.B_9MVn2L.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-12.B_9MVn2L.jpg",
+      "alt": "Clean finished kitchen with live-edge wood shelves and two-tone cabinets \u2014 strong portfolio shot with current design trends \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with live-edge wood shelves and two-tone cabinets \u2014 strong portfolio shot with current design trends."
+    },
+    {
+      "file": "virtual-tour-320787-14.Chq327jJ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-14.Chq327jJ.jpg",
+      "alt": "Clean finished kitchen island with modern sage cabinets and quartz countertop \u2014 strong portfolio piece with good natural lighting \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen island with modern sage cabinets and quartz countertop \u2014 strong portfolio piece with good natural lighting."
+    },
+    {
+      "file": "virtual-tour-320787-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-18.jpg",
+      "alt": "Clean finished kitchen with warm wood floors and modern island \u2014 strong wide-angle portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with warm wood floors and modern island \u2014 strong wide-angle portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-23.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-23.jpg",
+      "alt": "Clean finished kitchen with beautiful wood flooring and white cabinetry \u2014 strong portfolio shot with good natural light \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with beautiful wood flooring and white cabinetry \u2014 strong portfolio shot with good natural light."
+    },
+    {
+      "file": "virtual-tour-320787-40.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-40.jpg",
+      "alt": "Clean finished kitchen with two-tone cabinets and modern fixtures \u2014 strong portfolio shot despite artificial lighting \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with two-tone cabinets and modern fixtures \u2014 strong portfolio shot despite artificial lighting."
+    },
+    {
+      "file": "virtual-tour-320787-43.Bv01U0Sg.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-43.Bv01U0Sg.jpg",
+      "alt": "Clean finished kitchen with strong two-tone cabinet contrast and good natural lighting \u2014 solid portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with strong two-tone cabinet contrast and good natural lighting \u2014 solid portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-44.Dfduqfjx.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-44.Dfduqfjx.jpg",
+      "alt": "Clean finished kitchen detail with modern sage cabinets and copper hardware \u2014 strong portfolio shot with current design trends \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen detail with modern sage cabinets and copper hardware \u2014 strong portfolio shot with current design trends."
+    },
+    {
+      "file": "virtual-tour-327738-23.DOHAF8PO.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-23.DOHAF8PO.jpg",
+      "alt": "Bright finished kitchen with striking dark countertops and warm wood shelving \u2014 strong portfolio piece with good material contrast \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with striking dark countertops and warm wood shelving \u2014 strong portfolio piece with good material contrast."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-14.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-14.jpg",
+      "alt": "Clean finished kitchen with strong material contrast and professional staging \u2014 excellent portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with strong material contrast and professional staging \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-15.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-15.jpg",
+      "alt": "Clean finished kitchen with excellent material contrast between dark quartz counters and white subway tile \u2014 strong portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with excellent material contrast between dark quartz counters and white subway tile \u2014 strong portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-17.jpg",
+      "alt": "Clean finished kitchen with good natural light and modern finishes \u2014 strong portfolio shot for virtual tours and marketing \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with good natural light and modern finishes \u2014 strong portfolio shot for virtual tours and marketing."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-18.jpg",
+      "alt": "Clean finished kitchen with strong material contrast and excellent natural lighting \u2014 premium portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with strong material contrast and excellent natural lighting \u2014 premium portfolio shot."
+    },
+    {
+      "file": "IMG_7304.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7304.jpeg",
+      "alt": "Clean modern kitchen with strong material contrast and professional lighting \u2014 solid portfolio piece \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean modern kitchen with strong material contrast and professional lighting \u2014 solid portfolio piece."
+    },
+    {
+      "file": "IMG_7305.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7305.jpeg",
+      "alt": "Clean modern kitchen with strong material contrast and professional staging - excellent portfolio shot despite artificial lighting \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean modern kitchen with strong material contrast and professional staging - excellent portfolio shot despite artificial lighting."
+    },
+    {
+      "file": "IMG_7306.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7306.jpeg",
+      "alt": "Clean modern kitchen with good lighting and wide-angle view showing full layout \u2014 strong portfolio piece \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean modern kitchen with good lighting and wide-angle view showing full layout \u2014 strong portfolio piece."
+    },
+    {
+      "file": "IMG_7310.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7310.jpeg",
+      "alt": "Clean finished kitchen with strong two-tone cabinet contrast and quality materials \u2014 solid portfolio piece \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Queensway",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with strong two-tone cabinet contrast and quality materials \u2014 solid portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-17.jpg",
+      "alt": "Clean finished kitchen with excellent natural light and professional staging \u2014 strong portfolio piece with balcony view bonus \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with excellent natural light and professional staging \u2014 strong portfolio piece with balcony view bonus."
+    },
+    {
+      "file": "virtual-tour-320787-45.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-45.jpg",
+      "alt": "Clean finished kitchen with good lighting and wide-angle view showing full space \u2014 strong portfolio shot despite minimal styling \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with good lighting and wide-angle view showing full space \u2014 strong portfolio shot despite minimal styling."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-13.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-13.jpg",
+      "alt": "Clean finished kitchen with good lighting and wide-angle view showing full layout \u2014 solid portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with good lighting and wide-angle view showing full layout \u2014 solid portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-16.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-16.jpg",
+      "alt": "Clean finished kitchen with excellent natural light and professional staging \u2014 strong portfolio shot despite minimal cabinetry visible \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Eastchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with excellent natural light and professional staging \u2014 strong portfolio shot despite minimal cabinetry visible."
+    },
+    {
+      "file": "IMG_6881.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6881.jpeg",
+      "alt": "Dated yellow kitchen with lived-in clutter clearly documents pre-renovation state \u2014 excellent before/after storytelling potential \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "before_condition",
+      "explanation": "Dated yellow kitchen with lived-in clutter clearly documents pre-renovation state \u2014 excellent before/after storytelling potential."
+    },
+    {
+      "file": "IMG_6926.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6926.jpeg",
+      "alt": "Dated 1980s kitchen with worn cabinets and cluttered counters \u2014 excellent before condition for dramatic transformation storytelling \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "kitchen",
+      "type": "before_condition",
+      "explanation": "Dated 1980s kitchen with worn cabinets and cluttered counters \u2014 excellent before condition for dramatic transformation storytelling."
+    }
+  ],
+  "bathroom": [
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-27.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-27.jpg",
+      "alt": "Premium finished bathroom with excellent lighting and material contrast \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Premium finished bathroom with excellent lighting and material contrast \u2014 perfect portfolio hero shot."
+    },
+    {
+      "file": "virtual-tour-327738-35.B6GSpeWQ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-35.B6GSpeWQ.jpg",
+      "alt": "Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-28 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-28 2.JPG",
+      "alt": "Stunning finished bathroom with dramatic navy subway tile and brass fixtures \u2014 premium portfolio shot with strong design impact \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning finished bathroom with dramatic navy subway tile and brass fixtures \u2014 premium portfolio shot with strong design impact."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-28.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-28.jpg",
+      "alt": "Stunning finished bathroom with dramatic navy subway tile and brass fixtures \u2014 premium portfolio shot with strong design impact \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning finished bathroom with dramatic navy subway tile and brass fixtures \u2014 premium portfolio shot with strong design impact."
+    },
+    {
+      "file": "IMG_7332.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7332.jpeg",
+      "alt": "Stunning hexagon tile shower with modern black fixtures \u2014 premium portfolio shot showcasing current design trends \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning hexagon tile shower with modern black fixtures \u2014 premium portfolio shot showcasing current design trends."
+    },
+    {
+      "file": "virtual-tour-320787-31.CsyR0IuS.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-31.CsyR0IuS.jpg",
+      "alt": "Clean modern bathroom with excellent lighting and professional staging \u2014 premium portfolio shot with strong virtual tour quality \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent lighting and professional staging \u2014 premium portfolio shot with strong virtual tour quality."
+    },
+    {
+      "file": "virtual-tour-320787-33.CAWd07LF.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-33.CAWd07LF.jpg",
+      "alt": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-35.F4Gjjiis.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-35.F4Gjjiis.jpg",
+      "alt": "Clean modern bathroom with LED mirror and dark vanity contrast \u2014 excellent portfolio shot with virtual tour quality \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with LED mirror and dark vanity contrast \u2014 excellent portfolio shot with virtual tour quality."
+    },
+    {
+      "file": "virtual-tour-327738-36.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-36.jpg",
+      "alt": "Beautifully staged modern powder room with vessel sink and warm wood vanity \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully staged modern powder room with vessel sink and warm wood vanity \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-37.DBDMDPx6.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-37.DBDMDPx6.jpg",
+      "alt": "Bright modern bathroom with striking green herringbone floor and live-edge wood shelving \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright modern bathroom with striking green herringbone floor and live-edge wood shelving \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-38.TERG_eHA.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-38.TERG_eHA.jpg",
+      "alt": "Bright modern bathroom with black fixtures and white subway tile \u2014 premium portfolio shot with strong design appeal \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright modern bathroom with black fixtures and white subway tile \u2014 premium portfolio shot with strong design appeal."
+    },
+    {
+      "file": "virtual-tour-327738-39.B6dBQ0pz.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-39.B6dBQ0pz.jpg",
+      "alt": "Bright modern bathroom with strong design elements and professional staging \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright modern bathroom with strong design elements and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-45.Bbo5Fhh-.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-45.Bbo5Fhh-.jpg",
+      "alt": "Modern finished bathroom with industrial vanity and clean staging \u2014 premium portfolio shot with strong design appeal \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern finished bathroom with industrial vanity and clean staging \u2014 premium portfolio shot with strong design appeal."
+    },
+    {
+      "file": "virtual-tour-327738-46.BaCowhN_.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-46.BaCowhN_.jpg",
+      "alt": "Modern bathroom with striking black fixtures and clean white tile \u2014 premium portfolio shot with strong design appeal \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern bathroom with striking black fixtures and clean white tile \u2014 premium portfolio shot with strong design appeal."
+    },
+    {
+      "file": "virtual-tour-327738-47.BaBgsZDs.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-47.BaBgsZDs.jpg",
+      "alt": "Modern finished bathroom with clean lines, black fixtures, and professional lighting \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern finished bathroom with clean lines, black fixtures, and professional lighting \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-27 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-27 2.JPG",
+      "alt": "Beautifully finished powder room with strong design elements and professional staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished powder room with strong design elements and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-17.jpg",
+      "alt": "Bright finished powder room with modern fixtures and clean styling \u2014 excellent portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright finished powder room with modern fixtures and clean styling \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-20.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-20.jpg",
+      "alt": "Beautifully finished modern bathroom with warm wood floors and clean staging \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished modern bathroom with warm wood floors and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-24.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-24.jpg",
+      "alt": "Beautifully finished powder room with modern fixtures, excellent lighting, and professional staging quality \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished powder room with modern fixtures, excellent lighting, and professional staging quality."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-38.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-38.jpg",
+      "alt": "Beautifully finished bathroom with striking blue accent tile and clean white subway tile \u2014 premium portfolio shot with strong material contrast \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished bathroom with striking blue accent tile and clean white subway tile \u2014 premium portfolio shot with strong material contrast."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-26.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-26.jpg",
+      "alt": "Beautifully finished bathroom with striking blue accent tile and professional staging \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished bathroom with striking blue accent tile and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-27.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-27.jpg",
+      "alt": "Beautifully finished powder room with strong design elements and professional staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Beautifully finished powder room with strong design elements and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "IMG_7334.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7334.jpeg",
+      "alt": "Stunning finished bathroom with dramatic black hexagon tile and clean modern fixtures \u2014 premium portfolio shot \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning finished bathroom with dramatic black hexagon tile and clean modern fixtures \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-28.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-28.jpg",
+      "alt": "Clean modern bathroom with strong dark/light contrast and professional staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with strong dark/light contrast and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-29.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-29.jpg",
+      "alt": "Clean modern bathroom with excellent lighting and professional staging \u2014 premium portfolio shot showing contemporary design trends \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent lighting and professional staging \u2014 premium portfolio shot showing contemporary design trends."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-33.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-33.jpg",
+      "alt": "Bright finished bathroom with strong material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright finished bathroom with strong material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-34.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-34.jpg",
+      "alt": "Bright finished bathroom with strong material contrast and clean staging \u2014 premium portfolio shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright finished bathroom with strong material contrast and clean staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-39.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-39.jpg",
+      "alt": "Clean modern powder room with warm wood vanity and brass accents \u2014 premium portfolio shot with strong material contrast \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern powder room with warm wood vanity and brass accents \u2014 premium portfolio shot with strong material contrast."
+    },
+    {
+      "file": "IMG_7333.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7333.jpeg",
+      "alt": "Stunning hexagon tile work with perfect grout lines and built-in niche \u2014 premium craftsmanship showcase \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.35,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning hexagon tile work with perfect grout lines and built-in niche \u2014 premium craftsmanship showcase."
+    },
+    {
+      "file": "IMG_7519.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7519.jpeg",
+      "alt": "Clean modern bathroom with excellent natural light and strong material contrast \u2014 premium portfolio shot \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent natural light and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "IMG_7520.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7520.jpeg",
+      "alt": "Clean modern bathroom with strong design elements and good lighting \u2014 excellent portfolio piece \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with strong design elements and good lighting \u2014 excellent portfolio piece."
+    },
+    {
+      "file": "IMG_5530.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5530.JPG",
+      "alt": "Modern finished bathroom with strong color contrast and clean lines \u2014 excellent portfolio piece across all channels \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern finished bathroom with strong color contrast and clean lines \u2014 excellent portfolio piece across all channels."
+    },
+    {
+      "file": "IMG_7512.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7512.jpeg",
+      "alt": "Bright finished bathroom with modern fixtures, hexagon tile, and strong natural light \u2014 excellent portfolio shot \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright finished bathroom with modern fixtures, hexagon tile, and strong natural light \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "IMG_7514.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7514.jpeg",
+      "alt": "Clean finished powder room with modern fixtures, good natural light, and trendy hex tile flooring \u2014 strong portfolio piece \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished powder room with modern fixtures, good natural light, and trendy hex tile flooring \u2014 strong portfolio piece."
+    },
+    {
+      "file": "IMG_7522.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7522.jpeg",
+      "alt": "Modern finished bathroom with strong design elements - black vanity, geometric tile, quality fixtures create portfolio-worthy shot \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern finished bathroom with strong design elements - black vanity, geometric tile, quality fixtures create portfolio-worthy shot."
+    },
+    {
+      "file": "IMG_7316.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7316.jpeg",
+      "alt": "Modern bathroom with striking black hexagon tile feature wall and coordinated floor \u2014 strong portfolio piece showing current design trends \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern bathroom with striking black hexagon tile feature wall and coordinated floor \u2014 strong portfolio piece showing current design trends."
+    },
+    {
+      "file": "IMG_7317.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7317.jpeg",
+      "alt": "Modern black hexagon tile with clean white tub creates striking contrast \u2014 strong portfolio piece showing current design trends \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern black hexagon tile with clean white tub creates striking contrast \u2014 strong portfolio piece showing current design trends."
+    },
+    {
+      "file": "IMG_7318.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7318.jpeg",
+      "alt": "Modern powder room with striking black hex tile and warm wood vanity \u2014 strong portfolio piece with current design trends \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern powder room with striking black hex tile and warm wood vanity \u2014 strong portfolio piece with current design trends."
+    },
+    {
+      "file": "IMG_7315.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7315.jpeg",
+      "alt": "Modern bathroom with striking black hexagon tile and warm wood vanity \u2014 strong portfolio piece despite photographer reflection \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.7,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern bathroom with striking black hexagon tile and warm wood vanity \u2014 strong portfolio piece despite photographer reflection."
+    },
+    {
+      "file": "IMG_7517.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7517.jpeg",
+      "alt": "Clean finished bathroom with classic white subway tile and modern black fixtures \u2014 strong portfolio piece \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with classic white subway tile and modern black fixtures \u2014 strong portfolio piece."
+    },
+    {
+      "file": "IMG_7518.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7518.jpeg",
+      "alt": "Clean finished bathroom with bright natural light, classic subway tile, and black fixtures \u2014 strong portfolio shot \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with bright natural light, classic subway tile, and black fixtures \u2014 strong portfolio shot."
+    },
+    {
+      "file": "IMG_7521.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7521.jpeg",
+      "alt": "Clean finished bathroom with modern fixtures and good lighting showing complete renovation quality \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with modern fixtures and good lighting showing complete renovation quality."
+    },
+    {
+      "file": "IMG_7523.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7523.jpeg",
+      "alt": "Clean modern powder room with excellent natural light and contemporary finishes \u2014 strong portfolio piece \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern powder room with excellent natural light and contemporary finishes \u2014 strong portfolio piece."
+    },
+    {
+      "file": "IMG_7524.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7524.jpeg",
+      "alt": "Clean finished bathroom with classic white subway tile and black fixtures \u2014 strong portfolio shot with timeless appeal \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with classic white subway tile and black fixtures \u2014 strong portfolio shot with timeless appeal."
+    },
+    {
+      "file": "virtual-tour-320787-56.CjhEPhqg.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-56.CjhEPhqg.jpg",
+      "alt": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-57.DkWfX2dC.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-57.DkWfX2dC.jpg",
+      "alt": "Clean modern bathroom with excellent natural light and professional staging \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent natural light and professional staging \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-58.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-58.jpg",
+      "alt": "Clean modern bathroom with excellent wide-angle composition showing full space \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent wide-angle composition showing full space \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-59.Cfv86Bhu.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-59.Cfv86Bhu.jpg",
+      "alt": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 strong portfolio piece \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent natural light and professional wide-angle composition \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-24.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-24.jpg",
+      "alt": "Clean finished bathroom with good natural light and modern finishes \u2014 strong portfolio piece for virtual tours and marketing \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with good natural light and modern finishes \u2014 strong portfolio piece for virtual tours and marketing."
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-26.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-26.jpg",
+      "alt": "Clean finished bathroom with strong material contrast and bright natural light \u2014 excellent portfolio shot \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Eastchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with strong material contrast and bright natural light \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-37 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-37 2.JPG",
+      "alt": "Clean modern bathroom with good lighting and staging - strong portfolio piece for virtual tours and marketing \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with good lighting and staging - strong portfolio piece for virtual tours and marketing."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-36.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-36.jpg",
+      "alt": "Clean finished powder room with good natural light and modern fixtures \u2014 solid portfolio piece \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Kron",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished powder room with good natural light and modern fixtures \u2014 solid portfolio piece."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-37.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-37.jpg",
+      "alt": "Clean modern bathroom with good lighting and staging - strong portfolio piece for virtual tours and marketing \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with good lighting and staging - strong portfolio piece for virtual tours and marketing."
+    },
+    {
+      "file": "IMG_5534.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5534.JPG",
+      "alt": "Clean modern bathroom with LED mirror and floating vanity \u2014 strong portfolio piece showing contemporary design trends \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with LED mirror and floating vanity \u2014 strong portfolio piece showing contemporary design trends."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-45.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-45.jpg",
+      "alt": "Clean modern bathroom with LED mirror and wood-look flooring \u2014 strong portfolio piece for virtual tours and marketing \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with LED mirror and wood-look flooring \u2014 strong portfolio piece for virtual tours and marketing."
+    },
+    {
+      "file": "virtual-tour-320787-34.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-34.jpg",
+      "alt": "Clean modern bathroom with excellent lighting and professional staging \u2014 strong portfolio piece for virtual tours and website \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bathroom with excellent lighting and professional staging \u2014 strong portfolio piece for virtual tours and website."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-46.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-46.jpg",
+      "alt": "Clean finished bathroom with LED mirror and modern vanity \u2014 solid portfolio shot with multi-channel marketing value \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished bathroom with LED mirror and modern vanity \u2014 solid portfolio shot with multi-channel marketing value."
+    },
+    {
+      "file": "IMG_6892.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6892.jpeg",
+      "alt": "Dated bathroom with beige tile and worn finishes clearly documents pre-renovation state \u2014 excellent before/after storytelling potential \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "before_condition",
+      "explanation": "Dated bathroom with beige tile and worn finishes clearly documents pre-renovation state \u2014 excellent before/after storytelling potential."
+    },
+    {
+      "file": "IMG_6894.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6894.jpeg",
+      "alt": "Dramatically dated bathroom with severe mold/staining in tub - excellent before condition for transformation storytelling \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "before_condition",
+      "explanation": "Dramatically dated bathroom with severe mold/staining in tub - excellent before condition for transformation storytelling."
+    },
+    {
+      "file": "IMG_6895.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6895.jpeg",
+      "alt": "Dated bathroom with stained tile and worn fixtures creates dramatic before/after storytelling potential \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "bathroom",
+      "type": "before_condition",
+      "explanation": "Dated bathroom with stained tile and worn fixtures creates dramatic before/after storytelling potential."
+    },
+    {
+      "file": "IMG_5894.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/57 Rosedene Demo/IMG_5894.jpeg",
+      "alt": "Dramatically deteriorated bathroom with exposed framing and mold damage - exceptional before/after storytelling potential \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "before_condition",
+      "explanation": "Dramatically deteriorated bathroom with exposed framing and mold damage - exceptional before/after storytelling potential."
+    },
+    {
+      "file": "IMG_4267.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_4267.jpeg",
+      "alt": "Dramatic water damage and mold documentation creates powerful before/after transformation story potential \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Stonehenge",
+      "room": "bathroom",
+      "type": "before_condition",
+      "explanation": "Dramatic water damage and mold documentation creates powerful before/after transformation story potential."
+    }
+  ],
+  "basement": [
+    {
+      "file": "virtual-tour-320787-46.CPMwhOM3.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-46.CPMwhOM3.jpg",
+      "alt": "Bright finished basement with sage green cabinets and white quartz \u2014 premium wide-angle portfolio shot perfect for virtual tours \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with sage green cabinets and white quartz \u2014 premium wide-angle portfolio shot perfect for virtual tours."
+    },
+    {
+      "file": "virtual-tour-320787-50.BNAiWU5q.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-50.BNAiWU5q.jpg",
+      "alt": "Bright finished basement with modern fixtures and warm wood flooring \u2014 excellent wide-angle portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with modern fixtures and warm wood flooring \u2014 excellent wide-angle portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-51.C9WVz6l6.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-51.C9WVz6l6.jpg",
+      "alt": "Bright finished basement suite with modern fixtures and beautiful hardwood \u2014 premium portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement suite with modern fixtures and beautiful hardwood \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-48.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-48.jpg",
+      "alt": "Beautifully staged finished basement with exposed beams, professional lighting, and aspirational furniture \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully staged finished basement with exposed beams, professional lighting, and aspirational furniture \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-49.Bfv60reJ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-49.Bfv60reJ.jpg",
+      "alt": "Beautifully finished basement with professional staging, warm lighting, and premium materials \u2014 excellent portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with professional staging, warm lighting, and premium materials \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-50.Cp4Uv5pJ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-50.Cp4Uv5pJ.jpg",
+      "alt": "Beautifully finished basement with exposed beam ceiling, professional staging, and warm lighting \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with exposed beam ceiling, professional staging, and warm lighting \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-51.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-51.jpg",
+      "alt": "Beautifully finished basement with exposed beam ceiling, professional staging, and excellent lighting \u2014 premium portfolio shot \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with exposed beam ceiling, professional staging, and excellent lighting \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-38 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-38 2.JPG",
+      "alt": "Professional finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Professional finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-39 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-39 2.JPG",
+      "alt": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-40 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-40 2.JPG",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-42 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-42 2.JPG",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-43 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-43 2.JPG",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-44 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-44 2.JPG",
+      "alt": "Beautifully finished basement with warm lighting, clean staging, and professional wide-angle composition \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with warm lighting, clean staging, and professional wide-angle composition \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-45 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-45 2.JPG",
+      "alt": "Beautifully finished basement with professional staging, warm lighting, and modern design \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with professional staging, warm lighting, and modern design \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-8 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-8 2.JPG",
+      "alt": "Bright finished basement with warm wood accents and clean modern design \u2014 excellent portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with warm wood accents and clean modern design \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-39.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-39.jpg",
+      "alt": "Professional wide-angle basement renovation with rich wood floors, clean lines, and excellent staging \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle basement renovation with rich wood floors, clean lines, and excellent staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-41.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-41.jpg",
+      "alt": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-42.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-42.jpg",
+      "alt": "Professional finished basement with excellent lighting, staging, and wide-angle composition \u2014 premium portfolio shot \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Professional finished basement with excellent lighting, staging, and wide-angle composition \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-38.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-38.jpg",
+      "alt": "Professional finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Professional finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-39.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-39.jpg",
+      "alt": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-40.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-40.jpg",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-42.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-42.jpg",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-43.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-43.jpg",
+      "alt": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent staging and wide-angle composition \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-44.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-44.jpg",
+      "alt": "Beautifully finished basement with warm lighting, clean staging, and professional wide-angle composition \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with warm lighting, clean staging, and professional wide-angle composition \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-45.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-45.jpg",
+      "alt": "Beautifully finished basement with professional staging, warm lighting, and modern design \u2014 premium portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Beautifully finished basement with professional staging, warm lighting, and modern design \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-8.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-8.jpg",
+      "alt": "Bright finished basement with warm wood accents and clean modern design \u2014 excellent portfolio shot \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with warm wood accents and clean modern design \u2014 excellent portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-40.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-40.jpg",
+      "alt": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium virtual tour shot \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium virtual tour shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-41.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-41.jpg",
+      "alt": "Clean finished basement with excellent lighting and professional staging \u2014 premium portfolio shot showing complete transformation \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with excellent lighting and professional staging \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-42.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-42.jpg",
+      "alt": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium portfolio shot for virtual tours and marketing \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium portfolio shot for virtual tours and marketing."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-40.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-40.jpg",
+      "alt": "Clean finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with excellent lighting and staging \u2014 premium portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-320787-37.DYw2S9hX.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-37.DYw2S9hX.jpg",
+      "alt": "Clean finished basement with modern fixtures and warm wood flooring \u2014 strong portfolio shot showing complete transformation \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with modern fixtures and warm wood flooring \u2014 strong portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-320787-49.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-49.jpg",
+      "alt": "Clean finished basement suite with modern fixtures and beautiful hardwood \u2014 excellent wide-angle portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement suite with modern fixtures and beautiful hardwood \u2014 excellent wide-angle portfolio shot."
+    },
+    {
+      "file": "virtual-tour-327738-52.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-52.jpg",
+      "alt": "Clean finished basement with warm wood flooring and modern staircase \u2014 excellent portfolio shot showing complete transformation \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with warm wood flooring and modern staircase \u2014 excellent portfolio shot showing complete transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-41 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-41 2.JPG",
+      "alt": "Clean finished basement with excellent lighting and staging \u2014 strong portfolio piece showing livable space transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with excellent lighting and staging \u2014 strong portfolio piece showing livable space transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-46 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-46 2.JPG",
+      "alt": "Clean finished basement with warm lighting and quality flooring \u2014 strong portfolio piece showing livable space transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with warm lighting and quality flooring \u2014 strong portfolio piece showing livable space transformation."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-43.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-43.jpg",
+      "alt": "Clean finished basement with quality flooring and trim work \u2014 excellent wide-angle portfolio shot showing transformation potential \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with quality flooring and trim work \u2014 excellent wide-angle portfolio shot showing transformation potential."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-41.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-41.jpg",
+      "alt": "Clean finished basement with excellent lighting and staging \u2014 strong portfolio piece showing livable space transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with excellent lighting and staging \u2014 strong portfolio piece showing livable space transformation."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-46.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Gateshead Final/virtual-tour-333305-mls-high-res-image-46.jpg",
+      "alt": "Clean finished basement with warm lighting and quality flooring \u2014 strong portfolio piece showing livable space transformation \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with warm lighting and quality flooring \u2014 strong portfolio piece showing livable space transformation."
+    },
+    {
+      "file": "IMG_7326.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7326.jpeg",
+      "alt": "Clean finished basement with built-in desk area showing quality millwork and flooring \u2014 strong portfolio piece \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.65,
+      "project": "Queensway",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with built-in desk area showing quality millwork and flooring \u2014 strong portfolio piece."
+    },
+    {
+      "file": "virtual-tour-320787-47.Co8FrjkC.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-47.Co8FrjkC.jpg",
+      "alt": "Clean finished basement with quality hardwood flooring and modern lighting \u2014 excellent wide-angle portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with quality hardwood flooring and modern lighting \u2014 excellent wide-angle portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-48.CD08CTNJ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-48.CD08CTNJ.jpg",
+      "alt": "Clean finished basement with warm wood floors and modern fixtures \u2014 excellent wide-angle portfolio shot \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with warm wood floors and modern fixtures \u2014 excellent wide-angle portfolio shot."
+    },
+    {
+      "file": "virtual-tour-320787-52.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-52.jpg",
+      "alt": "Clean finished basement with quality hardwood flooring and professional lighting \u2014 excellent virtual tour shot with strong marketing versatility \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with quality hardwood flooring and professional lighting \u2014 excellent virtual tour shot with strong marketing versatility."
+    },
+    {
+      "file": "virtual-tour-327738-42.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-42.jpg",
+      "alt": "Clean finished basement with excellent natural light and professional staging \u2014 strong portfolio piece for basement renovations \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Rosedene",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement with excellent natural light and professional staging \u2014 strong portfolio piece for basement renovations."
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-44.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-44.jpg",
+      "alt": "Clean finished basement office with quality flooring and trim work \u2014 excellent virtual tour shot for portfolio \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 7.3,
+      "project": "Kron",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Clean finished basement office with quality flooring and trim work \u2014 excellent virtual tour shot for portfolio."
+    },
+    {
+      "file": "IMG_6910.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/150 Gateshead - pre/IMG_6910.jpeg",
+      "alt": "Dramatically dated basement with drop ceiling and clutter clearly documents pre-renovation state \u2014 excellent before/after storytelling potential \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 6.6,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "before_condition",
+      "explanation": "Dramatically dated basement with drop ceiling and clutter clearly documents pre-renovation state \u2014 excellent before/after storytelling potential."
+    }
+  ],
+  "painting": [
+    {
+      "file": "virtual-tour-327738-08.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-08.CjcUm8H6.jpg",
+      "alt": "Fresh painted walls and open-concept living room with clean modern finishes \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Rosedene",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Premium wide-angle living room with excellent staging, natural light, and open-concept flow \u2014 perfect hero image showcasing fresh paint and finish quality."
+    },
+    {
+      "file": "virtual-tour-327738-11.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-11.jpg",
+      "alt": "Bright finished living room with crisp painted walls and professional staging \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Rosedene",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Premium finished living room with excellent natural light, professional staging, and strong material contrast \u2014 showcases clean painted wall finishes."
+    },
+    {
+      "file": "virtual-tour-327738-06.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-06.jpg",
+      "alt": "Bright painted entryway with dramatic dark door and clean white wall finishes \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "hallway",
+      "type": "finished_room",
+      "explanation": "Bright finished entryway with dramatic dark door, professional staging, and excellent natural light \u2014 premium portfolio shot showcasing clean paint lines."
+    },
+    {
+      "file": "virtual-tour-327738-07.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-07.jpg",
+      "alt": "Finished living space with modern staircase and fresh painted walls \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright finished living space with modern staircase and quality finishes \u2014 premium portfolio shot with strong virtual tour appeal."
+    },
+    {
+      "file": "virtual-tour-327738-29.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-29.jpg",
+      "alt": "Beautifully finished stairway with warm wood flooring and clean white trim work \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "stairway",
+      "type": "finished_room",
+      "explanation": "Beautifully finished stairway with warm wood flooring, clean white millwork, and professional staging \u2014 premium portfolio shot showcasing trim and paint quality."
+    },
+    {
+      "file": "virtual-tour-327738-32.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-32.DNk9l6VQ.jpg",
+      "alt": "Bright staged bedroom with fresh painted walls and built-in storage \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Rosedene",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Bright staged bedroom with excellent natural light and built-in storage \u2014 premium portfolio shot showcasing clean painted wall finishes."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-17.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-17 2.JPG",
+      "alt": "Premium wide-angle living room with freshly painted walls and warm staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Premium wide-angle finished space with excellent staging, warm lighting, and open-concept flow \u2014 perfect hero image showcasing fresh paint and finish quality."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-5.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-5 2.JPG",
+      "alt": "Professionally finished living space with clean painted walls and warm material contrast \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished space with excellent staging, warm lighting, and strong material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-13.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-13 2.JPG",
+      "alt": "Living room with warm paint tones, staged furniture, and quality wall finishes \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle living room with warm lighting, staged furniture, and quality finishes \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-14.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-14 2.JPG",
+      "alt": "Wide-angle finished living room with clean painted walls and natural light \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished living room with excellent natural light and staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-15.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-15 2.JPG",
+      "alt": "Open-concept living space with freshly painted walls and professional staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professionally staged open-concept living space with excellent natural light and modern finishes \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-25.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-25 2.JPG",
+      "alt": "Finished hallway with built-in linen storage, clean sight lines, and crisp painted walls \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Gateshead",
+      "room": "hallway",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished hallway with built-in linen storage, warm lighting, and clean sight lines to bedroom \u2014 excellent virtual tour quality shot."
+    },
+    {
+      "file": "kron-virtual-tour-334995-01.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-01.jpg",
+      "alt": "Stunning open-concept living room with fresh paint, clean wall finishes, and professional staging \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Stunning finished open-concept space with professional staging, excellent natural light, and strong design elements \u2014 premium portfolio hero shot showcasing fresh paint."
+    },
+    {
+      "file": "kron-virtual-tour-334995-09.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-09.jpg",
+      "alt": "Wide-angle finished living room with fresh painted walls and natural material contrast \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Premium wide-angle finished living room with excellent natural light, professional staging, and strong material contrast \u2014 perfect hero image."
+    },
+    {
+      "file": "kron-virtual-tour-334995-13.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-13.jpg",
+      "alt": "Professionally staged living room with dramatic brick fireplace and freshly painted walls \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professionally staged living room with dramatic brick fireplace and modern furnishings \u2014 premium portfolio hero shot showcasing clean painted finishes."
+    },
+    {
+      "file": "kron-virtual-tour-334995-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-18.jpg",
+      "alt": "Finished stairway with modern railings, clean painted walls, and open kitchen view \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "stairway",
+      "type": "finished_room",
+      "explanation": "Stunning finished stairway with modern railings and open kitchen view \u2014 premium portfolio hero shot showcasing clean painted walls."
+    },
+    {
+      "file": "kron-virtual-tour-334995-15.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-15.jpg",
+      "alt": "Bright painted entryway with beautiful wood stair details and clean modern wall finishes \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "hallway",
+      "type": "finished_room",
+      "explanation": "Bright finished entryway with beautiful wood stair details and clean modern finishes \u2014 premium portfolio shot."
+    },
+    {
+      "file": "kron-virtual-tour-334995-22.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-22.jpg",
+      "alt": "Bright bedroom with rich wood floors and freshly painted walls \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Kron",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Bright finished bedroom with rich wood floors and modern staging \u2014 premium portfolio shot showcasing clean painted finishes."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-13.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-13.jpg",
+      "alt": "Professional wide-angle living room with excellent lighting and clean painted wall finishes \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished space with excellent lighting, staging, and material contrast \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-7.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-7.jpg",
+      "alt": "Wide-angle finished living room with warm lighting and clean modern painted finishes \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished living room with warm lighting, staged furniture, and clean modern finishes \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-10.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-10.jpg",
+      "alt": "Bright open-concept living space with fresh painted walls and professional staging \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright open-concept living space with excellent natural light and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-14.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-14.jpg",
+      "alt": "Finished living room with hardwood floors and crisp painted walls \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished living room with excellent natural light, showing clean painted walls complementing hardwood floors."
+    },
+    {
+      "file": "stonehenge-IMG_5526.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5526.JPG",
+      "alt": "Bright open-concept space with fresh painted walls and excellent material contrast \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright open-concept space with excellent material contrast and professional staging \u2014 premium portfolio shot."
+    },
+    {
+      "file": "stonehenge-IMG_5531.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5531.JPG",
+      "alt": "Bright bedroom with beautiful arched window feature and freshly painted walls \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.65,
+      "project": "Stonehenge",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Bright finished room with beautiful arched window feature and warm wood floors \u2014 premium portfolio shot showcasing clean painted finishes."
+    }
+  ],
+  "flooring": [
+    {
+      "file": "virtual-tour-327738-24.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-24.jpg",
+      "alt": "Premium finished kitchen with herringbone floors, sage cabinets, and open shelving \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Rosedene",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with herringbone floors, sage cabinets, and open shelving \u2014 perfect hero shot for all marketing channels"
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-04.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-04.jpg",
+      "alt": "Premium finished kitchen with dramatic navy cabinets, geometric backsplash, and warm wood floors \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Premium finished kitchen with dramatic navy cabinets, geometric backsplash, and warm wood floors \u2014 perfect hero shot for all marketing channels"
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-18.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-18.jpg",
+      "alt": "Stunning finished stairway with modern railings and open kitchen view \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 9.3,
+      "project": "Kron",
+      "room": "stairway",
+      "type": "finished_room",
+      "explanation": "Stunning finished stairway with modern railings and open kitchen view \u2014 premium portfolio hero shot"
+    },
+    {
+      "file": "virtual-tour-327738-35.B6GSpeWQ.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-35.B6GSpeWQ.jpg",
+      "alt": "Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 9.0,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-14.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-14.jpg",
+      "alt": "Professional wide-angle finished living room with beautiful hardwood floors and recessed lighting \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Stonehenge",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished living room with beautiful hardwood floors and recessed lighting \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-320787-07.CqD3sG3z.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-07.CqD3sG3z.jpg",
+      "alt": "Bright finished kitchen with beautiful hardwood floors and clean white cabinetry \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Bright finished kitchen with beautiful hardwood floors and clean white cabinetry \u2014 premium portfolio shot perfect for virtual tours and marketing"
+    },
+    {
+      "file": "virtual-tour-320787-50.BNAiWU5q.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-50.BNAiWU5q.jpg",
+      "alt": "Bright finished basement with modern fixtures and warm wood flooring \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with modern fixtures and warm wood flooring \u2014 excellent wide-angle portfolio shot"
+    },
+    {
+      "file": "virtual-tour-327738-29.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-29.jpg",
+      "alt": "Beautifully finished stairway with warm wood flooring, clean white millwork, and professional staging \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Rosedene",
+      "room": "stairway",
+      "type": "finished_room",
+      "explanation": "Beautifully finished stairway with warm wood flooring, clean white millwork, and professional staging \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-19 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-19 2.JPG",
+      "alt": "Bright finished living space with beautiful wide-plank flooring and clean modern staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright finished living space with beautiful wide-plank flooring and clean modern staging \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-39 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-39 2.JPG",
+      "alt": "Bright finished basement with beautiful wood flooring and professional staging \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Gateshead",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with beautiful wood flooring and professional staging \u2014 premium portfolio shot"
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-11.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-11.jpg",
+      "alt": "Bright modern dining/living space with beautiful wood flooring and clean staging \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Kron",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright modern dining/living space with beautiful wood flooring and clean staging \u2014 premium portfolio shot"
+    },
+    {
+      "file": "2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-19.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-19.jpg",
+      "alt": "Bright finished bedroom with beautiful hardwood floors and modern staging \u2014 Kron, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Kron",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Bright finished bedroom with beautiful hardwood floors and modern staging \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-327738-37.DBDMDPx6.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327738-37.DBDMDPx6.jpg",
+      "alt": "Bright modern bathroom with striking green herringbone floor and live-edge wood shelving \u2014 Rosedene, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Rosedene",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Bright modern bathroom with striking green herringbone floor and live-edge wood shelving \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-20 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-20 2.JPG",
+      "alt": "Bright, professionally staged living room with beautiful wood floors and clean modern finishes \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Gateshead",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Bright, professionally staged living room with beautiful wood floors and clean modern finishes \u2014 premium portfolio shot"
+    },
+    {
+      "file": "IMG_5531.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/19-370 Stonehenge/IMG_5531.JPG",
+      "alt": "Bright finished room with beautiful arched window feature and warm wood floors \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Stonehenge",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Bright finished room with beautiful arched window feature and warm wood floors \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-320787-51.C9WVz6l6.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-51.C9WVz6l6.jpg",
+      "alt": "Bright finished basement suite with modern fixtures and beautiful hardwood \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Winchester",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement suite with modern fixtures and beautiful hardwood \u2014 premium portfolio shot"
+    },
+    {
+      "file": "virtual-tour-333305-mls-high-res-image-25 2.JPG",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-333305-mls-high-res-image-25 2.JPG",
+      "alt": "Professional wide-angle finished hallway with built-in linen storage, warm lighting, and clean sight lines to bedroom \u2014 Gateshead, Hamilton | MTC Renovations",
+      "score": 8.7,
+      "project": "Gateshead",
+      "room": "hallway",
+      "type": "finished_room",
+      "explanation": "Professional wide-angle finished hallway with built-in linen storage, warm lighting, and clean sight lines to bedroom \u2014 excellent virtual tour quality shot"
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-40 (2).jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-40 (2).jpg",
+      "alt": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium virtual tour shot"
+    },
+    {
+      "file": "virtual-tour-318929-mls-high-res-image-42 (2).jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-318929-mls-high-res-image-42 (2).jpg",
+      "alt": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 Stonehenge, Hamilton | MTC Renovations",
+      "score": 8.3,
+      "project": "Stonehenge",
+      "room": "basement",
+      "type": "finished_room",
+      "explanation": "Bright finished basement with excellent recessed lighting and quality flooring \u2014 premium portfolio shot for virtual tours and marketing"
+    },
+    {
+      "file": "IMG_7514.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Buchanan complete/IMG_7514.jpeg",
+      "alt": "Clean finished powder room with modern fixtures, good natural light, and trendy hex tile flooring \u2014 Buchanan, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Buchanan",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Clean finished powder room with modern fixtures, good natural light, and trendy hex tile flooring \u2014 strong portfolio piece"
+    },
+    {
+      "file": "IMG_7316.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7316.jpeg",
+      "alt": "Modern bathroom with striking black hexagon tile feature wall and coordinated floor \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 8.0,
+      "project": "Queensway",
+      "room": "bathroom",
+      "type": "finished_room",
+      "explanation": "Modern bathroom with striking black hexagon tile feature wall and coordinated floor \u2014 strong portfolio piece showing current design trends"
+    },
+    {
+      "file": "virtual-tour-320787-23.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-320787-23.jpg",
+      "alt": "Clean finished kitchen with beautiful wood flooring and white cabinetry \u2014 Winchester, Hamilton | MTC Renovations",
+      "score": 7.7,
+      "project": "Winchester",
+      "room": "kitchen",
+      "type": "finished_room",
+      "explanation": "Clean finished kitchen with beautiful wood flooring and white cabinetry \u2014 strong portfolio shot with good natural light"
+    },
+    {
+      "file": "virtual-tour-327915-mls-high-res-image-10.jpg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Completed Pictures/virtual-tour-327915-mls-high-res-image-10.jpg",
+      "alt": "Clean finished room with rich hardwood floors and bright natural light \u2014 Eastchester, Hamilton | MTC Renovations",
+      "score": 7.7,
+      "project": "Eastchester",
+      "room": "living_room",
+      "type": "finished_room",
+      "explanation": "Clean finished room with rich hardwood floors and bright natural light \u2014 excellent wide-angle portfolio shot"
+    },
+    {
+      "file": "IMG_7324.jpeg",
+      "source_path": "/Users/user/Developer/mtc/photo-culler-test/Queensway complete/IMG_7324.jpeg",
+      "alt": "Clean modern bedroom with built-in storage, excellent natural light, and warm wood flooring \u2014 Queensway, Hamilton | MTC Renovations",
+      "score": 7.7,
+      "project": "Queensway",
+      "room": "bedroom",
+      "type": "finished_room",
+      "explanation": "Clean modern bedroom with built-in storage, excellent natural light, and warm wood flooring \u2014 strong portfolio piece"
+    }
+  ]
+}

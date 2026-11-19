@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const canonical = `${site.url}/licensed-insured-renovation-contractor-ontario/`;
+const title = 'Licensed & Insured Renovation Contractor Ontario | MTC';
+const description =
+  'How to check a renovation contractor in Ontario: liability insurance, licensed trades and permits. See what MTC provides.';
+
+const faqs = [
+  {
+    question: 'Do renovation contractors need a licence in Ontario?',
+    answer:
+      'Ask which parts of the job are licensed trades and which parts need a municipal permit. Electrical work is licensed through the Electrical Safety Authority. Plumbing and other compulsory trades have their own certificates. MTC does not publish a general-contractor licence number. Electricians, plumbers, and HVAC technicians on our projects are Red Seal or Ontario-certified, and MTC is fully insured.',
+  },
+  {
+    question: 'How do I verify a contractor\'s insurance?',
+    answer:
+      'Ask for a certificate of insurance, not a verbal yes. The certificate should name the contractor and show commercial general liability coverage. MTC is fully insured and will provide proof of insurance on request before work begins.',
+  },
+  {
+    question: 'Are electricians and plumbers on a renovation licensed?',
+    answer:
+      'Electrical work in Ontario is licensed through the Electrical Safety Authority. Plumbers and other compulsory trades carry their own certificates, which can be checked with Skilled Trades Ontario. On MTC projects, electricians, plumbers, and HVAC technicians are Red Seal or Ontario-certified.',
+  },
+  {
+    question: 'What should a renovation contract include?',
+    answer:
+      'A written fixed-price contract and a written scope: the materials, the tasks, and the price for that scope. MTC quotes are fixed-price. If you change the scope, the quote changes with it.',
+  },
+  {
+    question: 'Can MTC provide proof of insurance before work starts?',
+    answer:
+      'Yes. MTC Renovations is fully insured, carries commercial general liability insurance, and provides proof of insurance on request before any work begins.',
+  },
+];
+
+const checks = [
+  {
+    title: 'Certificate of insurance',
+    text: 'Ask for the certificate, not a promise. It should show the contractor is fully insured with commercial general liability coverage.',
+  },
+  {
+    title: 'Trade licences',
+    text: 'Ask who is doing the electrical, plumbing, and HVAC, and ask for the trade qualification. Electrical licensing is through the Electrical Safety Authority. Trade certificates can be checked with Skilled Trades Ontario.',
+  },
+  {
+    title: 'Written fixed-price contract',
+    text: 'The price on the contract is the price for the written scope. Time-and-materials leaves the cost open.',
+  },
+  {
+    title: 'A permit plan',
+    text: 'Structural changes, new electrical circuits, and plumbing that moves fixtures need a municipal permit. Ask who applies and who books the inspections.',
+  },
+  {
+    title: 'A written scope before demo',
+    text: 'Materials, fixtures, and tasks belong on paper before the room is opened. That is the document you compare quotes against.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    about: { '@id': businessId },
+  },
+  faqPage(faqs),
+  breadcrumbList([
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Licensed and insured contractor', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Licensed and insured</li>
+        </ol>
+      </nav>
+      <div class="col-lg-9">
+        <h1 class="display-5 fw-bold mb-3">Licensed &amp; Insured Renovation Contractor in Ontario: What to Check</h1>
+        <p class="lead text-white-50 mb-4">
+          Before you hire a renovation contractor in Ontario, check insurance, the licensed trades on the job, and the municipal permit. MTC Renovations is fully insured. Proof of insurance is available before work starts. This page is the checklist, not a licence number.
+        </p>
+        <a href="/contact/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request proof of insurance</a>
+        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3">What "licensed" means for renovations in Ontario</h2>
+          <p>
+            A renovation mixes three different checks. The trades on the tools have their own qualifications. The municipality issues the building permit. The contractor carrying the job is the company you ask for insurance and a written contract. Those are not the same document.
+          </p>
+          <p>
+            Electrical work is licensed through the <a href="https://esasafe.com/">Electrical Safety Authority</a>. Certificates for compulsory trades can be checked on the <a href="https://www.skilledtradesontario.ca/public-register/">Skilled Trades Ontario public register</a>. A bathroom, kitchen, or basement that moves structure, plumbing, or electrical capacity needs a municipal permit. Hamilton's application steps are on the city's <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/building-permit">building permit page</a>, and the practical version for a bathroom is our <a href="/blog/bathroom-renovation-permit-hamilton/">Hamilton bathroom permit guide</a>. The <a href="/faq/">renovation FAQ</a> covers when a permit is required.
+          </p>
+          <p>
+            MTC does not publish a general-contractor licence number. What we do state is below: fully insured, commercial general liability insurance, proof of insurance on request, and Red Seal or Ontario-certified electricians, plumbers, and HVAC technicians. A longer hiring checklist is in <a href="/blog/choosing-renovation-contractor-hamilton/">how to choose a renovation contractor in Hamilton</a>.
+          </p>
+
+          <h2 class="fw-bold mb-3">The 5 things to ask any contractor for</h2>
+          <div class="row g-3 mb-4">
+            {checks.map((item, i) => (
+              <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                  <div class="card-body">
+                    <h3 class="h5 fw-bold">{i + 1}. {item.title}</h3>
+                    <p class="mb-0 text-secondary">{item.text}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h2 class="fw-bold mb-3">Why insurance matters</h2>
+          <p>
+            Hiring an uninsured contractor puts your home and finances at risk. That is the wording on our FAQ, and it is the practical point: if someone is hurt or the house is damaged and there is no insurance behind the crew, the problem does not stay with the contractor. Ask for the certificate before you sign. A contractor who is fully insured can produce it.
+          </p>
+          <p>
+            The same conversation belongs next to the contract. <a href="/mtc-vs-general-contractors/">How MTC compares with other contractors</a> covers fixed-price quotes, communication, and insurance side by side. The short version is that the number we write down is the number for that scope.
+          </p>
+
+          <h2 class="fw-bold mb-3">What MTC provides before work starts</h2>
+          <ul>
+            <li>MTC is fully insured.</li>
+            <li>We carry commercial general liability insurance.</li>
+            <li>Proof of insurance is available on request before any work begins.</li>
+            <li>Electricians, plumbers, and HVAC technicians on our projects are licensed Red Seal or Ontario-certified professionals.</li>
+          </ul>
+          <p>
+            That list is the same set of facts as the <a href="/faq/">licensed and insured FAQ</a> and the <a href="/about/">about page</a>. We do not add a licence number or a legal-entity name on this page. If you want the certificate in hand before a <a href="/kitchen/">kitchen</a> or <a href="/basement/">basement</a> starts, ask for it when you book the visit.
+          </p>
+
+          <h2 class="fw-bold mb-3">Permits and inspections</h2>
+          <p>
+            Permits are the city's check, separate from insurance and separate from a trade certificate. The FAQ explains which renovations need one: structural changes, new circuits, plumbing that adds or relocates fixtures, and basement work that creates habitable space. Cosmetic updates such as painting, flooring replacement, and cabinet swaps typically do not. We submit drawings, pull the permit, and manage inspections when the scope requires them. Start with the <a href="/faq/">permit FAQ</a> or the <a href="/blog/bathroom-renovation-permit-hamilton/">Hamilton bathroom permit guide</a> if you want the bathroom version.
+          </p>
+
+          <h2 class="fw-bold mb-3">Where we take projects</h2>
+          <p>
+            MTC is based in Burlington. We do not publish a street address, and we do not list an office in Mississauga or Toronto. The service area we state is the cities below. Mississauga and Toronto are included. A city name here is a place we take renovation work, not a second shop.
+          </p>
+          <ul>
+            {site.areaServed.map((city) => <li>{city}</li>)}
+          </ul>
+          <p>
+            City pages exist for the communities that already have one, including <a href="/location/burlington/">Burlington</a>, <a href="/location/hamilton/">Hamilton</a>, <a href="/location/oakville/">Oakville</a>, and <a href="/location/milton/">Milton</a>. Mississauga and Toronto stay in this list without a separate street address.
+          </p>
+
+          <h2 class="fw-bold mb-3">Request proof of insurance</h2>
+          <p>
+            Call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a> or use the <a href="/contact/">contact page</a> and ask for proof of insurance before work starts. There is no new form on this page. If you are comparing contractors, use the five questions above and keep the answers in writing.
+          </p>
+
+          <h2 class="fw-bold mb-4">Insurance and licensing questions</h2>
+          {faqs.map((faq) => (
+            <div class="mb-4">
+              <h3 class="h5 fw-bold">{faq.question}</h3>
+              <p class="mb-0">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ask for proof of insurance"
+    subtitle="We will send the certificate and set a time to look at the project."
+    ctaText="Contact MTC"
+    ctaLink="/contact/"
+  />
+</BaseLayout>

@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const canonical = `${site.url}/legal-basement-apartment-hamilton/`;
+const title = 'Legal Basement Apartment Hamilton | Secondary Suite | MTC';
+const description =
+  'Planning a legal basement apartment in Hamilton? See what the city checks for a secondary suite, how MTC handles permits and the build, and request a quote.';
+
+const faqs = [
+  {
+    question: 'What is a legal basement apartment in Hamilton?',
+    answer:
+      'A legal basement apartment in Hamilton is a self-contained second unit, also called a secondary suite or an additional dwelling unit, that has a building permit and passes inspection. The City of Hamilton uses “additional dwelling unit” on its permit pages and “secondary dwelling unit” in the zoning by-law. An unfinished rec room, or a finished basement without a permit, is not a legal apartment.',
+  },
+  {
+    question: 'Does every Hamilton house qualify for a secondary suite?',
+    answer:
+      'No. Zoning, ceiling height, exits, fire separation, water and sewer capacity, and sometimes heritage or conservation rules all matter. The city’s additional dwelling unit page tells you to look the address up on the interactive zoning map. This page is general information, not a ruling on your lot.',
+  },
+  {
+    question: 'Do I need a separate entrance for a basement apartment?',
+    answer:
+      'The unit needs a safe exit. A basement apartment is usually reached by its own exterior door or stair, so people do not walk through the other home. The Ontario Building Code also allows some shared exits when the fire separation and the smoke alarms meet the rules. The permit drawings are where that choice is made.',
+  },
+  {
+    question: 'Who pulls the building permit?',
+    answer:
+      'MTC prepares the drawings for the scope we are building, submits the City of Hamilton building permit, and books the inspections that permit requires. Electrical work is filed with the Electrical Safety Authority. You can apply yourself. Most homeowners ask us to run it.',
+  },
+  {
+    question: 'Is MTC insured, and do you offer financing?',
+    answer:
+      'MTC Renovations is a residential contractor, in business since 2011, and is fully insured. Proof of insurance is available before work starts. Financing is available and credit cards are accepted. Rates are not listed on this page. Completed work includes a 2-year workmanship warranty. For an urgent repair, call (647) 560-1095. That is 24-hour emergency service, not this permit application.',
+  },
+];
+
+const heroPhoto = {
+  src: '/assets/img/jobs/legal-suite/living-kitchen-1280.webp',
+  srcset:
+    '/assets/img/jobs/legal-suite/living-kitchen-800.webp 800w, /assets/img/jobs/legal-suite/living-kitchen-1280.webp 1280w',
+  alt: 'Legal basement suite by MTC Renovations in Hamilton, finished living area opening to the kitchen',
+  width: 1280,
+  height: 854,
+};
+
+const photos = [
+  {
+    src: '/assets/img/jobs/legal-suite/side-entrance-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/side-entrance-800.webp 800w, /assets/img/jobs/legal-suite/side-entrance-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, separate side entrance with electrical meters and a basement window',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/kitchen-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/kitchen-800.webp 800w, /assets/img/jobs/legal-suite/kitchen-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, finished kitchen with a peninsula',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/kitchen-living-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/kitchen-living-800.webp 800w, /assets/img/jobs/legal-suite/kitchen-living-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, kitchen looking through to the living area',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/bedroom-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/bedroom-800.webp 800w, /assets/img/jobs/legal-suite/bedroom-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, bedroom with a basement window',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/bath-tub-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/bath-tub-800.webp 800w, /assets/img/jobs/legal-suite/bath-tub-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, bathroom with a tub, shower, and window',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/bath-vanity-1280.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/bath-vanity-800.webp 800w, /assets/img/jobs/legal-suite/bath-vanity-1280.webp 1280w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, bathroom vanity and window',
+    width: 1280,
+    height: 854,
+  },
+  {
+    src: '/assets/img/jobs/legal-suite/front-exterior-1200.webp',
+    srcset:
+      '/assets/img/jobs/legal-suite/front-exterior-800.webp 800w, /assets/img/jobs/legal-suite/front-exterior-1200.webp 1200w',
+    alt: 'Legal basement suite by MTC Renovations in Hamilton, front of the finished house',
+    width: 1200,
+    height: 1120,
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Legal Basement Apartment in Hamilton',
+    serviceType: 'Secondary suite construction',
+    description,
+    url: canonical,
+    provider: { '@id': businessId },
+    areaServed: ['Hamilton', 'Ancaster', 'Dundas', 'Stoney Creek', 'Waterdown'].map((name) => ({
+      '@type': 'City',
+      name,
+      containedInPlace: { '@type': 'AdministrativeArea', name: 'Ontario' },
+    })),
+  },
+  faqPage(faqs),
+  breadcrumbList([
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Basement Renovation', url: `${site.url}/basement/` },
+    { name: 'Legal basement apartment in Hamilton', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item"><a href="/basement/" class="text-white-50">Basement</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Legal basement apartment</li>
+        </ol>
+      </nav>
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <h1 class="display-5 fw-bold mb-3">Legal Basement Apartment in Hamilton, Ontario</h1>
+          <p class="lead text-white-50 mb-4">
+            A legal basement apartment in Hamilton is a secondary suite with its own kitchen, bathroom, and a City of Hamilton building permit. MTC Renovations builds that scope in residential houses. A finished rec room is a different project, and it lives on the <a href="/basement/" class="text-white">basement renovation</a> page.
+          </p>
+          <a href="/contact/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request a quote</a>
+          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+        </div>
+        <div class="col-lg-5">
+          <img
+            src={heroPhoto.src}
+            srcset={heroPhoto.srcset}
+            sizes="(min-width: 992px) 420px, 100vw"
+            alt={heroPhoto.alt}
+            class="img-fluid rounded"
+            width={heroPhoto.width}
+            height={heroPhoto.height}
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <p>
+            This page is general information for homeowners comparing a basement apartment conversion in Hamilton with a legal second unit. It is not legal, zoning, or building-code advice. Your lot, the current by-law, and the Ontario Building Code decide what is allowed. Start with the City of Hamilton’s <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/additional-dwelling-units">additional dwelling units</a> page and the <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/building-permit">building permit</a> page, then confirm the address on the city’s zoning map.
+          </p>
+
+          <h2 class="fw-bold mb-3">What Hamilton calls a secondary suite</h2>
+          <p>
+            The city describes an additional dwelling unit as a separate, self-contained unit on the same lot as the main home. In the zoning by-law the same idea is a secondary dwelling unit. The Ontario Building Code treats that unit as a secondary suite. People searching for a legal basement apartment, a secondary suite in Hamilton, or a legal second unit are usually describing this project: a basement with a kitchen, a bathroom, sleeping space, and a permit.
+          </p>
+          <p>
+            Hamilton’s additional dwelling unit team reviews permits for existing single-family houses that stay within a smaller unit count, including a detached unit. A house that will contain three or four units is multi-residential, and the city routes those permits to Building Engineering. Adding one basement apartment is the project on this page. Adding enough units to make a triplex or fourplex is the <a href="/fourplex-conversion-hamilton/">fourplex conversion in Hamilton</a> page.
+          </p>
+          <p>
+            Not every house qualifies. Heritage properties, conservation authority land, and site-specific zoning can add another approval. The city’s own page says to look the address up before you design. We do that check at the consultation, before drawings are started.
+          </p>
+
+          <h2 class="fw-bold mb-3">What reviewers look at</h2>
+          <p>
+            The city’s additional dwelling unit page lists the building-code items staff review. The notes below follow that list in plain language. Measurements and assembly ratings belong on the permit drawings, not in a marketing summary. The longer Ontario discussion, including published cost bands, is the <a href="/blog/legal-basement-suite-ontario/">legal basement suite guide</a>. Dollar ranges are not repeated here.
+          </p>
+          <ul>
+            <li><strong>Separate entrance and exits.</strong> The unit needs a safe way out. A basement apartment conversion usually gets its own exterior door or stair so occupants do not pass through the other home. Some code paths allow a shared exit when the separation and the alarms qualify. The drawings pick the path that fits the house.</li>
+            <li><strong>Fire separation.</strong> The city requires a fire separation between an internal additional dwelling unit and the rest of the house, so fire is slowed from one unit to the other. Openings in that separation have to be built to match it.</li>
+            <li><strong>Egress windows.</strong> A bedroom needs an escape opening that meets the code. Many older hopper windows are too small. What the opening has to do is in the <a href="/blog/basement-egress-windows-ontario-code-basics/">egress window guide</a>.</li>
+            <li><strong>Ceiling height.</strong> The city says minimum ceiling heights differ in a basement, in an attic, and under beams and ducts. A low basement may keep the short area as storage or laundry, or it may need underpinning. That structural option is described in the <a href="/blog/basement-underpinning-cost-hamilton/">Hamilton underpinning guide</a>.</li>
+            <li><strong>Smoke and carbon monoxide alarms.</strong> The city says the unit needs smoke alarms that meet CAN/ULC-S531, wired to an electrical circuit, interconnected with the other smoke alarms, and fitted with a flashing light. Carbon monoxide alarms are required when the house has a fuel-burning furnace or an attached garage.</li>
+            <li><strong>Heating and ventilation.</strong> Some houses may keep one furnace if a duct smoke detector shuts it down during a fire. The city says newer houses may not recirculate air between units and may need two systems. The mechanical design follows the age and layout of the house.</li>
+            <li><strong>Parking.</strong> The city’s additional dwelling unit page says additional parking for up to three units is exempt under the amended secondary dwelling unit by-laws, and that newer buildings need a further check. A fourth unit is a different question, covered on the fourplex page. Confirm parking for the specific lot.</li>
+            <li><strong>Building permit and zoning.</strong> A suite needs a building permit, zoning that allows the unit, and a municipal address posted for the unit. Apply through the city’s permit portal. Drawings have to match the Ontario Building Code and the zoning by-law or the application sits.</li>
+            <li><strong>ESA electrical.</strong> A kitchen, new circuits, and often a subpanel are electrical work. In Ontario that work is licensed through the <a href="https://esasafe.com/">Electrical Safety Authority</a>, separate from the city’s building permit. Electricians on MTC projects are Red Seal or Ontario-certified.</li>
+            <li><strong>Fire inspection.</strong> Life safety is part of the permit inspections. If a fire order has already been written for an illegal unit, the city asks you to include that order number and a fire-department-stamped drawing with the permit application.</li>
+            <li><strong>Water and sewer.</strong> Extra fixtures can exceed the existing water service. The city says the service or meter may have to be enlarged, and a lead pipe may have to be replaced, before the permit is issued. A house on a septic system needs capacity for the extra unit.</li>
+          </ul>
+
+          <h2 class="fw-bold mb-3">How MTC runs the project</h2>
+          <p>
+            MTC Renovations is residential only. We have been renovating houses since 2011. The sequence for a Hamilton secondary suite is the same order every time. We do not publish a street address. The service area is Hamilton, Burlington, Halton, Mississauga, and Toronto, including Ancaster, Dundas, Stoney Creek, and Waterdown.
+          </p>
+          <ol>
+            <li><strong>Consult.</strong> We visit the house, measure headroom, look at the stairs, the windows, the panel, moisture, and the path for an entrance. You leave with a yes, a no, or a list of what has to change before a suite is realistic.</li>
+            <li><strong>Design and drawings.</strong> The layout shows the kitchen, bathroom, sleeping rooms, fire separation, exits, and alarms. The quote is fixed-price for that written scope. A finished basement without a suite is quoted as a different scope on the <a href="/basement/">basement renovation</a> page.</li>
+            <li><strong>Permits.</strong> We submit the building permit to the City of Hamilton and the electrical notification to the ESA. Zoning that does not fit is a variance conversation, not something we build through.</li>
+            <li><strong>Build.</strong> Framing, separation, plumbing, electrical, insulation, drywall, kitchen, bathroom, flooring, and the entrance are one crew’s coordination. You get one point of contact.</li>
+            <li><strong>Inspections.</strong> The city inspects the stages the permit lists. We book them and correct what fails. The suite is not described as legal until those inspections are passed.</li>
+          </ol>
+          <p>
+            MTC is fully insured. Proof of insurance is available before work starts. Completed work includes a 2-year workmanship warranty on our installation. Manufacturer warranties stay with the products. Financing is available and credit cards are accepted. Ask when you request the quote. Rates and a payment schedule are not published on this page. Urgent residential repair is 24-hour emergency service at <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. That call is not a suite permit.
+          </p>
+
+          <h2 class="fw-bold mb-3">A finished legal basement suite in Hamilton</h2>
+          <p>
+            These photographs are a legal basement suite MTC Renovations built in Hamilton’s Hampton Heights. The first photo is the separate side entrance, with the electrical meters and a basement window. The others are the finished kitchen, living area, bedroom, and bathroom. The street address is not published. A suite is legal because the permit and the inspections passed, not because a room looks finished. Adding more than this one unit is the <a href="/fourplex-conversion-hamilton/">fourplex conversion</a> page.
+          </p>
+          <div class="row g-3 mb-2">
+            {photos.map((photo) => (
+              <div class={photo.src.includes('side-entrance') ? 'col-12' : 'col-6'}>
+                <img
+                  src={photo.src}
+                  srcset={photo.srcset}
+                  sizes={photo.src.includes('side-entrance') ? '(min-width: 992px) 760px, 100vw' : '(min-width: 992px) 360px, 50vw'}
+                  alt={photo.alt}
+                  class="img-fluid rounded"
+                  loading="lazy"
+                  width={photo.width}
+                  height={photo.height}
+                />
+              </div>
+            ))}
+          </div>
+          <p class="small text-secondary mb-4">Legal basement suite by MTC Renovations in Hamilton. Real project photos. No street address.</p>
+
+          <h2 class="fw-bold mb-3">Related Hamilton pages</h2>
+          <ul>
+            <li><a href="/fourplex-conversion-hamilton/">Fourplex conversion in Hamilton</a> — adding units up to a fourplex, where the zoning allows it.</li>
+            <li><a href="/basement/">Basement renovations</a> — finishing a rec room, bedroom, office, or gym.</li>
+            <li><a href="/location/hamilton/">Hamilton renovations</a> — kitchens, bathrooms, and the rest of the house.</li>
+            <li><a href="/blog/basement-renovation-cost-hamilton/">Basement renovation cost in Hamilton</a> — published ranges for finishing.</li>
+            <li><a href="/blog/legal-basement-suite-ontario/">Legal basement suites in Ontario</a> — the longer rules and cost guide.</li>
+            <li><a href="/bathroom-remodel-hamilton/">Bathroom remodel in Hamilton</a> — when the bathroom is the whole job.</li>
+            <li><a href="/licensed-insured-renovation-contractor-ontario/">Licensed and insured renovation contractor</a> — what to ask for before work starts.</li>
+          </ul>
+
+          <h2 class="fw-bold mb-3">Request a quote</h2>
+          <p>
+            Use the <a href="/contact/">contact form</a> and say the house is in Hamilton and that you want a legal basement apartment, not only a finished basement. You can also call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. The quote is written after we see the basement. Nothing on this page is a price.
+          </p>
+
+          <h2 class="fw-bold mb-4">Legal basement apartment questions</h2>
+          {faqs.map((faq) => (
+            <div class="mb-4">
+              <h3 class="h5 fw-bold">{faq.question}</h3>
+              <p class="mb-0">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Planning a legal basement apartment in Hamilton?"
+    subtitle="Tell us about the house. We will visit, check the layout, and quote the suite scope in writing."
+    ctaText="Request a quote"
+    ctaLink="/contact/"
+  />
+</BaseLayout>

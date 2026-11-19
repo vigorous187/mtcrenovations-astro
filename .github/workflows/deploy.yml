@@ -1,0 +1,74 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'wrangler.toml'
+      - 'package.json'
+      - 'blog-calendar.json'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+      - name: Build (fetch live Google reviews)
+        env:
+          FORGE_REVIEWS_API_BASE: ${{ vars.FORGE_REVIEWS_API_BASE || 'https://reviews.forge-co.ca' }}
+        run: npm run build
+
+      # Pre-deploy guard: verify build matches MTC, not another site
+      - name: Verify build output is MTC
+        run: |
+          TITLE=$(grep -o '<title>[^<]*</title>' dist/index.html | head -1 | sed 's/<[^>]*>//g')
+          echo "Build title: $TITLE"
+          if ! echo "$TITLE" | grep -qi "MTC Renovations"; then
+            echo "::error::Build title '$TITLE' does not match MTC Renovations. BLOCKING deploy to prevent cross-contamination."
+            exit 1
+          fi
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          command: pages deploy dist --project-name=mtc-renovations --branch=main --commit-hash=${{ github.sha }} --commit-dirty=false
+
+      - name: IndexNow (production URLs)
+        if: success()
+        continue-on-error: true
+        env:
+          INDEXNOW_HOST: www.mtcrenovations.ca
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY_MTC }}
+        run: node scripts/submit-indexnow.mjs
+
+      # Post-deploy: verify live site still serves MTC
+      - name: Verify live site
+        run: |
+          sleep 15
+          LIVE=$(curl -sL --max-time 15 "https://www.mtcrenovations.ca" | grep -o '<title>[^<]*</title>' | head -1 | sed 's/<[^>]*>//g')
+          echo "Live title: $LIVE"
+          if ! echo "$LIVE" | grep -qi "MTC Renovations"; then
+            echo "::warning::Post-deploy check failed. Live title: $LIVE"
+          fi
+
+      - name: Verify estimate save API (KV binding)
+        run: |
+          sleep 5
+          RESP=$(curl -sS --max-time 20 -X POST "https://www.mtcrenovations.ca/api/estimates/save/" \
+            -H "Content-Type: application/json" \
+            -d '{"type":"bathroom","typeLabel":"Bathroom Renovation","size":"powder","sizeLabel":"Powder Room","finish":"mid","finishLabel":"Mid-Range","addons":[],"addonLabels":[],"min":14696,"max":24300,"breakdown":[{"label":"Base","range":[12000,18000]}],"selections":[],"market":"Hamilton & Burlington","hstNote":"All ranges exclude 13% HST.","contingencyNote":"15% contingency"}')
+          echo "Save API response: $RESP"
+          echo "$RESP" | grep -q '"id"' || { echo "::error::Estimate save API failed — KV binding may be missing"; exit 1; }

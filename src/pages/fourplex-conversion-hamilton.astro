@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const canonical = `${site.url}/fourplex-conversion-hamilton/`;
+const title = 'Fourplex Conversion Hamilton | House to Multiplex | MTC';
+const description =
+  'Considering a fourplex conversion in Hamilton? See where four units are permitted, what feasibility involves, and how MTC takes a house from consult to inspections.';
+
+const faqs = [
+  {
+    question: 'Can I convert a house to a fourplex in Hamilton?',
+    answer:
+      'Sometimes. In Zoning By-law 05-200, the Low Density Residential zones R1, R1a, and R2 list a fourplex dwelling as a permitted use, and the by-law allows certain conforming houses to be converted to contain a fourth unit outside rural and open-space zones. Heritage, servicing, lot size, and an older former-municipality by-law can change the answer. Look the address up on the city’s zoning map before you design. This is general information, not a zoning approval.',
+  },
+  {
+    question: 'Is a triplex conversion different from a fourplex?',
+    answer:
+      'The city also lists a triplex dwelling as a permitted use in those same low-density zones. A triplex is three units. The feasibility checks — lot, water and sewer, fire separation, exits, and parking — are the same kind of review with one fewer unit. Three- and four-unit buildings are reviewed by Building Engineering, not only by the team that handles a single additional dwelling unit.',
+  },
+  {
+    question: 'Will the building need sprinklers?',
+    answer:
+      'Not every fourplex needs sprinklers. The Ontario Building Code reviews a house-scale building of three storeys or less that stays within the Part 9 area limit differently from a larger Part 3 building. Extra storeys or a larger area can move the project into Part 3, which changes fire protection, including when sprinklers are required. Exits and fire separations are reviewed either way. The permit drawings are the determination.',
+  },
+  {
+    question: 'Do you handle the permits?',
+    answer:
+      'Yes, for the scope we are building. MTC prepares the drawings, submits the City of Hamilton building permit, and coordinates the inspections. A building with three or more units is submitted as a multi-residential permit. Electrical work is filed with the Electrical Safety Authority.',
+  },
+  {
+    question: 'Does MTC finance a multiplex conversion?',
+    answer:
+      'Financing is available and credit cards are accepted. Rates and terms are not published on this page. Ask when you request the quote. MTC is a residential contractor, in business since 2011, and is fully insured. Completed work includes a 2-year workmanship warranty. We do not publish a street address.',
+  },
+];
+
+const photos = [
+  {
+    src: '/assets/img/jobs/fourplex/before-kitchen-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/before-kitchen-560.webp 560w, /assets/img/jobs/fourplex/before-kitchen-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, existing kitchen before the conversion',
+    width: 900,
+    height: 1200,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/before-side-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/before-side-560.webp 560w, /assets/img/jobs/fourplex/before-side-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, side of the house and an existing basement window',
+    width: 900,
+    height: 1200,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/new-storeys-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/new-storeys-560.webp 560w, /assets/img/jobs/fourplex/new-storeys-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, new storeys sheathed above the original brick house',
+    width: 900,
+    height: 1600,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/siding-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/siding-560.webp 560w, /assets/img/jobs/fourplex/siding-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, siding started on the new storeys with scaffolding still up',
+    width: 900,
+    height: 1600,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/stacked-framing-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/stacked-framing-560.webp 560w, /assets/img/jobs/fourplex/stacked-framing-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, framed unit with open joists and a window rough opening',
+    width: 900,
+    height: 1200,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/unit-separation-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/unit-separation-560.webp 560w, /assets/img/jobs/fourplex/unit-separation-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, unit separation framing before the drywall is hung',
+    width: 900,
+    height: 900,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/water-lines-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/water-lines-560.webp 560w, /assets/img/jobs/fourplex/water-lines-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, copper water lines during rough-in',
+    width: 900,
+    height: 1600,
+  },
+  {
+    src: '/assets/img/jobs/fourplex/heat-pumps-900.webp',
+    srcset:
+      '/assets/img/jobs/fourplex/heat-pumps-560.webp 560w, /assets/img/jobs/fourplex/heat-pumps-900.webp 900w',
+    alt: 'Fourplex conversion in progress by MTC Renovations in Hamilton, heat-pump heads on the brick wall beside a basement window',
+    width: 900,
+    height: 1600,
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Fourplex Conversion in Hamilton',
+    serviceType: 'Residential multiplex conversion',
+    description,
+    url: canonical,
+    provider: { '@id': businessId },
+    areaServed: ['Hamilton', 'Ancaster', 'Dundas', 'Stoney Creek', 'Waterdown'].map((name) => ({
+      '@type': 'City',
+      name,
+      containedInPlace: { '@type': 'AdministrativeArea', name: 'Ontario' },
+    })),
+  },
+  faqPage(faqs),
+  breadcrumbList([
+    { name: 'Home', url: `${site.url}/` },
+    { name: 'Basement Renovation', url: `${site.url}/basement/` },
+    { name: 'Fourplex conversion in Hamilton', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">Home</a></li>
+          <li class="breadcrumb-item"><a href="/basement/" class="text-white-50">Basement</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">Fourplex conversion</li>
+        </ol>
+      </nav>
+      <div class="row">
+        <div class="col-lg-9">
+          <h1 class="display-5 fw-bold mb-3">Fourplex Conversion in Hamilton, Ontario</h1>
+          <p class="lead text-white-50 mb-4">
+            A fourplex conversion in Hamilton turns a house into a building with four dwellings, where the lot allows it. MTC Renovations plans and builds that residential work. One legal basement apartment, by itself, is the <a href="/legal-basement-apartment-hamilton/" class="text-white">secondary suite</a> page.
+          </p>
+          <a href="/contact/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request a quote</a>
+          <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <p>
+            This page is general information about a multiplex conversion in Hamilton: a fourplex, a triplex, or adding units to a house. It is not legal, zoning, or building-code advice. Confirm the property on the city’s zoning map before you hire a designer. The construction story of adding floors to an existing duplex, including published cost bands, stays on the <a href="/blog/duplex-to-fourplex-conversion-ontario/">duplex-to-fourplex guide</a>. Those dollar ranges are not repeated here.
+          </p>
+
+          <h2 class="fw-bold mb-3">Where Hamilton permits four units</h2>
+          <p>
+            The City of Hamilton’s <a href="https://www.hamilton.ca/build-invest-grow/planning-development/zoning/residential-zones-project">Residential Zones Project</a> is the public summary. It says the first urban residential zones in Zoning By-law 05-200 are Low Density Residential (R1), Low Density Residential – Small Lot (R1a), and Low Density Residential – Large Lot (R2). The city’s table lists a fourplex dwelling and a triplex dwelling as permitted uses in all three. The same page dates that permission to February 2024, and it dates an earlier change — existing dwellings permitted to convert to contain up to four dwelling units — to August 2022.
+          </p>
+          <p>
+            The zoning by-law’s general provisions, section 4.33, are more specific than the table. A single detached dwelling, duplex, or triplex built in conformity with the by-law may be converted to contain a fourth additional dwelling unit, as long as the building is not in a rural zone or an open space and park zone. The same section caps a lot that contains an additional dwelling unit at four dwelling units. The city’s <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/additional-dwelling-units">additional dwelling units</a> page describes an internal unit as one more unit, up to four dwelling units in some zones, and it says buildings with three or four units are reviewed by Building Engineering.
+          </p>
+          <p>
+            That is not a promise that every residential lot in Hamilton can take four units. Lots still under an older Ancaster, Dundas, Flamborough, Glanbrook, or Stoney Creek by-law, heritage properties, and site-specific exceptions can differ. Five and six units are a different application: the city’s neighbourhood infill guidelines say fiveplexes and sixplexes need a zoning by-law amendment. We read the map for the address at the consultation and stop if the zoning does not allow the count you want.
+          </p>
+
+          <h2 class="fw-bold mb-3">Triplex conversion</h2>
+          <p>
+            A triplex conversion in Hamilton is the same family of project with three dwellings instead of four. The Residential Zones Project lists a triplex dwelling in R1, R1a, and R2 alongside the fourplex. Homeowners land here when they search “add units to a house” and the third unit is the one that fits the lot, the stairs, and the services. If the third unit is only a basement apartment under the main home, start with <a href="/legal-basement-apartment-hamilton/">legal basement apartment in Hamilton</a> and we will say whether the file stays a secondary suite or becomes multi-residential.
+          </p>
+
+          <h2 class="fw-bold mb-3">Feasibility before anyone draws a unit</h2>
+          <ul>
+            <li><strong>Lot.</strong> One fourplex dwelling is the limit the by-law states for a lot where that use is permitted. Setbacks, lot coverage, and the landscaped area in the front yard still apply. A floor plan that ignores the lot fails zoning even when four units are a permitted use.</li>
+            <li><strong>Water and sewer.</strong> The city’s additional dwelling unit page says extra plumbing fixtures can require a larger water service and meter, and that a lead service may have to be replaced. Wastewater capacity is part of the same review. A house on septic needs a system that can take the extra units. The city permits servicing for a detached additional unit only through the principal dwelling, not as a separate connection.</li>
+            <li><strong>Fire separations and exits.</strong> Each unit needs a separation from the others and a way out that the code accepts. A conversion inside the existing walls is a different structural problem from adding a storey. Both get reviewed. Neither is a cosmetic renovation.</li>
+            <li><strong>Sprinklers.</strong> Sprinklers are not automatic for every fourplex. Part 9 of the Ontario Building Code generally covers buildings of three storeys or less that stay within the Part 9 building-area limit. A small multiplex often stays in Part 9. More storeys, or a larger area, can move the building into Part 3, and Part 3 is where sprinkler rules usually appear. The permit set states which part applies.</li>
+            <li><strong>Parking.</strong> The city’s additional dwelling unit page says additional parking for up to three units is exempt under the amended secondary dwelling unit by-laws, with extra review for newer buildings. A four-unit building needs its own check against the by-law for that zone. Do not assume the three-unit exemption covers a fourplex.</li>
+            <li><strong>Part 9 or Part 3.</strong> This is the note to put on the first drawing, not a guess from the street. House-scale work that stays inside Part 9 is reviewed as a house. A building that leaves those limits is reviewed as Part 3, with the professional design and fire protection that part requires. We do not label a project either way until the drawings say so.</li>
+          </ul>
+
+          <h2 class="fw-bold mb-3">How the permit and the build run</h2>
+          <p>
+            MTC Renovations has been a residential renovation contractor since 2011. We do not publish a street address. Work is quoted in the service area: Hamilton, Burlington, Halton, Mississauga, and Toronto.
+          </p>
+          <ol>
+            <li><strong>Consult.</strong> We walk the house and you tell us whether you want a triplex, a fourplex, or a basement suite only. If the count does not fit the zone, that is the end of the design phase.</li>
+            <li><strong>Design and drawings.</strong> The city asks multi-residential applications (three or more units) to group drawings by discipline: architectural, structural, mechanical, electrical. A one- or two-unit house can often combine drawings in a single PDF. We match the submission to the unit count.</li>
+            <li><strong>Permits.</strong> The building permit goes to the City of Hamilton. Electrical work is filed with the <a href="https://esasafe.com/">Electrical Safety Authority</a>. A variance or a heritage approval, if the lot needs one, is filed before construction. How to apply is on the city’s <a href="https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/building-permit">building permit</a> page.</li>
+            <li><strong>Build.</strong> Demolition only where the drawings say, then structure, separations, services, kitchens, bathrooms, and exits. Adding units inside a house you live in is still a construction site. Occupied units and tenant notice are a landlord question for your own advisor, not something this page decides.</li>
+            <li><strong>Inspections.</strong> Framing, mechanical rough-in, fire separation, and final occupancy are the usual gates. We book the inspections the permit lists. The building is not described as finished until they pass.</li>
+          </ol>
+          <p>
+            Financing is available, and credit cards are accepted. Ask when you request the quote. This page does not list rates. MTC is fully insured, and proof of insurance is available before work starts. Completed work includes a 2-year workmanship warranty on our installation. Electricians, plumbers, and HVAC technicians on our projects are Red Seal or Ontario-certified. For an urgent repair rather than a conversion, call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. That number is 24-hour emergency service.
+          </p>
+
+          <h2 class="fw-bold mb-3">A fourplex conversion in progress</h2>
+          <p>
+            These photographs are a fourplex conversion MTC Renovations is building in Hamilton’s Delta West. They run in order: the existing kitchen and side wall, the new storeys going up, siding started with scaffolding still in place, unit framing, the separation between units before drywall, then water lines and heat-pump heads. The units are not finished. The street address is not published. One finished basement apartment, on its own, is the <a href="/legal-basement-apartment-hamilton/">legal basement suite</a> page.
+          </p>
+          <div class="row g-3 mb-2">
+            {photos.map((photo) => (
+              <div class="col-6">
+                <img
+                  src={photo.src}
+                  srcset={photo.srcset}
+                  sizes="(min-width: 992px) 360px, 50vw"
+                  alt={photo.alt}
+                  class="img-fluid rounded"
+                  loading="lazy"
+                  width={photo.width}
+                  height={photo.height}
+                />
+              </div>
+            ))}
+          </div>
+          <p class="small text-secondary mb-4">Fourplex conversion in progress by MTC Renovations in Hamilton. The units are not finished. No street address.</p>
+
+          <h2 class="fw-bold mb-3">Related Hamilton pages</h2>
+          <ul>
+            <li><a href="/legal-basement-apartment-hamilton/">Legal basement apartment in Hamilton</a> — one secondary suite, not a whole multiplex.</li>
+            <li><a href="/basement/">Basement renovations</a> — finishing without adding a legal unit.</li>
+            <li><a href="/location/hamilton/">Hamilton renovations</a> — the rest of the house.</li>
+            <li><a href="/blog/duplex-to-fourplex-conversion-ontario/">Duplex to fourplex conversion in Ontario</a> — scope and published cost bands for a vertical addition.</li>
+            <li><a href="/blog/legal-basement-suite-ontario/">Legal basement suites in Ontario</a> — code topics for a single suite.</li>
+            <li><a href="/licensed-insured-renovation-contractor-ontario/">Licensed and insured renovation contractor</a> — insurance and trade certificates.</li>
+          </ul>
+
+          <h2 class="fw-bold mb-3">Request a quote</h2>
+          <p>
+            Use the <a href="/contact/">contact form</a> and name the city, the current number of units, and whether you want a triplex or a fourplex. You can also call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. The quote follows a visit. This page does not list a price.
+          </p>
+
+          <h2 class="fw-bold mb-4">Fourplex conversion questions</h2>
+          {faqs.map((faq) => (
+            <div class="mb-4">
+              <h3 class="h5 fw-bold">{faq.question}</h3>
+              <p class="mb-0">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Considering a fourplex conversion in Hamilton?"
+    subtitle="Tell us the city and how many units you want. We will visit and say whether that count fits the house."
+    ctaText="Request a quote"
+    ctaLink="/contact/"
+  />
+</BaseLayout>
