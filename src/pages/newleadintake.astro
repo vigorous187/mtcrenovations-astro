@@ -27,6 +27,7 @@ const schemas = [localBusiness()];
         <div class="col-md-8 col-lg-6">
           <div class="card shadow-sm border-0">
             <div class="card-body p-4">
+              <div id="estimateNotice" class="alert alert-warning d-none" role="alert">We couldn't load your saved estimate from that link. Anything you type below is still kept — you can continue, or call us at (647) 560-1095.</div>
               <form id="leadForm" novalidate>
                 <div class="mb-3">
                   <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
@@ -37,7 +38,7 @@ const schemas = [localBusiness()];
                 <div class="mb-3">
                   <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
                   <input type="tel" class="form-control" id="phone" name="phone" required />
-                  <div class="invalid-feedback">Please enter your phone number.</div>
+                  <div class="invalid-feedback">Please enter a valid phone number.</div>
                 </div>
 
                 <div class="mb-3">
@@ -95,6 +96,7 @@ const schemas = [localBusiness()];
 
 <script>
   import { inferRemodelType } from '../lib/estimate-to-jobtread';
+  import { isValidPhone } from '../lib/phone';
   const params = new URLSearchParams(window.location.search);
   const estimateId = params.get('estimate') || '';
   const source = params.get('source') || '';
@@ -106,6 +108,9 @@ const schemas = [localBusiness()];
   const hearSelect = document.getElementById('hearAbout');
   const notesField = document.getElementById('projectNotes');
   const remodelSelect = document.getElementById('remodelType');
+  const phoneInput = document.getElementById('phone');
+  const estimateNotice = document.getElementById('estimateNotice');
+  let submitting = false;
 
   async function prefillFromEstimate() {
     const id = estimateId || sessionStorage.getItem('mtc-estimate-id');
@@ -136,7 +141,10 @@ const schemas = [localBusiness()];
           }
           return;
         }
-      } catch (_) {}
+        estimateNotice?.classList.remove('d-none');
+      } catch (_) {
+        estimateNotice?.classList.remove('d-none');
+      }
     }
 
     const summary = sessionStorage.getItem('mtc-estimate-summary');
@@ -149,8 +157,14 @@ const schemas = [localBusiness()];
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitting) return;
+    submitting = true;
+    if (phoneInput) {
+      phoneInput.setCustomValidity(isValidPhone(phoneInput.value) ? '' : 'Please enter a valid phone number.');
+    }
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
+      submitting = false;
       return;
     }
 
@@ -204,6 +218,7 @@ const schemas = [localBusiness()];
       formError.textContent = 'Something went wrong. Please call us at (647) 560-1095.';
       formError.classList.remove('d-none');
     } finally {
+      submitting = false;
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Request';
     }
