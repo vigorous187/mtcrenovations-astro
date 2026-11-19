@@ -9,6 +9,14 @@ import {
   REMODEL_TYPES,
 } from "../../../lib/estimate-to-jobtread";
 import { createCustomerLead } from "../../../lib/jobtread-pave";
+import { isValidPhone } from "../../../lib/phone";
+import {
+  createMockExecutor,
+  getMockLead,
+  isMockLeadMode,
+  mockLeadKey,
+  saveMockLead,
+} from "../../../lib/lead-mock";
 import type {
   LeadSubmitInput,
   SavedEstimate,
@@ -45,10 +53,26 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    if (!isValidPhone(body.phone)) {
+      return json({ error: "Please enter a valid phone number." }, 400);
+    }
+    if (!/.+@.+\..+/.test(body.email.trim())) {
+      return json({ error: "Please enter a valid email address." }, 400);
+    }
+
     let estimate: SavedEstimate | null = null;
     if (body.estimateId && kv) {
       const raw = await kv.get(`estimate:${body.estimateId}`);
-      if (raw) estimate = JSON.parse(raw) as SavedEstimate;
+      if (!raw) {
+        return json(
+          {
+            error:
+              "We could not find that saved estimate. Please check the link or submit without it.",
+          },
+          400,
+        );
+      }
+      estimate = JSON.parse(raw) as SavedEstimate;
     }
 
     const hearAbout = body.hearAbout || defaultHearAbout("price-guide");
@@ -61,10 +85,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     if (!LEAD_SOURCES.includes(hearAbout) || !REMODEL_TYPES.includes(remodelType)) {
       return json({ error: "Please select a valid lead source and project type." }, 400);
     }
-    if (!grantKey || !orgId) {
-      console.error("JobTread lead delivery is not configured");
-      return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 503);
-    }
 
     const projectNotes = estimate
       ? buildProjectNotes(estimate, siteUrl, body.projectNotes)
@@ -74,19 +94,95 @@ export const POST: APIRoute = async ({ request, locals }) => {
       ? buildJobName(estimate)
       : `Web Lead - ${body.name}`;
 
+    const leadInput = {
+      name: body.name.trim(),
+      email: body.email.trim().toLowerCase(),
+      phone: body.phone.trim(),
+      address: body.address.trim(),
+      hearAbout,
+      remodelType,
+      projectNotes,
+      jobName,
+    };
+
+    if (isMockLeadMode(env)) {
+      const mockOrgId = env.JOBTREAD_ORG_ID || "MOCK-ORG";
+      const key = mockLeadKey(leadInput.email, leadInput.phone, jobName);
+      const existingMock = getMockLead(key);
+      if (existingMock) {
+        return json({
+          success: true,
+          syncPending: false,
+          mock: true,
+          duplicate: true,
+          jobTread: {
+            accountId: existingMock.accountId,
+            jobId: existingMock.jobId,
+            created: existingMock.created,
+          },
+        });
+      }
+
+      const { exec, payloads } = createMockExecutor();
+      let mockResult: Awaited<ReturnType<typeof createCustomerLead>>;
+      try {
+        mockResult = await createCustomerLead("MOCK", mockOrgId, leadInput, exec);
+      } catch (err) {
+        console.error("Mock JobTread sync failed", err);
+        return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 502);
+      }
+
+      saveMockLead(key, {
+        accountId: mockResult.accountId,
+        contactId: mockResult.contactId,
+        locationId: mockResult.locationId,
+        jobId: mockResult.jobId,
+        created: mockResult.created,
+        payloadCount: payloads.length,
+      });
+
+      if (estimate && kv) {
+        const updated: SavedEstimate = {
+          ...estimate,
+          name: body.name.trim(),
+          email: body.email.trim().toLowerCase(),
+          leadSubmitted: true,
+          jobTread: {
+            accountId: mockResult.accountId,
+            contactId: mockResult.contactId,
+            locationId: mockResult.locationId,
+            jobId: mockResult.jobId,
+          },
+        };
+        await kv.put(`estimate:${estimate.id}`, JSON.stringify(updated), {
+          expirationTtl: 90 * 24 * 60 * 60,
+        });
+        estimate = updated;
+      }
+
+      return json({
+        success: true,
+        syncPending: false,
+        mock: true,
+        duplicate: false,
+        jobTread: {
+          accountId: mockResult.accountId,
+          jobId: mockResult.jobId,
+          created: mockResult.created,
+        },
+        mockPayloads: payloads,
+      });
+    }
+
+    if (!grantKey || !orgId) {
+      console.error("JobTread lead delivery is not configured");
+      return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 503);
+    }
+
     let jobTreadResult: Awaited<ReturnType<typeof createCustomerLead>>;
 
     try {
-      jobTreadResult = await createCustomerLead(grantKey, orgId, {
-        name: body.name.trim(),
-        email: body.email.trim().toLowerCase(),
-        phone: body.phone.trim(),
-        address: body.address.trim(),
-        hearAbout,
-        remodelType,
-        projectNotes,
-        jobName,
-      });
+      jobTreadResult = await createCustomerLead(grantKey, orgId, leadInput);
     } catch (err) {
       console.error("JobTread sync failed", err);
       return json({ error: "Unable to submit your request. Please call (647) 560-1095." }, 502);

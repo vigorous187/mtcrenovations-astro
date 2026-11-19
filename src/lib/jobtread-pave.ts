@@ -41,16 +41,22 @@ export async function paveQuery(
   return json.data ?? json;
 }
 
+export type PaveExecutor = (
+  grantKey: string,
+  query: Record<string, unknown>,
+) => Promise<Record<string, unknown>>;
+
 export async function findContactByEmail(
   grantKey: string,
   orgId: string,
   email: string,
+  exec: PaveExecutor = paveQuery,
 ): Promise<{
   contactId: string;
   accountId: string;
   accountName: string;
 } | null> {
-  const data = await paveQuery(grantKey, {
+  const data = await exec(grantKey, {
     organization: {
       $: { id: orgId },
       contacts: {
@@ -116,6 +122,7 @@ export async function createCustomerLead(
     projectNotes: string;
     jobName: string;
   },
+  exec: PaveExecutor = paveQuery,
 ): Promise<{
   accountId: string;
   contactId: string;
@@ -123,10 +130,10 @@ export async function createCustomerLead(
   jobId: string;
   created: boolean;
 }> {
-  const existing = await findContactByEmail(grantKey, orgId, input.email);
+  const existing = await findContactByEmail(grantKey, orgId, input.email, exec);
 
   if (existing) {
-    const locationData = await paveQuery(grantKey, {
+    const locationData = await exec(grantKey, {
       createLocation: {
         $: {
           accountId: existing.accountId,
@@ -141,7 +148,7 @@ export async function createCustomerLead(
       locationData.createLocation as { createdLocation: { id: string } }
     ).createdLocation.id;
 
-    const jobData = await paveQuery(grantKey, {
+    const jobData = await exec(grantKey, {
       createJob: {
         $: {
           name: input.jobName.slice(0, 30),
@@ -157,7 +164,7 @@ export async function createCustomerLead(
     const jobId = (jobData.createJob as { createdJob: { id: string } })
       .createdJob.id;
 
-    await paveQuery(grantKey, {
+    await exec(grantKey, {
       updateAccount: {
         $: {
           id: existing.accountId,
@@ -170,7 +177,7 @@ export async function createCustomerLead(
       },
     });
 
-    await paveQuery(grantKey, {
+    await exec(grantKey, {
       createComment: {
         $: {
           targetId: jobId,
@@ -192,7 +199,7 @@ export async function createCustomerLead(
     };
   }
 
-  const accountData = await paveQuery(grantKey, {
+  const accountData = await exec(grantKey, {
     createAccount: {
       $: {
         organizationId: orgId,
@@ -211,7 +218,7 @@ export async function createCustomerLead(
     accountData.createAccount as { createdAccount: { id: string } }
   ).createdAccount.id;
 
-  const contactData = await paveQuery(grantKey, {
+  const contactData = await exec(grantKey, {
     createContact: {
       $: {
         accountId,
@@ -229,7 +236,7 @@ export async function createCustomerLead(
     contactData.createContact as { createdContact: { id: string } }
   ).createdContact.id;
 
-  const locationData = await paveQuery(grantKey, {
+  const locationData = await exec(grantKey, {
     createLocation: {
       $: {
         accountId,
@@ -244,7 +251,7 @@ export async function createCustomerLead(
     locationData.createLocation as { createdLocation: { id: string } }
   ).createdLocation.id;
 
-  const jobData = await paveQuery(grantKey, {
+  const jobData = await exec(grantKey, {
     createJob: {
       $: {
         name: input.jobName.slice(0, 30),
@@ -260,7 +267,7 @@ export async function createCustomerLead(
   const jobId = (jobData.createJob as { createdJob: { id: string } }).createdJob
     .id;
 
-  await paveQuery(grantKey, {
+  await exec(grantKey, {
     createComment: {
       $: {
         targetId: jobId,
