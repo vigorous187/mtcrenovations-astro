@@ -111,6 +111,10 @@ const schemas = [localBusiness()];
   const phoneInput = document.getElementById('phone');
   const estimateNotice = document.getElementById('estimateNotice');
   let submitting = false;
+  // Only an estimate that actually loaded may reach the lead payload or the
+  // post-submit receipt redirect. An ID that fails to load is cleared
+  // completely so stale details from an earlier estimate never leak through.
+  let validEstimateId = '';
 
   async function prefillFromEstimate() {
     const id = estimateId || sessionStorage.getItem('mtc-estimate-id');
@@ -122,28 +126,34 @@ const schemas = [localBusiness()];
     if (id) {
       try {
         const res = await fetch(`/api/estimates/${id}/`);
-        if (res.ok) {
-          const estimate = await res.json();
-          if (notesField) {
-            const lines = [
-              `Online price guide estimate: $${estimate.min.toLocaleString('en-CA')} – $${estimate.max.toLocaleString('en-CA')} (excl. HST)`,
-              `Project: ${estimate.typeLabel}`,
-              estimate.scopeLabel ? `Scope: ${estimate.scopeLabel}` : null,
-              `Size: ${estimate.sizeLabel}`,
-              `Finish: ${estimate.finishLabel}`,
-              estimate.addonLabels?.length ? `Add-ons: ${estimate.addonLabels.join(', ')}` : null,
-              `Saved estimate: ${window.location.origin}/estimate/s/${estimate.id}/`,
-            ].filter(Boolean).join('\n');
-            notesField.value = lines;
-          }
-          if (remodelSelect && !remodelSelect.value) {
-            remodelSelect.value = inferRemodelType(estimate.type, estimate.scope);
-          }
-          return;
+        if (!res.ok) throw new Error('estimate lookup failed');
+        const estimate = await res.json();
+        validEstimateId = estimate.id || id;
+        if (notesField) {
+          const lines = [
+            `Online price guide estimate: $${estimate.min.toLocaleString('en-CA')} – $${estimate.max.toLocaleString('en-CA')} (excl. HST)`,
+            `Project: ${estimate.typeLabel}`,
+            estimate.scopeLabel ? `Scope: ${estimate.scopeLabel}` : null,
+            `Size: ${estimate.sizeLabel}`,
+            `Finish: ${estimate.finishLabel}`,
+            estimate.addonLabels?.length ? `Add-ons: ${estimate.addonLabels.join(', ')}` : null,
+            `Saved estimate: ${window.location.origin}/estimate/s/${estimate.id}/`,
+          ].filter(Boolean).join('\n');
+          notesField.value = lines;
         }
-        estimateNotice?.classList.remove('d-none');
+        if (remodelSelect && !remodelSelect.value) {
+          remodelSelect.value = inferRemodelType(estimate.type, estimate.scope);
+        }
+        return;
       } catch (_) {
+        // Lookup failed: warn, and clear every trace of the estimate (stored
+        // ID, stored summary, and any prefill). Notes the user types manually
+        // are untouched and are all that will be submitted.
+        validEstimateId = '';
+        sessionStorage.removeItem('mtc-estimate-id');
+        sessionStorage.removeItem('mtc-estimate-summary');
         estimateNotice?.classList.remove('d-none');
+        return;
       }
     }
 
@@ -153,7 +163,7 @@ const schemas = [localBusiness()];
     }
   }
 
-  prefillFromEstimate();
+  const prefillPromise = prefillFromEstimate();
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -173,7 +183,8 @@ const schemas = [localBusiness()];
     formError.classList.add('d-none');
     formSuccess.classList.add('d-none');
 
-    const id = estimateId || sessionStorage.getItem('mtc-estimate-id') || undefined;
+    await prefillPromise;
+    const id = validEstimateId || undefined;
 
     const payload = {
       estimateId: id,
