@@ -15,7 +15,15 @@ export async function findGalleryImage(
 ): Promise<ImageMetadata | null> {
   const suffix = `/${service}/our-work/${filename}`;
   for (const [path, load] of Object.entries(loaders)) {
-    if (path.endsWith(suffix)) return await load();
+    if (path.endsWith(suffix)) {
+      const mod = (await load()) as unknown as
+        | ImageMetadata
+        | { default: ImageMetadata };
+      const meta =
+        (mod as { default?: ImageMetadata }).default ??
+        (mod as ImageMetadata);
+      return meta && typeof meta.src === 'string' ? meta : null;
+    }
   }
   return null;
 }
