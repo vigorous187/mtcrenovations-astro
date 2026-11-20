@@ -14,31 +14,63 @@ export async function paveQuery(
   grantKey: string,
   query: Record<string, unknown>,
 ): Promise<Record<string, unknown>> {
-  const res = await fetch(PAVE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query: { $: { grantKey }, ...query } }),
-  });
+  // The Pave API intermittently drops connections and returns transient 5xx
+  // responses; a single attempt loses the lead. Retry those cases with
+  // backoff (3 attempts total). Deterministic rejections (HTTP 4xx and
+  // GraphQL errors) are thrown immediately, unchanged.
+  const delays = [400, 1200];
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    if (attempt > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delays[attempt - 1]));
+    }
 
-  const raw = await res.text();
-  let json: { errors?: unknown; data?: Record<string, unknown> };
-  try {
-    json = JSON.parse(raw) as typeof json;
-  } catch {
-    throw new JobTreadError(`JobTread API non-JSON response: ${res.status}`, {
-      status: res.status,
-      bodyPreview: raw.slice(0, 300),
-    });
+    let res: Response;
+    try {
+      res = await fetch(PAVE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: { $: { grantKey }, ...query } }),
+      });
+    } catch (err) {
+      lastError = err;
+      continue;
+    }
+
+    const raw = await res.text();
+    let json: { errors?: unknown; data?: Record<string, unknown> };
+    try {
+      json = JSON.parse(raw) as typeof json;
+    } catch {
+      lastError = new JobTreadError(
+        `JobTread API non-JSON response: ${res.status}`,
+        { status: res.status, bodyPreview: raw.slice(0, 300) },
+      );
+      if (res.status >= 500) continue;
+      throw lastError;
+    }
+
+    if (res.status >= 500 && !json.errors) {
+      lastError = new JobTreadError(
+        `JobTread API error: ${res.status}`,
+        json.errors ?? json,
+      );
+      continue;
+    }
+
+    if (!res.ok || json.errors) {
+      throw new JobTreadError(
+        `JobTread API error: ${res.status}`,
+        json.errors ?? json,
+      );
+    }
+
+    return json.data ?? json;
   }
 
-  if (!res.ok || json.errors) {
-    throw new JobTreadError(
-      `JobTread API error: ${res.status}`,
-      json.errors ?? json,
-    );
-  }
-
-  return json.data ?? json;
+  throw lastError instanceof Error
+    ? lastError
+    : new JobTreadError("JobTread API request failed", { cause: lastError });
 }
 
 export type PaveExecutor = (
