@@ -1,10 +1,17 @@
 ---
+import { Picture } from 'astro:assets';
+import featuredKitchen from '../assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-12.jpg';
+import featuredBathroom from '../assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg';
+import featuredBasement from '../assets/img/basement/our-work/virtual-tour-333305-mls-high-res-image-38.jpg';
+import featuredFlooring from '../assets/img/flooring/our-work/virtual-tour-333305-mls-high-res-image-20.jpg';
+import featuredPainting from '../assets/img/painting/our-work/virtual-tour-333305-mls-high-res-image-17.jpg';
+
 const projects = [
-  { src: '/assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-12.jpg', alt: 'Modern kitchen renovation with blue cabinets and hexagon backsplash in Burlington', service: 'Kitchen', span: 'col-md-8' },
-  { src: '/assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg', alt: 'Luxury bathroom remodel with premium tile in Hamilton', service: 'Bathroom', span: 'col-md-4' },
-  { src: '/assets/img/basement/our-work/virtual-tour-333305-mls-high-res-image-38.jpg', alt: 'Finished basement renovation in Burlington', service: 'Basement', span: 'col-md-4' },
-  { src: '/assets/img/flooring/our-work/virtual-tour-333305-mls-high-res-image-20.jpg', alt: 'Wide-plank hardwood flooring installation in Burlington', service: 'Flooring', span: 'col-md-4' },
-  { src: '/assets/img/painting/our-work/virtual-tour-333305-mls-high-res-image-17.jpg', alt: 'Professional interior painting with warm modern finishes', service: 'Painting', span: 'col-md-4' },
+  { src: featuredKitchen, alt: 'Modern kitchen renovation with blue cabinets and hexagon backsplash in Burlington', service: 'Kitchen', span: 'col-md-8' },
+  { src: featuredBathroom, alt: 'Luxury bathroom remodel with premium tile in Hamilton', service: 'Bathroom', span: 'col-md-4' },
+  { src: featuredBasement, alt: 'Finished basement renovation in Burlington', service: 'Basement', span: 'col-md-4' },
+  { src: featuredFlooring, alt: 'Wide-plank hardwood flooring installation in Burlington', service: 'Flooring', span: 'col-md-4' },
+  { src: featuredPainting, alt: 'Professional interior painting with warm modern finishes', service: 'Painting', span: 'col-md-4' },
 ];
 ---
 
@@ -18,12 +25,12 @@ const projects = [
       {projects.map(project => (
         <div class={`${project.span} reveal`}>
           <div class="portfolio-item position-relative" style="height: 300px;">
-            <img
-              src={`${project.src}?v=2`}
-              srcset={`${project.src.replace(/\.jpg$/, '-800w.webp')} 800w, ${project.src}?v=2 1200w`}
+            <Picture
+              src={project.src}
+              widths={[400, 800, 1200]}
               sizes="(min-width: 768px) 50vw, 100vw"
+              formats={['avif', 'webp']}
               alt={project.alt}
-              decoding="async"
               class="w-100 h-100"
               style="object-fit: cover;"
               loading="lazy"
@@ -42,3 +49,11 @@ const projects = [
     </div>
   </div>
 </section>
+
+<style>
+  /* astro:assets <picture> wrapper must fill the fixed-height tile. */
+  .portfolio-item picture {
+    display: block;
+    height: 100%;
+  }
+</style>

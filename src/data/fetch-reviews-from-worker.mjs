@@ -64,7 +64,7 @@ export async function fetchReviewsFromWorker() {
       aggregate: data.aggregate,
       reviews: data.reviews,
       fetched_at: data.fetched_at,
-      googleReviewsUrl: "https://g.page/r/mtcrenovations/review",
+      googleReviewsUrl: "https://www.google.com/maps?cid=15669303408364510702",
     };
     writeFileSync(REVIEWS_PATH, JSON.stringify(artifact, null, 2) + "\n");
     writeLegacyReviews(data.reviews);

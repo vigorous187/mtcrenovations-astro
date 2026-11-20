@@ -4,9 +4,12 @@
 // <input type="range">, so keyboard operation (arrows, Home/End) works
 // natively. Pointer drag anywhere on the figure also moves the divider.
 // A side's badge fades out when that photo is fully concealed.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
-  beforeSrc: string;
-  afterSrc: string;
+  beforeSrc: ImageMetadata;
+  afterSrc: ImageMetadata;
   beforeAlt: string;
   afterAlt: string;
   caption?: string;
@@ -17,9 +20,9 @@ const { beforeSrc, afterSrc, beforeAlt, afterAlt, caption } = Astro.props;
 
 <figure class="ba-slider">
   <div class="ba-stage">
-    <img class="ba-img ba-after" src={afterSrc} alt={afterAlt} loading="lazy" />
+    <Picture class="ba-img ba-after" src={afterSrc} widths={[400, 800, 1400]} sizes="(max-width: 900px) 100vw, 860px" formats={['avif', 'webp']} alt={afterAlt} loading="lazy" />
     <div class="ba-top">
-      <img class="ba-img" src={beforeSrc} alt={beforeAlt} loading="lazy" />
+      <Picture class="ba-img" src={beforeSrc} widths={[400, 800, 1400]} sizes="(max-width: 900px) 100vw, 860px" formats={['avif', 'webp']} alt={beforeAlt} loading="lazy" />
     </div>
     <span class="ba-badge ba-badge-before">Before</span>
     <span class="ba-badge ba-badge-after">After</span>
@@ -64,6 +67,11 @@ const { beforeSrc, afterSrc, beforeAlt, afterAlt, caption } = Astro.props;
     clip-path: inset(0 50% 0 0);
   }
   .ba-top .ba-img {
+    height: 100%;
+  }
+  /* astro:assets wraps the img in <picture>; it must fill the top layer. */
+  .ba-top picture {
+    display: block;
     height: 100%;
   }
   .ba-badge {

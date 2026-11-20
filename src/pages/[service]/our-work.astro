@@ -3,11 +3,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import PortfolioGrid from '../../components/PortfolioGrid.astro';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider.astro';
+import type { ImageMetadata } from 'astro';
 import CTABanner from '../../components/CTABanner.astro';
 import { localBusiness, breadcrumbList, imageGallery, faqPage } from '../../components/seo/schemas';
 import site from '../../data/site.json';
 import services from '../../data/services.json';
 import portfolioData from '../../data/portfolio.json';
+import { findGalleryImage } from '../../lib/gallery-images';
+import gatesheadBefore from '../../assets/img/before-after/gateshead-before.jpg';
+import gatesheadAfter from '../../assets/img/before-after/gateshead-after.jpg';
+import gatesheadBathBefore from '../../assets/img/before-after/gateshead-bath-before.jpg';
+import gatesheadBathAfter from '../../assets/img/before-after/gateshead-bath-after.jpg';
+import gatesheadBasementBefore from '../../assets/img/before-after/gateshead-basement-before.jpg';
+import gatesheadBasementAfter from '../../assets/img/before-after/gateshead-basement-after.jpg';
 
 export function getStaticPaths() {
   return services.map(s => ({
@@ -227,24 +235,24 @@ const work: Record<string, WorkCopy> = {
 };
 
 // Verified before/after pairs (150 Gateshead, Hamilton) — interior rooms only.
-const baPairs: Record<string, { before: string; after: string; beforeAlt: string; afterAlt: string; caption: string }> = {
+const baPairs: Record<string, { before: ImageMetadata; after: ImageMetadata; beforeAlt: string; afterAlt: string; caption: string }> = {
   kitchen: {
-    before: '/assets/img/before-after/gateshead-before.jpg',
-    after: '/assets/img/before-after/gateshead-after.jpg',
+    before: gatesheadBefore,
+    after: gatesheadAfter,
     beforeAlt: 'The 150 Gateshead kitchen before renovation, looking along the sink wall',
     afterAlt: 'The 150 Gateshead kitchen after renovation, looking along the same sink wall',
     caption: '150 Gateshead, Hamilton — the same kitchen sink wall, before and after.',
   },
   bathroom: {
-    before: '/assets/img/before-after/gateshead-bath-before.jpg',
-    after: '/assets/img/before-after/gateshead-bath-after.jpg',
+    before: gatesheadBathBefore,
+    after: gatesheadBathAfter,
     beforeAlt: 'The 150 Gateshead bathroom before renovation',
     afterAlt: 'The 150 Gateshead bathroom after renovation, with the blue tub tile reflected in the mirror',
     caption: '150 Gateshead, Hamilton — the same bathroom, before and after.',
   },
   basement: {
-    before: '/assets/img/before-after/gateshead-basement-before.jpg',
-    after: '/assets/img/before-after/gateshead-basement-after.jpg',
+    before: gatesheadBasementBefore,
+    after: gatesheadBasementAfter,
     beforeAlt: 'The 150 Gateshead basement before renovation, under the bulkhead line',
     afterAlt: 'The 150 Gateshead basement after renovation, finished living space under the same bulkhead line',
     caption: '150 Gateshead, Hamilton — the same basement, before and after.',
@@ -262,7 +270,12 @@ const schemas = [
     { name: `${name} Renovation`, url: `${site.url}/${service.slug}` },
     { name: 'Our Work', url: `${site.url}/${service.slug}/our-work` },
   ]),
-  imageGallery(name, service.slug, servicePhotos.slice(0, 24)),
+  imageGallery(name, service.slug, (await Promise.all(
+    servicePhotos.slice(0, 24).map(async (p) => {
+      const img = await findGalleryImage(service.slug, p.file);
+      return img ? { url: img.src, alt: p.alt, project: p.project } : null;
+    }),
+  )).filter((p): p is { url: string; alt: string; project: string } => p !== null)),
   ...(page ? [faqPage(page.faqs)] : []),
 ];
 ---

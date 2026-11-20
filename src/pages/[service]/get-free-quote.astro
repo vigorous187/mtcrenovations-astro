@@ -227,7 +227,7 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas}>
+<BaseLayout title={seo.title} description={seo.description} ogImage={`https://${site.domain}/assets/img/og/${service.slug}.png`} schema={schemas} viewTransitions={false}>
   <ServiceHero
     title={`Get Your Free ${name} Renovation Estimate`}
     subtitle="No obligation. We respond within 24 hours."
@@ -404,12 +404,12 @@ const schemas = [
     c.innerHTML = '<form class="jtwf" data-jobtread-web-form="true" data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr" data-success-message="Thank you for reaching out! One of our team members will be getting back you in 24 hours!">' +
       '<div class="mx-auto min-w-0 rounded-sm shadow-sm bg-white">' +
       '<div class="p-4 space-y-2">' +
-      '<label class="cursor-pointer block"><div class="font-bold">Name<span class="font-normal text-red-500">*</span></div><input type="text" required name="contact.name"/></label>' +
-      '<label class="cursor-pointer block"><div class="font-bold">Phone<span class="font-normal text-red-500">*</span></div><input type="tel" required name="contact.custom.22NgpjG3zvMA"/></label>' +
-      '<label class="cursor-pointer block"><div class="font-bold">Email<span class="font-normal text-red-500">*</span></div><input type="email" required name="contact.custom.22NgpjFszPJj"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Name<span class="font-normal text-red-500">*</span></div><input type="text" required autocomplete="name" name="contact.name"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Phone<span class="font-normal text-red-500">*</span></div><input type="tel" required autocomplete="tel" name="contact.custom.22NgpjG3zvMA"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Email<span class="font-normal text-red-500">*</span></div><input type="email" required autocomplete="email" name="contact.custom.22NgpjFszPJj"/></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">How did You Hear About Us?<span class="font-normal text-red-500">*</span></div><select required name="account.custom.22Nh8ReugeSg"><option></option><option>Referral</option><option>Cybertruck</option><option>Banner Sign</option><option>Facebook</option><option>Google</option><option>Home Advisor</option><option>Instagram</option><option>Internet Search</option></select></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Remodel Type<span class="font-normal text-red-500">*</span></div><select required name="job.custom.22Nh8W9jKBnL"><option></option><option>New construction</option><option>Remodel</option><option>Addition</option><option>Exterior project</option><option>General contracting</option><option>Other</option></select></label>' +
-      '<label class="cursor-pointer block"><div class="font-bold">Address<span class="font-normal text-red-500">*</span></div><textarea name="location.address" required></textarea></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Address<span class="font-normal text-red-500">*</span></div><textarea name="location.address" autocomplete="street-address" required></textarea></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Tell us about your project<span class="font-normal text-red-500">*</span></div><textarea name="account.custom.22Nh8Re8atBj" required></textarea></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Photos/Videos</div><div class="text-gray-500">Photos and videos help us provide a more accurate estimate!</div><input type="file" multiple name="account.files"/></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Birthday</div><div class="text-gray-500">We love helping you celebrate!</div><input type="date" name="account.custom.22NivT6DGM7m"/></label>' +

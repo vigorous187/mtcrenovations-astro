@@ -135,7 +135,7 @@ export function faqPage(faqs: { question: string; answer: string }[]) {
 export function imageGallery(
   serviceName: string,
   serviceSlug: string,
-  photos: { file: string; alt: string; project: string }[],
+  photos: { url: string; alt: string; project: string }[],
 ) {
   return {
     "@context": "https://schema.org",
@@ -149,7 +149,7 @@ export function imageGallery(
     url: `${site.url}/${serviceSlug}/our-work/`,
     image: photos.map((photo) => ({
       "@type": "ImageObject",
-      contentUrl: `${site.url}/assets/img/${serviceSlug}/our-work/${photo.file}`,
+      contentUrl: photo.url.startsWith('http') ? photo.url : `${site.url}${photo.url}`,
       description: photo.alt,
       name: `${photo.project} ${serviceName} Renovation`,
     })),

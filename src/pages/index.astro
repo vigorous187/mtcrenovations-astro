@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StatsCounter from '../components/StatsCounter.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.astro';
+import gatesheadBefore from '../assets/img/before-after/gateshead-before.jpg';
+import gatesheadAfter from '../assets/img/before-after/gateshead-after.jpg';
+import kitchenFeaturePhoto from '../assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-4.jpg';
 import TrustBadges from '../components/TrustBadges.astro';
 import ReviewsBlock from '../components/reviews/ReviewsBlock.astro';
 import AggregateRatingSchema from '../components/reviews/AggregateRatingSchema.astro';
@@ -51,13 +54,13 @@ const schemas = [
     <div class="hero-overlay"></div>
     <div class="container position-relative text-center" style="z-index: 2;">
       <p class="text-uppercase small fw-semibold mb-3" style="color: #fff; letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
-      <h1 class="font-display fw-bold mb-3" style="font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text-primary);">
+      <h1 class="font-display fw-bold mb-3" style="font-size: clamp(3rem, 6vw, 5.5rem); color: #fff;">
         Renovations That<br/>Speak for Themselves
       </h1>
-      <p class="h5 fw-semibold mb-4 mx-auto" style="max-width: 640px; color: var(--text-primary);">
+      <p class="h5 fw-semibold mb-4 mx-auto" style="max-width: 640px; color: #fff;">
         Your Home Renovation Contractor in Burlington & Hamilton
       </p>
-      <p class="mb-5 mx-auto" style="max-width: 550px; font-size: 1.15rem; color: var(--text-secondary);">
+      <p class="mb-5 mx-auto" style="max-width: 550px; font-size: 1.15rem; color: rgba(255,255,255,.85);">
         Licensed, insured, and backed by {reviewSummary}. From basements to kitchens — we build it right.
       </p>
       <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
@@ -87,7 +90,7 @@ const schemas = [
             <a href={`/${s.slug}/`} class="text-decoration-none d-block">
               <div class="service-card text-center rounded-3 p-4 h-100">
                 <div class="mb-3" style="height: 50px; display: flex; align-items: center; justify-content: center;">
-                  <img src={s.icon} alt={s.name} style="max-height: 40px; max-width: 40px; filter: brightness(0) invert(1); opacity: 0.8;" loading="lazy" />
+                  <img src={s.icon} alt={s.name} style="max-height: 40px; max-width: 40px; opacity: 0.8;" loading="lazy" />
                 </div>
                 <h2 class="h6 fw-bold mb-1" style="color: var(--text-primary);">{s.name}</h2>
                 <p class="mb-0 small" style="color: var(--text-muted);">Renovation</p>
@@ -119,8 +122,8 @@ const schemas = [
         <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">Drag to Compare</h2>
       </div>
       <BeforeAfterSlider
-        beforeSrc="/assets/img/before-after/gateshead-before.jpg"
-        afterSrc="/assets/img/before-after/gateshead-after.jpg"
+        beforeSrc={gatesheadBefore}
+        afterSrc={gatesheadAfter}
         beforeAlt="The 150 Gateshead kitchen before renovation, looking along the sink wall"
         afterAlt="The 150 Gateshead kitchen after renovation, looking along the same sink wall"
         caption="150 Gateshead, Hamilton — the same kitchen sink wall, before and after."
@@ -190,7 +193,7 @@ const schemas = [
         <div class="col-lg-6 reveal">
           <div class="portfolio-item rounded-3 overflow-hidden">
             <img
-              src="/assets/img/kitchen/our-work/virtual-tour-333305-mls-high-res-image-4.jpg?v=2"
+              src={kitchenFeaturePhoto.src}
               alt="Kitchen renovation with wood grain contrast by MTC Renovations in Burlington"
               class="w-100"
               style="height: 450px; object-fit: cover;"

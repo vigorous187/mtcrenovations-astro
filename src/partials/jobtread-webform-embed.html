@@ -464,16 +464,18 @@
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
           type="text"
           required=""
+          autocomplete="name"
           name="contact.name" /></label
       ><label class="cursor-pointer block"
         ><div class="font-bold">Phone number</div>
         <input
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
           type="tel"
+          autocomplete="tel"
           name="contact.custom.22NgpjG3zvMA" /></label
       ><label class="cursor-pointer block"
         ><div class="font-bold">
-          Email address<span class="font-normal text-red-500">*</span>
+          Email address
         </div>
         <div class="text-gray-500">
           Optional if you provided a phone number above
@@ -481,10 +483,10 @@
         <input
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
           type="email"
-          required=""
+          autocomplete="email"
           name="contact.custom.22NgpjFszPJj"
       /></label>
-      <div class="block">
+      <label class="cursor-pointer block">
         <div class="font-bold">
           What type of project do you have?<span
             class="font-normal text-red-500"
@@ -493,6 +495,7 @@
         </div>
         <select
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
+          required=""
           name="job.custom.22Nh8W9jKBnL"
         >
           <option></option>
@@ -503,7 +506,7 @@
           <option>General contracting</option>
           <option>Other</option>
         </select>
-      </div>
+      </label>
       <label class="cursor-pointer block"
         ><div class="font-bold">
           Project address or nearest intersection<span
@@ -514,6 +517,7 @@
         <textarea
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
           name="location.address"
+          autocomplete="street-address"
           required=""
         ></textarea></label
       ><label class="cursor-pointer block"

@@ -709,3 +709,40 @@ main > section.py-5.bg-dark:first-child {
   --bs-accordion-active-bg: rgba(200, 16, 46, 0.08);
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(200, 16, 46, 0.25);
 }
+
+/* ── Staging audit fixes (S-list, 2026-11-20) ── */
+/* S-14: lock page scroll while the mobile menu is open. */
+@media (max-width: 991.98px) {
+  body:has(#mainNav.show) {
+    overflow: hidden;
+  }
+}
+
+/* S-15: meta text on the remaining dark blocks (blog headers). */
+.bg-dark .text-secondary,
+.text-bg-dark .text-secondary {
+  color: #adb5bd !important;
+}
+
+/* S-16: brand red is too dark on dark blocks; use the lighter tint there. */
+.bg-dark .text-danger,
+.text-bg-dark .text-danger,
+.table-dark .text-danger {
+  color: #ff6b7a !important;
+}
+
+/* S-17: secondary grey on the light surfaces, up to 6.3:1. */
+.text-secondary {
+  color: #5b5b57 !important;
+}
+.btn-outline-secondary {
+  --bs-btn-color: #5b5b57;
+  --bs-btn-border-color: #5b5b57;
+}
+
+/* S-19: slider images must not start a native drag (kills mouse drag). */
+.ba-slider .ba-img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
