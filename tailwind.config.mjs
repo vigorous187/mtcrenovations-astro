@@ -33,6 +33,8 @@ export default {
   },
   corePlugins: {
     visibility: false, // Prevents Tailwind .collapse from overriding Bootstrap .collapse
+    preflight: false, // S-05: Tailwind's reset was flattening Bootstrap typography (headings, lists, links)
+    container: false, // S-11: Bootstrap's .container widths apply (Tailwind's wrapped the nav at 992-1023px)
   },
   plugins: [],
 };

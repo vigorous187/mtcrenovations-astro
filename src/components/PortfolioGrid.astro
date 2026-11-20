@@ -1,12 +1,16 @@
 ---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import portfolioData from '../data/portfolio.json';
+import { findGalleryImage } from '../lib/gallery-images';
+import 'photoswipe/style.css';
+
 interface Props {
   service: string;
   serviceName: string;
 }
 
 const { service, serviceName } = Astro.props;
-
-import portfolioData from '../data/portfolio.json';
 
 type PortfolioPhoto = {
   file: string;
@@ -19,8 +23,17 @@ type PortfolioPhoto = {
   explanation: string;
 };
 
+type ResolvedPhoto = PortfolioPhoto & { img: ImageMetadata };
+
 // Get photos for this service from the data file
 const servicePhotos: PortfolioPhoto[] = (portfolioData as Record<string, PortfolioPhoto[]>)[service] || [];
+
+// Resolve each photo to its astro:assets import (S-06: responsive
+// variants instead of the full-size originals).
+async function resolve(photo: PortfolioPhoto): Promise<ResolvedPhoto | null> {
+  const img = await findGalleryImage(service, photo.file);
+  return img ? { ...photo, img } : null;
+}
 
 // Group photos by project
 const projectGroups = new Map<string, PortfolioPhoto[]>();
@@ -40,22 +53,19 @@ const sortedProjects = [...projectGroups.entries()].sort(
   }
 );
 
-// Use Astro glob to find our-work images at build time
-const allImages = import.meta.glob('/public/assets/img/*/our-work/*.{jpg,jpeg,png,webp,JPG,JPEG}');
-const allServicePaths = Object.keys(allImages)
-  .filter(path => path.includes(`/${service}/our-work/`))
-  .map(path => path.replace('/public', ''));
-
-// Build a lookup from filename to URL path
-function findImagePath(filename: string): string | null {
-  return allServicePaths.find(p => p.endsWith('/' + filename)) || null;
-}
-
 // Hero photos: top 6 by score across all projects
-const heroPhotos = servicePhotos
-  .slice(0, 6)
-  .map(p => ({ ...p, path: findImagePath(p.file) }))
-  .filter(p => p.path);
+const heroPhotos = (
+  await Promise.all(servicePhotos.slice(0, 6).map(resolve))
+).filter((p): p is ResolvedPhoto => p !== null);
+
+const resolvedProjects = await Promise.all(
+  sortedProjects.map(async ([projectName, photos]) => {
+    const resolved = (await Promise.all(photos.map(resolve))).filter(
+      (p): p is ResolvedPhoto => p !== null,
+    );
+    return { projectName, photos: resolved };
+  }),
+);
 
 // Slug helper for data attributes
 function slugify(name: string): string {
@@ -76,17 +86,22 @@ const INITIAL_GALLERY = 8;
 
     {/* Hero Grid — top 6 highest-scored photos */}
     {heroPhotos.length > 0 && (
-      <div class="row g-3 mb-5 reveal-stagger">
+      <div class="row g-3 mb-5 reveal-stagger pswp-gallery">
         {heroPhotos.map((photo, i) => (
           <div class={`${i < 2 ? 'col-6 col-md-6' : 'col-6 col-md-4 col-lg-3'} reveal`}>
             <div class="portfolio-item" style={`height: ${i < 2 ? '320px' : '240px'};`}>
-              <img
-                src={`${photo.path}?v=3`}
-                alt={photo.alt}
-                class="w-100 h-100"
-                style="object-fit: cover;"
-                loading={i < 2 ? 'eager' : 'lazy'}
-              />
+              <a href={photo.img.src} data-pswp-width={photo.img.width} data-pswp-height={photo.img.height}>
+                <Picture
+                  src={photo.img}
+                  widths={[400, 800, 1200]}
+                  sizes="(max-width: 767px) 50vw, 33vw"
+                  formats={['avif', 'webp']}
+                  alt={photo.alt}
+                  class="w-100 h-100"
+                  style="object-fit: cover;"
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                />
+              </a>
             </div>
           </div>
         ))}
@@ -94,11 +109,7 @@ const INITIAL_GALLERY = 8;
     )}
 
     {/* Project Sections — grouped by street name */}
-    {sortedProjects.map(([projectName, photos]) => {
-      const projectPhotos = photos
-        .map(p => ({ ...p, path: findImagePath(p.file) }))
-        .filter(p => p.path);
-
+    {resolvedProjects.map(({ projectName, photos: projectPhotos }) => {
       if (projectPhotos.length === 0) return null;
       const projectSlug = slugify(projectName);
       const hasMore = projectPhotos.length > INITIAL_GALLERY;
@@ -111,7 +122,7 @@ const INITIAL_GALLERY = 8;
               {projectPhotos.length} photo{projectPhotos.length !== 1 ? 's' : ''}
             </span>
           </h3>
-          <div class="row g-2">
+          <div class="row g-2 pswp-gallery">
             {projectPhotos.map((photo, idx) => (
               <div
                 class="col-6 col-md-4 col-lg-3 portfolio-photo-col"
@@ -120,13 +131,18 @@ const INITIAL_GALLERY = 8;
                 style={idx >= INITIAL_GALLERY ? 'display: none;' : undefined}
               >
                 <div class="portfolio-item" style="height: 200px;">
-                  <img
-                    src={`${photo.path}?v=3`}
-                    alt={photo.alt}
-                    class="w-100 h-100"
-                    style="object-fit: cover;"
-                    loading="lazy"
-                  />
+                  <a href={photo.img.src} data-pswp-width={photo.img.width} data-pswp-height={photo.img.height}>
+                    <Picture
+                      src={photo.img}
+                      widths={[400, 800, 1200]}
+                      sizes="(max-width: 767px) 50vw, 33vw"
+                      formats={['avif', 'webp']}
+                      alt={photo.alt}
+                      class="w-100 h-100"
+                      style="object-fit: cover;"
+                      loading="lazy"
+                    />
+                  </a>
                 </div>
               </div>
             ))}
@@ -153,9 +169,20 @@ const INITIAL_GALLERY = 8;
   </div>
 </section>
 
+<style>
+  /* Picture/anchor wrappers must fill the fixed-height tile so the
+     img's h-100 resolves (S-06). */
+  .portfolio-item a,
+  .portfolio-item picture {
+    display: block;
+    height: 100%;
+  }
+</style>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.show-more-btn').forEach(btn => {
+  function bindShowMore() {
+    document.querySelectorAll('.show-more-btn:not([data-bound])').forEach(btn => {
+      btn.setAttribute('data-bound', '1');
       btn.addEventListener('click', () => {
         const target = btn.getAttribute('data-target');
         if (!target) return;
@@ -165,5 +192,27 @@ const INITIAL_GALLERY = 8;
         (btn as HTMLElement).style.display = 'none';
       });
     });
-  });
+  }
+  bindShowMore();
+  document.addEventListener('astro:page-load', bindShowMore);
+</script>
+
+<script>
+  // S-21: PhotoSwipe lightbox on the galleries; re-init after soft
+  // navigation (fresh DOM nodes carry no data-pswp-init flag).
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+  function initLightboxes() {
+    document.querySelectorAll('.pswp-gallery:not([data-pswp-init])').forEach((el) => {
+      el.setAttribute('data-pswp-init', '1');
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: el as HTMLElement,
+        children: 'a[data-pswp-width]',
+        pswpModule: () => import('photoswipe'),
+      });
+      lightbox.init();
+    });
+  }
+  initLightboxes();
+  document.addEventListener('astro:page-load', initLightboxes);
 </script>

@@ -15,9 +15,11 @@ interface Props {
   schema?: object | object[];
   noindex?: boolean;
   heroPreload?: { src: string; srcset: string };
+  viewTransitions?: boolean;
 }
 
-const { heroPreload, ...props } = Astro.props;
+const { heroPreload, viewTransitions = true, ...props } = Astro.props;
+const chatEnabled = import.meta.env.PUBLIC_CHAT_ENABLED === 'true';
 ---
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@ const { heroPreload, ...props } = Astro.props;
   )}
 
   <SEOHead {...props} />
-  <ViewTransitions />
+  {viewTransitions && <ViewTransitions />}
   <!-- Zaraz auto-injected by Cloudflare — manual script removed to prevent double-load -->
 
   <!-- Zaraz's native consent manager owns visitor choices and persistence. -->
@@ -198,7 +200,7 @@ const { heroPreload, ...props } = Astro.props;
   </script>
 
   <SocialProofTicker />
-  <ChatWidget />
+  {chatEnabled && <ChatWidget />}
 
   <!-- Event tracking via Zaraz (GA4 pageviews handled by Zaraz automatically) -->
   <script is:inline>

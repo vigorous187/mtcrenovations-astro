@@ -3,6 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { businessId, breadcrumbList, faqPage } from '../components/seo/schemas';
 import site from '../data/site.json';
+import { Picture } from 'astro:assets';
+import remodelPhoto1 from '../assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg';
+import remodelPhoto2 from '../assets/img/bathroom/our-work/virtual-tour-327738-35.B6GSpeWQ.jpg';
+import remodelPhoto3 from '../assets/img/bathroom/our-work/virtual-tour-333305-mls-high-res-image-28.jpg';
+import remodelPhoto4 from '../assets/img/bathroom/our-work/IMG_7332.jpeg';
 
 const canonical = `${site.url}/bathroom-remodel-hamilton/`;
 const title = 'Bathroom Remodel Hamilton | Cost, Process & Permits | MTC';
@@ -61,19 +66,19 @@ const schemas = [
 
 const photos = [
   {
-    src: '/assets/img/bathroom/our-work/virtual-tour-318929-mls-high-res-image-27.jpg',
+    src: remodelPhoto1,
     alt: 'Premium finished bathroom with excellent lighting and material contrast — Stonehenge, Hamilton | MTC Renovations',
   },
   {
-    src: '/assets/img/bathroom/our-work/virtual-tour-327738-35.B6GSpeWQ.jpg',
+    src: remodelPhoto2,
     alt: 'Stunning finished powder room with dramatic green herringbone tile and live-edge wood vanity — premium portfolio shot — Rosedene, Hamilton | MTC Renovations',
   },
   {
-    src: '/assets/img/bathroom/our-work/virtual-tour-333305-mls-high-res-image-28.jpg',
+    src: remodelPhoto3,
     alt: 'Stunning finished bathroom with dramatic navy subway tile and brass fixtures — premium portfolio shot with strong design impact — Gateshead, Hamilton | MTC Renovations',
   },
   {
-    src: '/assets/img/bathroom/our-work/IMG_7332.jpeg',
+    src: remodelPhoto4,
     alt: 'Stunning hexagon tile shower with modern black fixtures — premium portfolio shot showcasing current design trends — Queensway, Hamilton | MTC Renovations',
   },
 ];
@@ -119,7 +124,7 @@ const photos = [
           <div class="row g-3 mb-4">
             {photos.map((photo) => (
               <div class="col-6">
-                <img src={photo.src} alt={photo.alt} class="img-fluid rounded" loading="lazy" width="640" height="480" />
+                <Picture src={photo.src} widths={[400, 800, 1200]} sizes="(max-width: 767px) 50vw, 640px" formats={['avif', 'webp']} alt={photo.alt} class="img-fluid rounded" loading="lazy" />
               </div>
             ))}
           </div>
