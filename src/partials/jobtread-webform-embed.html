@@ -446,7 +446,7 @@
   class="jtwf"
   data-jobtread-web-form="true"
   data-key="22SRGahWRb6i4j5fGT5LvdZ5fneugY7DHr"
-  data-success-message="Thanks — we received your request. A team member will review it and contact you within 24 hours. We only use your information to reach you about your project."
+  data-success-url="/thank-you/"
 >
   <div class="mx-auto min-w-0 max-w-sm rounded-sm shadow-sm bg-white">
     <div class="p-4 shadow-line-bottom">
@@ -467,10 +467,13 @@
           autocomplete="name"
           name="contact.name" /></label
       ><label class="cursor-pointer block"
-        ><div class="font-bold">Phone number</div>
+        ><div class="font-bold">
+          Phone number<span class="font-normal text-red-500">*</span>
+        </div>
         <input
           class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition hover:[&:not(:focus-within)]:bg-gray-50 hover:[&:not(:focus-within)]:border-gray-300 focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500 [&::-webkit-date-and-time-value]:h-5"
           type="tel"
+          required=""
           autocomplete="tel"
           name="contact.custom.22NgpjG3zvMA" /></label
       ><label class="cursor-pointer block"
