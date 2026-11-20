@@ -711,9 +711,15 @@ main > section.py-5.bg-dark:first-child {
 }
 
 /* ── Staging audit fixes (S-list, 2026-11-20) ── */
-/* S-14: lock page scroll while the mobile menu is open. */
+/* S-14: lock page scroll while the mobile menu is open. The audit's
+   body-only rule does not stop touch scrolling in Chromium (verified
+   by CDP touch drag: page scrolled to 1772 with the rule active), so
+   the lock is applied to the document scroller as well. */
 @media (max-width: 991.98px) {
   body:has(#mainNav.show) {
+    overflow: hidden;
+  }
+  html:has(#mainNav.show) {
     overflow: hidden;
   }
 }
