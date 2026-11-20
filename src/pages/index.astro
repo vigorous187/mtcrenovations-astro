@@ -32,7 +32,7 @@ const schemas = [
   }}
 >
   <!-- Hero Section — Full viewport with project photo -->
-  <section class="position-relative d-flex align-items-center" style="min-height: 100vh;">
+  <section class="position-relative d-flex align-items-center" style="min-height: 100vh; min-height: 100svh;">
     <picture class="hero-media">
       <source
         type="image/webp"
@@ -50,7 +50,7 @@ const schemas = [
     </picture>
     <div class="hero-overlay"></div>
     <div class="container position-relative text-center" style="z-index: 2;">
-      <p class="text-uppercase small fw-semibold mb-3" style="color: var(--mtc-red); letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
+      <p class="text-uppercase small fw-semibold mb-3" style="color: #fff; letter-spacing: 0.12em;">Burlington & Hamilton's Trusted Contractor</p>
       <h1 class="font-display fw-bold mb-3" style="font-size: clamp(3rem, 6vw, 5.5rem); color: var(--text-primary);">
         Renovations That<br/>Speak for Themselves
       </h1>
@@ -67,7 +67,7 @@ const schemas = [
         <a href="/estimate/" class="btn-ghost rounded-pill">
           See a price range
         </a>
-        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn-ghost rounded-pill">
+        <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="btn-ghost rounded-pill">
           <i class="fas fa-phone me-2"></i>{site.phone}
         </a>
       </div>

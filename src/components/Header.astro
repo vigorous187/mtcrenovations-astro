@@ -142,6 +142,24 @@ const currentPath = Astro.url.pathname;
     });
   }
 
+  // Close the mobile menu when a tap lands outside the header (audit M-17;
+  // Escape is handled by initHeaderEscape above).
+  function initHeaderOutsideClick() {
+    if (document.documentElement.dataset.mtcHeaderOutsideInit) return;
+    document.documentElement.dataset.mtcHeaderOutsideInit = 'true';
+    document.addEventListener('click', (event) => {
+      const nav = document.getElementById('mainNav');
+      if (!nav || !nav.classList.contains('show')) return;
+      if (event.target instanceof Node && event.target.closest('.glass-nav')) return;
+      const bootstrapLib = (window as any).bootstrap;
+      if (bootstrapLib?.Collapse) {
+        bootstrapLib.Collapse.getOrCreateInstance(nav).hide();
+      }
+    });
+  }
+
   initHeaderEscape();
+  initHeaderOutsideClick();
   document.addEventListener('astro:after-swap', initHeaderEscape);
+  document.addEventListener('astro:after-swap', initHeaderOutsideClick);
 </script>

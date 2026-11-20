@@ -27,7 +27,7 @@ const {
       <a href={ctaLink} class="btn btn-danger btn-lg px-5 py-3">
         {ctaText}
       </a>
-      <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn-ghost-dark rounded-pill d-inline-flex align-items-center justify-content-center">
+      <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="btn-ghost-dark rounded-pill d-inline-flex align-items-center justify-content-center">
         <i class="fas fa-phone me-2"></i>{site.phone}
       </a>
     </div>
