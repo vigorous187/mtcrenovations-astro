@@ -21,7 +21,7 @@ import site from '../data/site.json';
       </div>
       <div class="mt-5">
         <p class="text-white-50 small mb-2">Or call us directly:</p>
-        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-white text-decoration-none fs-5 fw-bold">
+        <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="text-white text-decoration-none fs-5 fw-bold">
           <i class="fas fa-phone me-2"></i>{site.phone}
         </a>
       </div>

@@ -96,7 +96,7 @@ const schemas = [
           Looking for a GTA renovation contractor for a kitchen, bathroom, or basement? MTC Renovations is based in Burlington and writes fixed-price quotes for homes in Halton Region and Hamilton, and for homes in Mississauga and Toronto. We do not publish a street address.
         </p>
         <a href="/newleadintake/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request a consultation</a>
-        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+        <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
       </div>
     </div>
   </section>
@@ -170,7 +170,7 @@ const schemas = [
 
           <h2 class="fw-bold mb-3">Get a fixed-price quote</h2>
           <p>
-            <a href="/newleadintake/">Request a consultation</a> or call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a>. The visit is for a written quote. Sending the request does not book a construction date.
+            <a href="/newleadintake/">Request a consultation</a> or call <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>. The visit is for a written quote. Sending the request does not book a construction date.
           </p>
 
           <h2 class="fw-bold mb-4">GTA renovation questions</h2>

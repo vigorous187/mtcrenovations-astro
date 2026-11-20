@@ -93,7 +93,7 @@ const schemas = [
           Before you hire a renovation contractor in Ontario, check insurance, the licensed trades on the job, and the municipal permit. MTC Renovations is fully insured. Proof of insurance is available before work starts. This page is the checklist, not a licence number.
         </p>
         <a href="/contact/" class="btn btn-danger btn-lg px-5 me-2 mb-2">Request proof of insurance</a>
-        <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
+        <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="btn btn-outline-light btn-lg px-5 mb-2">{site.phone}</a>
       </div>
     </div>
   </section>
@@ -164,7 +164,7 @@ const schemas = [
 
           <h2 class="fw-bold mb-3">Request proof of insurance</h2>
           <p>
-            Call <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a> or use the <a href="/contact/">contact page</a> and ask for proof of insurance before work starts. There is no new form on this page. If you are comparing contractors, use the five questions above and keep the answers in writing.
+            Call <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a> or use the <a href="/contact/">contact page</a> and ask for proof of insurance before work starts. There is no new form on this page. If you are comparing contractors, use the five questions above and keep the answers in writing.
           </p>
 
           <h2 class="fw-bold mb-4">Insurance and licensing questions</h2>

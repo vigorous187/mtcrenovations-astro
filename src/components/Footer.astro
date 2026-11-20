@@ -5,7 +5,7 @@ import services from '../data/services.json';
 
 <footer class="pt-5 pb-3" style="background: #0d0d0d; border-top: 1px solid rgba(255,255,255,0.12);">
   <div class="container">
-    <button type="button" class="btn btn-link p-0 mb-3" data-mtc-privacy-choices disabled
+    <button type="button" class="btn btn-link p-0 mb-3 text-decoration-none small" style="color: #b5b5b1;" data-mtc-privacy-choices disabled
       onclick="if (window.zaraz?.consent?.APIReady) window.zaraz.consent.modal = true;">Privacy choices</button>
     <div class="row">
       <!-- Brand -->
@@ -91,7 +91,7 @@ import services from '../data/services.json';
         <ul class="list-unstyled">
           <li class="mb-2 small" style="color: #b5b5b1;">
             <i class="fas fa-phone me-2" style="color: #f0a3ae;"></i>
-            <a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`} class="text-decoration-none" style="color: #b5b5b1;">{site.phone}</a>
+            <a href={`tel:+1${site.phone.replace(/\D/g, '')}`} class="text-decoration-none" style="color: #b5b5b1;">{site.phone}</a>
           </li>
           <li class="mb-2 small" style="color: #b5b5b1;">
             <i class="fas fa-envelope me-2" style="color: #f0a3ae;"></i>

@@ -626,3 +626,81 @@ html {
 .cf_modal_container {
   color-scheme: light;
 }
+
+/* ── QA audit fixes (2026-11-20 pass) ── */
+/* M-05: JobTread form labels must stay dark on the white form card. */
+form.jtwf {
+  color: #1f2937;
+}
+
+/* M-10 (symptom): Tailwind preflight strips list markers inside article
+   content; restore them for prose lists. */
+.prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+.prose li {
+  margin-bottom: 0.25rem;
+}
+
+/* M-13: first sections start under the 76px fixed header; give them room. */
+main > section.position-relative.d-flex.align-items-center:first-child,
+main > section.py-5.bg-dark:first-child {
+  padding-top: 6.5rem !important;
+}
+
+/* M-18: footer links, privacy button and the hamburger get 44px targets. */
+footer a,
+footer [data-mtc-privacy-choices],
+.navbar-toggler {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* M-28: comparison tables keep every column on small phones. */
+@media (max-width: 575.98px) {
+  .table-responsive > .table {
+    table-layout: fixed;
+    font-size: 0.875rem;
+  }
+}
+
+/* M-29: wide-gutter rows must not widen the page. */
+.container {
+  overflow-x: clip;
+}
+
+/* M-31: wide blog tables scroll inside the article instead of clipping. */
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* M-32: carousel tap zones must not cover the review link on phones. */
+@media (max-width: 767.98px) {
+  #reviewsCarousel .carousel-control-prev,
+  #reviewsCarousel .carousel-control-next {
+    display: none;
+  }
+}
+
+/* M-34: reserve the vendor form's height on desktop to stop layout shift. */
+@media (min-width: 992px) {
+  #jt-vendor-form {
+    min-height: 3450px;
+  }
+}
+
+/* M-35: FAQ accordion in brand colours instead of Bootstrap blue. */
+.accordion {
+  --bs-accordion-active-color: #141414;
+  --bs-accordion-active-bg: rgba(200, 16, 46, 0.08);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(200, 16, 46, 0.25);
+}
