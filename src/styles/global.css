@@ -333,11 +333,33 @@ html {
 }
 
 /* ── Navbar Overrides ── */
+/* The header bar is dark (#141414) in both themes, so nav links must use a
+   light colour. (This rule previously used var(--text-secondary), which the
+   light theme defines as dark text — the links rendered near-invisible on
+   the dark bar.) */
 .navbar-dark .navbar-nav .nav-link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.82);
   transition: color 0.3s ease;
+}
+
+/* Mobile menu: solid bar background and internal scroll so every item is
+   reachable, including in landscape (audit M-01/M-09). */
+@media (max-width: 991.98px) {
+  .glass-nav .navbar-collapse {
+    background: #141414;
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Review toast covers CTAs and form fields on phones; hide it there (M-08). */
+@media (max-width: 767.98px) {
+  #social-proof-ticker {
+    display: none !important;
+  }
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
