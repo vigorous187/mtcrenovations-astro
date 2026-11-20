@@ -122,15 +122,42 @@ const schemas = [localBusiness()];
       '<div class="mx-auto min-w-0 max-w-sm rounded-sm shadow-sm bg-white">' +
       '<div class="p-4 shadow-line-bottom"><img class="block max-w-full max-h-24 mx-auto" src="https://cdn.jobtread.com/G1QAaBwHdkw8xHbou6b_vUb-fVUgw70BR120Xeqw9JXIWysikEdZqZFQfgnL9NkDksEMo4o6J7R1BrICBLTt50s4D_1avMt9RMiBaM4.sEZ0FRVwHI5HSNRAdDRw6aXBJC5Y2TpcpufoXISlKQ0?size=1024"/></div>' +
       '<div class="p-4 space-y-2">' +
-      '<label class="cursor-pointer block"><div class="font-bold">Company Name \ud83c\udfe2<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="text" required autocomplete="organization" name="contact.name"/></label>' +
+      '<label class="cursor-pointer block"><div class="font-bold">Company Name \ud83c\udfe2<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="text" required autocomplete="organization" name="account.name"/></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Phone \u260e\ufe0f<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="tel" required autocomplete="tel" name="account.custom.22NgpjG45eL4"/></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Email \ud83d\udce7<span class="font-normal text-red-500">*</span></div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" type="email" required autocomplete="email" name="account.custom.22NgpjFtDL3v"/></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Address \ud83d\udccd<span class="font-normal text-red-500">*</span></div><textarea class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="location.address" autocomplete="street-address" required></textarea></label>' +
       '<label class="cursor-pointer block"><div class="font-bold">Website \ud83c\udf10</div><input class="rounded-sm ring ring-gray-200 p-2 w-full bg-white appearance-none transition focus-within:bg-white focus-within:ring-3 focus-within:ring-blue-500" name="account.custom.22Nh8UaiNz4j"/></label>' +
       '<div class="block"><div class="font-bold">Trade(s) \ud83d\udee0\ufe0f</div><div class="text-gray-500">What Trades do you do?</div>' +
       '<div class="rounded-sm border divide-y overflow-hidden">' + tradeCheckboxes + '</div></div>' +
+      '<div id="jt-vendor-error" role="alert" style="display:none;background:#fdecec;color:#8a1111;border:1px solid #e5a3a3;border-radius:4px;padding:8px 12px;font-weight:600;">Something went wrong and your application was not submitted. Please try again, or call us at (647) 560-1095.</div>' +
       '<div class="text-right"><button class="text-right px-4 py-2 rounded-sm shadow-xs cursor-pointer hover:brightness-95" data-submit-button="true" style="background-color:#a31314;color:#f6e7e8">Submit</button></div>' +
       '</div></div></form>';
+
+    // Visible in-page error when a JobTread submit fails. web-form.js only
+    // fires a browser alert() on failure and restores the submit button;
+    // watch for the button returning to its enabled "Submit" state after a
+    // submit that never fired the form's "success" event.
+    var vform = c.querySelector('form');
+    var vErr = c.querySelector('#jt-vendor-error');
+    var vBtn = vform ? vform.querySelector('[data-submit-button]') : null;
+    if (vform && vErr && vBtn) {
+      var vSubmitted = false;
+      var vSucceeded = false;
+      vform.addEventListener('submit', function() {
+        vSubmitted = true;
+        vErr.style.display = 'none';
+      });
+      vform.addEventListener('success', function() {
+        vSucceeded = true;
+        vErr.style.display = 'none';
+      });
+      new MutationObserver(function() {
+        if (vSubmitted && !vSucceeded && !vBtn.disabled && vBtn.textContent.trim() === 'Submit') {
+          vSubmitted = false;
+          vErr.style.display = 'block';
+        }
+      }).observe(vBtn, { attributes: true, attributeFilter: ['disabled'], childList: true, characterData: true, subtree: true });
+    }
 
     var s = document.createElement('script');
     s.src = 'https://app.jobtread.com/web-form.js';
