@@ -210,6 +210,12 @@ const INITIAL_GALLERY = 8;
         children: 'a[data-pswp-width]',
         pswpModule: () => import('photoswipe'),
       });
+      // R-11: Back while a photo is open should close the photo, not
+      // leave the page: push a history entry on open, close on popstate,
+      // and consume the entry when the lightbox closes any other way.
+      lightbox.on('openingAnimationStart', () => history.pushState({pswp: 1}, ''));
+      window.addEventListener('popstate', () => lightbox.pswp && lightbox.pswp.close());
+      lightbox.on('close', () => { if (history.state && history.state.pswp) history.back(); });
       lightbox.init();
     });
   }

@@ -756,3 +756,34 @@ main > section.py-5.bg-dark:first-child {
   -webkit-user-drag: none;
   user-select: none;
 }
+
+/* ── Round 2 fixes (R-list, 2026-11-20) ── */
+/* Site-wide red rule: red is a fill and a small accent on LIGHT backgrounds only.
+   On dark or photo backgrounds text is white; body-copy links are dark red #9e0b25. */
+:root{--bs-link-color-rgb:158,11,37;--bs-link-hover-color-rgb:200,16,46}
+.prose a{color:#9e0b25}
+.bg-dark .text-danger,.text-bg-dark .text-danger,.table-dark .text-danger{color:#fff!important}
+.bg-dark .card .text-danger{color:#c8102e!important}
+.portfolio-item .small{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.btn-outline-danger{--bs-btn-color:#c8102e;--bs-btn-border-color:#c8102e;--bs-btn-hover-bg:#c8102e;--bs-btn-hover-border-color:#c8102e;--bs-btn-active-bg:#9e0b25;--bs-btn-active-border-color:#9e0b25}
+.jtwf .text-red-500{color:#c8102e}
+
+/* R-02: text inside a light card nested in a dark section keeps its dark
+   colours (the S-15/S-16 descendant rules above were also matching it). */
+.bg-dark .card .text-secondary{color:#5b5b57!important}
+
+/* R-04: the round chat icon covers form submit buttons on phones; hide it
+   on pages that carry a form. */
+@media (max-width:760px){body:has(form[data-jobtread-web-form], #leadForm) .mtc-chat-fab{display:none}}
+
+/* R-08: legal-page breadcrumbs sit under the fixed header. */
+main > section:first-child:has(.breadcrumb){padding-top:6.5rem!important}
+
+/* R-09: homepage hero eyebrow needs a shadow over the bright photo on phones. */
+main > section:first-child p.text-uppercase.small{text-shadow:0 1px 3px rgba(0,0,0,.7)}
+
+/* R-10: no underlines on footer social icons or the linked feature heading. */
+footer a[aria-label], main h3 > a{text-decoration:none}
+
+/* R-12: 44px tap targets for breadcrumbs, small chips and in-copy link lists. */
+@media (max-width:767.98px){.breadcrumb a,.btn-sm,.prose li > a{display:inline-flex;align-items:center;min-height:44px}}
