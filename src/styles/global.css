@@ -653,14 +653,19 @@ main > section.py-5.bg-dark:first-child {
   padding-top: 6.5rem !important;
 }
 
-/* M-18: footer links, privacy button and the hamburger get 44px targets. */
-footer a,
-footer [data-mtc-privacy-choices],
-.navbar-toggler {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  min-width: 44px;
+/* M-18: footer links, privacy button and the hamburger get 44px targets.
+   Scoped to touch widths: at desktop sizes the rule stretched every footer
+   link list into 44px rows and bloated the footer, and the 44px guideline
+   is a touch target, so desktop keeps its compact footer. */
+@media (max-width: 991.98px) {
+  footer a,
+  footer [data-mtc-privacy-choices],
+  .navbar-toggler {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
 /* M-28: comparison tables keep every column on small phones. */
