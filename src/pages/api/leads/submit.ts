@@ -1,5 +1,8 @@
 import type { APIRoute } from "astro";
-import { sendLeadConfirmationEmail } from "../../../lib/email";
+import {
+  sendLeadConfirmationEmail,
+  sendStaffLeadNotification,
+} from "../../../lib/email";
 import {
   buildJobName,
   buildProjectNotes,
@@ -29,6 +32,11 @@ function json(data: unknown, status = 200) {
     status,
     headers: { "Content-Type": "application/json" },
   });
+}
+
+function webLeadSource(estimateId: string | undefined, hearAbout: string): string {
+  if (estimateId || hearAbout === "Price Guide") return "price-guide";
+  return hearAbout;
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -215,6 +223,34 @@ export const POST: APIRoute = async ({ request, locals }) => {
       },
       env,
     );
+
+    const staffNotice = sendStaffLeadNotification(
+      {
+        name: leadInput.name,
+        phone: leadInput.phone,
+        email: leadInput.email,
+        address: leadInput.address,
+        projectType: leadInput.remodelType,
+        description: leadInput.projectNotes,
+        source: webLeadSource(body.estimateId, hearAbout),
+        estimateId: estimate?.id || body.estimateId,
+        submittedAt: new Date(),
+        jobId: jobTreadResult.jobId,
+        jobName: leadInput.jobName,
+        customerId: jobTreadResult.accountId,
+      },
+      env,
+    )
+      .then((result) => {
+        if (result && result.ok === false) {
+          console.error("Staff lead notification failed", result.reason);
+        }
+      })
+      .catch((err) => {
+        console.error("Staff lead notification failed", err);
+      });
+    const ctx = locals.runtime?.ctx;
+    if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(staffNotice);
 
     return json({
       success: true,
