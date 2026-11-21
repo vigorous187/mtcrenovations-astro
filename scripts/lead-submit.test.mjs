@@ -16,7 +16,10 @@ const bundle = await build({
         contents: "export const createCustomerLead = (...args) => globalThis.leadTest.crm(...args);",
       }));
       build.onLoad({ filter: /\/lib\/email\.ts$/ }, () => ({
-        contents: "export const sendLeadConfirmationEmail = (...args) => globalThis.leadTest.email(...args);",
+        contents: [
+          "export const sendLeadConfirmationEmail = (...args) => globalThis.leadTest.email(...args);",
+          "export const sendStaffLeadNotification = (...args) => globalThis.leadTest.staff(...args);",
+        ].join("\n"),
       }));
     },
   }],
@@ -26,7 +29,7 @@ const receipt = { accountId: "account", contactId: "contact", locationId: "locat
 const input = { name: " Test Lead ", email: " TEST@EXAMPLE.COM ", phone: "202-555-0142", address: "TEST ONLY", hearAbout: "Website", remodelType: "Other" };
 const estimate = { id: "saved", type: "bathroom", typeLabel: "Bathroom", sizeLabel: "Small", finishLabel: "Standard", min: 10000, max: 20000 };
 
-async function submit(body, { saved, configured = true, crmError } = {}) {
+async function submit(body, { saved, configured = true, crmError, staffError, holdStaff, ctx, env: extraEnv } = {}) {
   const effects = [];
   globalThis.leadTest = {
     crm: async (_key, _org, lead) => {
@@ -35,16 +38,26 @@ async function submit(body, { saved, configured = true, crmError } = {}) {
       return receipt;
     },
     email: async (saved, lead) => effects.push({ kind: "email", saved, lead }),
+    staff: async (lead) => {
+      effects.push({ kind: "staff", lead });
+      if (holdStaff) await holdStaff;
+      if (staffError) throw staffError;
+      return { ok: true };
+    },
   };
   const response = await POST({
     request: new Request("https://example.com/api/leads/submit/", { method: "POST", body: JSON.stringify(body) }),
-    locals: { runtime: { env: {
-      ...(configured ? { JOBTREAD_GRANT_KEY: "test", JOBTREAD_ORG_ID: "test" } : {}),
-      ESTIMATES: {
-        get: async () => saved ? JSON.stringify(saved) : null,
-        put: async (key, value) => effects.push({ kind: "save", key, value: JSON.parse(value) }),
+    locals: { runtime: {
+      ...(ctx ? { ctx } : {}),
+      env: {
+        ...(configured ? { JOBTREAD_GRANT_KEY: "grant-secret-do-not-email", JOBTREAD_ORG_ID: "org-secret-do-not-email" } : {}),
+        ...extraEnv,
+        ESTIMATES: {
+          get: async () => saved ? JSON.stringify(saved) : null,
+          put: async (key, value) => effects.push({ kind: "save", key, value: JSON.parse(value) }),
+        },
       },
-    } } },
+    } },
   });
   return { status: response.status, body: await response.json(), effects };
 }
@@ -77,9 +90,21 @@ test("successful standalone lead returns its CRM receipt and only then sends con
   const result = await submit(input);
   assert.equal(result.status, 200);
   assert.deepEqual(result.body, { success: true, syncPending: false, jobTread: { accountId: "account", jobId: "job", created: true } });
-  assert.deepEqual(result.effects.map(effect => effect.kind), ["crm", "email"]);
+  assert.deepEqual(result.effects.map(effect => effect.kind), ["crm", "email", "staff"]);
   assert.equal(result.effects[0].lead.email, "test@example.com");
   assert.deepEqual(result.effects[1].lead, { name: "Test Lead", email: "test@example.com" });
+  const staff = result.effects[2].lead;
+  assert.equal(staff.name, "Test Lead");
+  assert.equal(staff.email, "test@example.com");
+  assert.equal(staff.phone, "202-555-0142");
+  assert.equal(staff.address, "TEST ONLY");
+  assert.equal(staff.projectType, "Other");
+  assert.equal(staff.source, "Website");
+  assert.equal(staff.jobId, "job");
+  assert.equal(staff.jobName, "Web Lead -  Test Lead ");
+  assert.equal(staff.customerId, "account");
+  assert.equal(staff.estimateId, undefined);
+  assert.doesNotMatch(JSON.stringify(staff), /grant-secret-do-not-email|org-secret-do-not-email/);
 });
 
 test("saved estimates infer current JobTread options and persist the actual receipt before email", async () => {
@@ -91,12 +116,68 @@ test("saved estimates infer current JobTread options and persist the actual rece
   ]) {
     const result = await submit({ ...input, estimateId: "saved", hearAbout: undefined, remodelType: undefined }, { saved: { ...estimate, type, scope } });
     assert.equal(result.status, 200);
-    assert.deepEqual(result.effects.map(effect => effect.kind), ["crm", "save", "email"]);
+    assert.deepEqual(result.effects.map(effect => effect.kind), ["crm", "save", "email", "staff"]);
     assert.equal(result.effects[0].lead.hearAbout, "Price Guide");
     assert.equal(result.effects[0].lead.remodelType, expected);
     assert.equal(result.effects[1].value.leadSubmitted, true);
     const { created, ...ids } = receipt;
     assert.deepEqual(result.effects[1].value.jobTread, ids);
     assert.equal(result.effects[2].saved.jobTread.jobId, "job");
+    assert.equal(result.effects[3].lead.source, "price-guide");
+    assert.equal(result.effects[3].lead.estimateId, "saved");
+    assert.equal(result.effects[3].lead.projectType, expected);
+    assert.equal(result.effects[3].lead.customerId, "account");
+    assert.equal(result.effects[3].lead.jobId, "job");
   }
+});
+
+test("staff notification failure still returns the visitor receipt", async () => {
+  const logged = [];
+  const original = console.error;
+  console.error = (...args) => logged.push(args.map(String).join(" "));
+  try {
+    const result = await submit(input, { staffError: new Error("notify-down") });
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(result.status, 200);
+    assert.equal(result.body.success, true);
+    assert.deepEqual(result.effects.map((effect) => effect.kind), ["crm", "email", "staff"]);
+    assert.equal(JSON.stringify(result.body).includes("notify-down"), false);
+    assert.match(logged.join("\n"), /Staff lead notification failed/);
+    assert.match(logged.join("\n"), /notify-down/);
+  } finally {
+    console.error = original;
+  }
+});
+
+test("mock delivery does not notify staff or the visitor", async () => {
+  const result = await submit(
+    { ...input, email: "mock-staff@example.com" },
+    { env: { LEAD_DELIVERY_MODE: "mock" } },
+  );
+  assert.equal(result.status, 200);
+  assert.equal(result.body.mock, true);
+  assert.equal(result.body.success, true);
+  assert.deepEqual(result.effects.map((effect) => effect.kind), ["crm"]);
+});
+
+test("staff notification does not block the response and uses waitUntil when present", async () => {
+  let release;
+  const holdStaff = new Promise((resolve) => {
+    release = resolve;
+  });
+  let waited;
+  const result = await submit(input, {
+    holdStaff,
+    ctx: {
+      waitUntil(promise) {
+        waited = promise;
+      },
+    },
+  });
+  assert.equal(result.status, 200);
+  assert.equal(result.body.success, true);
+  assert.equal(waited instanceof Promise, true);
+  assert.equal(result.effects.some((effect) => effect.kind === "staff"), true);
+  release();
+  await waited;
 });

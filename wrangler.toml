@@ -10,3 +10,7 @@ preview_id = "4f51d87c92e34ef9a8e9cfbafb9a76fc"
 
 [vars]
 CLOUDFLARE_ACCOUNT_ID = "29adb2b788e4c6151ba90c43d19bbdb7"
+# Comma-separated staff inboxes notified after a real /newleadintake/ JobTread create.
+# Empty skips the notice. Pages production may need this same value in the dashboard
+# if wrangler [vars] are not applied on deploy.
+STAFF_LEAD_NOTIFY_TO = "michael@mtcrenovations.ca,mtc-cos+webleads@mail.grokbot.com"

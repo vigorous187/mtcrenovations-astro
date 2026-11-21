@@ -96,4 +96,5 @@ export interface CloudflareEnv {
   JOBTREAD_GRANT_KEY?: string;
   JOBTREAD_ORG_ID?: string;
   SITE_URL?: string;
+  STAFF_LEAD_NOTIFY_TO?: string;
 }

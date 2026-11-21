@@ -112,12 +112,13 @@ async function sendMail(
   to: string,
   subject: string,
   html: string,
+  text = htmlToText(html),
 ): Promise<EmailSendResult> {
   const payload: EmailPayload = {
     to,
     subject,
     html,
-    text: htmlToText(html),
+    text,
   };
 
   const rest = await sendViaRestApi(env, payload);
@@ -180,4 +181,102 @@ export async function sendLeadConfirmationEmail(
     "We received your quote request — MTC Renovations",
     html,
   );
+}
+
+export interface StaffLeadNotification {
+  name: string;
+  phone: string;
+  email: string;
+  address?: string;
+  city?: string;
+  projectType?: string;
+  description?: string;
+  source?: string;
+  estimateId?: string;
+  submittedAt?: Date;
+  jobId?: string;
+  jobName?: string;
+  customerId?: string;
+}
+
+export type StaffLeadNotifyResult =
+  | { ok: true; skipped?: true }
+  | { ok: false; reason: "missing_token" | "api_error"; detail?: string };
+
+function staffRecipients(env: CloudflareEnv): string[] {
+  const raw = env.STAFF_LEAD_NOTIFY_TO;
+  if (!raw?.trim()) return [];
+  return raw
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0);
+}
+
+function oneLine(value: string): string {
+  return value.replace(/[\r\n]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function formatToronto(date?: Date): string {
+  const when = date && !Number.isNaN(date.getTime()) ? date : new Date();
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  }).format(when);
+}
+
+function staffLeadText(lead: StaffLeadNotification, source: string): string {
+  const lines = [
+    `Name: ${lead.name.trim()}`,
+    `Phone: ${lead.phone.trim()}`,
+    `Email: ${lead.email.trim()}`,
+  ];
+  const address = lead.address?.trim();
+  if (address) lines.push(`Address: ${address}`);
+  const city = lead.city?.trim();
+  if (city) lines.push(`City: ${city}`);
+  const projectType = lead.projectType?.trim();
+  if (projectType) lines.push(`Project type: ${projectType}`);
+  const description = lead.description?.trim();
+  if (description) lines.push(`Description:\n${description}`);
+  const estimateId = lead.estimateId?.trim();
+  lines.push(
+    estimateId ? `Source: ${source} (estimate ${estimateId})` : `Source: ${source}`,
+  );
+  lines.push(`Submitted (America/Toronto): ${formatToronto(lead.submittedAt)}`);
+  if (lead.jobId?.trim()) lines.push(`JobTread job id: ${lead.jobId.trim()}`);
+  if (lead.jobName?.trim()) lines.push(`JobTread job name: ${lead.jobName.trim()}`);
+  if (lead.customerId?.trim()) lines.push(`JobTread customer id: ${lead.customerId.trim()}`);
+  return lines.join("\n");
+}
+
+export async function sendStaffLeadNotification(
+  lead: StaffLeadNotification,
+  env: CloudflareEnv,
+): Promise<StaffLeadNotifyResult> {
+  const recipients = staffRecipients(env);
+  if (recipients.length === 0) return { ok: true, skipped: true };
+
+  const source = oneLine(lead.source || "") || "website";
+  const subject = `New web lead: ${oneLine(lead.name)} (${source})`;
+  const text = staffLeadText(lead, source);
+  const html = `<pre>${escapeHtml(text)}</pre>`;
+
+  let failure: EmailSendResult | undefined;
+  for (const to of recipients) {
+    const result = await sendMail(env, to, subject, html, text);
+    if (!result.ok && !failure) failure = result;
+  }
+  return failure ?? { ok: true };
 }
