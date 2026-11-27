@@ -48,7 +48,7 @@ const IMAGE_SOURCES = {
   "assets/img/garden-suite-adu/estimator/garden-suite-adu.jpg":
     "assets/img/home/virtual-tour-348484-62.jpg",
   "assets/img/garden-suite-adu/estimator/standalone-adu.jpg":
-    "assets/img/kitchen/our-work/2023-03-07_6 Kron_After Pics_ Virtual-Tour-334995-07.jpg",
+    "assets/img/kitchen/our-work/2023-03-07-6-kron-after-pics-virtual-tour-334995-07.jpg",
   "assets/img/garden-suite-adu/estimator/garage-conversion.jpg":
     "assets/img/basement/our-work/virtual-tour-327738-49.Bfv60reJ.jpg",
   "assets/img/garden-suite-adu/estimator/large-adu.jpg":

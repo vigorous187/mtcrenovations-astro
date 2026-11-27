@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+import { reviewSummary } from '../lib/googleReviews';
+
+const title = 'Why Choose MTC Renovations | Hamilton\'s Trusted Contractor';
+const description = 'Fully insured, and backed by real Hamilton homeowner reviews. See why MTC Renovations is a top-rated renovation company in Hamilton, Burlington and Halton.';
+const canonical = `${site.url}/why-mtc/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Why MTC', url: canonical },
+  ]),
+];
+
+const reasons = [
+  { icon: 'fas fa-shield-alt', title: 'Fully Insured', description: 'Fully insured renovation contractor. Proof of insurance is available before work starts.' },
+  { icon: 'fas fa-dollar-sign', title: 'Fixed-Price Quotes', description: 'Your quote is your price. No hidden fees, no change orders, no surprises at the end of the project.' },
+  { icon: 'fas fa-star', title: 'Google Reviews', description: `${reviewSummary} from real Hamilton homeowners.` },
+  { icon: 'fas fa-calendar-check', title: 'On-Time Delivery', description: 'We commit to a timeline and we stick to it. Your renovation will be completed when we say it will.' },
+  { icon: 'fas fa-tools', title: 'Skilled Tradespeople', description: 'Our crew includes experienced carpenters, tile setters, painters, and finishing specialists.' },
+  { icon: 'fas fa-comments', title: 'Clear Communication', description: 'Daily progress updates, a single point of contact, and prompt responses to your questions.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.6);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Why MTC</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">Why Choose MTC Renovations</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 640px;">
+        Fully insured, and backed by real homeowner reviews.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <h2 class="visually-hidden">Why choose MTC Renovations</h2>
+      <div class="row g-4">
+        {reasons.map(reason => (
+          <div class="col-md-6 col-lg-4">
+            <div class="p-4 h-100">
+              <i class={`${reason.icon} text-danger mb-3`} style="font-size: 2rem;"></i>
+              <h3 class="h5 fw-bold">{reason.title}</h3>
+              <p class="text-secondary small">{reason.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TestimonialCarousel />
+
+  <CTABanner
+    title="See the MTC Difference"
+    ctaText="Contact us"
+    ctaLink="/contact/"
+  />
+</BaseLayout>

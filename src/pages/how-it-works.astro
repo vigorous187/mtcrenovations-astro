@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'How Renovation Works | MTC Renovations Hamilton';
+const description = 'Our 5-step renovation process in Hamilton and Burlington. From the free consultation to the final walkthrough — see how MTC delivers on time and on budget.';
+const canonical = `${site.url}/how-it-works/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'How It Works', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.6);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">How It Works</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">How Renovation Works</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 640px;">
+        Our 5-step process from consultation to completion.
+      </p>
+    </div>
+  </section>
+
+  <ProcessSteps serviceName="" />
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="fw-bold mb-3">What to Expect</h2>
+          <p class="text-secondary">
+            From your first call to the final walkthrough, MTC Renovations keeps you informed every step of the way. You will receive a detailed timeline before construction starts, daily progress updates during the build, and a thorough final inspection before we consider the job complete.
+          </p>
+          <p class="text-secondary">
+            Our team protects your home throughout the renovation. We use dust barriers, floor protection, and daily cleanup to minimize disruption to your household.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ready to Get Started?"
+    subtitle="Book your free consultation today."
+    ctaText="Contact us"
+    ctaLink="/contact/"
+  />
+</BaseLayout>

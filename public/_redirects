@@ -96,3 +96,12 @@
 /location/vineland/ /location/lincoln/ 301
 /location/waterloo /locations/ 301
 /location/waterloo/ /locations/ 301
+
+# Company pages. The basement copies are the same company process, reasons, and hiring pitch.
+# Top-level URLs are canonical. 301 the basement variants so they do not 404 or compete.
+/basement/how-it-works /how-it-works/ 301
+/basement/how-it-works/ /how-it-works/ 301
+/basement/why-mtc /why-mtc/ 301
+/basement/why-mtc/ /why-mtc/ 301
+/basement/careers /careers/ 301
+/basement/careers/ /careers/ 301

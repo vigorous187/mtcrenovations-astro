@@ -41,7 +41,7 @@ const steps = [
   <div class="container">
     <div class="text-center mb-5">
       <p class="text-uppercase small fw-semibold mb-2" style="color: var(--mtc-red); letter-spacing: 0.08em;">Our Process</p>
-      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">How {serviceName} Renovation Works</h2>
+      <h2 class="font-display fw-bold" style="font-size: clamp(1.75rem, 3vw, 3rem);">How {serviceName ? `${serviceName} ` : ''}Renovation Works</h2>
     </div>
 
     <div class="row justify-content-center">
