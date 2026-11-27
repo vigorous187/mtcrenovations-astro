@@ -8,7 +8,8 @@ import site from '../../data/site.json';
 import services from '../../data/services.json';
 
 export function getStaticPaths() {
-  return services.map(s => ({
+  // /basement/how-it-works/ 301s to /how-it-works/ (public/_redirects).
+  return services.filter(s => s.slug !== 'basement').map(s => ({
     params: { service: s.slug },
     props: { service: s },
   }));

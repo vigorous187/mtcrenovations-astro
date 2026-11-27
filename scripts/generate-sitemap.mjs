@@ -12,6 +12,9 @@ const today = new Date().toISOString().slice(0, 10);
 const staticPages = [
   "/",
   "/about/",
+  "/how-it-works/",
+  "/why-mtc/",
+  "/careers/",
   "/contact/",
   "/estimate/",
   "/faq/",

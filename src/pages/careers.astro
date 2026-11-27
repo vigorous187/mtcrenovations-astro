@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { localBusiness, breadcrumbList } from '../components/seo/schemas';
+import site from '../data/site.json';
+
+const title = 'Renovation Careers Hamilton | Join MTC Renovations';
+const description = 'Looking for renovation work in Hamilton and Burlington? MTC Renovations is hiring skilled tradespeople and apprentices. Apply now.';
+const canonical = `${site.url}/careers/`;
+
+const schemas = [
+  localBusiness(),
+  breadcrumbList([
+    { name: 'Home', url: site.url },
+    { name: 'Careers', url: canonical },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} schema={schemas}>
+  <section class="bg-dark text-white py-5 text-center">
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb justify-content-center" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.6);">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item active text-white-50" aria-current="page">Careers</li>
+        </ol>
+      </nav>
+      <h1 class="display-5 fw-bold mb-3">Join the MTC Team</h1>
+      <p class="lead text-white-50 mx-auto" style="max-width: 640px;">
+        We're hiring skilled tradespeople in Hamilton, Burlington and Halton.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-3">Why Work at MTC Renovations?</h2>
+          <p class="text-secondary mb-4">
+            MTC Renovations is growing and we need skilled, reliable people to join our team. We offer competitive pay, steady work, and a professional environment where quality matters.
+          </p>
+
+          <div class="row g-3 mb-5">
+            <div class="col-md-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check text-danger mt-1"></i>
+                <span>Competitive hourly rates</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check text-danger mt-1"></i>
+                <span>Steady, year-round work</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check text-danger mt-1"></i>
+                <span>Professional work environment</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex align-items-start gap-2">
+                <i class="fas fa-check text-danger mt-1"></i>
+                <span>Growth opportunities</span>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="fw-bold mb-3" id="apply">Apply Now</h3>
+          <p class="text-secondary mb-3">
+            Send your resume and a brief introduction to <a href={`mailto:${site.email}`} class="text-danger">{site.email}</a> with the subject line "Career Application".
+          </p>
+          <p class="text-secondary">
+            Or call us at <a href="tel:+16475601095" class="text-danger fw-bold">(647) 560-1095</a> to speak with our team directly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Know Someone Who'd Be a Great Fit?"
+    subtitle="Share this page with skilled tradespeople in Hamilton and Burlington."
+    ctaText="Call Us"
+    ctaLink="tel:+16475601095"
+  />
+</BaseLayout>

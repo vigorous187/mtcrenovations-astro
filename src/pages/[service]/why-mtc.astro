@@ -9,7 +9,8 @@ import { reviewSummary } from '../../lib/googleReviews';
 import services from '../../data/services.json';
 
 export function getStaticPaths() {
-  return services.map(s => ({
+  // /basement/why-mtc/ 301s to /why-mtc/ (public/_redirects).
+  return services.filter(s => s.slug !== 'basement').map(s => ({
     params: { service: s.slug },
     props: { service: s },
   }));

@@ -19,11 +19,18 @@ const checks = {
     "/thank-you/",
     "/newvendorintake/",
     "/newleadintake/",
+    "/basement/how-it-works/",
     "/basement/why-mtc/",
+    "/basement/careers/",
     "/bathroom/why-mtc/",
     "/kitchen/why-mtc/",
     "/flooring/why-mtc/",
     "/painting/why-mtc/",
+  ],
+  indexablePaths: [
+    "https://www.mtcrenovations.ca/how-it-works/",
+    "https://www.mtcrenovations.ca/why-mtc/",
+    "https://www.mtcrenovations.ca/careers/",
   ],
 };
 
@@ -89,6 +96,12 @@ async function main() {
     assertTrue(
       !combinedSitemap.includes(blockedPath),
       `Noindex path is present in sitemap: ${blockedPath}`,
+    );
+  }
+  for (const indexablePath of checks.indexablePaths) {
+    assertTrue(
+      combinedSitemap.includes(indexablePath),
+      `Indexable path is missing from sitemap: ${indexablePath}`,
     );
   }
 
